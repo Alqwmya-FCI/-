@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="منتجات مصنع القومية - انترلوك، بلوك خرساني، بردورات بأعلى جودة ومطابقة للمواصفات">
+    <title>منتجاتنا - مصنع القومية للصناعات الأسمنتية</title>
+    <link rel="icon" type="image/png" href="./images/logo.png">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #0f3460 0%, #16213e 50%, #1a1a2e 100%);
+        }
+
+        .product-detail-card {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .product-detail-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(230, 126, 34, 0.2);
+            border-color: #E67E22;
+        }
+
+        .bg-accent {
+            background-color: #E67E22;
+        }
+
+        .hover-accent:hover {
+            background-color: #D35400;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50">
+    <!-- Header -->
+    <header class="hero-gradient text-white py-6 sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <img src="./images/logo.png" alt="شعار القومية" class="w-12 h-12">
+                    <div>
+                        <h1 class="text-2xl font-black">مصنع القومية</h1>
+                        <p class="text-sm text-slate-300">للصناعات الأسمنتية</p>
+                    </div>
+                </div>
+                <nav class="hidden md:flex gap-6">
+                    <a href="index.html" class="hover:text-orange-400 transition">الرئيسية</a>
+                    <a href="products.html" class="text-orange-400">المنتجات</a>
+                    <a href="index.html#contact" class="hover:text-orange-400 transition">اتصل بنا</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Title -->
+    <section class="hero-gradient text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-5xl md:text-6xl font-black mb-4">منتجاتنا</h1>
+            <p class="text-xl text-slate-300">منتجات أسمنتية عالية الجودة لجميع احتياجات البناء</p>
+        </div>
+    </section>
+
+    <!-- Product 1: Interlock -->
+    <section class="py-16 bg-white reveal">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-black text-slate-900 mb-4">🔷 انترلوك آلي</h2>
+                    <p class="text-lg text-slate-600">بلاط متداخل للأرضيات والمشايات بكبس آلي عالي الجودة</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <!-- Parquet -->
+                    <div class="product-detail-card bg-white rounded-xl p-6 shadow-lg">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-3">باركيه</h3>
+                        <div class="space-y-2 text-slate-700">
+                            <p><span class="font-bold">المقاس:</span> 20×10 سم</p>
+                            <p><span class="font-bold">السُمك:</span> 6-8 سم</p>
+                            <p><span class="font-bold">القطع/م²:</span> 50 قطعة</p>
+                            <p><span class="font-bold">الأنواع:</span> خشن/ناعم</p>
+                        </div>
+                    </div>
+
+                    <!-- Hexagonal -->
+                    <div class="product-detail-card bg-white rounded-xl p-6 shadow-lg">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-3">سداسي</h3>
+                        <div class="space-y-2 text-slate-700">
+                            <p><span class="font-bold">المقاس:</span> 23×20 سم</p>
+                            <p><span class="font-bold">السُمك:</span> 6-8 سم</p>
+                            <p><span class="font-bold">القطع/م²:</span> 29 قطعة</p>
+                            <p><span class="font-bold">الشكل:</span> سداسي</p>
+                        </div>
+                    </div>
+
+                    <!-- I Shape -->
+                    <div class="product-detail-card bg-white rounded-xl p-6 shadow-lg">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-3">حرف I</h3>
+                        <div class="space-y-2 text-slate-700">
+                            <p><span class="font-bold">المقاس:</span> 20×16.5 سم</p>
+                            <p><span class="font-bold">السُمك:</span> 6-8 سم</p>
+                            <p><span class="font-bold">القطع/م²:</span> 36 قطعة</p>
+                            <p><span class="font-bold">الشكل:</span> حرف I</p>
+                        </div>
+                    </div>
+
+                    <!-- S Shape -->
+                    <div class="product-detail-card bg-white rounded-xl p-6 shadow-lg">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-3">حرف S</h3>
+                        <div class="space-y-2 text-slate-700">
+                            <p><span class="font-bold">المقاس:</span> 24×12 سم</p>
+                            <p><span class="font-bold">السُمك:</span> 6-8 سم</p>
+                            <p><span class="font-bold">القطع/م²:</span> 35 قطعة</p>
+                            <p><span class="font-bold">الشكل:</span> حرف S</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-orange-50 rounded-xl p-6">
+                    <h4 class="text-xl font-bold text-slate-900 mb-3">المواصفات الفنية:</h4>
+                    <ul class="space-y-2 text-slate-700">
+                        <li>✅ كبس آلي عالي الدقة</li>
+                        <li>✅ نسبة امتصاص للماء: 6%</li>
+                        <li>✅ مقاومة عالية للاحتكاك</li>
+                        <li>✅ متوفر بألوان متعددة</li>
+                        <li>✅ سهل التركيب والصيانة</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product 2: Blocks -->
+    <section class="py-16 bg-slate-100 reveal">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-black text-slate-900 mb-4">🧱 بلوك خرساني مفرغ</h2>
+                    <p class="text-lg text-slate-600">بلوكات خرسانية عالية الجودة لجميع أعمال البناء</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <!-- Block 25 -->
+                    <div class="product-detail-card bg-white rounded-xl p-6 shadow-lg">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-3">بلوك 25</h3>
+                        <div class="space-y-2 text-slate-700">
+                            <p><span class="font-bold">الأبعاد:</span> 40×20×25 سم</p>
+                            <p><span class="font-bold">الوزن:</span> 24 كجم</p>
+                            <p><span class="font-bold">الاستخدام:</span> حوائط خارجية</p>
+                        </div>
+                    </div>
+
+                    <!-- Block 20 -->
+                    <div class="product-detail-card bg-white rounded-xl p-6 shadow-lg">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-3">بلوك 20</h3>
+                        <div class="space-y-2 text-slate-700">
+                            <p><span class="font-bold">الأبعاد:</span> 40×20×20 سم</p>
+                            <p><span class="font-bold">الوزن:</span> 19 كجم</p>
+                            <p><span class="font-bold">الاستخدام:</span> حوائط داخلية</p>
+                        </div>
+                    </div>
+
+                    <!-- Block 12 -->
+                    <div class="product-detail-card bg-white rounded-xl p-6 shadow-lg">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-3">بلوك 12</h3>
+                        <div class="space-y-2 text-slate-700">
+                            <p><span class="font-bold">الأبعاد:</span> 40×20×12 سم</p>
+                            <p><span class="font-bold">الوزن:</span> 13 كجم</p>
+                            <p><span class="font-bold">الاستخدام:</span> فواصل وحوائط خفيفة</p>
+                        </div>
+                    </div>
+
+                    <!-- Block 10 -->
+                    <div class="product-detail-card bg-white rounded-xl p-6 shadow-lg">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-3">بلوك 10</h3>
+                        <div class="space-y-2 text-slate-700">
+                            <p><span class="font-bold">الأبعاد:</span> 40×20×10 سم</p>
+                            <p><span class="font-bold">الوزن:</span> 12 كجم</p>
+                            <p><span class="font-bold">الاستخدام:</span> حوائط غير حاملة</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-orange-50 rounded-xl p-6">
+                    <h4 class="text-xl font-bold text-slate-900 mb-3">المواصفات الفنية:</h4>
+                    <ul class="space-y-2 text-slate-700">
+                        <li>✅ مقاومة حريق: ساعتين</li>
+                        <li>✅ كثافة: 2050-2191 كجم/م³</li>
+                        <li>✅ عزل حراري وصوتي ممتاز</li>
+                        <li>✅ مطابق للمواصفات المصرية</li>
+                        <li>✅ جودة عالية ومتانة طويلة الأمد</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product 3: Bordures -->
+    <section class="py-16 bg-white reveal">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-black text-slate-900 mb-4">⬜ بردورات خرسانية</h2>
+                    <p class="text-lg text-slate-600">بردورات عالية القوة لتجميل وتحديد الطرق والحدائق</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <!-- Ajali Bordure -->
+                    <div class="product-detail-card bg-white rounded-xl p-6 shadow-lg">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-3">بردورة عجالي</h3>
+                        <div class="space-y-2 text-slate-700">
+                            <p><span class="font-bold">الأبعاد:</span> 25×30×30 سم</p>
+                            <p><span class="font-bold">الطول:</span> 50 سم</p>
+                            <p><span class="font-bold">الوزن:</span> 95 كجم</p>
+                            <p><span class="font-bold">الاستخدام:</span> الطرق الرئيسية</p>
+                        </div>
+                    </div>
+
+                    <!-- Sidewalk Bordure -->
+                    <div class="product-detail-card bg-white rounded-xl p-6 shadow-lg">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-3">بردورة رصيف</h3>
+                        <div class="space-y-2 text-slate-700">
+                            <p><span class="font-bold">الأبعاد:</span> 30×10×8 سم</p>
+                            <p><span class="font-bold">الطول:</span> 50 سم</p>
+                            <p><span class="font-bold">الوزن:</span> 20 كجم</p>
+                            <p><span class="font-bold">الاستخدام:</span> الأرصفة والمشايات</p>
+                        </div>
+                    </div>
+
+                    <!-- Garden Bordure -->
+                    <div class="product-detail-card bg-white rounded-xl p-6 shadow-lg">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-3">بردورة حدائق</h3>
+                        <div class="space-y-2 text-slate-700">
+                            <p><span class="font-bold">الأبعاد:</span> 20×6 سم</p>
+                            <p><span class="font-bold">الطول:</span> 50 سم</p>
+                            <p><span class="font-bold">الوزن:</span> 30 كجم</p>
+                            <p><span class="font-bold">الاستخدام:</span> تحديد الحدائق</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-orange-50 rounded-xl p-6">
+                    <h4 class="text-xl font-bold text-slate-900 mb-3">المواصفات الفنية:</h4>
+                    <ul class="space-y-2 text-slate-700">
+                        <li>✅ مقاومة عالية للعوامل الجوية</li>
+                        <li>✅ تحمل أحمال ثقيلة</li>
+                        <li>✅ تشطيب ناعم وجودة عالية</li>
+                        <li>✅ متوفر بألوان مختلفة</li>
+                        <li>✅ سهل التركيب والصيانة</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product 4: Tafli Brick -->
+    <section class="py-16 bg-slate-100 reveal">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-black text-slate-900 mb-4">🧱 طوب طفلي (أحمر)</h2>
+                    <p class="text-lg text-slate-600">طوب طفلي أحمر عالي الجودة لبناء قوي ومتين</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="product-detail-card bg-white rounded-xl p-6 shadow-lg">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-3">طفلي مصمت</h3>
+                        <div class="space-y-2 text-slate-700">
+                            <p><span class="font-bold">الأبعاد:</span> 25×12×6 سم</p>
+                            <p><span class="font-bold">الوزن:</span> 3-3.5 كجم</p>
+                            <p><span class="font-bold">النوع:</span> مصمت كامل</p>
+                            <p><span class="font-bold">الاستخدام:</span> حوائط حاملة</p>
+                        </div>
+                    </div>
+
+                    <div class="product-detail-card bg-white rounded-xl p-6 shadow-lg">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-3">طفلي مثقب</h3>
+                        <div class="space-y-2 text-slate-700">
+                            <p><span class="font-bold">الأبعاد:</span> 25×12×6 سم</p>
+                            <p><span class="font-bold">الوزن:</span> 2.5-3 كجم</p>
+                            <p><span class="font-bold">النوع:</span> مثقب</p>
+                            <p><span class="font-bold">الاستخدام:</span> حوائط داخلية</p>
+                        </div>
+                    </div>
+
+                    <div class="product-detail-card bg-white rounded-xl p-6 shadow-lg">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-3">طفلي 10 ثقوب</h3>
+                        <div class="space-y-2 text-slate-700">
+                            <p><span class="font-bold">الأبعاد:</span> 25×12×13 سم</p>
+                            <p><span class="font-bold">الوزن:</span> 3.5-4 كجم</p>
+                            <p><span class="font-bold">عدد الثقوب:</span> 10 ثقوب</p>
+                            <p><span class="font-bold">الاستخدام:</span> عزل حراري</p>
+                        </div>
+                    </div>
+
+                    <div class="product-detail-card bg-white rounded-xl p-6 shadow-lg">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-3">طفلي 6 ثقوب</h3>
+                        <div class="space-y-2 text-slate-700">
+                            <p><span class="font-bold">الأبعاد:</span> 25×12×6.5 سم</p>
+                            <p><span class="font-bold">الوزن:</span> 2-2.5 كجم</p>
+                            <p><span class="font-bold">عدد الثقوب:</span> 6 ثقوب</p>
+                            <p><span class="font-bold">الاستخدام:</span> حوائط خفيفة</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-orange-50 rounded-xl p-6">
+                    <h4 class="text-xl font-bold text-slate-900 mb-3">المواصفات الفنية:</h4>
+                    <ul class="space-y-2 text-slate-700">
+                        <li>✅ مقاومة حريق ممتازة</li>
+                        <li>✅ عزل حراري وصوتي طبيعي</li>
+                        <li>✅ قوة تحمل عالية</li>
+                        <li>✅ صديق للبيئة</li>
+                        <li>✅ سعر اقتصادي</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product 5: Cement Brick -->
+    <section class="py-16 bg-white reveal">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-black text-slate-900 mb-4">🏗️ طوب أسمنتي مصمت</h2>
+                    <p class="text-lg text-slate-600">طوب أسمنتي عالي القوة لجميع أعمال البناء والتشييد</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="product-detail-card bg-white rounded-xl p-6 shadow-lg">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-3">مصمت 25</h3>
+                        <div class="space-y-2 text-slate-700">
+                            <p><span class="font-bold">الأبعاد:</span> 25×12×6 سم</p>
+                            <p><span class="font-bold">الوزن:</span> 4-4.5 كجم</p>
+                            <p><span class="font-bold">اللون:</span> رمادي (عادي)</p>
+                            <p><span class="font-bold">الاستخدام:</span> حوائط حاملة</p>
+                        </div>
+                    </div>
+
+                    <div class="product-detail-card bg-white rounded-xl p-6 shadow-lg">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-3">مصمت 20</h3>
+                        <div class="space-y-2 text-slate-700">
+                            <p><span class="font-bold">الأبعاد:</span> 20×10×6 سم</p>
+                            <p><span class="font-bold">الوزن:</span> 3-3.5 كجم</p>
+                            <p><span class="font-bold">اللون:</span> رمادي (عادي)</p>
+                            <p><span class="font-bold">الاستخدام:</span> حوائط داخلية</p>
+                        </div>
+                    </div>
+
+                    <div class="product-detail-card bg-white rounded-xl p-6 shadow-lg">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-3">أحمر 25</h3>
+                        <div class="space-y-2 text-slate-700">
+                            <p><span class="font-bold">الأبعاد:</span> 25×12×6 سم</p>
+                            <p><span class="font-bold">الوزن:</span> 4-4.5 كجم</p>
+                            <p><span class="font-bold">اللون:</span> أحمر</p>
+                            <p><span class="font-bold">الاستخدام:</span> واجهات وديكور</p>
+                        </div>
+                    </div>
+
+                    <div class="product-detail-card bg-white rounded-xl p-6 shadow-lg">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-3">أحمر 20</h3>
+                        <div class="space-y-2 text-slate-700">
+                            <p><span class="font-bold">الأبعاد:</span> 20×10×6 سم</p>
+                            <p><span class="font-bold">الوزن:</span> 3-3.5 كجم</p>
+                            <p><span class="font-bold">اللون:</span> أحمر</p>
+                            <p><span class="font-bold">الاستخدام:</span> تشطيبات</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-orange-50 rounded-xl p-6">
+                    <h4 class="text-xl font-bold text-slate-900 mb-3">المواصفات الفنية:</h4>
+                    <ul class="space-y-2 text-slate-700">
+                        <li>✅ قوة ضغط عالية: 100-150 كجم/سم²</li>
+                        <li>✅ مقاوم للرطوبة والماء</li>
+                        <li>✅ أبعاد منتظمة ودقيقة</li>
+                        <li>✅ سرعة في البناء</li>
+                        <li>✅ توفير في المونة الأسمنتية</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 hero-gradient text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-black mb-4">هل تحتاج لعرض سعر؟</h2>
+            <p class="text-xl text-slate-300 mb-8">تواصل معنا الآن للحصول على أفضل الأسعار والعروض</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="https://wa.me/201283191597?text=أريد طلب عرض سعر"
+                    class="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition">
+                    📱 واتساب
+                </a>
+                <a href="tel:+201283191597"
+                    class="bg-accent hover-accent text-white px-8 py-4 rounded-xl font-bold text-lg transition">
+                    📞 اتصل بنا
+                </a>
+                <a href="index.html"
+                    class="bg-white hover:bg-slate-100 text-slate-900 px-8 py-4 rounded-xl font-bold text-lg transition">
+                    🏠 العودة للرئيسية
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-slate-400">© 2024 مصنع القومية للصناعات الأسمنتية - جميع الحقوق محفوظة</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll Reveal Animation
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 100;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+    </script>
+</body>
+
+</html>

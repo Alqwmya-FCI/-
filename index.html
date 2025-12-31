@@ -23,39 +23,54 @@
     }
 
     .hero-gradient {
-      background: linear-gradient(135deg, #212529 0%, #343a40 50%, #495057 100%);
+      background: linear-gradient(135deg, #0f3460 0%, #16213e 50%, #1a1a2e 100%);
     }
 
     .product-card {
       transition: all 0.3s ease;
+      border: 2px solid transparent;
     }
 
     .product-card:hover {
       transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 20px 40px rgba(230, 126, 34, 0.3);
+      border-color: #E67E22;
     }
 
     .stat-card {
-      background: linear-gradient(135deg, #495057 0%, #6c757d 100%);
+      background: linear-gradient(135deg, #E67E22 0%, #D35400 100%);
     }
 
     .accent-color {
-      color: #6c757d;
+      color: #E67E22;
     }
 
     .bg-accent {
-      background-color: #6c757d;
+      background-color: #E67E22;
     }
 
     .hover-accent:hover {
-      background-color: #495057;
+      background-color: #D35400;
     }
 
+    /* Scroll Reveal Animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Float Animation for Logo */
     @keyframes float {
 
       0%,
       100% {
-        transform: translateY(0);
+        transform: translateY(0px);
       }
 
       50% {
@@ -65,6 +80,75 @@
 
     .float-animation {
       animation: float 3s ease-in-out infinite;
+    }
+
+    /* Pulse Animation */
+    @keyframes pulse {
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.05);
+      }
+    }
+
+    .pulse-animation {
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    /* Floating WhatsApp Button */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 65px;
+      height: 65px;
+      background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+      z-index: 9999;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 12px 30px rgba(37, 211, 102, 0.6);
+    }
+
+    .whatsapp-float svg {
+      width: 35px;
+      height: 35px;
+      fill: white;
+    }
+
+    /* Phone Float Button */
+    .phone-float {
+      position: fixed;
+      bottom: 110px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 20px rgba(15, 52, 96, 0.5);
+      z-index: 9999;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .phone-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 12px 30px rgba(15, 52, 96, 0.7);
     }
   </style>
 </head>
@@ -119,13 +203,13 @@
           مصنع القومية للصناعات الأسمنتية
         </h1>
         <p class="text-xl md:text-2xl mb-8 text-slate-200 font-light">
-          رواد صناعة منتجات الخرسانة المسلحة في مصر
+          متخصصون في صناعة المنتجات الأسمنتية عالية الجودة
         </p>
         <p class="text-lg md:text-xl mb-10 text-slate-300">
           🏗️ جودة عالمية • دقة في التصنيع • التزام في المواعيد
         </p>
         <div class="flex flex-wrap gap-4 justify-center">
-          <a href="#products"
+          <a href="products.html"
             class="bg-accent hover-accent text-white px-8 py-4 rounded-xl font-bold text-lg shadow-xl hover:shadow-2xl transition transform hover:scale-105">
             استكشف منتجاتنا
           </a>
@@ -138,496 +222,513 @@
     </div>
   </section>
 
+
   <!-- Stats Section -->
   <section class="py-12 -mt-12 relative z-20">
     <div class="container mx-auto px-4">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
         <div class="stat-card text-white p-6 rounded-2xl shadow-xl text-center">
-          <div class="text-4xl font-black mb-2">+20</div>
+          <div class="text-4xl font-black mb-2">
+            <span class="counter" data-target="28">0</span>
+          </div>
           <div class="text-lg font-semibold">سنة خبرة</div>
         </div>
         <div class="stat-card text-white p-6 rounded-2xl shadow-xl text-center">
-          <div class="text-4xl font-black mb-2">100%</div>
-          <div class="text-lg font-semibold">جودة مضمونة</div>
+          <div class="text-4xl font-black mb-2">
+            <span class="counter" data-target="5000">0</span>+
+          </div>
+          <div class="text-lg font-semibold">طن إنتاج شهري</div>
         </div>
         <div class="stat-card text-white p-6 rounded-2xl shadow-xl text-center">
-          <div class="text-4xl font-black mb-2">500+</div>
-          <div class="text-lg font-semibold">مشروع ناجح</div>
+          <div class="text-4xl font-black mb-2">
+            <span class="counter" data-target="150">0</span>+
+          </div>
+          <div class="text-lg font-semibold">عميل راضي</div>
         </div>
       </div>
     </div>
+
     </div>
   </section>
 
   <!-- About Section -->
-  <section class="py-20 bg-white">
-    <div class="container mx-auto px-4">
-      <div class="max-w-4xl mx-auto">
-        <div class="text-center mb-12">
-          <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-4">عن المصنع</h2>
-          <div class="w-24 h-1 bg-accent mx-auto mb-6"></div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <div>
-            <div class="bg-gradient-to-br from-slate-800 to-slate-900 text-white p-8 rounded-2xl shadow-2xl">
-              <h3 class="text-3xl font-black mb-4">منذ 1996</h3>
-              <p class="text-xl text-slate-200 mb-6">خبرة عريقة في صناعة المنتجات الأسمنتية</p>
-              <div class="space-y-3 text-slate-300">
-                <p class="flex items-center gap-2">
-                  <span class="text-2xl">🏭</span>
-                  <span>مصنع متخصص ومتطور</span>
-                </p>
-                <p class="flex items-center gap-2">
-                  <span class="text-2xl">⚙️</span>
-                  <span>معدات آلية حديثة</span>
-                </p>
-                <p class="flex items-center gap-2">
-                  <span class="text-2xl">✨</span>
-                  <span>جودة مطابقة للمواصفات</span>
-                </p>
-              </div>
-            </div>
+  <section class="py-20 bg-white reveal">
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          <div class="text-center mb-12">
+            <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-4">عن المصنع</h2>
+            <div class="w-24 h-1 bg-accent mx-auto mb-6"></div>
           </div>
 
-          <div class="space-y-4">
-            <p class="text-lg text-slate-700 leading-relaxed">
-              <span class="font-bold text-slate-900">مصنع القومية للصناعات الأسمنتية</span> تأسس عام 1996، ويُعد من
-              المصانع الرائدة في مجال إنتاج المنتجات الخرسانية عالية الجودة.
-            </p>
-            <p class="text-lg text-slate-700 leading-relaxed">
-              نتخصص في صناعة <span class="font-semibold accent-color">الإنترلوك الآلي</span> بأنواعه (باركيه خشن وناعم)،
-              <span class="font-semibold accent-color">الطوب الأسمنتي والبلوك</span>،
-              <span class="font-semibold accent-color">البردورات</span>، و
-              <span class="font-semibold accent-color">بلاط المزايكو</span>.
-            </p>
-            <p class="text-lg text-slate-700 leading-relaxed">
-              مع أكثر من <span class="font-bold text-slate-900">28 عاماً من الخبرة</span>، نفخر بتقديم منتجات مطابقة
-              للمواصفات القياسية لمئات المشاريع في جميع أنحاء مصر.
-            </p>
-            <div class="pt-4">
-              <a href="#contact"
-                class="inline-block bg-accent hover-accent text-white px-6 py-3 rounded-lg font-semibold transition">
-                تواصل معنا الآن
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Products Section -->
-  <section id="products" class="py-20 bg-white">
-    <div class="container mx-auto px-4">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-4">منتجاتنا</h2>
-        <p class="text-xl text-slate-600">منتجات خرسانية عالية الجودة لجميع احتياجاتك</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        <!-- Product 1: Interlock -->
-        <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden border border-slate-200">
-          <div class="h-64 bg-slate-200 overflow-hidden">
-            <img src="./images/interlock.jpg" alt="انترلوك"
-              class="w-full h-full object-cover hover:scale-110 transition duration-500"
-              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="w-full h-64 bg-gradient-to-br from-slate-600 to-slate-700 flex items-center justify-center"
-              style="display: none;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none"
-                stroke="white" stroke-width="1.5">
-                <rect width="7" height="7" x="3" y="3" rx="1" />
-                <rect width="7" height="7" x="14" y="3" rx="1" />
-                <rect width="7" height="7" x="14" y="14" rx="1" />
-                <rect width="7" height="7" x="3" y="14" rx="1" />
-              </svg>
-            </div>
-          </div>
-          <div class="p-6">
-            <h3 class="text-2xl font-bold text-slate-900 mb-3">انترلوك آلي</h3>
-            <p class="text-slate-600 mb-3">بلاط خرسانى متداخل بألوان متعددة، مثالي للأرصفة والممرات والساحات</p>
-            <div class="bg-slate-50 p-3 rounded-lg mb-4">
-              <p class="text-sm font-semibold text-slate-700 mb-1">المقاسات المتوفرة:</p>
-              <p class="text-sm text-slate-600">20×10×6 سم • 20×10×8 سم</p>
-              <p class="text-sm text-slate-600 mt-1">باركيه خشن وناعم</p>
-            </div>
-            <ul class="space-y-2 text-sm text-slate-700 mb-4">
-              <li class="flex items-center gap-2">
-                <span class="accent-color">✓</span> مقاوم للعوامل الجوية
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="accent-color">✓</span> سهل التركيب والصيانة
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="accent-color">✓</span> ألوان وأشكال متنوعة
-              </li>
-            </ul>
-            <a href="https://wa.me/201283191597?text=أريد الاستفسار عن الانترلوك" target="_blank"
-              class="block text-center bg-accent hover-accent text-white py-3 rounded-xl font-bold transition">
-              طلب عرض سعر
-            </a>
-          </div>
-        </div>
-
-        <!-- Product 2: Blocks -->
-        <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden border border-slate-200">
-          <div class="h-64 bg-slate-200 overflow-hidden">
-            <img src="./images/blocks.jpg" alt="بلوك"
-              class="w-full h-full object-cover hover:scale-110 transition duration-500"
-              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="w-full h-64 bg-gradient-to-br from-slate-600 to-slate-700 flex items-center justify-center"
-              style="display: none;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none"
-                stroke="white" stroke-width="1.5">
-                <rect width="18" height="18" x="3" y="3" rx="2" />
-                <path d="M3 9h18" />
-                <path d="M9 21V9" />
-              </svg>
-            </div>
-          </div>
-          <div class="p-6">
-            <h3 class="text-2xl font-bold text-slate-900 mb-3">بلوك خرساني</h3>
-            <p class="text-slate-600 mb-4">طوب أسمنتي عالي الجودة للبناء والتشييد بمقاسات مختلفة</p>
-            <ul class="space-y-2 text-sm text-slate-700 mb-4">
-              <li class="flex items-center gap-2">
-                <span class="accent-color">✓</span> قوة تحمل عالية
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="accent-color">✓</span> مطابق للمواصفات القياسية
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="accent-color">✓</span> أسعار منافسة
-              </li>
-            </ul>
-            <a href="https://wa.me/201283191597?text=أريد الاستفسار عن البلوك" target="_blank"
-              class="block text-center bg-accent hover-accent text-white py-3 rounded-xl font-bold transition">
-              طلب عرض سعر
-            </a>
-          </div>
-        </div>
-
-        <!-- Product 3: Bordures -->
-        <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden border border-slate-200">
-          <div class="h-64 bg-slate-200 overflow-hidden">
-            <img src="./images/bordure.jpg" alt="بردورات"
-              class="w-full h-full object-cover hover:scale-110 transition duration-500"
-              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="w-full h-64 bg-gradient-to-br from-amber-600 to-amber-700 flex items-center justify-center"
-              style="display: none;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none"
-                stroke="white" stroke-width="1.5">
-                <path d="M3 12h18" />
-                <path d="M3 6h18" />
-                <path d="M3 18h18" />
-              </svg>
-            </div>
-          </div>
-          <div class="p-6">
-            <h3 class="text-2xl font-bold text-slate-900 mb-3">بردورات</h3>
-            <p class="text-slate-600 mb-4">أحجار جانبية للطرق والممرات بجودة ومتانة عالية</p>
-            <ul class="space-y-2 text-sm text-slate-700 mb-4">
-              <li class="flex items-center gap-2">
-                <span class="accent-color">✓</span> مقاومة للصدمات
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="accent-color">✓</span> تشطيب ناعم
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="accent-color">✓</span> أبعاد دقيقة
-              </li>
-            </ul>
-            <a href="https://wa.me/201283191597?text=أريد الاستفسار عن البردورات" target="_blank"
-              class="block text-center bg-accent hover-accent text-white py-3 rounded-xl font-bold transition">
-              طلب عرض سعر
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Why Us Section -->
-  <section class="py-20 bg-slate-100">
-    <div class="container mx-auto px-4">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-4">لماذا مصنع القومية؟</h2>
-        <p class="text-xl text-slate-600">نقدم أفضل الحلول لمشاريعك</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-        <div class="bg-white p-6 rounded-2xl shadow-lg text-center hover:shadow-xl transition">
-          <div class="w-16 h-16 bg-slate-200 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-              stroke="#f97316" stroke-width="2">
-              <path d="M12 2L2 7l10 5 10-5-10-5z" />
-              <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold text-slate-900 mb-2">جودة عالية</h3>
-          <p class="text-slate-600">منتجات تطابق المواصفات العالمية</p>
-        </div>
-
-        <div class="bg-white p-6 rounded-2xl shadow-lg text-center hover:shadow-xl transition">
-          <div class="w-16 h-16 bg-slate-200 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-              stroke="#f97316" stroke-width="2">
-              <circle cx="12" cy="12" r="10" />
-              <polyline points="12 6 12 12 16 14" />
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold text-slate-900 mb-2">التزام بالمواعيد</h3>
-          <p class="text-slate-600">توريد سريع وفي الوقت المحدد</p>
-        </div>
-
-        <div class="bg-white p-6 rounded-2xl shadow-lg text-center hover:shadow-xl transition">
-          <div class="w-16 h-16 bg-slate-200 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-              stroke="#f97316" stroke-width="2">
-              <line x1="12" x2="12" y1="2" y2="22" />
-              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold text-slate-900 mb-2">أسعار تنافسية</h3>
-          <p class="text-slate-600">أفضل الأسعار في السوق</p>
-        </div>
-
-        <div class="bg-white p-6 rounded-2xl shadow-lg text-center hover:shadow-xl transition">
-          <div class="w-16 h-16 bg-slate-200 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-              stroke="#f97316" stroke-width="2">
-              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-              <circle cx="9" cy="7" r="4" />
-              <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold text-slate-900 mb-2">خدمة عملاء ممتازة</h3>
-          <p class="text-slate-600">دعم فني متواصل</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Team Section -->
-  <section id="contact" class="py-20 bg-white">
-    <div class="container mx-auto px-4">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-4">تواصل معنا</h2>
-        <p class="text-xl text-slate-600">فريق الإدارة في خدمتك</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-        <!-- Ali Card -->
-        <a href="./ali/"
-          class="bg-gradient-to-br from-slate-800 to-slate-900 text-white p-8 rounded-2xl shadow-2xl hover:shadow-3xl hover:scale-105 transition-all duration-300">
-          <div class="flex items-center gap-4 mb-6">
-            <div class="w-20 h-20 rounded-full bg-accent flex items-center justify-center text-3xl font-bold">
-              ع
-            </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div>
-              <h3 class="text-2xl font-bold">م/ علي عبد الشافي</h3>
-              <p class="text-slate-300 font-semibold">رئيس مجلس الإدارة</p>
-            </div>
-          </div>
-          <div class="space-y-3">
-            <div class="flex items-center gap-3 text-slate-300">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2">
-                <path
-                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-              </svg>
-              <span>01283191597</span>
-            </div>
-            <div class="flex items-center gap-3 text-green-400">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2">
-                <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
-              </svg>
-              <span>واتساب متاح</span>
-            </div>
-          </div>
-          <div class="mt-6 text-center bg-accent py-3 rounded-lg font-bold">
-            عرض البطاقة الكاملة ←
-          </div>
-        </a>
-
-        <!-- Hussein Card -->
-        <a href="./hussein/"
-          class="bg-gradient-to-br from-slate-600 to-slate-700 text-white p-8 rounded-2xl shadow-2xl hover:shadow-3xl hover:scale-105 transition-all duration-300">
-          <div class="flex items-center gap-4 mb-6">
-            <div
-              class="w-20 h-20 rounded-full bg-white accent-color flex items-center justify-center text-3xl font-bold">
-              ح
-            </div>
-            <div>
-              <h3 class="text-2xl font-bold">م/ حسين علي عبدالشافي</h3>
-              <p class="text-orange-100 font-semibold">مدير الإنتاج والجودة</p>
-            </div>
-          </div>
-          <div class="space-y-3">
-            <div class="flex items-center gap-3 text-orange-100">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2">
-                <path
-                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-              </svg>
-              <span>01286084444</span>
-            </div>
-            <div class="flex items-center gap-3 text-white">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2">
-                <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
-              </svg>
-              <span>واتساب متاح</span>
-            </div>
-          </div>
-          <div class="mt-6 text-center bg-white accent-color py-3 rounded-lg font-bold">
-            عرض البطاقة الكاملة ←
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Location Section -->
-  <section class="py-20 bg-slate-100">
-    <div class="container mx-auto px-4">
-      <div class="text-center mb-12">
-        <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-4">موقعنا</h2>
-        <p class="text-xl text-slate-600">نحن في خدمتك على مدار الساعة</p>
-      </div>
-
-      <div class="max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-xl">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div>
-            <h3 class="text-2xl font-bold text-slate-900 mb-6">معلومات التواصل</h3>
-            <div class="space-y-4">
-              <div class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="#6c757d" stroke-width="2" class="flex-shrink-0 mt-1">
-                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-                  <circle cx="12" cy="10" r="3" />
-                </svg>
-                <div>
-                  <p class="font-bold text-slate-900">العنوان:</p>
-                  <p class="text-slate-600">الإسماعيلية - فايد - طريق السويس الإسماعيلية الصحراوي</p>
-                  <p class="text-slate-500 text-sm mt-1">بجانب مستودع تعيينات الجيش</p>
+              <div class="bg-gradient-to-br from-slate-800 to-slate-900 text-white p-8 rounded-2xl shadow-2xl">
+                <h3 class="text-3xl font-black mb-4">منذ 1996</h3>
+                <p class="text-xl text-slate-200 mb-6">خبرة عريقة في صناعة المنتجات الأسمنتية</p>
+                <div class="space-y-3 text-slate-300">
+                  <p class="flex items-center gap-2">
+                    <span class="text-2xl">🏭</span>
+                    <span>مصنع متخصص ومتطور</span>
+                  </p>
+                  <p class="flex items-center gap-2">
+                    <span class="text-2xl">⚙️</span>
+                    <span>معدات آلية حديثة</span>
+                  </p>
+                  <p class="flex items-center gap-2">
+                    <span class="text-2xl">✨</span>
+                    <span>جودة مطابقة للمواصفات</span>
+                  </p>
                 </div>
               </div>
-              <div class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="#6c757d" stroke-width="2" class="flex-shrink-0 mt-1">
+            </div>
+
+            <div class="space-y-4">
+              <p class="text-lg text-slate-700 leading-relaxed">
+                <span class="font-bold text-slate-900">مصنع القومية للصناعات الأسمنتية</span> تأسس عام 1996، ويُعد من
+                المصانع الرائدة في مجال إنتاج المنتجات الخرسانية عالية الجودة.
+              </p>
+              <p class="text-lg text-slate-700 leading-relaxed">
+                نتخصص في صناعة <span class="font-semibold accent-color">الإنترلوك الآلي</span> بأنواعه (باركيه خشن
+                وناعم)،
+                <span class="font-semibold accent-color">الطوب الأسمنتي والبلوك</span>،
+                <span class="font-semibold accent-color">البردورات</span>، و
+                <span class="font-semibold accent-color">بلاط المزايكو</span>.
+              </p>
+              <p class="text-lg text-slate-700 leading-relaxed">
+                مع أكثر من <span class="font-bold text-slate-900">28 عاماً من الخبرة</span>، نفخر بتقديم منتجات مطابقة
+                للمواصفات القياسية لمئات المشاريع في جميع أنحاء مصر.
+              </p>
+              <div class="pt-4">
+                <a href="#contact"
+                  class="inline-block bg-accent hover-accent text-white px-6 py-3 rounded-lg font-semibold transition">
+                  تواصل معنا الآن
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Products Section -->
+    <section id="products" class="py-20 bg-white reveal">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-4">منتجاتنا</h2>
+          <p class="text-xl text-slate-600">منتجات خرسانية عالية الجودة لجميع احتياجاتك</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-7xl mx-auto mb-12">
+          <!-- Cement Brick -->
+          <div class="product-card bg-white rounded-2xl shadow-lg p-6 text-center border border-slate-200">
+            <div class="text-5xl mb-3">🏗️</div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2">طوب أسمنتي</h3>
+            <p class="text-sm text-slate-600 mb-2">4 مقاسات</p>
+            <p class="text-xs text-slate-500">2-4.5 كجم</p>
+          </div>
+
+          <!-- Blocks -->
+          <div class="product-card bg-white rounded-2xl shadow-lg p-6 text-center border border-slate-200">
+            <div class="text-5xl mb-3">🧱</div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2">بلوك خرساني</h3>
+            <p class="text-sm text-slate-600 mb-2">4 مقاسات</p>
+            <p class="text-xs text-slate-500">12-24 كجم</p>
+          </div>
+
+          <!-- Interlock -->
+          <div class="product-card bg-white rounded-2xl shadow-lg p-6 text-center border border-slate-200">
+            <div class="text-5xl mb-3">🔷</div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2">انترلوك آلي</h3>
+            <p class="text-sm text-slate-600 mb-2">4 أشكال</p>
+            <p class="text-xs text-slate-500">6-8 سم</p>
+          </div>
+
+          <!-- Bordures -->
+          <div class="product-card bg-white rounded-2xl shadow-lg p-6 text-center border border-slate-200">
+            <div class="text-5xl mb-3">⬜</div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2">بردورات</h3>
+            <p class="text-sm text-slate-600 mb-2">3 أنواع</p>
+            <p class="text-xs text-slate-500">20-95 كجم</p>
+          </div>
+
+          <!-- Tafli Brick -->
+          <div class="product-card bg-white rounded-2xl shadow-lg p-6 text-center border border-slate-200">
+            <div class="text-5xl mb-3">🧱</div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2">طوب طفلي</h3>
+            <p class="text-sm text-slate-600 mb-2">4 أنواع</p>
+            <p class="text-xs text-slate-500">2-4 كجم</p>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <a href="products.html"
+            class="inline-block bg-accent hover-accent text-white px-10 py-4 rounded-xl font-bold text-lg shadow-xl hover:shadow-2xl transition transform hover:scale-105">
+            🔍 شوف كل المنتجات والمواصفات التفصيلية
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Why Us Section -->
+    <section class="py-20 bg-slate-100 reveal">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-4">لماذا مصنع القومية؟</h2>
+          <p class="text-xl text-slate-600">نقدم أفضل الحلول لمشاريعك</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          <div class="bg-white p-6 rounded-2xl shadow-lg text-center hover:shadow-xl transition">
+            <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                stroke="#E67E22" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2">جودة عالية</h3>
+            <p class="text-slate-600">منتجات تطابق المواصفات العالمية</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-2xl shadow-lg text-center hover:shadow-xl transition">
+            <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                stroke="#E67E22" stroke-width="2">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2">الالتزام بالمواعيد</h3>
+            <p class="text-slate-600">توريد سريع وفي الوقت المحدد</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-2xl shadow-lg text-center hover:shadow-xl transition">
+            <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                stroke="#E67E22" stroke-width="2">
+                <line x1="12" x2="12" y1="2" y2="22" />
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2">أسعار تنافسية</h3>
+            <p class="text-slate-600">أفضل الأسعار في السوق</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-2xl shadow-lg text-center hover:shadow-xl transition">
+            <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                stroke="#E67E22" stroke-width="2">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2">خدمة عملاء ممتازة</h3>
+            <p class="text-slate-600">دعم فني متواصل</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="contact" class="py-20 bg-white reveal">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-4">تواصل معنا</h2>
+          <p class="text-xl text-slate-600">فريق الإدارة في خدمتك</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <!-- Ali Card -->
+          <a href="./ali/"
+            class="bg-gradient-to-br from-slate-800 to-slate-900 text-white p-8 rounded-2xl shadow-2xl hover:shadow-3xl hover:scale-105 transition-all duration-300">
+            <div class="flex items-center gap-4 mb-6">
+              <div class="w-20 h-20 rounded-full bg-accent flex items-center justify-center text-3xl font-bold">
+                ع
+              </div>
+              <div>
+                <h3 class="text-2xl font-bold">م/ علي عبد الشافي</h3>
+                <p class="text-slate-300 font-semibold">رئيس مجلس الإدارة</p>
+              </div>
+            </div>
+            <div class="space-y-3">
+              <div class="flex items-center gap-3 text-slate-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2">
                   <path
                     d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                 </svg>
-                <div>
-                  <p class="font-bold text-slate-900">الهاتف:</p>
-                  <p class="text-slate-600">01283191597 • 01286084444 • 01017528757</p>
-                </div>
+                <span>01283191597</span>
               </div>
-              <div class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="#6c757d" stroke-width="2" class="flex-shrink-0 mt-1">
-                  <rect width="20" height="16" x="2" y="4" rx="2" />
-                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+              <div class="flex items-center gap-3 text-green-400">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2">
+                  <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
                 </svg>
-                <div>
-                  <p class="font-bold text-slate-900">البريد الإلكتروني:</p>
-                  <a href="mailto:alqwmyaa@gmail.com"
-                    class="text-slate-600 hover:text-slate-900 transition">alqwmyaa@gmail.com</a>
-                </div>
+                <span>واتساب متاح</span>
               </div>
             </div>
-            <a href="https://maps.app.goo.gl/QneojizzF3fJqKrz6" target="_blank"
-              class="mt-6 block text-center bg-accent hover-accent text-white py-3 px-6 rounded-xl font-bold transition">
-              عرض على خرائط جوجل
+            <div class="mt-6 text-center bg-accent py-3 rounded-lg font-bold">
+              عرض البطاقة الكاملة ←
+            </div>
+          </a>
+
+          <!-- Hussein Card -->
+          <a href="./hussein/"
+            class="bg-gradient-to-br from-slate-600 to-slate-700 text-white p-8 rounded-2xl shadow-2xl hover:shadow-3xl hover:scale-105 transition-all duration-300">
+            <div class="flex items-center gap-4 mb-6">
+              <div
+                class="w-20 h-20 rounded-full bg-white accent-color flex items-center justify-center text-3xl font-bold">
+                ح
+              </div>
+              <div>
+                <h3 class="text-2xl font-bold">م/ حسين علي عبدالشافي</h3>
+                <p class="text-orange-100 font-semibold">مدير الإنتاج والجودة</p>
+              </div>
+            </div>
+            <div class="space-y-3">
+              <div class="flex items-center gap-3 text-orange-100">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2">
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>
+                <span>01286084444</span>
+              </div>
+              <div class="flex items-center gap-3 text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2">
+                  <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
+                </svg>
+                <span>واتساب متاح</span>
+              </div>
+            </div>
+            <div class="mt-6 text-center bg-white accent-color py-3 rounded-lg font-bold">
+              عرض البطاقة الكاملة ←
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Location Section -->
+    <section class="py-20 bg-slate-100 reveal">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-4">موقعنا</h2>
+          <p class="text-xl text-slate-600">نحن في خدمتك على مدار الساعة</p>
+        </div>
+
+        <div class="max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-xl">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <h3 class="text-2xl font-bold text-slate-900 mb-6">معلومات التواصل</h3>
+              <div class="space-y-4">
+                <div class="flex items-start gap-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="#E67E22" stroke-width="2" class="flex-shrink-0 mt-1">
+                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                  <div>
+                    <p class="font-bold text-slate-900">العنوان:</p>
+                    <p class="text-slate-600">الإسماعيلية - فايد - طريق السويس الإسماعيلية الصحراوي</p>
+                    <p class="text-slate-500 text-sm mt-1">بجانب مستودع تعيينات الجيش</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="#E67E22" stroke-width="2" class="flex-shrink-0 mt-1">
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg>
+                  <div>
+                    <p class="font-bold text-slate-900">الهاتف:</p>
+                    <p class="text-slate-600">01283191597 • 01286084444 • 01017528757</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="#E67E22" stroke-width="2" class="flex-shrink-0 mt-1">
+                    <rect width="20" height="16" x="2" y="4" rx="2" />
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                  </svg>
+                  <div>
+                    <p class="font-bold text-slate-900">البريد الإلكتروني:</p>
+                    <a href="mailto:alqwmyaa@gmail.com"
+                      class="text-slate-600 hover:text-slate-900 transition">alqwmyaa@gmail.com</a>
+                  </div>
+                </div>
+              </div>
+              <a href="https://maps.app.goo.gl/QneojizzF3fJqKrz6" target="_blank"
+                class="mt-6 block text-center bg-accent hover-accent text-white py-3 px-6 rounded-xl font-bold transition">
+                عرض على خرائط جوجل
+              </a>
+            </div>
+
+            <div>
+              <h3 class="text-2xl font-bold text-slate-900 mb-6">تابعنا</h3>
+              <div class="space-y-3">
+                <a href="https://www.facebook.com/Alslamcompany/" target="_blank"
+                  class="flex items-center gap-3 p-4 bg-blue-50 hover:bg-blue-100 rounded-xl transition">
+                  <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                      stroke="white" stroke-width="2">
+                      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="font-bold text-slate-900">فيسبوك</p>
+                    <p class="text-sm text-slate-600">مصنع القومية</p>
+                  </div>
+                </a>
+
+                <a href="https://wa.me/201283191597" target="_blank"
+                  class="flex items-center gap-3 p-4 bg-green-50 hover:bg-green-100 rounded-xl transition">
+                  <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                      stroke="white" stroke-width="2">
+                      <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="font-bold text-slate-900">واتساب</p>
+                    <p class="text-sm text-slate-600">تواصل فوري</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white py-12">
+      <div class="container mx-auto px-4">
+        <div class="text-center">
+          <img src="./images/logo.png" alt="شعار مصنع القومية" class="w-16 h-16 mx-auto mb-4">
+          <h3 class="text-2xl font-bold mb-2">مصنع القومية للصناعات الأسمنتية</h3>
+          <p class="text-slate-400 mb-6">جودة • دقة • التزام</p>
+          <div class="flex justify-center gap-6 mb-8">
+            <a href="https://www.facebook.com/Alslamcompany/" target="_blank"
+              class="w-12 h-12 bg-slate-800 hover:bg-accent rounded-full flex items-center justify-center transition">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+              </svg>
+            </a>
+            <a href="https://wa.me/201283191597" target="_blank"
+              class="w-12 h-12 bg-slate-800 hover:bg-green-500 rounded-full flex items-center justify-center transition">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2">
+                <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
+              </svg>
+            </a>
+            <a href="tel:+201283191597"
+              class="w-12 h-12 bg-slate-800 hover:bg-accent rounded-full flex items-center justify-center transition">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2">
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+              </svg>
             </a>
           </div>
-
-          <div>
-            <h3 class="text-2xl font-bold text-slate-900 mb-6">تابعنا</h3>
-            <div class="space-y-3">
-              <a href="https://www.facebook.com/Alslamcompany/" target="_blank"
-                class="flex items-center gap-3 p-4 bg-blue-50 hover:bg-blue-100 rounded-xl transition">
-                <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="white" stroke-width="2">
-                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-                  </svg>
-                </div>
-                <div>
-                  <p class="font-bold text-slate-900">فيسبوك</p>
-                  <p class="text-sm text-slate-600">مصنع القومية</p>
-                </div>
-              </a>
-
-              <a href="https://wa.me/201283191597" target="_blank"
-                class="flex items-center gap-3 p-4 bg-green-50 hover:bg-green-100 rounded-xl transition">
-                <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="white" stroke-width="2">
-                    <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
-                  </svg>
-                </div>
-                <div>
-                  <p class="font-bold text-slate-900">واتساب</p>
-                  <p class="text-sm text-slate-600">تواصل فوري</p>
-                </div>
-              </a>
-            </div>
-          </div>
+          <p class="text-slate-500 text-sm">© 2024 مصنع القومية للصناعات الأسمنتية - جميع الحقوق محفوظة</p>
         </div>
       </div>
-    </div>
-  </section>
+    </footer>
 
-  <!-- Footer -->
-  <footer class="bg-slate-900 text-white py-12">
-    <div class="container mx-auto px-4">
-      <div class="text-center">
-        <img src="./images/logo.png" alt="شعار مصنع القومية" class="w-16 h-16 mx-auto mb-4">
-        <h3 class="text-2xl font-bold mb-2">مصنع القومية للصناعات الأسمنتية</h3>
-        <p class="text-slate-400 mb-6">جودة • دقة • التزام</p>
-        <div class="flex justify-center gap-6 mb-8">
-          <a href="https://www.facebook.com/Alslamcompany/" target="_blank"
-            class="w-12 h-12 bg-slate-800 hover:bg-accent rounded-full flex items-center justify-center transition">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2">
-              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-            </svg>
-          </a>
-          <a href="https://wa.me/201283191597" target="_blank"
-            class="w-12 h-12 bg-slate-800 hover:bg-green-500 rounded-full flex items-center justify-center transition">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2">
-              <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
-            </svg>
-          </a>
-          <a href="tel:+201283191597"
-            class="w-12 h-12 bg-slate-800 hover:bg-accent rounded-full flex items-center justify-center transition">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2">
-              <path
-                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-            </svg>
-          </a>
-        </div>
-        <p class="text-slate-500 text-sm">© 2024 مصنع القومية للصناعات الأسمنتية - جميع الحقوق محفوظة</p>
-      </div>
-    </div>
-  </footer>
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/201283191597?text=أريد الاستفسار عن منتجاتكم" target="_blank"
+      class="whatsapp-float pulse-animation" title="تواصل عبر واتساب">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+      </svg>
+    </a>
 
-  <script>
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+    <!-- Floating Phone Button -->
+    <a href="tel:+201283191597" class="phone-float pulse-animation" title="اتصل بنا">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white"
+        stroke-width="2">
+        <path
+          d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+      </svg>
+    </a>
+
+    <script>
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
       });
-    });
-  </script>
+
+      // Scroll Reveal Animation
+      function revealOnScroll() {
+        const reveals = document.querySelectorAll('.reveal');
+
+        reveals.forEach(element => {
+          const windowHeight = window.innerHeight;
+          const elementTop = element.getBoundingClientRect().top;
+          const elementVisible = 100;
+
+          if (elementTop < windowHeight - elementVisible) {
+            element.classList.add('active');
+          }
+        });
+      }
+
+      // Run on load and scroll
+      window.addEventListener('scroll', revealOnScroll);
+      window.addEventListener('load', revealOnScroll);
+
+      // Counter Animation
+      let counterAnimated = false;
+
+      function animateCounters() {
+        if (counterAnimated) return;
+
+        const counters = document.querySelectorAll('.counter');
+        const statsSection = document.querySelector('.stat-card');
+        if (!statsSection) return;
+
+        const rect = statsSection.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+
+        if (rect.top < windowHeight * 0.8) {
+          counterAnimated = true;
+
+          counters.forEach(counter => {
+            const target = parseInt(counter.getAttribute('data-target'));
+            const duration = 2000; // 2 seconds
+            const increment = target / (duration / 16); // 60fps
+            let current = 0;
+
+            const timer = setInterval(() => {
+              current += increment;
+              if (current >= target) {
+                counter.textContent = target.toLocaleString('ar-EG');
+                clearInterval(timer);
+              } else {
+                counter.textContent = Math.floor(current).toLocaleString('ar-EG');
+              }
+            }, 16);
+          });
+        }
+      }
+
+      window.addEventListener('scroll', animateCounters);
+      window.addEventListener('load', animateCounters);
+    </script>
 </body>
 
 </html>
