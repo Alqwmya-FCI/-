@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>طوب طفلي أحمر - مصنع القومية</title>
+    <link rel="icon" type="image/png" href="./images/logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Cairo', sans-serif
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #0f3460 0%, #16213e 50%, #1a1a2e 100%)
+        }
+
+        .bg-accent {
+            background-color: #E67E22
+        }
+
+        .hover-accent:hover {
+            background-color: #D35400
+        }
+
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)
+        }
+
+        .image-container::after {
+            content: '© Al-Qawmia Factory 2024';
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 12px;
+            font-weight: bold;
+            pointer-events: none;
+            text-shadow: 0 0 3px rgba(0, 0, 0, 0.8)
+        }
+
+        .tab-content {
+            display: none
+        }
+
+        .tab-content.active {
+            display: block
+        }
+
+        .tab-button.active {
+            background-color: #E67E22;
+            color: white
+        }
+
+        .product-variant:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(230, 126, 34, 0.2)
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50">
+    <header class="hero-gradient text-white py-6 sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-4"><img src="./images/logo.png" alt="القومية" class="w-12 h-12">
+                    <div>
+                        <h1 class="text-2xl font-black">مصنع القومية</h1>
+                        <p class="text-sm text-slate-300">للصناعات الأسمنتية</p>
+                    </div>
+                </div>
+                <nav class="hidden md:flex gap-6"><a href="index.html" class="hover:text-orange-400">الرئيسية</a><a
+                        href="products.html" class="hover:text-orange-400">المنتجات</a><a href="order.html"
+                        class="text-orange-400">طلب عرض سعر</a></nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="bg-white py-4 border-b">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center gap-2 text-sm text-slate-600"><a href="index.html"
+                    class="hover:text-orange-500">الرئيسية</a> / <a href="products.html"
+                    class="hover:text-orange-500">المنتجات</a> / <span class="text-slate-900 font-bold">طوب طفلي</span>
+            </div>
+        </div>
+    </div>
+
+    <section class="py-12">
+        <div class="container mx-auto px-4">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+                    <div>
+                        <div class="image-container rounded-2xl aspect-square flex items-center justify-center mb-4">
+                            <div class="text-center">
+                                <div class="text-9xl mb-4">🧱</div>
+                                <p class="text-slate-600 text-lg">صورة المنتج</p>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-4 gap-2">
+                            <div
+                                class="image-container rounded-lg aspect-square flex items-center justify-center border-2 border-orange-500">
+                                <span class="text-3xl">🧱</span></div>
+                            <div
+                                class="image-container rounded-lg aspect-square flex items-center justify-center border-2 border-transparent hover:border-orange-300">
+                                <span class="text-3xl">🔥</span></div>
+                            <div
+                                class="image-container rounded-lg aspect-square flex items-center justify-center border-2 border-transparent hover:border-orange-300">
+                                <span class="text-3xl">🌡️</span></div>
+                            <div
+                                class="image-container rounded-lg aspect-square flex items-center justify-center border-2 border-transparent hover:border-orange-300">
+                                <span class="text-3xl">🌿</span></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h1 class="text-4xl font-black text-slate-900 mb-4">طوب طفلي أحمر</h1>
+                        <div class="bg-orange-50 rounded-xl p-4 mb-6">
+                            <p class="text-orange-600 font-bold text-lg">اتصل للحصول على أفضل سعر</p>
+                            <p class="text-slate-600 text-sm">جودة عالية وأسعار تنافسية</p>
+                        </div>
+
+                        <div class="mb-6">
+                            <h3 class="font-bold text-lg mb-3">الأنواع المتاحة:</h3>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div
+                                    class="product-variant bg-white border-2 border-slate-200 rounded-lg p-4 transition">
+                                    <p class="font-bold">طفلي مصمت</p>
+                                    <p class="text-sm text-slate-600">25×12×6 سم</p>
+                                    <p class="text-xs text-slate-500">3-3.5 كجم</p>
+                                </div>
+                                <div
+                                    class="product-variant bg-white border-2 border-slate-200 rounded-lg p-4 transition">
+                                    <p class="font-bold">طفلي مثقب</p>
+                                    <p class="text-sm text-slate-600">25×12×6 سم</p>
+                                    <p class="text-xs text-slate-500">2.5-3 كجم</p>
+                                </div>
+                                <div
+                                    class="product-variant bg-white border-2 border-slate-200 rounded-lg p-4 transition">
+                                    <p class="font-bold">10 ثقوب</p>
+                                    <p class="text-sm text-slate-600">25×12×13 سم</p>
+                                    <p class="text-xs text-slate-500">3.5-4 كجم</p>
+                                </div>
+                                <div
+                                    class="product-variant bg-white border-2 border-slate-200 rounded-lg p-4 transition">
+                                    <p class="font-bold">6 ثقوب</p>
+                                    <p class="text-sm text-slate-600">25×12×6.5 سم</p>
+                                    <p class="text-xs text-slate-500">2-2.5 كجم</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col gap-3">
+                            <a href="order.html?product=tafli"
+                                class="bg-accent hover-accent text-white px-8 py-4 rounded-xl font-bold text-lg text-center transition">طلب
+                                عرض سعر</a>
+                            <a href="https://wa.me/201283191597?text=أريد الاستفسار عن الطوب الطفلي"
+                                class="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-xl font-bold text-lg text-center transition">📱
+                                واتساب</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <div class="flex border-b">
+                        <button class="tab-button active px-8 py-4 font-bold"
+                            onclick="showTab('description')">الوصف</button>
+                        <button class="tab-button px-8 py-4 font-bold" onclick="showTab('specs')">المواصفات</button>
+                        <button class="tab-button px-8 py-4 font-bold" onclick="showTab('uses')">الاستخدامات</button>
+                    </div>
+
+                    <div class="p-8">
+                        <div id="description" class="tab-content active">
+                            <h3 class="text-2xl font-bold mb-4">عن الطوب الطفلي</h3>
+                            <p class="text-slate-700 mb-4">الطوب الطفلي (الأحمر) هو منتج طبيعي صديق للبيئة يتميز بعزل
+                                حراري وصوتي ممتاز ومقاومة حريق عالية.</p>
+                            <ul class="list-disc list-inside space-y-2 text-slate-700">
+                                <li>مقاومة حريق ممتازة</li>
+                                <li>عزل حراري وصوتي طبيعي</li>
+                                <li>صديق للبيئة</li>
+                                <li>سعر اقتصادي</li>
+                            </ul>
+                        </div>
+
+                        <div id="specs" class="tab-content">
+                            <h3 class="text-2xl font-bold mb-6">المواصفات</h3>
+                            <table class="w-full border-collapse">
+                                <thead>
+                                    <tr class="bg-slate-100">
+                                        <th class="border px-4 py-3 text-right">النوع</th>
+                                        <th class="border px-4 py-3">الأبعاد</th>
+                                        <th class="border px-4 py-3">الوزن</th>
+                                        <th class="border px-4 py-3">الاستخدام</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="border px-4 py-3 font-bold">مصمت</td>
+                                        <td class="border px-4 py-3 text-center">25×12×6</td>
+                                        <td class="border px-4 py-3 text-center">3-3.5 كجم</td>
+                                        <td class="border px-4 py-3 text-center">حوائط حاملة</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border px-4 py-3 font-bold">مثقب</td>
+                                        <td class="border px-4 py-3 text-center">25×12×6</td>
+                                        <td class="border px-4 py-3 text-center">2.5-3 كجم</td>
+                                        <td class="border px-4 py-3 text-center">حوائط داخلية</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border px-4 py-3 font-bold">10 ثقوب</td>
+                                        <td class="border px-4 py-3 text-center">25×12×13</td>
+                                        <td class="border px-4 py-3 text-center">3.5-4 كجم</td>
+                                        <td class="border px-4 py-3 text-center">عزل حراري</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border px-4 py-3 font-bold">6 ثقوب</td>
+                                        <td class="border px-4 py-3 text-center">25×12×6.5</td>
+                                        <td class="border px-4 py-3 text-center">2-2.5 كجم</td>
+                                        <td class="border px-4 py-3 text-center">حوائط خفيفة</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div id="uses" class="tab-content">
+                            <h3 class="text-2xl font-bold mb-6">الاستخدامات</h3>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="bg-slate-50 rounded-xl p-6">
+                                    <h4 class="font-bold text-lg mb-3">🏠 البناء السكني</h4>
+                                    <ul class="space-y-2 text-slate-700">
+                                        <li>• الحوائط الحاملة</li>
+                                        <li>• الحوائط الداخلية</li>
+                                        <li>• المباني التقليدية</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-orange-50 rounded-xl p-6">
+                                    <h4 class="font-bold text-lg mb-3">🔥 العزل الحراري</h4>
+                                    <ul class="space-y-2 text-slate-700">
+                                        <li>• عزل حراري طبيعي</li>
+                                        <li>• عزل صوتي</li>
+                                        <li>• مقاومة الحريق</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-black text-center mb-8">منتجات ذات صلة</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-7xl mx-auto"><a href="product-cement-brick.html"
+                    class="bg-slate-50 rounded-xl p-6 text-center hover:shadow-lg transition">
+                    <div class="text-5xl mb-3">🏗️</div>
+                    <h3 class="font-bold">طوب أسمنتي</h3>
+                </a><a href="product-blocks.html"
+                    class="bg-slate-50 rounded-xl p-6 text-center hover:shadow-lg transition">
+                    <div class="text-5xl mb-3">🧱</div>
+                    <h3 class="font-bold">بلوك</h3>
+                </a><a href="product-interlock.html"
+                    class="bg-slate-50 rounded-xl p-6 text-center hover:shadow-lg transition">
+                    <div class="text-5xl mb-3">🔷</div>
+                    <h3 class="font-bold">انترلوك</h3>
+                </a><a href="product-bordures.html"
+                    class="bg-slate-50 rounded-xl p-6 text-center hover:shadow-lg transition">
+                    <div class="text-5xl mb-3">⬜</div>
+                    <h3 class="font-bold">بردورات</h3>
+                </a></div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-900 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-slate-400">© 2024 مصنع القومية</p>
+        </div>
+    </footer>
+
+    <script>function showTab(t) { document.querySelectorAll('.tab-content').forEach(e => e.classList.remove('active')); document.querySelectorAll('.tab-button').forEach(e => e.classList.remove('active')); document.getElementById(t).classList.add('active'); event.target.classList.add('active') }</script>
+</body>
+
+</html>

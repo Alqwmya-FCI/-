@@ -428,6 +428,12 @@
                         <li>✅ سرعة في البناء</li>
                         <li>✅ توفير في المونة الأسمنتية</li>
                     </ul>
+                    <div class="mt-6">
+                        <a href="product-cement-brick.html"
+                            class="bg-accent hover-accent text-white px-6 py-3 rounded-lg font-bold inline-block transition">
+                            عرض التفاصيل الكاملة ←
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -510,6 +516,61 @@
             if (e.key === 'PrintScreen') {
                 e.preventDefault();
                 return false;
+            }
+        });
+
+        // Product Detail Links Mapping
+        const productMapping = {
+            'interlock': {
+                'باركيه': 'interlock-rectangle',
+                'سداسي': 'interlock-hexagon',
+                'حرف I': 'interlock-i',
+                'حرف S': 'interlock-s'
+            },
+            'blocks': {
+                'بلوك 25': 'block-25',
+                'بلوك 20': 'block-20',
+                'بلوك 12': 'block-12',
+                'بلوك 10': 'block-10'
+            },
+            'bordures': {
+                'بردورة عجالي': 'bordure-heavy',
+                'بردورة رصيف': 'bordure-sidewalk',
+                'بردورة حدائق': 'bordure-garden'
+            },
+            'tafli': {
+                'مصمت': 'tafli-solid',
+                'مثقب': 'tafli-perforated',
+                '10 ثقوب': 'tafli-10holes',
+                '6 ثقوب': 'tafli-6holes'
+            },
+            'cement': {
+                'مصمت 25': 'cement-solid-25',
+                'مصمت 20': 'cement-solid-20',
+                'أحمر 25': 'cement-red-25',
+                'أحمر 20': 'cement-red-20'
+            }
+        };
+
+        // Add clickability to product cards
+        document.querySelectorAll('.product-detail-card').forEach(card => {
+            const title = card.querySelector('h3').textContent.trim();
+            const section = card.closest('section');
+            let productId = null;
+
+            // Find product ID by matching title
+            for (const [category, products] of Object.entries(productMapping)) {
+                if (products[title]) {
+                    productId = products[title];
+                    break;
+                }
+            }
+
+            if (productId) {
+                card.style.cursor = 'pointer';
+                card.addEventListener('click', function () {
+                    window.location.href = `product-detail.html?id=${productId}`;
+                });
             }
         });
     </script>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">تفاصيل المنتج - مصنع القومية</title>
+    <link rel="icon" href="./images/logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Cairo', sans-serif
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #0f3460 0%, #16213e 50%, #1a1a2e 100%)
+        }
+
+        .bg-accent {
+            background-color: #E67E22
+        }
+
+        .hover-accent:hover {
+            background-color: #D35400
+        }
+
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)
+        }
+
+        .image-container::after {
+            content: '© Al-Qawmia 2024';
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            color: rgba(255, 255, 255, .7);
+            font-size: 12px;
+            font-weight: bold;
+            pointer-events: none;
+            text-shadow: 0 0 3px rgba(0, 0, 0, .8)
+        }
+
+        #loading {
+            display: flex
+        }
+
+        #content {
+            display: none
+        }
+
+        #error {
+            display: none
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50">
+    <header class="hero-gradient text-white py-6 sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <img src="./images/logo.png" alt="القومية" class="w-12 h-12">
+                    <div>
+                        <h1 class="text-2xl font-black">مصنع القومية</h1>
+                        <p class="text-sm text-slate-300">للصناعات الأسمنتية</p>
+                    </div>
+                </div>
+                <nav class="hidden md:flex gap-6">
+                    <a href="index.html" class="hover:text-orange-400">الرئيسية</a>
+                    <a href="products.html" class="hover:text-orange-400">المنتجات</a>
+                    <a href="order.html" class="text-orange-400">طلب سعر</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Loading -->
+    <div id="loading" class="flex items-center justify-center py-20">
+        <div class="text-center">
+            <div class="text-6xl mb-4">⏳</div>
+            <p class="text-lg text-slate-600">جاري التحميل...</p>
+        </div>
+    </div>
+
+    <!-- Error -->
+    <div id="error" class="container mx-auto px-4 py-20 text-center">
+        <div class="text-6xl mb-4">❌</div>
+        <h2 class="text-2xl font-bold mb-4">المنتج غير موجود</h2>
+        <a href="products.html" class="bg-accent hover-accent text-white px-6 py-3 rounded-lg inline-block">العودة
+            للمنتجات</a>
+    </div>
+
+    <!-- Content -->
+    <div id="content">
+        <div class="bg-white py-4 border-b">
+            <div class="container mx-auto px-4">
+                <div id="breadcrumb" class="flex items-center gap-2 text-sm text-slate-600">
+                    <a href="index.html" class="hover:text-orange-500">الرئيسية</a> /
+                    <a href="products.html" class="hover:text-orange-500">المنتجات</a> /
+                    <span id="breadcrumb-text"></span>
+                </div>
+            </div>
+        </div>
+
+        <section class="py-12">
+            <div class="container mx-auto px-4">
+                <div class="max-w-6xl mx-auto">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+                        <div>
+                            <div
+                                class="image-container rounded-2xl aspect-square flex items-center justify-center mb-4">
+                                <div class="text-center">
+                                    <div id="product-icon" class="text-9xl mb-4"></div>
+                                    <p id="product-name-img" class="text-slate-600 text-lg"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h1 id="product-title" class="text-4xl font-black text-slate-900 mb-4"></h1>
+
+                            <div class="bg-orange-50 rounded-xl p-6 mb-6">
+                                <h3 class="font-bold text-lg mb-3">المواصفات:</h3>
+                                <ul id="specs-list" class="space-y-2 text-slate-700"></ul>
+                            </div>
+
+                            <div class="bg-white border-2 border-slate-200 rounded-xl p-6 mb-6">
+                                <h3 class="font-bold text-lg mb-3">المميزات:</h3>
+                                <ul id="features-list" class="space-y-2 text-slate-700"></ul>
+                            </div>
+
+                            <div class="flex flex-col gap-3">
+                                <a id="order-btn" href="#"
+                                    class="bg-accent hover-accent text-white px-8 py-4 rounded-xl font-bold text-lg text-center transition">طلب
+                                    عرض سعر</a>
+                                <a id="whatsapp-btn" href="#"
+                                    class="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-xl font-bold text-lg text-center transition">📱
+                                    واتساب</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-lg p-8">
+                        <h2 class="text-2xl font-bold mb-6">الاستخدامات الرئيسية:</h2>
+                        <div id="uses-container" class="grid md:grid-cols-2 gap-6"></div>
+                    </div>
+
+                    <div class="mt-12">
+                        <h2 class="text-2xl font-bold mb-6 text-center">منتجات ذات صلة</h2>
+                        <div id="related-products" class="grid grid-cols-2 md:grid-cols-4 gap-4"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="bg-slate-900 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-slate-400">© 2024 مصنع القومية</p>
+        </div>
+    </footer>
+
+    <script>
+        // Embedded Products Data (to avoid CORS when opening from file://)
+        const productsData = {
+            "cement-solid-25": { "name": "طوب أسمنتي مصمت 25", "category": "طوب أسمنتي", "icon": "🏗️", "breadcrumb": "طوب أسمنتي / مصمت 25", "specs": { "dimensions": "25×12×6 سم", "weight": "4-4.5 كجم", "color": "رمادي عادي", "strength": "100-150 كجم/سم²", "usage": "حوائط حاملة وخارجية" }, "features": ["قوة تحمل عالية للأحمال", "مقاوم للرطوبة والعوامل الجوية", "أبعاد دقيقة ومنتظمة", "توفير في المونة الأسمنتية", "سرعة في البناء"], "uses": [{ "title": "الحوائط الحاملة", "desc": "مثالي لبناء الحوائط التي تتحمل أحمال المبنى" }, { "title": "الحوائط الخارجية", "desc": "مقاومته للعوامل الجوية تجعله خيار ممتاز للواجهات" }], "related": ["cement-solid-20", "cement-red-25", "block-25", "interlock-rectangle"] },
+            "cement-solid-20": { "name": "طوب أسمنتي مصمت 20", "category": "طوب أسمنتي", "icon": "🏗️", "breadcrumb": "طوب أسمنتي / مصمت 20", "specs": { "dimensions": "20×10×6 سم", "weight": "3-3.5 كجم", "color": "رمادي عادي", "strength": "100-150 كجم/سم²", "usage": "حوائط داخلية وفواصل" }, "features": ["حجم مناسب للحوائط الداخلية", "خفيف الوزن سهل التعامل", "توفير في التكلفة", "مقاومة جيدة", "سرعة في التنفيذ"], "uses": [{ "title": "الحوائط الداخلية", "desc": "مثالي للحوائط الداخلية والفواصل بين الغرف" }, { "title": "الحوائط غير الحاملة", "desc": "خيار اقتصادي للحوائط التي لا تتحمل أحمال" }], "related": ["cement-solid-25", "cement-red-20", "block-20", "tafli-solid"] },
+            "cement-red-25": { "name": "طوب أسمنتي أحمر 25", "category": "طوب أسمنتي", "icon": "🎨", "breadcrumb": "طوب أسمنتي / أحمر 25", "specs": { "dimensions": "25×12×6 سم", "weight": "4-4.5 كجم", "color": "أحمر", "strength": "100-150 كجم/سم²", "usage": "واجهات وأعمال ديكورية" }, "features": ["مظهر جمالي مميز", "مقاوم للعوامل الجوية", "لا يحتاج دهان", "قوة ومتانة عالية", "ألوان ثابتة"], "uses": [{ "title": "الواجهات", "desc": "مثالي لتشطيب الواجهات الخارجية بمظهر جذاب" }, { "title": "الأعمال الديكورية", "desc": "يضيف لمسة جمالية للمباني والحدائق" }], "related": ["cement-red-20", "cement-solid-25", "tafli-solid", "interlock-rectangle"] },
+            "cement-red-20": { "name": "طوب أسمنتي أحمر 20", "category": "طوب أسمنتي", "icon": "🎨", "breadcrumb": "طوب أسمنتي / أحمر 20", "specs": { "dimensions": "20×10×6 سم", "weight": "3-3.5 كجم", "color": "أحمر", "strength": "100-150 كجم/سم²", "usage": "تشطيبات وديكورات" }, "features": ["مظهر جمالي أنيق", "حجم مناسب للتشطيبات", "سهل التركيب", "ألوان ثابتة", "لا يحتاج صيانة"], "uses": [{ "title": "التشطيبات النهائية", "desc": "ممتاز للتشطيبات الداخلية والخارجية" }, { "title": "الديكورات", "desc": "إضافة لمسات جمالية للجدران والأسوار" }], "related": ["cement-red-25", "cement-solid-20", "tafli-perforated", "bordure-garden"] },
+            "block-25": { "name": "بلوك خرساني 25", "category": "بلوك خرساني", "icon": "🧱", "breadcrumb": "بلوك خرساني / بلوك 25", "specs": { "dimensions": "40×20×25 سم", "weight": "24 كجم", "density": "2050-2191 كجم/م³", "fireResist": "ساعتين", "usage": "حوائط خارجية حاملة" }, "features": ["مقاومة حريق ساعتين", "عزل حراري وصوتي ممتاز", "كثافة عالية", "مطابق للمواصفات المصرية", "جودة ومتانة عالية"], "uses": [{ "title": "الحوائط الخارجية", "desc": "الخيار الأمثل للحوائط الخارجية الحاملة" }, { "title": "المباني متعددة الطوابق", "desc": "قوة تحمل عالية للمباني الكبيرة" }], "related": ["block-20", "block-12", "cement-solid-25", "tafli-10holes"] },
+            "block-20": { "name": "بلوك خرساني 20", "category": "بلوك خرساني", "icon": "🧱", "breadcrumb": "بلوك خرساني / بلوك 20", "specs": { "dimensions": "40×20×20 سم", "weight": "19 كجم", "density": "2050-2191 كجم/م³", "fireResist": "ساعتين", "usage": "حوائط داخلية" }, "features": ["وزن متوسط سهل التعامل", "عزل حراري وصوتي جيد", "مقاومة حريق ممتازة", "اقتصادي", "سرعة في البناء"], "uses": [{ "title": "الحوائط الداخلية", "desc": "مثالي للحوائط الداخلية في المباني السكنية" }, { "title": "الفواصل", "desc": "فصل المساحات الداخلية بكفاءة" }], "related": ["block-25", "block-12", "cement-solid-20", "tafli-6holes"] },
+            "block-12": { "name": "بلوك خرساني 12", "category": "بلوك خرساني", "icon": "🧱", "breadcrumb": "بلوك خرساني / بلوك 12", "specs": { "dimensions": "40×20×12 سم", "weight": "13 كجم", "density": "2050-2191 كجم/م³", "fireResist": "ساعتين", "usage": "فواصل وحوائط خفيفة" }, "features": ["خفيف الوزن", "سهل النقل والتركيب", "توفير في المساحة", "عزل صوتي جيد", "اقتصادي جداً"], "uses": [{ "title": "الفواصل", "desc": "ممتاز لعمل فواصل بين المساحات" }, { "title": "الحوائط الخفيفة", "desc": "حوائط غير حاملة خفيفة الوزن" }], "related": ["block-10", "block-20", "cement-solid-20", "tafli-perforated"] },
+            "block-10": { "name": "بلوك خرساني 10", "category": "بلوك خرساني", "icon": "🧱", "breadcrumb": "بلوك خرساني / بلوك 10", "specs": { "dimensions": "40×20×10 سم", "weight": "12 كجم", "density": "2050-2191 كجم/م³", "fireResist": "ساعتين", "usage": "حوائط غير حاملة" }, "features": ["الأخف وزناً", "سهل جداً في التعامل", "أقل سعر", "سريع التركيب", "مناسب للمساحات الضيقة"], "uses": [{ "title": "الحوائط غير الحاملة", "desc": "مثالي للحوائط التي لا تتحمل أحمال" }, { "title": "التقسيمات السريعة", "desc": "عمل تقسيمات داخلية بسرعة" }], "related": ["block-12", "block-20", "cement-solid-20", "tafli-6holes"] },
+            "interlock-rectangle": { "name": "انترلوك باركيه (مستطيل)", "category": "انترلوك", "icon": "🔷", "breadcrumb": "انترلوك / باركيه", "specs": { "dimensions": "20×10 سم", "thickness": "4-8 سم (حسب الطلب)", "pcsPerM2": "50 قطعة", "surface": "خشن (مكابس) / ناعم (سيتي)", "usage": "أرضيات وممرات" }, "features": ["مقاومة احتكاك < 0.5%", "امتصاص ماء < 4%", "سهل الفك والتركيب", "متوفر بألوان متعددة", "شكل كلاسيكي جميل"], "uses": [{ "title": "الممرات والمشايات", "desc": "مثالي للممرات في الحدائق والمنازل" }, { "title": "مواقف السيارات", "desc": "يتحمل أحمال السيارات" }], "related": ["interlock-hexagon", "interlock-i", "interlock-s", "bordure-sidewalk"] },
+            "interlock-hexagon": { "name": "انترلوك سداسي", "category": "انترلوك", "icon": "🔷", "breadcrumb": "انترلوك / سداسي", "specs": { "dimensions": "23×20 سم", "thickness": "4-8 سم", "pcsPerM2": "29 قطعة", "surface": "خشن / ناعم", "usage": "حدائق ومداخل" }, "features": ["شكل هندسي مميز", "مقاومة عالية للاحتكاك", "تصريف ممتاز للماء", "سهل الصيانة", "مظهر عصري"], "uses": [{ "title": "الحدائق", "desc": "يضيف جمال للحدائق والمساحات الخضراء" }, { "title": "المداخل", "desc": "مدخل مميز للمنازل والفلل" }], "related": ["interlock-rectangle", "interlock-i", "bordure-garden", "cement-red-25"] },
+            "interlock-i": { "name": "انترلوك حرف I", "category": "انترلوك", "icon": "🔷", "breadcrumb": "انترلوك / حرف I", "specs": { "dimensions": "20×16.5 سم", "thickness": "6-8 سم", "pcsPerM2": "36 قطعة", "surface": "خشن / ناعم", "usage": "طرق وشوارع" }, "features": ["تحمل أحمال ثقيلة", "ثبات عالي", "تصريف ممتاز", "شكل متداخل قوي", "عمر افتراضي طويل"], "uses": [{ "title": "الطرق والشوارع", "desc": "مثالي للطرق ذات الحركة المتوسطة" }, { "title": "الساحات العامة", "desc": "ساحات وأماكن التجمعات" }], "related": ["interlock-s", "interlock-rectangle", "bordure-heavy", "block-25"] },
+            "interlock-s": { "name": "انترلوك حرف S", "category": "انترلوك", "icon": "🔷", "breadcrumb": "انترلوك / حرف S", "specs": { "dimensions": "24×12 سم", "thickness": "6-8 سم", "pcsPerM2": "35 قطعة", "surface": "خشن / ناعم", "usage": "طرق ومواقف" }, "features": ["تداخل قوي جداً", "مقاومة انزلاق عالية", "تحمل أحمال كبيرة", "شكل S مميز", "متانة عالية"], "uses": [{ "title": "مواقف السيارات", "desc": "يتحمل حركة السيارات المستمرة" }, { "title": "الطرق الداخلية", "desc": "طرق داخل المجمعات السكنية" }], "related": ["interlock-i", "interlock-rectangle", "bordure-sidewalk", "block-20"] },
+            "bordure-heavy": { "name": "بردورة عجالي (95 كجم)", "category": "بردورات", "icon": "⬜", "breadcrumb": "بردورات / عجالي", "specs": { "dimensions": "25×30×30×50 سم", "weight": "95 كجم", "height": "30 سم", "usage": "طرق رئيسية" }, "features": ["وزن ثقيل للثبات", "مقاومة عالية للصدمات", "تحمل أحمال السيارات", "عمر افتراضي طويل", "تشطيب ممتاز"], "uses": [{ "title": "الطرق الرئيسية", "desc": "تحديد حواف الطرق السريعة والرئيسية" }, { "title": "الكباري", "desc": "حماية حواف الكباري والأنفاق" }], "related": ["bordure-sidewalk", "bordure-garden", "interlock-i", "block-25"] },
+            "bordure-sidewalk": { "name": "بردورة رصيف (20 كجم)", "category": "بردورات", "icon": "⬜", "breadcrumb": "بردورات / رصيف", "specs": { "dimensions": "30×10×8×50 سم", "weight": "20 كجم", "height": "10 سم", "usage": "أرصفة ومشايات" }, "features": ["وزن متوسط سهل التركيب", "ارتفاع مناسب للأرصفة", "تشطيب ناعم", "اقتصادي", "مظهر جمالي"], "uses": [{ "title": "أرصفة المشاة", "desc": "تحديد الأرصفة بشكل واضح وآمن" }, { "title": "الممرات", "desc": "ممرات المشاة في الحدائق والمتنزهات" }], "related": ["bordure-garden", "bordure-heavy", "interlock-rectangle", "cement-red-20"] },
+            "bordure-garden": { "name": "بردورة حدائق (30 كجم)", "category": "بردورات", "icon": "⬜", "breadcrumb": "بردورات / حدائق", "specs": { "dimensions": "20×6×50 سم", "weight": "30 كجم", "height": "6 سم", "usage": "تحديد حدائق" }, "features": ["ارتفاع منخفض مناسب", "مظهر جمالي", "سهل التركيب", "متين", "أشكال متعددة"], "uses": [{ "title": "الحدائق", "desc": "تحديد أحواض الزهور والمساحات الخضراء" }, { "title": "الديكور", "desc": "إضافة لمسات جمالية للحدائق" }], "related": ["bordure-sidewalk", "interlock-hexagon", "cement-red-20", "tafli-solid"] },
+            "tafli-solid": { "name": "طوب طفلي مصمت", "category": "طوب طفلي", "icon": "🧱", "breadcrumb": "طوب طفلي / مصمت", "specs": { "dimensions": "25×12×6 سم", "weight": "3-3.5 كجم", "holes": "بدون ثقوب", "usage": "حوائط حاملة" }, "features": ["مقاومة حريق ممتازة", "عزل حراري طبيعي", "قوة تحمل عالية", "صديق للبيئة", "سعر اقتصادي"], "uses": [{ "title": "الحوائط الحاملة", "desc": "مثالي للحوائط التي تتحمل أحمال" }, { "title": "البناء التقليدي", "desc": "الخيار الأمثل للبناء التقليدي" }], "related": ["tafli-perforated", "tafli-10holes", "cement-solid-25", "block-25"] },
+            "tafli-perforated": { "name": "طوب طفلي مثقب", "category": "طوب طفلي", "icon": "🧱", "breadcrumb": "طوب طفلي / مثقب", "specs": { "dimensions": "25×12×6 سم", "weight": "2.5-3 كجم", "holes": "ثقوب عادية", "usage": "حوائط داخلية" }, "features": ["خفيف الوزن", "عزل حراري أفضل", "سهل التعامل", "اقتصادي", "سرعة في البناء"], "uses": [{ "title": "الحوائط الداخلية", "desc": "ممتاز للحوائط الداخلية والفواصل" }, { "title": "الحوائط غير الحاملة", "desc": "حوائط خفيفة وسريعة" }], "related": ["tafli-solid", "tafli-6holes", "cement-solid-20", "block-12"] },
+            "tafli-10holes": { "name": "طوب طفلي 10 ثقوب", "category": "طوب طفلي", "icon": "🧱", "breadcrumb": "طوب طفلي / 10 ثقوب", "specs": { "dimensions": "25×12×13 سم", "weight": "3.5-4 كجم", "holes": "10 ثقوب", "usage": "عزل حراري" }, "features": ["عزل حراري ممتاز", "عزل صوتي عالي", "توفير في الطاقة", "مقاومة حريق", "صديق للبيئة"], "uses": [{ "title": "العزل الحراري", "desc": "الخيار الأمثل للعزل الحراري الطبيعي" }, { "title": "المناطق الحارة", "desc": "يقلل درجة الحرارة الداخلية" }], "related": ["tafli-6holes", "tafli-solid", "block-12", "cement-red-25"] },
+            "tafli-6holes": { "name": "طوب طفلي 6 ثقوب", "category": "طوب طفلي", "icon": "🧱", "breadcrumb": "طوب طفلي / 6 ثقوب", "specs": { "dimensions": "25×12×6.5 سم", "weight": "2-2.5 كجم", "holes": "6 ثقوب", "usage": "حوائط خفيفة" }, "features": ["الأخف وزناً", "عزل حراري جيد", "سهل جداً في التعامل", "اقتصادي", "سريع التركيب"], "uses": [{ "title": "الحوائط الخفيفة", "desc": "حوائط خفيفة وسريعة التنفيذ" }, { "title": "الفواصل", "desc": "فواصل خفيفة بين المساحات" }], "related": ["tafli-10holes", "tafli-perforated", "block-10", "cement-solid-20"] }
+        };
+
+        // Get product ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id');
+
+        if (!productId) {
+            showError();
+        } else {
+            loadProduct(productId);
+        }
+
+        function loadProduct(id) {
+            const product = productsData[id];
+
+            if (!product) {
+                showError();
+                return;
+            }
+
+            // Update page
+            document.getElementById('page-title').textContent = `${product.name} - مصنع القومية`;
+            document.getElementById('breadcrumb-text').innerHTML = `<span class="text-slate-900 font-bold">${product.breadcrumb}</span>`;
+            document.getElementById('product-icon').textContent = product.icon;
+            document.getElementById('product-name-img').textContent = product.name;
+            document.getElementById('product-title').textContent = product.name;
+
+            // Specs
+            const specsList = document.getElementById('specs-list');
+            const specsIcons = { dimensions: '📏', weight: '⚖️', color: '🎨', strength: '💪', usage: '🏗️', density: '📊', fireResist: '🔥', thickness: '📐', pcsPerM2: '🔢', surface: '✨', height: '📏', holes: '⚫' };
+            for (const [key, value] of Object.entries(product.specs)) {
+                const icon = specsIcons[key] || '📌';
+                const label = { dimensions: 'الأبعاد', weight: 'الوزن', color: 'اللون', strength: 'قوة الضغط', usage: 'الاستخدام', density: 'الكثافة', fireResist: 'مقاومة الحريق', thickness: 'السُمك', pcsPerM2: 'القطع/م²', surface: 'السطح', height: 'الارتفاع', holes: 'الثقوب' }[key];
+                specsList.innerHTML += `<li>${icon} <strong>${label}:</strong> ${value}</li>`;
+            }
+
+            // Features
+            const featuresList = document.getElementById('features-list');
+            product.features.forEach(f => featuresList.innerHTML += `<li>✅ ${f}</li>`);
+
+            // Uses
+            const usesContainer = document.getElementById('uses-container');
+            product.uses.forEach((u, i) => {
+                const bgColor = i % 2 === 0 ? 'bg-slate-50' : 'bg-orange-50';
+                usesContainer.innerHTML += `<div class="${bgColor} rounded-xl p-6"><h3 class="font-bold text-lg mb-3">📍 ${u.title}</h3><p class="text-slate-700">${u.desc}</p></div>`;
+            });
+
+            // Buttons
+            document.getElementById('order-btn').href = `order.html?product=${id}`;
+            document.getElementById('whatsapp-btn').href = `https://wa.me/201283191597?text=أريد الاستفسار عن ${encodeURIComponent(product.name)}`;
+
+            // Related products
+            const relatedContainer = document.getElementById('related-products');
+            product.related.forEach(relId => {
+                if (productsData[relId]) {
+                    relatedContainer.innerHTML += `<a href="product-detail.html?id=${relId}" class="bg-white rounded-xl p-4 text-center hover:shadow-lg transition border-2 border-slate-200"><div class="text-4xl mb-2">${productsData[relId].icon}</div><p class="font-bold text-sm">${productsData[relId].name}</p></a>`;
+                }
+            });
+
+            // Show content
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('content').style.display = 'block';
+        }
+
+        function showError() {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('error').style.display = 'block';
+        }
+
+        // Image protection
+        document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') { e.preventDefault() } });
+        document.addEventListener('dragstart', e => { if (e.target.tagName === 'IMG') { e.preventDefault() } });
+    </script>
+</body>
+
+</html>

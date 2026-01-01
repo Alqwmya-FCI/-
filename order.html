@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="طلب عرض سعر - مصنع القومية للصناعات الأسمنتية">
+    <title>طلب عرض سعر - مصنع القومية</title>
+    <link rel="icon" type="image/png" href="./images/logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Cairo', sans-serif
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #0f3460 0%, #16213e 50%, #1a1a2e 100%)
+        }
+
+        .bg-accent {
+            background-color: #E67E22
+        }
+
+        .hover-accent:hover {
+            background-color: #D35400
+        }
+
+        input,
+        select,
+        textarea {
+            transition: all 0.3s
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #E67E22;
+            ring: 2px;
+            ring-color: rgba(230, 126, 34, 0.2)
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50">
+    <header class="hero-gradient text-white py-6 sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <img src="./images/logo.png" alt="القومية" class="w-12 h-12">
+                    <div>
+                        <h1 class="text-2xl font-black">مصنع القومية</h1>
+                        <p class="text-sm text-slate-300">للصناعات الأسمنتية</p>
+                    </div>
+                </div>
+                <nav class="hidden md:flex gap-6">
+                    <a href="index.html" class="hover:text-orange-400">الرئيسية</a>
+                    <a href="products.html" class="hover:text-orange-400">المنتجات</a>
+                    <a href="order.html" class="text-orange-400">طلب عرض سعر</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto">
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl font-black text-slate-900 mb-4">طلب عرض سعر</h1>
+                    <p class="text-lg text-slate-600">املأ النموذج وسنتواصل معك في أقرب وقت</p>
+                </div>
+
+                <form id="orderForm" class="bg-white rounded-2xl shadow-lg p-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label class="block text-slate-700 font-bold mb-2">الاسم *</label>
+                            <input type="text" id="name" required
+                                class="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:border-orange-500"
+                                placeholder="اسمك الكريم">
+                        </div>
+                        <div>
+                            <label class="block text-slate-700 font-bold mb-2">رقم الهاتف *</label>
+                            <input type="tel" id="phone" required
+                                class="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:border-orange-500"
+                                placeholder="01XXXXXXXXX">
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="block text-slate-700 font-bold mb-2">البريد الإلكتروني</label>
+                        <input type="email" id="email"
+                            class="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:border-orange-500"
+                            placeholder="example@domain.com">
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label class="block text-slate-700 font-bold mb-2">المنتج المطلوب *</label>
+                            <select id="product" required
+                                class="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:border-orange-500">
+                                <option value="">اختر المنتج</option>
+                                <option value="cement-brick">طوب أسمنتي</option>
+                                <option value="blocks">بلوك خرساني</option>
+                                <option value="interlock">انترلوك</option>
+                                <option value="bordures">بردورات</option>
+                                <option value="tafli">طوب طفلي</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-slate-700 font-bold mb-2">الكمية المتوقعة</label>
+                            <input type="text" id="quantity"
+                                class="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:border-orange-500"
+                                placeholder="مثال: 1000 قطعة">
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="block text-slate-700 font-bold mb-2">المدينة / المنطقة</label>
+                        <input type="text" id="city"
+                            class="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:border-orange-500"
+                            placeholder="اسم المدينة">
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="block text-slate-700 font-bold mb-2">ملاحظات إضافية</label>
+                        <textarea id="notes" rows="4"
+                            class="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:border-orange-500"
+                            placeholder="أي ملاحظات أو تفاصيل إضافية"></textarea>
+                    </div>
+
+                    <div class="flex flex-col gap-3">
+                        <button type="submit"
+                            class="bg-accent hover-accent text-white px-8 py-4 rounded-xl font-bold text-lg transition">
+                            📤 إرسال الطلب
+                        </button>
+                        <button type="button" onclick="sendWhatsApp()"
+                            class="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition">
+                            📱 إرسال عبر واتساب
+                        </button>
+                    </div>
+
+                    <p class="text-center text-sm text-slate-500 mt-4">* حقول مطلوبة</p>
+                </form>
+
+                <div class="mt-12 grid md:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-xl p-6 shadow">
+                        <h3 class="font-bold text-lg mb-3">📞 اتصل بنا</h3>
+                        <p class="text-slate-600">01283191597</p>
+                        <p class="text-slate-600">01098829062</p>
+                    </div>
+                    <div class="bg-white rounded-xl p-6 shadow">
+                        <h3 class="font-bold text-lg mb-3">📧 البريد الإلكتروني</h3>
+                        <p class="text-slate-600">info@alqawmia-factory.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-900 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-slate-400">© 2024 مصنع القومية للصناعات الأسمنتية</p>
+        </div>
+    </footer>
+
+    <script>
+        // Get product from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const productParam = urlParams.get('product');
+        if (productParam) {
+            document.getElementById('product').value = productParam;
+        }
+
+        // Form submission
+        document.getElementById('orderForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            sendWhatsApp();
+        });
+
+        function sendWhatsApp() {
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const product = document.getElementById('product').selectedOptions[0].text;
+            const quantity = document.getElementById('quantity').value;
+            const city = document.getElementById('city').value;
+            const notes = document.getElementById('notes').value;
+
+            if (!name || !phone || !product || product === 'اختر المنتج') {
+                alert('الرجاء ملء جميع الحقول المطلوبة');
+                return;
+            }
+
+            let message = `*طلب عرض سعر جديد*\n\n`;
+            message += `👤 الاسم: ${name}\n`;
+            message += `📱 الهاتف: ${phone}\n`;
+            if (email) message += `📧 البريد: ${email}\n`;
+            message += `📦 المنتج: ${product}\n`;
+            if (quantity) message += `🔢 الكمية: ${quantity}\n`;
+            if (city) message += `📍 المدينة: ${city}\n`;
+            if (notes) message += `📝 ملاحظات: ${notes}\n`;
+
+            const whatsappURL = `https://wa.me/201283191597?text=${encodeURIComponent(message)}`;
+            window.open(whatsappURL, '_blank');
+        }
+    </script>
+</body>
+
+</html>

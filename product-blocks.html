@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="بلوك خرساني مفرغ - مصنع القومية | 4 مقاسات بمواصفات عالية">
+    <title>بلوك خرساني - مصنع القومية</title>
+    <link rel="icon" type="image/png" href="./images/logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #0f3460 0%, #16213e 50%, #1a1a2e 100%);
+        }
+
+        .bg-accent {
+            background-color: #E67E22;
+        }
+
+        .hover-accent:hover {
+            background-color: #D35400;
+        }
+
+        .protected-image {
+            user-select: none;
+            -webkit-user-drag: none;
+            pointer-events: none;
+        }
+
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .image-container::after {
+            content: '© Al-Qawmia Factory 2024';
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 12px;
+            font-weight: bold;
+            pointer-events: none;
+            text-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .tab-button {
+            transition: all 0.3s;
+        }
+
+        .tab-button.active {
+            background-color: #E67E22;
+            color: white;
+        }
+
+        .product-variant {
+            transition: all 0.3s;
+        }
+
+        .product-variant:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(230, 126, 34, 0.2);
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50">
+    <header class="hero-gradient text-white py-6 sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <img src="./images/logo.png" alt="شعار القومية" class="w-12 h-12">
+                    <div>
+                        <h1 class="text-2xl font-black">مصنع القومية</h1>
+                        <p class="text-sm text-slate-300">للصناعات الأسمنتية</p>
+                    </div>
+                </div>
+                <nav class="hidden md:flex gap-6">
+                    <a href="index.html" class="hover:text-orange-400 transition">الرئيسية</a>
+                    <a href="products.html" class="hover:text-orange-400 transition">المنتجات</a>
+                    <a href="order.html" class="text-orange-400">طلب عرض سعر</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="bg-white py-4 border-b">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center gap-2 text-sm text-slate-600">
+                <a href="index.html" class="hover:text-orange-500">الرئيسية</a>
+                <span>/</span>
+                <a href="products.html" class="hover:text-orange-500">المنتجات</a>
+                <span>/</span>
+                <span class="text-slate-900 font-bold">بلوك خرساني</span>
+            </div>
+        </div>
+    </div>
+
+    <section class="py-12">
+        <div class="container mx-auto px-4">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+                    <div>
+                        <div class="image-container rounded-2xl aspect-square flex items-center justify-center mb-4">
+                            <div class="text-center">
+                                <div class="text-9xl mb-4">🧱</div>
+                                <p class="text-slate-600 text-lg">صورة المنتج</p>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-4 gap-2">
+                            <div
+                                class="image-container rounded-lg aspect-square flex items-center justify-center cursor-pointer border-2 border-orange-500">
+                                <span class="text-3xl">🧱</span>
+                            </div>
+                            <div
+                                class="image-container rounded-lg aspect-square flex items-center justify-center cursor-pointer border-2 border-transparent hover:border-orange-300">
+                                <span class="text-3xl">📏</span>
+                            </div>
+                            <div
+                                class="image-container rounded-lg aspect-square flex items-center justify-center cursor-pointer border-2 border-transparent hover:border-orange-300">
+                                <span class="text-3xl">🏗️</span>
+                            </div>
+                            <div
+                                class="image-container rounded-lg aspect-square flex items-center justify-center cursor-pointer border-2 border-transparent hover:border-orange-300">
+                                <span class="text-3xl">🔥</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h1 class="text-4xl font-black text-slate-900 mb-4">بلوك خرساني مفرغ</h1>
+                        <div class="bg-orange-50 rounded-xl p-4 mb-6">
+                            <p class="text-orange-600 font-bold text-lg">اتصل للحصول على أفضل سعر</p>
+                            <p class="text-slate-600 text-sm">خصومات خاصة للكميات الكبيرة</p>
+                        </div>
+
+                        <div class="mb-6">
+                            <h3 class="font-bold text-lg text-slate-900 mb-3">المقاسات المتاحة:</h3>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div
+                                    class="product-variant bg-white border-2 border-slate-200 rounded-lg p-4 cursor-pointer">
+                                    <p class="font-bold text-slate-900">بلوك 25</p>
+                                    <p class="text-sm text-slate-600">40×20×25 سم</p>
+                                    <p class="text-xs text-slate-500">24 كجم</p>
+                                </div>
+                                <div
+                                    class="product-variant bg-white border-2 border-slate-200 rounded-lg p-4 cursor-pointer">
+                                    <p class="font-bold text-slate-900">بلوك 20</p>
+                                    <p class="text-sm text-slate-600">40×20×20 سم</p>
+                                    <p class="text-xs text-slate-500">19 كجم</p>
+                                </div>
+                                <div
+                                    class="product-variant bg-white border-2 border-slate-200 rounded-lg p-4 cursor-pointer">
+                                    <p class="font-bold text-slate-900">بلوك 12</p>
+                                    <p class="text-sm text-slate-600">40×20×12 سم</p>
+                                    <p class="text-xs text-slate-500">13 كجم</p>
+                                </div>
+                                <div
+                                    class="product-variant bg-white border-2 border-slate-200 rounded-lg p-4 cursor-pointer">
+                                    <p class="font-bold text-slate-900">بلوك 10</p>
+                                    <p class="text-sm text-slate-600">40×20×10 سم</p>
+                                    <p class="text-xs text-slate-500">12 كجم</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col gap-3">
+                            <a href="order.html?product=blocks"
+                                class="bg-accent hover-accent text-white px-8 py-4 rounded-xl font-bold text-lg text-center transition">
+                                طلب عرض سعر
+                            </a>
+                            <a href="https://wa.me/201283191597?text=أريد الاستفسار عن البلوك الخرساني"
+                                class="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-xl font-bold text-lg text-center transition">
+                                📱 واتساب مباشر
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <div class="flex border-b">
+                        <button class="tab-button active px-8 py-4 font-bold text-lg"
+                            onclick="showTab('description')">الوصف</button>
+                        <button class="tab-button px-8 py-4 font-bold text-lg"
+                            onclick="showTab('specs')">المواصفات</button>
+                        <button class="tab-button px-8 py-4 font-bold text-lg"
+                            onclick="showTab('uses')">الاستخدامات</button>
+                    </div>
+
+                    <div class="p-8">
+                        <div id="description" class="tab-content active">
+                            <h3 class="text-2xl font-bold text-slate-900 mb-4">عن البلوك الخرساني المفرغ</h3>
+                            <div class="prose prose-lg max-w-none">
+                                <p class="text-slate-700 leading-relaxed mb-4">
+                                    البلوك الخرساني المفرغ هو منتج إنشائي أساسي يُستخدم في بناء الحوائط الحاملة وغير
+                                    الحاملة. يتميز بمقاومة عالية للحريق وعزل حراري وصوتي ممتاز.
+                                </p>
+                                <ul class="list-disc list-inside text-slate-700 space-y-2">
+                                    <li>مطابق للمواصفات المصرية القياسية</li>
+                                    <li>كثافة 2050-2191 كجم/م³</li>
+                                    <li>مقاومة حريق ساعتين</li>
+                                    <li>عزل حراري وصوتي ممتاز</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div id="specs" class="tab-content">
+                            <h3 class="text-2xl font-bold text-slate-900 mb-6">المواصفات التفصيلية</h3>
+                            <div class="overflow-x-auto">
+                                <table class="w-full border-collapse">
+                                    <thead>
+                                        <tr class="bg-slate-100">
+                                            <th class="border border-slate-300 px-4 py-3 text-right font-bold">المواصفة
+                                            </th>
+                                            <th class="border border-slate-300 px-4 py-3 text-center font-bold">بلوك 25
+                                            </th>
+                                            <th class="border border-slate-300 px-4 py-3 text-center font-bold">بلوك 20
+                                            </th>
+                                            <th class="border border-slate-300 px-4 py-3 text-center font-bold">بلوك 12
+                                            </th>
+                                            <th class="border border-slate-300 px-4 py-3 text-center font-bold">بلوك 10
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="border border-slate-300 px-4 py-3 font-bold bg-slate-50">الأبعاد
+                                                (سم)</td>
+                                            <td class="border border-slate-300 px-4 py-3 text-center">40×20×25</td>
+                                            <td class="border border-slate-300 px-4 py-3 text-center">40×20×20</td>
+                                            <td class="border border-slate-300 px-4 py-3 text-center">40×20×12</td>
+                                            <td class="border border-slate-300 px-4 py-3 text-center">40×20×10</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border border-slate-300 px-4 py-3 font-bold bg-slate-50">الوزن
+                                                (كجم)</td>
+                                            <td class="border border-slate-300 px-4 py-3 text-center">24</td>
+                                            <td class="border border-slate-300 px-4 py-3 text-center">19</td>
+                                            <td class="border border-slate-300 px-4 py-3 text-center">13</td>
+                                            <td class="border border-slate-300 px-4 py-3 text-center">12</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border border-slate-300 px-4 py-3 font-bold bg-slate-50">مقاومة
+                                                الحريق</td>
+                                            <td class="border border-slate-300 px-4 py-3 text-center" colspan="4">ساعتين
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border border-slate-300 px-4 py-3 font-bold bg-slate-50">الكثافة
+                                                (كجم/م³)</td>
+                                            <td class="border border-slate-300 px-4 py-3 text-center" colspan="4">
+                                                2050-2191</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border border-slate-300 px-4 py-3 font-bold bg-slate-50">
+                                                الاستخدام</td>
+                                            <td class="border border-slate-300 px-4 py-3 text-center">حوائط خارجية</td>
+                                            <td class="border border-slate-300 px-4 py-3 text-center">حوائط داخلية</td>
+                                            <td class="border border-slate-300 px-4 py-3 text-center">فواصل وحوائط خفيفة
+                                            </td>
+                                            <td class="border border-slate-300 px-4 py-3 text-center">حوائط غير حاملة
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div id="uses" class="tab-content">
+                            <h3 class="text-2xl font-bold text-slate-900 mb-6">الاستخدامات والتطبيقات</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="bg-slate-50 rounded-xl p-6">
+                                    <h4 class="font-bold text-lg text-slate-900 mb-3">🏢 المباني السكنية والتجارية</h4>
+                                    <ul class="space-y-2 text-slate-700">
+                                        <li>• الحوائط الحاملة</li>
+                                        <li>• الحوائط الداخلية</li>
+                                        <li>• الفواصل بين الغرف</li>
+                                        <li>• الحوائط الخارجية</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-orange-50 rounded-xl p-6">
+                                    <h4 class="font-bold text-lg text-slate-900 mb-3">🏗️ المشاريع الإنشائية</h4>
+                                    <ul class="space-y-2 text-slate-700">
+                                        <li>• المصانع والمخازن</li>
+                                        <li>• المدارس والمستشفيات</li>
+                                        <li>• الأبنية الإدارية</li>
+                                        <li>• المجمعات السكنية</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="text-3xl font-black text-slate-900 mb-8 text-center">منتجات ذات صلة</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <a href="product-cement-brick.html"
+                        class="bg-slate-50 rounded-xl p-6 text-center hover:shadow-lg transition">
+                        <div class="text-5xl mb-3">🏗️</div>
+                        <h3 class="font-bold text-slate-900">طوب أسمنتي</h3>
+                    </a>
+                    <a href="product-interlock.html"
+                        class="bg-slate-50 rounded-xl p-6 text-center hover:shadow-lg transition">
+                        <div class="text-5xl mb-3">🔷</div>
+                        <h3 class="font-bold text-slate-900">انترلوك</h3>
+                    </a>
+                    <a href="product-bordures.html"
+                        class="bg-slate-50 rounded-xl p-6 text-center hover:shadow-lg transition">
+                        <div class="text-5xl mb-3">⬜</div>
+                        <h3 class="font-bold text-slate-900">بردورات</h3>
+                    </a>
+                    <a href="product-tafli.html"
+                        class="bg-slate-50 rounded-xl p-6 text-center hover:shadow-lg transition">
+                        <div class="text-5xl mb-3">🧱</div>
+                        <h3 class="font-bold text-slate-900">طوب طفلي</h3>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-900 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-slate-400">© 2024 مصنع القومية للصناعات الأسمنتية - جميع الحقوق محفوظة</p>
+        </div>
+    </footer>
+
+    <script>
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+        document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') { e.preventDefault(); return false; } });
+        document.addEventListener('dragstart', e => { if (e.target.tagName === 'IMG') { e.preventDefault(); return false; } });
+    </script>
+</body>
+
+</html>

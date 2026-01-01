@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="طوب أسمنتي مصمت وأحمر - مصنع القومية | مواصفات تفصيلية وأسعار تنافسية">
+    <title>طوب أسمنتي مصمت - مصنع القومية</title>
+    <link rel="icon" type="image/png" href="./images/logo.png">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #0f3460 0%, #16213e 50%, #1a1a2e 100%);
+        }
+
+        .bg-accent {
+            background-color: #E67E22;
+        }
+
+        .hover-accent:hover {
+            background-color: #D35400;
+        }
+
+        /* Image Protection */
+        .protected-image {
+            user-select: none;
+            -webkit-user-drag: none;
+            -webkit-touch-callout: none;
+            pointer-events: none;
+        }
+
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .image-container::after {
+            content: '© Al-Qawmia Factory 2024';
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 12px;
+            font-weight: bold;
+            pointer-events: none;
+            text-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .tab-button {
+            transition: all 0.3s;
+        }
+
+        .tab-button.active {
+            background-color: #E67E22;
+            color: white;
+        }
+
+        .product-variant {
+            transition: all 0.3s;
+        }
+
+        .product-variant:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(230, 126, 34, 0.2);
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50">
+    <!-- Header -->
+    <header class="hero-gradient text-white py-6 sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <img src="./images/logo.png" alt="شعار القومية" class="w-12 h-12">
+                    <div>
+                        <h1 class="text-2xl font-black">مصنع القومية</h1>
+                        <p class="text-sm text-slate-300">للصناعات الأسمنتية</p>
+                    </div>
+                </div>
+                <nav class="hidden md:flex gap-6">
+                    <a href="index.html" class="hover:text-orange-400 transition">الرئيسية</a>
+                    <a href="products.html" class="hover:text-orange-400 transition">المنتجات</a>
+                    <a href="order.html" class="text-orange-400">طلب عرض سعر</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="bg-white py-4 border-b">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center gap-2 text-sm text-slate-600">
+                <a href="index.html" class="hover:text-orange-500">الرئيسية</a>
+                <span>/</span>
+                <a href="products.html" class="hover:text-orange-500">المنتجات</a>
+                <span>/</span>
+                <span class="text-slate-900 font-bold">طوب أسمنتي</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Page -->
+    <section class="py-12">
+        <div class="container mx-auto px-4">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+                    <!-- Image Gallery -->
+                    <div>
+                        <div class="image-container rounded-2xl aspect-square flex items-center justify-center mb-4">
+                            <div class="text-center">
+                                <div class="text-9xl mb-4">🏗️</div>
+                                <p class="text-slate-600 text-lg">صورة المنتج</p>
+                                <p class="text-slate-400 text-sm">يمكن استبدالها بصورة فعلية</p>
+                            </div>
+                        </div>
+                        <!-- Thumbnails -->
+                        <div class="grid grid-cols-4 gap-2">
+                            <div
+                                class="image-container rounded-lg aspect-square flex items-center justify-center cursor-pointer border-2 border-orange-500">
+                                <span class="text-3xl">🏗️</span>
+                            </div>
+                            <div
+                                class="image-container rounded-lg aspect-square flex items-center justify-center cursor-pointer border-2 border-transparent hover:border-orange-300">
+                                <span class="text-3xl">📏</span>
+                            </div>
+                            <div
+                                class="image-container rounded-lg aspect-square flex items-center justify-center cursor-pointer border-2 border-transparent hover:border-orange-300">
+                                <span class="text-3xl">⚖️</span>
+                            </div>
+                            <div
+                                class="image-container rounded-lg aspect-square flex items-center justify-center cursor-pointer border-2 border-transparent hover:border-orange-300">
+                                <span class="text-3xl">🎨</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Info -->
+                    <div>
+                        <h1 class="text-4xl font-black text-slate-900 mb-4">طوب أسمنتي مصمت</h1>
+                        <div class="bg-orange-50 rounded-xl p-4 mb-6">
+                            <p class="text-orange-600 font-bold text-lg">اتصل للحصول على أفضل سعر</p>
+                            <p class="text-slate-600 text-sm">أسعار خاصة للكميات الكبيرة</p>
+                        </div>
+
+                        <div class="mb-6">
+                            <h3 class="font-bold text-lg text-slate-900 mb-3">الأنواع المتاحة:</h3>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div
+                                    class="product-variant bg-white border-2 border-slate-200 rounded-lg p-4 cursor-pointer">
+                                    <p class="font-bold text-slate-900">مصمت 25</p>
+                                    <p class="text-sm text-slate-600">25×12×6 سم</p>
+                                    <p class="text-xs text-slate-500">4-4.5 كجم</p>
+                                </div>
+                                <div
+                                    class="product-variant bg-white border-2 border-slate-200 rounded-lg p-4 cursor-pointer">
+                                    <p class="font-bold text-slate-900">مصمت 20</p>
+                                    <p class="text-sm text-slate-600">20×10×6 سم</p>
+                                    <p class="text-xs text-slate-500">3-3.5 كجم</p>
+                                </div>
+                                <div
+                                    class="product-variant bg-white border-2 border-slate-200 rounded-lg p-4 cursor-pointer">
+                                    <p class="font-bold text-slate-900">أحمر 25</p>
+                                    <p class="text-sm text-slate-600">25×12×6 سم</p>
+                                    <p class="text-xs text-slate-500">واجهات</p>
+                                </div>
+                                <div
+                                    class="product-variant bg-white border-2 border-slate-200 rounded-lg p-4 cursor-pointer">
+                                    <p class="font-bold text-slate-900">أحمر 20</p>
+                                    <p class="text-sm text-slate-600">20×10×6 سم</p>
+                                    <p class="text-xs text-slate-500">تشطيبات</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col gap-3">
+                            <a href="order.html?product=cement-brick"
+                                class="bg-accent hover-accent text-white px-8 py-4 rounded-xl font-bold text-lg text-center transition">
+                                طلب عرض سعر
+                            </a>
+                            <a href="https://wa.me/201283191597?text=أريد الاستفسار عن الطوب الأسمنتي"
+                                class="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-xl font-bold text-lg text-center transition">
+                                📱 واتساب مباشر
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabs -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <div class="flex border-b">
+                        <button class="tab-button active px-8 py-4 font-bold text-lg" onclick="showTab('description')">
+                            الوصف
+                        </button>
+                        <button class="tab-button px-8 py-4 font-bold text-lg" onclick="showTab('specs')">
+                            المواصفات
+                        </button>
+                        <button class="tab-button px-8 py-4 font-bold text-lg" onclick="showTab('uses')">
+                            الاستخدامات
+                        </button>
+                    </div>
+
+                    <div class="p-8">
+                        <!-- Description Tab -->
+                        <div id="description" class="tab-content active">
+                            <h3 class="text-2xl font-bold text-slate-900 mb-4">عن الطوب الأسمنتي المصمت</h3>
+                            <div class="prose prose-lg max-w-none">
+                                <p class="text-slate-700 leading-relaxed mb-4">
+                                    الطوب الأسمنتي المصمت هو منتج إنشائي عالي الجودة يُستخدم في أعمال البناء والتشييد.
+                                    يتميز بقوة ضغط عالية ومقاومة ممتازة للعوامل الجوية، مما يجعله الخيار الأمثل للحوائط
+                                    الحاملة والواجهات.
+                                </p>
+                                <p class="text-slate-700 leading-relaxed mb-4">
+                                    نوفر نوعين رئيسيين: الطوب الأسمنتي العادي (رمادي) والطوب الأسمنتي الأحمر. كل نوع
+                                    متوفر بمقاسين (25 و 20) لتلبية احتياجات المشاريع المختلفة.
+                                </p>
+                                <ul class="list-disc list-inside text-slate-700 space-y-2">
+                                    <li>جودة عالية ومطابق للمواصفات المصرية</li>
+                                    <li>أبعاد منتظمة ودقيقة</li>
+                                    <li>سرعة في البناء وتوفير في المونة</li>
+                                    <li>مقاوم للرطوبة والماء</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Specifications Tab -->
+                        <div id="specs" class="tab-content">
+                            <h3 class="text-2xl font-bold text-slate-900 mb-6">المواصفات التفصيلية</h3>
+                            <div class="overflow-x-auto">
+                                <table class="w-full border-collapse">
+                                    <thead>
+                                        <tr class="bg-slate-100">
+                                            <th class="border border-slate-300 px-4 py-3 text-right font-bold">المواصفة
+                                            </th>
+                                            <th class="border border-slate-300 px-4 py-3 text-center font-bold">مصمت 25
+                                            </th>
+                                            <th class="border border-slate-300 px-4 py-3 text-center font-bold">مصمت 20
+                                            </th>
+                                            <th class="border border-slate-300 px-4 py-3 text-center font-bold">أحمر 25
+                                            </th>
+                                            <th class="border border-slate-300 px-4 py-3 text-center font-bold">أحمر 20
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="border border-slate-300 px-4 py-3 font-bold bg-slate-50">الأبعاد
+                                                (سم)</td>
+                                            <td class="border border-slate-300 px-4 py-3 text-center">25×12×6</td>
+                                            <td class="border border-slate-300 px-4 py-3 text-center">20×10×6</td>
+                                            <td class="border border-slate-300 px-4 py-3 text-center">25×12×6</td>
+                                            <td class="border border-slate-300 px-4 py-3 text-center">20×10×6</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border border-slate-300 px-4 py-3 font-bold bg-slate-50">الوزن
+                                                (كجم)</td>
+                                            <td class="border border-slate-300 px-4 py-3 text-center">4-4.5</td>
+                                            <td class="border border-slate-300 px-4 py-3 text-center">3-3.5</td>
+                                            <td class="border border-slate-300 px-4 py-3 text-center">4-4.5</td>
+                                            <td class="border border-slate-300 px-4 py-3 text-center">3-3.5</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border border-slate-300 px-4 py-3 font-bold bg-slate-50">قوة
+                                                الضغط (كجم/سم²)</td>
+                                            <td class="border border-slate-300 px-4 py-3 text-center" colspan="4">
+                                                100-150</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border border-slate-300 px-4 py-3 font-bold bg-slate-50">امتصاص
+                                                الماء</td>
+                                            <td class="border border-slate-300 px-4 py-3 text-center" colspan="4">
+                                                < 6%</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border border-slate-300 px-4 py-3 font-bold bg-slate-50">اللون
+                                            </td>
+                                            <td class="border border-slate-300 px-4 py-3 text-center">رمادي</td>
+                                            <td class="border border-slate-300 px-4 py-3 text-center">رمادي</td>
+                                            <td class="border border-slate-300 px-4 py-3 text-center">أحمر</td>
+                                            <td class="border border-slate-300 px-4 py-3 text-center">أحمر</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border border-slate-300 px-4 py-3 font-bold bg-slate-50">
+                                                الاستخدام الأمثل</td>
+                                            <td class="border border-slate-300 px-4 py-3 text-center">حوائط حاملة</td>
+                                            <td class="border border-slate-300 px-4 py-3 text-center">حوائط داخلية</td>
+                                            <td class="border border-slate-300 px-4 py-3 text-center">واجهات وديكور</td>
+                                            <td class="border border-slate-300 px-4 py-3 text-center">تشطيبات</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Uses Tab -->
+                        <div id="uses" class="tab-content">
+                            <h3 class="text-2xl font-bold text-slate-900 mb-6">الاستخدامات والتطبيقات</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="bg-slate-50 rounded-xl p-6">
+                                    <h4 class="font-bold text-lg text-slate-900 mb-3">🏢 الطوب المصمت (رمادي)</h4>
+                                    <ul class="space-y-2 text-slate-700">
+                                        <li>• بناء الحوائط الحاملة</li>
+                                        <li>• الحوائط الداخلية والخارجية</li>
+                                        <li>• الأعمال الإنشائية</li>
+                                        <li>• المباني السكنية والتجارية</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-orange-50 rounded-xl p-6">
+                                    <h4 class="font-bold text-lg text-slate-900 mb-3">🎨 الطوب الأحمر</h4>
+                                    <ul class="space-y-2 text-slate-700">
+                                        <li>• تشطيب الواجهات</li>
+                                        <li>• الأعمال الديكورية</li>
+                                        <li>• الحوائط الاستعراضية</li>
+                                        <li>• إضافة لمسة جمالية للمباني</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Products -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="text-3xl font-black text-slate-900 mb-8 text-center">منتجات ذات صلة</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <a href="product-blocks.html"
+                        class="bg-slate-50 rounded-xl p-6 text-center hover:shadow-lg transition">
+                        <div class="text-5xl mb-3">🧱</div>
+                        <h3 class="font-bold text-slate-900">بلوك خرساني</h3>
+                    </a>
+                    <a href="product-interlock.html"
+                        class="bg-slate-50 rounded-xl p-6 text-center hover:shadow-lg transition">
+                        <div class="text-5xl mb-3">🔷</div>
+                        <h3 class="font-bold text-slate-900">انترلوك</h3>
+                    </a>
+                    <a href="product-bordures.html"
+                        class="bg-slate-50 rounded-xl p-6 text-center hover:shadow-lg transition">
+                        <div class="text-5xl mb-3">⬜</div>
+                        <h3 class="font-bold text-slate-900">بردورات</h3>
+                    </a>
+                    <a href="product-tafli.html"
+                        class="bg-slate-50 rounded-xl p-6 text-center hover:shadow-lg transition">
+                        <div class="text-5xl mb-3">🧱</div>
+                        <h3 class="font-bold text-slate-900">طوب طفلي</h3>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-slate-400">© 2024 مصنع القومية للصناعات الأسمنتية - جميع الحقوق محفوظة</p>
+        </div>
+    </footer>
+
+    <script>
+        // Tab switching
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Image Protection
+        document.addEventListener('contextmenu', function (e) {
+            if (e.target.tagName === 'IMG' || e.target.classList.contains('protected-image')) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        document.addEventListener('dragstart', function (e) {
+            if (e.target.tagName === 'IMG') {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if ((e.ctrlKey && (e.key === 's' || e.key === 'p')) ||
+                (e.ctrlKey && e.key === 'c' && document.activeElement.tagName === 'IMG')) {
+                e.preventDefault();
+                return false;
+            }
+            if (e.key === 'PrintScreen') {
+                e.preventDefault();
+                return false;
+            }
+        });
+    </script>
+</body>
+
+</html>
