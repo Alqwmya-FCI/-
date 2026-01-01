@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="page-title">تفاصيل المنتج - مصنع القومية</title>
-    <link rel="icon" href="./images/logo.png">
+    <link rel="icon" href="../images/logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <style>
@@ -62,7 +62,7 @@
         <div class="container mx-auto px-4">
             <div class="flex items-center justify-between">
                 <div class="flex items-center gap-4">
-                    <img src="./images/logo.png" alt="القومية" class="w-12 h-12">
+                    <img src="../images/logo.png" alt="القومية" class="w-12 h-12">
                     <div>
                         <h1 class="text-2xl font-black">مصنع القومية</h1>
                         <p class="text-sm text-slate-300">للصناعات الأسمنتية</p>
@@ -70,8 +70,8 @@
                 </div>
                 <nav class="hidden md:flex gap-6">
                     <a href="./" class="hover:text-orange-400">الرئيسية</a>
-                    <a href="products.html" class="hover:text-orange-400">المنتجات</a>
-                    <a href="order.html" class="text-orange-400">طلب سعر</a>
+                    <a href="../products/" class="hover:text-orange-400">المنتجات</a>
+                    <a href="../order/" class="text-orange-400">طلب سعر</a>
                 </nav>
             </div>
         </div>
@@ -89,7 +89,7 @@
     <div id="error" class="container mx-auto px-4 py-20 text-center">
         <div class="text-6xl mb-4">❌</div>
         <h2 class="text-2xl font-bold mb-4">المنتج غير موجود</h2>
-        <a href="products.html" class="bg-accent hover-accent text-white px-6 py-3 rounded-lg inline-block">العودة
+        <a href="../products/" class="bg-accent hover-accent text-white px-6 py-3 rounded-lg inline-block">العودة
             للمنتجات</a>
     </div>
 
@@ -99,7 +99,7 @@
             <div class="container mx-auto px-4">
                 <div id="breadcrumb" class="flex items-center gap-2 text-sm text-slate-600">
                     <a href="./" class="hover:text-orange-500">الرئيسية</a> /
-                    <a href="products.html" class="hover:text-orange-500">المنتجات</a> /
+                    <a href="../products/" class="hover:text-orange-500">المنتجات</a> /
                     <span id="breadcrumb-text"></span>
                 </div>
             </div>
@@ -240,7 +240,7 @@
             const relatedContainer = document.getElementById('related-products');
             product.related.forEach(relId => {
                 if (productsData[relId]) {
-                    relatedContainer.innerHTML += `<a href="product-detail.html?id=${relId}" class="bg-white rounded-xl p-4 text-center hover:shadow-lg transition border-2 border-slate-200"><div class="text-4xl mb-2">${productsData[relId].icon}</div><p class="font-bold text-sm">${productsData[relId].name}</p></a>`;
+                    relatedContainer.innerHTML += `<a href="../product-detail/?id=${relId}" class="bg-white rounded-xl p-4 text-center hover:shadow-lg transition border-2 border-slate-200"><div class="text-4xl mb-2">${productsData[relId].icon}</div><p class="font-bold text-sm">${productsData[relId].name}</p></a>`;
                 }
             });
 
