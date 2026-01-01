@@ -54,6 +54,31 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Image Protection */
+        .protected-image {
+            user-select: none;
+            -webkit-user-drag: none;
+            -webkit-touch-callout: none;
+            pointer-events: none;
+        }
+
+        .image-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-container::after {
+            content: '© Al-Qawmia Factory 2024';
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 12px;
+            font-weight: bold;
+            pointer-events: none;
+            text-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
+        }
     </style>
 </head>
 
@@ -87,7 +112,7 @@
     </section>
 
     <!-- Product 1: Interlock -->
-    <section class="py-16 bg-white reveal">
+    <section id="interlock" class="py-16 bg-white reveal">
         <div class="container mx-auto px-4">
             <div class="max-w-6xl mx-auto">
                 <div class="text-center mb-12">
@@ -156,7 +181,7 @@
     </section>
 
     <!-- Product 2: Blocks -->
-    <section class="py-16 bg-slate-100 reveal">
+    <section id="blocks" class="py-16 bg-slate-100 reveal">
         <div class="container mx-auto px-4">
             <div class="max-w-6xl mx-auto">
                 <div class="text-center mb-12">
@@ -221,7 +246,7 @@
     </section>
 
     <!-- Product 3: Bordures -->
-    <section class="py-16 bg-white reveal">
+    <section id="bordures" class="py-16 bg-white reveal">
         <div class="container mx-auto px-4">
             <div class="max-w-6xl mx-auto">
                 <div class="text-center mb-12">
@@ -279,7 +304,7 @@
     </section>
 
     <!-- Product 4: Tafli Brick -->
-    <section class="py-16 bg-slate-100 reveal">
+    <section id="tafli" class="py-16 bg-slate-100 reveal">
         <div class="container mx-auto px-4">
             <div class="max-w-6xl mx-auto">
                 <div class="text-center mb-12">
@@ -344,7 +369,7 @@
     </section>
 
     <!-- Product 5: Cement Brick -->
-    <section class="py-16 bg-white reveal">
+    <section id="cement" class="py-16 bg-white reveal">
         <div class="container mx-auto px-4">
             <div class="max-w-6xl mx-auto">
                 <div class="text-center mb-12">
@@ -455,6 +480,38 @@
 
         window.addEventListener('scroll', revealOnScroll);
         window.addEventListener('load', revealOnScroll);
+
+        // Image Protection
+        // Disable right-click on images
+        document.addEventListener('contextmenu', function (e) {
+            if (e.target.tagName === 'IMG' || e.target.classList.contains('protected-image')) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // Prevent drag on images
+        document.addEventListener('dragstart', function (e) {
+            if (e.target.tagName === 'IMG') {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // Disable common screenshot/copy keyboard shortcuts
+        document.addEventListener('keydown', function (e) {
+            // Ctrl+S, Ctrl+P, Ctrl+C (on images)
+            if ((e.ctrlKey && (e.key === 's' || e.key === 'p')) ||
+                (e.ctrlKey && e.key === 'c' && document.activeElement.tagName === 'IMG')) {
+                e.preventDefault();
+                return false;
+            }
+            // PrintScreen key
+            if (e.key === 'PrintScreen') {
+                e.preventDefault();
+                return false;
+            }
+        });
     </script>
 </body>
 
