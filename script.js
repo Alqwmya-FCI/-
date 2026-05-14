@@ -57,10 +57,12 @@ function smartCopy(text, type, element) {
 function toggleFinancialHub(show) {
     const hub = document.getElementById('financial-hub');
     if (show) {
-        hub.classList.add('active');
+        hub.classList.remove('hidden');
+        hub.classList.add('flex');
         document.body.style.overflow = 'hidden';
     } else {
-        hub.classList.remove('active');
+        hub.classList.add('hidden');
+        hub.classList.remove('flex');
         document.body.style.overflow = 'auto';
     }
 }
@@ -90,3 +92,19 @@ END:VCARD`;
     document.body.removeChild(link);
     window.URL.revokeObjectURL(url);
 }
+// --- Dynamic Redirect Logic (QR Code Support) ---
+// This allows you to print a single QR code pointing to yoursite.com/?user=ali
+// and then change where it points from here.
+function handleDynamicRedirect() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const user = urlParams.get('user');
+
+    if (user === 'ali') {
+        window.location.href = './ali/';
+    } else if (user === 'hussein') {
+        window.location.href = './hussein/';
+    }
+}
+
+// Run on page load
+document.addEventListener('DOMContentLoaded', handleDynamicRedirect);
