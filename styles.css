@@ -55,14 +55,15 @@ a:active {
     transition: all 0.5s ease;
 }
 
-/* Modal / Overlay Styles */
 #financial-hub {
     display: none;
-    z-index: 100;
+    z-index: 9999 !important;
+    position: fixed;
+    inset: 0;
 }
 
-#financial-hub.active {
-    display: flex;
+#financial-hub.flex {
+    display: flex !important;
 }
 
 .modal-content {

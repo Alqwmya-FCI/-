@@ -55,7 +55,12 @@ function smartCopy(text, type, element) {
 
 // Financial Hub Toggle
 function toggleFinancialHub(show) {
+    console.log("Toggling Financial Hub:", show);
     const hub = document.getElementById('financial-hub');
+    if (!hub) {
+        console.error("Financial Hub element not found!");
+        return;
+    }
     if (show) {
         hub.classList.remove('hidden');
         hub.classList.add('flex');
