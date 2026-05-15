@@ -28,6 +28,20 @@ function copyToClipboard(text, element) {
     });
 }
 
+// Basic copy function with toast-like feedback
+function copyText(text, message) {
+    navigator.clipboard.writeText(text).then(() => {
+        // Create a temporary toast notification
+        const toast = document.createElement('div');
+        toast.className = 'fixed bottom-20 left-1/2 -translate-x-1/2 bg-black text-white px-6 py-3 rounded-full text-sm font-bold z-[10000] shadow-2xl animate-bounce';
+        toast.textContent = message;
+        document.body.appendChild(toast);
+        setTimeout(() => {
+            toast.remove();
+        }, 3000);
+    });
+}
+
 // Smart Copy: Copies and shows "Open App" action
 function smartCopy(text, type, element) {
     navigator.clipboard.writeText(text).then(() => {

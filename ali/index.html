@@ -242,7 +242,7 @@
                     </div>
                     ملخص الحسابات
                 </h2>
-                <button onclick="toggleFinancialHub(false)" class="p-2 hover:bg-slate-100 rounded-full transition-colors">
+                <button onclick="toggleFinancialHub(false)" class="p-2 hover:bg-slate-100 rounded-full transition-colors" title="إغلاق" aria-label="إغلاق ملخص الحسابات">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
                 </button>
             </div>
@@ -255,7 +255,7 @@
                     <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-1">المحافظ الرقمية والتحويل السريع</p>
                     
                     <!-- InstaPay -->
-                    <div onclick="copyText('01286084444', 'تم نسخ رقم انستا باي')" class="group bg-gradient-to-br from-[#8A6C9D]/5 to-white p-5 rounded-3xl border border-[#8A6C9D]/20 cursor-pointer hover:shadow-lg transition-all active:scale-[0.98]">
+                    <div onclick="copyText('01283191597', 'تم نسخ رقم انستا باي')" class="group bg-gradient-to-br from-[#8A6C9D]/5 to-white p-5 rounded-3xl border border-[#8A6C9D]/20 cursor-pointer hover:shadow-lg transition-all active:scale-[0.98]">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center gap-4">
                                 <div class="w-14 h-14 bg-white rounded-2xl shadow-sm flex items-center justify-center p-2">
@@ -263,15 +263,15 @@
                                 </div>
                                 <div>
                                     <h3 class="font-black text-slate-900">InstaPay</h3>
-                                    <p style="color: #8A6C9D;" class="font-mono text-xl font-bold">01286084444</p>
+                                    <p class="font-mono text-xl font-bold text-[#8A6C9D]">01283191597</p>
                                 </div>
                             </div>
-                            <span style="background-color: #8A6C9D; color: white;" class="text-[10px] px-3 py-1.5 rounded-full font-bold shadow-sm">اضغط للنسخ</span>
+                            <span class="text-[10px] px-3 py-1.5 rounded-full font-bold shadow-sm bg-[#8A6C9D] text-white">اضغط للنسخ</span>
                         </div>
                     </div>
 
                     <!-- Vodafone Cash -->
-                    <div onclick="copyText('01017528757', 'تم نسخ رقم المحفظة')" class="group bg-gradient-to-br from-red-50 to-white p-5 rounded-3xl border border-red-100 cursor-pointer hover:shadow-lg transition-all active:scale-[0.98]">
+                    <div onclick="copyText('01009763656', 'تم نسخ رقم المحفظة')" class="group bg-gradient-to-br from-red-50 to-white p-5 rounded-3xl border border-red-100 cursor-pointer hover:shadow-lg transition-all active:scale-[0.98]">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center gap-4">
                                 <div class="w-14 h-14 bg-white rounded-2xl shadow-sm flex items-center justify-center p-2">
@@ -279,7 +279,7 @@
                                 </div>
                                 <div>
                                     <h3 class="font-black text-slate-900">Vodafone Cash</h3>
-                                    <p class="text-red-600 font-mono text-xl font-bold">01017528757</p>
+                                    <p class="text-red-600 font-mono text-xl font-bold">01009763656</p>
                                 </div>
                             </div>
                             <span class="text-[10px] bg-red-100 text-red-700 px-3 py-1.5 rounded-full font-bold">اضغط للنسخ</span>
@@ -370,9 +370,28 @@
                             <svg id="icon-bank-alex" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-slate-400 transition-transform duration-300"><path d="m6 9 6 6 6-6"/></svg>
                         </button>
                         <div id="content-bank-alex" class="hidden p-5 bg-slate-50 border-t border-slate-100 space-y-4">
+                            <!-- Account Details Grid -->
+                            <div class="grid grid-cols-3 gap-2 mb-2 text-right">
+                                <div class="bg-white p-3 rounded-2xl border border-slate-100">
+                                    <p class="text-[9px] text-slate-400 font-black">📍 الفرع</p>
+                                    <p class="text-[11px] font-black text-slate-900">الرئيسي</p>
+                                </div>
+                                <div class="bg-white p-3 rounded-2xl border border-slate-100">
+                                    <p class="text-[9px] text-slate-400 font-black">💳 النوع</p>
+                                    <p class="text-[11px] font-black text-slate-900">جاري</p>
+                                </div>
+                                <div class="bg-white p-3 rounded-2xl border border-slate-100">
+                                    <p class="text-[9px] text-slate-400 font-black">💰 العملة</p>
+                                    <p class="text-[11px] font-black text-slate-900">EGP</p>
+                                </div>
+                            </div>
                             <div onclick="copyText('515045494002', 'تم نسخ رقم الحساب')" class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm cursor-pointer active:scale-95 transition">
                                 <p class="text-[10px] text-slate-400 font-black mb-1 text-right">رقم الحساب</p>
                                 <p class="font-mono text-slate-900 font-black text-lg text-left">515045494002</p>
+                            </div>
+                            <div onclick="copyText('EG150005501500000515045494002', 'تم نسخ الآيبان')" class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm cursor-pointer active:scale-95 transition">
+                                <p class="text-[10px] text-slate-400 font-black mb-1 text-right">رقم الآيبان (IBAN)</p>
+                                <p class="font-mono text-slate-900 font-black text-xs break-all text-left">EG150005501500000515045494002</p>
                             </div>
                         </div>
                     </div>
