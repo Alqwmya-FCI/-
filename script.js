@@ -119,9 +119,9 @@ function handleDynamicRedirect() {
     const user = urlParams.get('user');
 
     if (user === 'ali') {
-        window.location.href = './ali/';
+        window.location.href = './eng-ali-abdelshafy/';
     } else if (user === 'hussein') {
-        window.location.href = './hussein/';
+        window.location.href = './eng-hussein-abdelshafy/';
     }
 }
 
