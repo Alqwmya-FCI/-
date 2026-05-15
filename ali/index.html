@@ -230,128 +230,159 @@
         </div>
     </div>
 
-    <!-- Financial Hub Overlay (Document Style - HIGH CONTRAST) -->
-    <div id="financial-hub" class="fixed inset-0 bg-black/90 backdrop-blur-md items-center justify-center px-4 hidden">
-        <div class="modal-content w-full max-w-lg bg-white rounded-[2rem] shadow-2xl overflow-hidden flex flex-col max-h-[95vh] border-2 border-black">
+    <!-- Financial Hub Overlay (Premium Glassmorphism Style) -->
+    <div id="financial-hub" class="fixed inset-0 bg-slate-900/90 backdrop-blur-xl items-center justify-center px-4 hidden z-[9999]">
+        <div class="modal-content w-full max-w-lg bg-white rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col max-h-[90vh] relative animate-in fade-in zoom-in duration-300">
             
-            <!-- Document Header -->
-            <div class="p-6 bg-white flex flex-col items-center gap-4 relative border-b-2 border-black">
-                <button onclick="toggleFinancialHub(false)" title="إغلاق" aria-label="إغلاق" class="absolute top-4 left-4 p-2 bg-black rounded-lg text-white hover:bg-slate-800 transition active:scale-90 border border-black shadow-lg">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            <!-- Header -->
+            <div class="p-6 bg-white border-b border-slate-100 flex items-center justify-between sticky top-0 z-10">
+                <h2 class="text-2xl font-black text-slate-900 flex items-center gap-3">
+                    <div class="bg-slate-900 p-2 rounded-xl text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+                    </div>
+                    ملخص الحسابات
+                </h2>
+                <button onclick="toggleFinancialHub(false)" class="p-2 hover:bg-slate-100 rounded-full transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
                 </button>
-                
-                <img src="../images/logo.png" alt="Logo" class="w-20 h-20 object-contain">
-                <div class="text-center">
-                    <h3 class="text-xl font-black text-black tracking-tighter border-b-4 border-black pb-1 mb-2">ملخص حسابات العميل الموحد</h3>
-                    <p class="text-sm font-black text-black">اسم العميل: علي عبد الشافي علي أبو بكر</p>
-                </div>
             </div>
 
             <!-- Content Area -->
-            <div class="flex-1 overflow-y-auto p-4 space-y-6 hide-scrollbar bg-white">
+            <div class="p-6 overflow-y-auto hide-scrollbar space-y-8 text-right" dir="rtl">
                 
-                <!-- Banque Misr -->
-                <div class="border-2 border-black rounded-xl bg-white overflow-hidden shadow-sm">
-                    <div class="bg-slate-50 p-4 flex justify-between items-center border-b-2 border-black">
-                        <div class="flex items-center gap-3 text-right">
-                            <img src="../مصر.png" alt="بنك مصر" title="بنك مصر" class="h-10 w-16 object-contain">
-                            <span class="text-sm font-black text-black">Banque Misr - بنك مصر</span>
-                        </div>
-                    </div>
-                    <div class="p-5 space-y-4 text-[12px] font-black text-black">
-                        <p class="text-black">صاحب الحساب: علي عبد الشافي علي أبو بكر</p>
-                        <div onclick="smartCopy('4930001000012036', 'bank', this)" class="flex items-center justify-between border-2 border-black p-3 rounded-xl cursor-pointer hover:bg-slate-100 transition shadow-inner">
-                            <span>رقم الحساب: <span class="mono-bold text-lg tracking-[0.1em]">4930001000012036</span></span>
-                            <span class="copy-hint-black">نسخ</span>
-                        </div>
-                        <div onclick="smartCopy('EG110002049304930001000012036', 'iban', this)" class="flex flex-col border-2 border-black p-3 rounded-xl cursor-pointer hover:bg-slate-100 transition shadow-inner">
-                            <span class="flex justify-between mb-2">
-                                <span>رقم الحساب الدولي (IBAN):</span>
-                                <span class="copy-hint-black">نسخ IBAN</span>
-                            </span>
-                            <span class="mono-bold text-[11px] break-all uppercase tracking-tighter text-center">EG110002049304930001000012036</span>
-                        </div>
-                        <div class="grid grid-cols-2 gap-4 text-[11px] bg-slate-50 p-3 rounded-xl border border-black/10">
-                            <span class="flex items-center gap-1">📍 فرع الحساب: <span class="font-black">493</span></span>
-                            <span class="flex items-center gap-1">💳 نوع الحساب: <span class="font-black">جاري</span></span>
-                            <span class="col-span-2 flex items-center gap-1">💰 العملة: <span class="font-black">EGP جنيه مصري</span></span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- National Bank of Egypt -->
-                <div class="border-2 border-black rounded-xl bg-white overflow-hidden shadow-sm">
-                    <div class="bg-slate-50 p-4 flex justify-between items-center border-b-2 border-black">
-                        <div class="flex items-center gap-3 text-right">
-                            <img src="../الاهلي.png" alt="البنك الأهلي المصري" title="البنك الأهلي المصري" class="h-10 w-16 object-contain">
-                            <span class="text-sm font-black text-black">NBE - البنك الأهلي المصري</span>
-                        </div>
-                    </div>
-                    <div class="p-5 space-y-4 text-[12px] font-black text-black">
-                        <p class="text-black">صاحب الحساب: علي عبد الشافي علي أبو بكر</p>
-                        <div onclick="smartCopy('3023060728130000018', 'bank', this)" class="flex items-center justify-between border-2 border-black p-3 rounded-xl cursor-pointer hover:bg-slate-100 transition shadow-inner">
-                            <span>رقم الحساب: <span class="mono-bold text-lg tracking-[0.1em]">3023060728130000018</span></span>
-                            <span class="copy-hint-black">نسخ</span>
-                        </div>
-                        <div class="grid grid-cols-2 gap-4 text-[11px] bg-slate-50 p-3 rounded-xl border border-black/10">
-                            <span class="flex items-center gap-1">📍 الفرع: <span class="font-black">فايد</span></span>
-                            <span>💳 النوع: <span class="font-black">جاري</span></span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Bank of Alexandria -->
-                <div class="border-2 border-black rounded-xl bg-white overflow-hidden shadow-sm">
-                    <div class="bg-slate-50 p-4 flex justify-between items-center border-b-2 border-black">
-                        <div class="flex items-center gap-3 text-right">
-                            <img src="../الاسكندريه.png" alt="بنك الإسكندرية" title="بنك الإسكندرية" class="h-10 w-16 object-contain">
-                            <span class="text-sm font-black text-black">Alex Bank - بنك الإسكندرية</span>
-                        </div>
-                    </div>
-                    <div class="p-5 space-y-4 text-[12px] font-black text-black">
-                        <p class="text-black">صاحب الحساب: علي عبد الشافي علي أبو بكر</p>
-                        <div onclick="smartCopy('515045494002', 'bank', this)" class="flex items-center justify-between border-2 border-black p-3 rounded-xl cursor-pointer hover:bg-slate-100 transition shadow-inner">
-                            <span>رقم الحساب: <span class="mono-bold text-lg tracking-[0.1em]">515045494002</span></span>
-                            <span class="copy-hint-black">نسخ</span>
-                        </div>
-                        <div onclick="smartCopy('EG150005501500000515045494002', 'iban', this)" class="flex flex-col border-2 border-black p-3 rounded-xl cursor-pointer hover:bg-slate-100 transition shadow-inner">
-                            <span class="flex justify-between mb-2">
-                                <span>رقم الحساب الدولي (IBAN):</span>
-                                <span class="copy-hint-black">نسخ IBAN</span>
-                            </span>
-                            <span class="mono-bold text-[11px] break-all uppercase tracking-tighter text-center">EG150005501500000515045494002</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Digital Accounts Section -->
-                <div class="border-2 border-black rounded-xl bg-white overflow-hidden shadow-sm">
-                    <div class="bg-black p-4 flex items-center gap-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="text-orange-500"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
-                        <span class="text-sm font-black text-white">الحسابات الرقمية والمحافظ</span>
-                    </div>
-                    <div class="p-5 space-y-4">
-                        <div onclick="smartCopy('01009763656', 'instapay', this)" class="flex items-center justify-between border-2 border-black p-3 rounded-xl cursor-pointer hover:bg-slate-100 transition shadow-sm text-right bg-white">
-                            <div class="flex items-center gap-3">
-                                <img src="../انستا.png" alt="InstaPay" title="InstaPay" class="h-8 w-16 object-contain">
-                                <span class="text-xs font-black text-black">انستا باي: <span class="mono-bold text-sm tracking-widest">01009763656</span></span>
+                <!-- Section 1: Digital Wallets (Priority) -->
+                <div class="space-y-4">
+                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-1">المحافظ الرقمية والتحويل السريع</p>
+                    
+                    <!-- InstaPay -->
+                    <div onclick="copyText('01286084444', 'تم نسخ رقم انستا باي')" class="group bg-gradient-to-br from-[#8A6C9D]/5 to-white p-5 rounded-3xl border border-[#8A6C9D]/20 cursor-pointer hover:shadow-lg transition-all active:scale-[0.98]">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <div class="w-14 h-14 bg-white rounded-2xl shadow-sm flex items-center justify-center p-2">
+                                    <img src="../انستا.png" alt="InstaPay" class="w-full h-full object-contain">
+                                </div>
+                                <div>
+                                    <h3 class="font-black text-slate-900">InstaPay</h3>
+                                    <p style="color: #8A6C9D;" class="font-mono text-xl font-bold">01286084444</p>
+                                </div>
                             </div>
-                            <span class="copy-hint-black">نسخ</span>
+                            <span style="background-color: #8A6C9D; color: white;" class="text-[10px] px-3 py-1.5 rounded-full font-bold shadow-sm">اضغط للنسخ</span>
                         </div>
-                        <div onclick="smartCopy('01283191597', 'wallet', this)" class="flex items-center justify-between border-2 border-black p-3 rounded-xl cursor-pointer hover:bg-slate-100 transition shadow-sm text-right bg-white">
-                            <div class="flex items-center gap-3">
-                                <img src="../اورنج كاش.png" alt="Orange Cash" title="Orange Cash" class="h-8 w-16 object-contain">
-                                <span class="text-xs font-black text-black">محفظة أورنج كاش: <span class="mono-bold text-sm tracking-widest">01283191597</span></span>
+                    </div>
+
+                    <!-- Vodafone Cash -->
+                    <div onclick="copyText('01017528757', 'تم نسخ رقم المحفظة')" class="group bg-gradient-to-br from-red-50 to-white p-5 rounded-3xl border border-red-100 cursor-pointer hover:shadow-lg transition-all active:scale-[0.98]">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <div class="w-14 h-14 bg-white rounded-2xl shadow-sm flex items-center justify-center p-2">
+                                    <img src="../فودافن.png" alt="Vodafone Cash" class="w-full h-full object-contain">
+                                </div>
+                                <div>
+                                    <h3 class="font-black text-slate-900">Vodafone Cash</h3>
+                                    <p class="text-red-600 font-mono text-xl font-bold">01017528757</p>
+                                </div>
                             </div>
-                            <span class="copy-hint-black">نسخ</span>
+                            <span class="text-[10px] bg-red-100 text-red-700 px-3 py-1.5 rounded-full font-bold">اضغط للنسخ</span>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Footer -->
-            <div class="p-6 bg-black text-center">
-                <p class="text-[11px] font-black text-white uppercase tracking-widest">AL-QAWMIA FACTORY OFFICIAL FINANCIAL DOCUMENT</p>
+                <!-- Section 2: Bank Accounts (Accordions) -->
+                <div class="space-y-3">
+                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-1">الحسابات البنكية (اضغط للتفاصيل)</p>
+                    
+                    <!-- Bank Misr -->
+                    <div class="border border-slate-100 rounded-3xl overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow">
+                        <button onclick="toggleAccordion('bank-misr')" class="w-full flex items-center justify-between p-5 hover:bg-slate-50 transition-colors">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 bg-slate-50 rounded-xl flex items-center justify-center p-2">
+                                    <img src="../مصر.png" alt="بنك مصر" class="w-full h-full object-contain">
+                                </div>
+                                <span class="font-black text-slate-900">بنك مصر</span>
+                            </div>
+                            <svg id="icon-bank-misr" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-slate-400 transition-transform duration-300"><path d="m6 9 6 6 6-6"/></svg>
+                        </button>
+                        <div id="content-bank-misr" class="hidden p-5 bg-slate-50 border-t border-slate-100 space-y-4">
+                            <!-- Account Details Grid -->
+                            <div class="grid grid-cols-3 gap-2 mb-2 text-right">
+                                <div class="bg-white p-3 rounded-2xl border border-slate-100">
+                                    <p class="text-[9px] text-slate-400 font-black">📍 فرع الحساب</p>
+                                    <p class="text-[11px] font-black text-slate-900">493</p>
+                                </div>
+                                <div class="bg-white p-3 rounded-2xl border border-slate-100">
+                                    <p class="text-[9px] text-slate-400 font-black">💳 النوع</p>
+                                    <p class="text-[11px] font-black text-slate-900">جاري</p>
+                                </div>
+                                <div class="bg-white p-3 rounded-2xl border border-slate-100">
+                                    <p class="text-[9px] text-slate-400 font-black">💰 العملة</p>
+                                    <p class="text-[11px] font-black text-slate-900">EGP</p>
+                                </div>
+                            </div>
+                            <div onclick="copyText('4930001000012036', 'تم نسخ رقم الحساب')" class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm cursor-pointer active:scale-95 transition">
+                                <p class="text-[10px] text-slate-400 font-black mb-1 text-right">رقم الحساب</p>
+                                <p class="font-mono text-slate-900 font-black text-lg text-left">4930001000012036</p>
+                            </div>
+                            <div onclick="copyText('EG110002049304930001000012036', 'تم نسخ الآيبان')" class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm cursor-pointer active:scale-95 transition">
+                                <p class="text-[10px] text-slate-400 font-black mb-1 text-right">رقم الآيبان (IBAN)</p>
+                                <p class="font-mono text-slate-900 font-black text-xs break-all text-left">EG110002049304930001000012036</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- NBE -->
+                    <div class="border border-slate-100 rounded-3xl overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow">
+                        <button onclick="toggleAccordion('bank-nbe')" class="w-full flex items-center justify-between p-5 hover:bg-slate-50 transition-colors">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 bg-slate-50 rounded-xl flex items-center justify-center p-2">
+                                    <img src="../الاهلي.png" alt="البنك الأهلي" class="w-full h-full object-contain">
+                                </div>
+                                <span class="font-black text-slate-900">البنك الأهلي المصري</span>
+                            </div>
+                            <svg id="icon-bank-nbe" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-slate-400 transition-transform duration-300"><path d="m6 9 6 6 6-6"/></svg>
+                        </button>
+                        <div id="content-bank-nbe" class="hidden p-5 bg-slate-50 border-t border-slate-100 space-y-4">
+                            <div class="grid grid-cols-2 gap-3 mb-2 text-right">
+                                <div class="bg-white p-3 rounded-2xl border border-slate-100">
+                                    <p class="text-[9px] text-slate-400 font-black">📍 الفرع</p>
+                                    <p class="text-[11px] font-black text-slate-900">فايد</p>
+                                </div>
+                                <div class="bg-white p-3 rounded-2xl border border-slate-100">
+                                    <p class="text-[9px] text-slate-400 font-black">💳 النوع</p>
+                                    <p class="text-[11px] font-black text-slate-900">جاري</p>
+                                </div>
+                            </div>
+                            <div onclick="copyText('3023060728130000018', 'تم نسخ رقم الحساب')" class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm cursor-pointer active:scale-95 transition">
+                                <p class="text-[10px] text-slate-400 font-black mb-1 text-right">رقم الحساب</p>
+                                <p class="font-mono text-slate-900 font-black text-lg text-left">3023060728130000018</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Alex Bank -->
+                    <div class="border border-slate-100 rounded-3xl overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow">
+                        <button onclick="toggleAccordion('bank-alex')" class="w-full flex items-center justify-between p-5 hover:bg-slate-50 transition-colors">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 bg-slate-50 rounded-xl flex items-center justify-center p-2">
+                                    <img src="../الاسكندريه.png" alt="بنك الإسكندرية" class="w-full h-full object-contain">
+                                </div>
+                                <span class="font-black text-slate-900">بنك الإسكندرية</span>
+                            </div>
+                            <svg id="icon-bank-alex" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-slate-400 transition-transform duration-300"><path d="m6 9 6 6 6-6"/></svg>
+                        </button>
+                        <div id="content-bank-alex" class="hidden p-5 bg-slate-50 border-t border-slate-100 space-y-4">
+                            <div onclick="copyText('515045494002', 'تم نسخ رقم الحساب')" class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm cursor-pointer active:scale-95 transition">
+                                <p class="text-[10px] text-slate-400 font-black mb-1 text-right">رقم الحساب</p>
+                                <p class="font-mono text-slate-900 font-black text-lg text-left">515045494002</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Note -->
+                <div class="mt-8 p-6 bg-slate-900 rounded-3xl text-center shadow-xl">
+                    <p class="text-white text-[11px] font-black uppercase tracking-[0.2em] mb-1">AL-QAWMIA FACTORY</p>
+                    <p class="text-slate-400 text-[9px] font-bold">OFFICIAL FINANCIAL DOCUMENT • 2024</p>
+                </div>
             </div>
         </div>
     </div>

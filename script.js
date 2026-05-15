@@ -111,5 +111,30 @@ function handleDynamicRedirect() {
     }
 }
 
+// Accordion Toggle for Bank Accounts
+function toggleAccordion(id) {
+    const content = document.getElementById('content-' + id);
+    const icon = document.getElementById('icon-' + id);
+    const allContents = document.querySelectorAll('[id^="content-bank-"]');
+    const allIcons = document.querySelectorAll('[id^="icon-bank-"]');
+
+    // Close others
+    allContents.forEach(c => {
+        if (c.id !== 'content-' + id) c.classList.add('hidden');
+    });
+    allIcons.forEach(i => {
+        if (i.id !== 'icon-' + id) i.style.transform = 'rotate(0deg)';
+    });
+
+    // Toggle current
+    if (content.classList.contains('hidden')) {
+        content.classList.remove('hidden');
+        icon.style.transform = 'rotate(180deg)';
+    } else {
+        content.classList.add('hidden');
+        icon.style.transform = 'rotate(0deg)';
+    }
+}
+
 // Run on page load
 document.addEventListener('DOMContentLoaded', handleDynamicRedirect);
