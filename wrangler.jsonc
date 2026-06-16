@@ -1,6 +1,9 @@
 {
   "name": "al-qawmia-factory",
   "compatibility_date": "2026-06-16",
+  "build": {
+    "command": "npm run build"
+  },
   "assets": {
     "directory": "./dist"
   }
