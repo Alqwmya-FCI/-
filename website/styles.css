@@ -32,5 +32,86 @@ a:active {
     transform: scale(0.95);
 }
 
+/* Bank Card Glassmorphism */
+.bank-card {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.bank-card:hover {
+    transform: translateY(-5px);
+}
+
+.bank-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    pointer-events: none;
+    transition: all 0.5s ease;
+}
+
+#financial-hub {
+    display: none;
+    z-index: 9999 !important;
+    position: fixed;
+    inset: 0;
+}
+
+#financial-hub.flex {
+    display: flex !important;
+}
+
+.modal-content {
+    animation: slideUp 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+/* Glass Effect */
+.glass-effect {
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.cover-transform {
+    transform: scale(1.2);
+}
+
+/* Bento Grid Utilities */
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
+}
+
+.bento-item {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 1.5rem;
+    padding: 1.25rem;
+    transition: all 0.3s ease;
+}
+
+/* Custom Scrollbar */
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
+}
+
 /* Import Cairo font from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap');

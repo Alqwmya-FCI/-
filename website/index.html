@@ -1,54 +1,828 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html dir="rtl" lang="ar"><head></head><body class="bg-background text-on-surface concrete-texture min-h-screen flex flex-col font-body-md overflow-x-hidden selection:bg-primary selection:text-background relative">``
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>مصنع القومية للصناعات الأسمنتية</title>
-  <link rel="icon" type="image/png" href="./images/logo.png">
+<!-- Global Interactive Grid Overlay -->
+<div class="fixed inset-0 bg-grid-pattern bg-[size:40px_40px] opacity-10 z-50 pointer-events-none"></div>
+<canvas class="fixed inset-0 w-full h-full z-50 pointer-events-none" id="global-grid-canvas"></canvas>
 
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Custom Styles -->
-  <link rel="stylesheet" href="./styles.css">
-</head>
 
-<body>
-  <div class="min-h-screen bg-slate-100 flex flex-col items-center justify-center p-8 text-center">
-    <div class="max-w-2xl w-full">
-      <img src="./images/logo.png" alt="شعار مصنع القومية" class="w-32 h-32 mx-auto mb-6">
-      <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-        مصنع القومية للصناعات الأسمنتية
-      </h1>
-      <p class="text-slate-600 text-lg mb-12">
-        الجودة، الدقة، والالتزام في التوريد لكافة المشاريع.
-      </p>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>مصنع القومية للصناعات الأسمنتية - الصفحة الرئيسية</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&amp;family=Inter:wght@400&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-error": "#ffffff",
+                        "on-surface-variant": "#475569",
+                        "background": "#f8fafc",
+                        "outline-variant": "#cbd5e1",
+                        "primary": "#10b981",
+                        "on-primary-container": "#064e3b",
+                        "inverse-surface": "#1e293b",
+                        "on-secondary-fixed": "#0f172a",
+                        "on-primary": "#ffffff",
+                        "error": "#ef4444",
+                        "on-secondary-fixed-variant": "#334155",
+                        "on-primary-fixed-variant": "#047857",
+                        "inverse-on-surface": "#f1f5f9",
+                        "surface-dim": "#e2e8f0",
+                        "on-tertiary": "#ffffff",
+                        "error-container": "#fee2e2",
+                        "secondary-fixed-dim": "#94a3b8",
+                        "primary-container": "#d1fae5",
+                        "secondary-container": "#e2e8f0",
+                        "surface-container-highest": "#cbd5e1",
+                        "primary-fixed": "#34d399",
+                        "tertiary-fixed-dim": "#cbd5e1",
+                        "on-primary-fixed": "#022c22",
+                        "on-error-container": "#7f1d1d",
+                        "surface-container": "#f1f5f9",
+                        "outline": "#94a3b8",
+                        "on-tertiary-fixed-variant": "#334155",
+                        "surface-tint": "#10b981",
+                        "secondary": "#64748b",
+                        "on-tertiary-container": "#0f172a",
+                        "primary-fixed-dim": "#10b981",
+                        "surface-container-low": "#f8fafc",
+                        "on-background": "#0f172a",
+                        "tertiary-fixed": "#e2e8f0",
+                        "on-secondary-container": "#0f172a",
+                        "tertiary-container": "#f1f5f9",
+                        "tertiary": "#475569",
+                        "secondary-fixed": "#e2e8f0",
+                        "inverse-primary": "#6ee7b7",
+                        "on-surface": "#0f172a",
+                        "surface-container-high": "#e2e8f0",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-variant": "#f1f5f9",
+                        "on-tertiary-fixed": "#0f172a",
+                        "surface-bright": "#ffffff",
+                        "surface": "#ffffff",
+                        "on-secondary": "#ffffff"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.125rem",
+                        lg: "0.25rem",
+                        xl: "0.5rem",
+                        full: "0.75rem"
+                    },
+                    spacing: {
+                        "margin-mobile": "20px",
+                        "max-width": "1440px",
+                        "unit": "8px",
+                        "margin-desktop": "64px",
+                        "gutter": "24px"
+                    },
+                    fontFamily: {
+                        "headline-lg": ["Montserrat", "sans-serif"],
+                        "body-md": ["Inter", "sans-serif"],
+                        "headline-lg-mobile": ["Montserrat", "sans-serif"],
+                        "display-lg": ["Montserrat", "sans-serif"],
+                        "label-technical": ["JetBrains Mono", "monospace"]
+                    },
+                    fontSize: {
+                        "headline-lg": ["32px", { lineHeight: "1.2", letterSpacing: "0.02em", fontWeight: "600" }],
+                        "body-md": ["16px", { lineHeight: "1.6", letterSpacing: "0em", fontWeight: "400" }],
+                        "headline-lg-mobile": ["24px", { lineHeight: "1.2", letterSpacing: "0.02em", fontWeight: "600" }],
+                        "display-lg": ["64px", { lineHeight: "1.1", letterSpacing: "0.05em", fontWeight: "700" }],
+                        "label-technical": ["12px", { lineHeight: "1.0", letterSpacing: "0.1em", fontWeight: "500" }]
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, #cbd5e1 1px, transparent 1px), linear-gradient(to bottom, #cbd5e1 1px, transparent 1px)"
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        breathe: {
+                            '0%, 100%': { transform: 'scale(1)' },
+                            '50%': { transform: 'scale(1.03)' },
+                        }
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'fade-in-up-delay-1': 'fadeInUp 0.8s ease-out 0.2s forwards',
+                        'fade-in-up-delay-2': 'fadeInUp 0.8s ease-out 0.4s forwards',
+                        'breathe': 'breathe 8s ease-in-out infinite',
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(203, 213, 225, 0.5);
+        }
+        .tech-border {
+            border: 1px solid var(--tw-colors-outline-variant);
+            position: relative;
+        }
+        .tech-border::before, .tech-border::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border: 1px solid var(--tw-colors-primary);
+        }
+        .tech-border::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+        .tech-border::after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+        
+        .concrete-texture {
+            background-color: var(--tw-colors-background);
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+        }
+    
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+</style>
+<!-- Top Navigation (Shared Component) -->
+<nav class="bg-background/90 backdrop-blur-xl docked full-width top-0 sticky z-50 border-b border-outline-variant/50 shadow-sm transition-all duration-300">
+<div class="flex justify-between items-center w-full px-margin-desktop py-4 max-w-max-width mx-auto">
+<!-- Brand -->
+<a class="font-headline-lg text-headline-lg tracking-tighter text-on-surface flex items-center gap-3 group" href="#">
+<div class="w-8 h-8 bg-primary rounded-sm flex items-center justify-center group-hover:shadow-[0_0_15px_rgba(16,185,129,0.3)] transition-shadow">
+<span class="material-symbols-outlined text-background text-[20px]" style="font-variation-settings: 'FILL' 1;">precision_manufacturing</span>
+</div>
+                القومية للصناعات
+            </a>
+<!-- Links (Desktop) -->
+<ul class="hidden md:flex items-center gap-8 font-label-technical text-label-technical">
+<li><a class="text-on-surface-variant hover:text-primary transition-all duration-300 uppercase" href="#">المنتجات</a></li>
+<li><a class="text-primary border-b-2 border-primary pb-1 uppercase" href="#">مشاريعنا</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-all duration-300 uppercase" href="#">المواصفات</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-all duration-300 uppercase" href="#">الخدمات</a></li>
+</ul>
+<!-- Actions -->
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4 text-on-surface-variant">
+<button class="hover:text-primary transition-colors group relative" title="تغيير اللغة">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">language</span>
+</button>
+<button class="hover:text-primary transition-colors group relative" title="الوضع الليلي">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">dark_mode</span>
+</button>
+<div class="hidden md:block w-px h-4 bg-outline-variant"></div>
+</div>
+<button class="bg-primary text-background font-label-technical text-label-technical px-6 py-3 rounded-sm hover:bg-primary-fixed transition-colors shadow-[0_4px_10px_rgba(16,185,129,0.2)] hover:shadow-[0_4px_20px_rgba(16,185,129,0.3)] uppercase tracking-widest flex items-center gap-2 hidden sm:flex">
+                    طلب تسعير
+                    <span class="material-symbols-outlined rtl:-scale-x-100 text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow">
+<!-- Hero Section -->
+<section class="relative min-h-[90vh] flex items-center pt-24 pb-32 border-b border-outline-variant/50 overflow-hidden">
+<!-- Background WebGL Canvas -->
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <a href="./ali.html"
-          class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 border border-slate-200">
-          <h2 class="text-2xl font-bold text-slate-800">م/ علي عبد الشافي</h2>
-          <p class="text-orange-600 mt-1">مدير المصنع</p>
-          <p class="mt-4 text-slate-900 bg-slate-100 py-2 px-4 rounded-lg inline-block font-semibold">
-            عرض البطاقة
-          </p>
-        </a>
-        <a href="./hussein.html"
-          class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 border border-slate-200">
-          <h2 class="text-2xl font-bold text-slate-800">م/ حسين علي عبدالشافي</h2>
-          <p class="text-orange-600 mt-1">Civil Engineering Manager</p>
-          <p class="mt-4 text-slate-900 bg-slate-100 py-2 px-4 rounded-lg inline-block font-semibold">
-            عرض البطاقة
-          </p>
-        </a>
-      </div>
-
-      <footer class="mt-16 text-slate-500 text-sm">
-        <p>جميع الحقوق محفوظة © مصنع القومية</p>
-      </footer>
+<div class="max-w-max-width mx-auto px-margin-desktop w-full relative z-20 grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<div class="lg:col-span-8 flex flex-col justify-center">
+<!-- Status Badge -->
+<div class="flex items-center gap-3 mb-8 w-fit bg-surface/80 border border-outline-variant py-2 px-4 rounded-sm backdrop-blur-md shadow-sm reveal">
+<div class="w-2 h-full absolute left-0 bg-primary top-0 bottom-0 rtl:right-0 rtl:left-auto"></div>
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.5)]"></span>
+<span class="font-label-technical text-label-technical text-primary uppercase tracking-widest">النظام يعمل // درجة صناعية</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-on-surface mb-6 leading-tight drop-shadow-sm reveal">
+                        مصنع القومية<br/>
+<span class="text-primary">للصناعات الأسمنتية</span>
+</h1>
+<p class="font-headline-lg text-headline-lg text-on-surface-variant mb-8 max-w-2xl border-l-2 border-primary/50 rtl:border-r-2 rtl:border-l-0 pl-6 rtl:pr-6 rtl:pl-0 py-2 reveal">
+                        متخصصون في صناعة المنتجات الأسمنتية عالية الجودة
+                    </p>
+<div class="flex flex-wrap gap-4 mb-12 font-label-technical text-label-technical text-on-surface-variant reveal">
+<span class="bg-surface-container py-2 px-4 border border-outline-variant/50 rounded-sm hover:border-primary transition-colors">🏗️ جودة عالمية</span>
+<span class="bg-surface-container py-2 px-4 border border-outline-variant/50 rounded-sm hover:border-primary transition-colors">دقة في التصنيع</span>
+<span class="bg-surface-container py-2 px-4 border border-outline-variant/50 rounded-sm hover:border-primary transition-colors">التزام في المواعيد</span>
+</div>
+<div class="flex flex-wrap items-center gap-6 reveal">
+<a class="bg-primary text-background font-headline-lg text-[18px] px-8 py-4 rounded-sm hover:bg-primary-fixed transition-colors shadow-[0_4px_15px_rgba(16,185,129,0.2)] hover:shadow-[0_8px_25px_rgba(16,185,129,0.3)] flex items-center gap-3 group relative overflow-hidden" href="#">
+<div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></div>
+<span class="relative z-10 text-white">استكشف منتجاتنا</span>
+<span class="material-symbols-outlined relative z-10 text-white group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform">arrow_forward</span>
+</a>
+<a class="border border-outline-variant text-on-surface font-headline-lg text-[18px] px-8 py-4 rounded-sm hover:border-primary hover:text-primary transition-all duration-300 flex items-center gap-3 group bg-surface/50 backdrop-blur-sm" href="#">
+<span>تواصل معنا</span>
+<span class="material-symbols-outlined opacity-0 -translate-x-2 rtl:translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 rtl:group-hover:translate-x-0 transition-all text-primary">chat_bubble</span>
+</a>
+</div>
+</div>
+<!-- Right side 3D graphic -->
+<div class="hidden lg:flex lg:col-span-4 justify-end items-center relative reveal">
+<div class="w-full h-[400px] border border-outline-variant glass-panel rounded-sm relative shadow-lg" id="three-container">
+<!-- Corner Accents -->
+<div class="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-primary/70 z-10"></div>
+<div class="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-primary/70 z-10"></div>
+<div class="absolute top-4 left-4 z-10 font-label-technical text-label-technical text-primary font-bold uppercase tracking-widest border-b border-outline-variant/50 pb-1">
+                            Interactive Module
+                        </div>
+</div>
+</div>
+</div>
+</section>
+<!-- Statistics Dashboard -->
+<section class="py-16 bg-surface border-b border-outline-variant/50 relative">
+<div class="max-w-max-width mx-auto px-margin-desktop">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-outline-variant rounded-sm overflow-hidden border border-outline-variant shadow-sm">
+<div class="bg-surface-container-lowest p-10 flex flex-col items-center justify-center text-center group hover:bg-surface-container transition-all duration-300 relative overflow-hidden hover:scale-105 hover:shadow-xl hover:z-10 cursor-default">
+<div class="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="material-symbols-outlined text-[48px] text-primary/70 mb-4 group-hover:text-primary transition-colors group-hover:scale-110 duration-300">history</span>
+<h3 class="font-display-lg text-display-lg text-on-surface mb-2 counter" data-target="28" data-suffix="">٠</h3>
+<p class="font-headline-lg text-[20px] text-on-surface-variant">سنة خبرة</p>
+</div>
+<div class="bg-surface-container-lowest p-10 flex flex-col items-center justify-center text-center group hover:bg-surface-container transition-all duration-300 relative overflow-hidden hover:scale-105 hover:shadow-xl hover:z-10 cursor-default">
+<div class="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="material-symbols-outlined text-[48px] text-primary/70 mb-4 group-hover:text-primary transition-colors group-hover:scale-110 duration-300">factory</span>
+<h3 class="font-display-lg text-display-lg text-on-surface mb-2 counter" dir="ltr" data-target="5000" data-suffix="+">٠</h3>
+<p class="font-headline-lg text-[20px] text-on-surface-variant">طن إنتاج شهري</p>
+</div>
+<div class="bg-surface-container-lowest p-10 flex flex-col items-center justify-center text-center group hover:bg-surface-container transition-all duration-300 relative overflow-hidden hover:scale-105 hover:shadow-xl hover:z-10 cursor-default">
+<div class="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="material-symbols-outlined text-[48px] text-primary/70 mb-4 group-hover:text-primary transition-colors group-hover:scale-110 duration-300">handshake</span>
+<h3 class="font-display-lg text-display-lg text-on-surface mb-2 counter" dir="ltr" data-target="150" data-suffix="+">٠</h3>
+<p class="font-headline-lg text-[20px] text-on-surface-variant">عميل راضي</p>
+</div>
+</div>
+</div>
+</section>
+<!-- About Section -->
+<section class="py-32 relative bg-background border-b border-outline-variant/50">
+<div class="max-w-max-width mx-auto px-margin-desktop">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+<!-- Left Column: Content -->
+<div class="relative z-10">
+<div class="flex items-center gap-4 mb-6 reveal">
+<div class="h-[1px] w-12 bg-primary"></div>
+<span class="font-label-technical text-label-technical text-primary uppercase tracking-widest font-bold">Corporate Profile</span>
+</div>
+<h2 class="font-display-lg text-[48px] leading-tight text-on-surface mb-4 reveal">
+                            عن المصنع
+                        </h2>
+<h3 class="font-headline-lg text-[24px] text-primary mb-8 font-normal reveal">
+                            منذ 1996: خبرة عريقة في صناعة المنتجات الأسمنتية
+                        </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-10 text-lg leading-relaxed max-w-xl reveal">
+                            مصنع القومية للصناعات الأسمنتية تأسس عام 1996، ويُعد من المصانع الرائدة في مجال إنتاج المنتجات الخرسانية عالية الجودة. نتخصص في صناعة الإنترلوك الآلي بأنواعه (باركيه خشن وناعم)، الطوب الأسمنتي والبلوك، البردورات، و بلاط المزايكو. مع أكثر من 28 عاماً من الخبرة، نفخر بتقديم منتجات مطابقة للمواصفات القياسية لمئات المشاريع في جميع أنحاء مصر.
+                        </p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6 reveal">
+<div class="glass-panel p-6 rounded-sm border border-outline-variant hover:border-primary/50 transition-colors group bg-white">
+<span class="material-symbols-outlined text-[32px] text-primary mb-4 group-hover:scale-110 transition-transform duration-300">precision_manufacturing</span>
+<h4 class="font-headline-lg text-[18px] text-on-surface mb-2">مصنع متخصص ومتطور</h4>
+<div class="h-1 w-8 bg-surface-container-highest group-hover:bg-primary transition-colors"></div>
+</div>
+<div class="glass-panel p-6 rounded-sm border border-outline-variant hover:border-primary/50 transition-colors group bg-white">
+<span class="material-symbols-outlined text-[32px] text-primary mb-4 group-hover:scale-110 transition-transform duration-300">settings_suggest</span>
+<h4 class="font-headline-lg text-[18px] text-on-surface mb-2">معدات آلية حديثة</h4>
+<div class="h-1 w-8 bg-surface-container-highest group-hover:bg-primary transition-colors"></div>
+</div>
+<div class="glass-panel p-6 rounded-sm border border-outline-variant hover:border-primary/50 transition-colors group sm:col-span-2 bg-white">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-[32px] text-primary mt-1 group-hover:scale-110 transition-transform duration-300">verified</span>
+<div>
+<h4 class="font-headline-lg text-[18px] text-on-surface mb-2">جودة مطابقة للمواصفات</h4>
+<p class="font-body-md text-label-technical text-on-surface-variant">جميع منتجاتنا تخضع لاختبارات جودة صارمة لضمان المتانة والعمر الافتراضي الطويل.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Visual -->
+<div class="relative h-[600px] w-full rounded-sm overflow-hidden tech-border shadow-xl group reveal">
+<img alt="A striking digital installation art piece featuring glowing, generative geometric shapes suspended in a vast, minimalist gallery space. The room is illuminated by high-key, soft white lighting that creates a bright, modern light-mode aesthetic. The artwork relies on a sophisticated palette of deep blacks and pristine whites, punctuated by intense accents of vibrant red. The mood is serene yet technologically advanced." class="w-full h-full object-cover filter grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700" src="https://lh3.googleusercontent.com/aida/AP1WRLuTZmRxHvXEFVpc3DySMGO_35tIxJhAy7WRbsC3TXGzRtat4t7fcKYVOMb-lBpwpZg-YnxwpQC5NZzSEW_2PiHFjwh_xx_WaDohDuap8up82VHMsSX61qvmfQOWR0kYwiaEtFVzcUm0c4szN1m_z9jbjnf--sVXr-RdWG22a1H3aZIG50_AAJQPefyelm4DvE3TLTBDIrRrf1rHgpOnJiq9qwa2NS1zeaG3rgfarHiSkuCRkmIdq75mgJs"/>
+<!-- Overlay Elements -->
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80"></div>
+<div class="absolute top-6 right-6 font-label-technical text-label-technical text-primary bg-white/90 backdrop-blur-sm px-3 py-1 border border-primary/30 rounded-sm shadow-sm font-bold">
+                            بيانات: CON-1996
+                        </div>
+<!-- Blueprint Overlay Graphic -->
+<div class="absolute bottom-6 left-6 right-6 border-t border-outline-variant pt-4 flex justify-between items-end backdrop-blur-md bg-white/70 p-4 rounded-sm shadow-sm">
+<div>
+<div class="font-label-technical text-label-technical text-on-surface-variant mb-1 font-bold">المواصفات</div>
+<div class="font-headline-lg text-[16px] text-on-surface font-bold">خرسانة صناعية عالية الجودة</div>
+</div>
+<span class="material-symbols-outlined text-primary text-[32px]">architecture</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Product Catalog Section -->
+<section class="py-32 relative bg-surface border-b border-outline-variant/50">
+<div class="max-w-max-width mx-auto px-margin-desktop">
+<!-- Bento/Masonry Grid -->
+<div class="grid grid-cols-12 gap-2 md:gap-4 lg:gap-gutter">
+<!-- 1. Large Featured: Solid Bricks (Spans 8 cols) -->
+<div id="card-solid" class="col-span-7 md:col-span-8 group relative reveal overflow-hidden bg-surface-container border border-outline-variant min-h-[250px] md:min-h-[400px] lg:min-h-[500px] flex flex-col justify-end tech-border rounded-sm">
+<div class="card-bg absolute inset-0 bg-center bg-cover" style="background-image: url('./images/طوب اسمنتي مصمط.png')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-inverse-surface/70 via-transparent to-transparent z-0 pointer-events-none"></div>
+<div class="absolute top-2 right-2 md:top-4 md:right-4 font-label-technical text-[8px] md:text-label-technical bg-primary/80 backdrop-blur-sm text-background px-1.5 py-0.5 md:px-2 md:py-1 font-bold rounded-sm z-10 pointer-events-none">
+        IN_STOCK // 2024
     </div>
-  </div>
-</body>
+    
+<div class="card-content relative z-20 p-3 md:p-5 bg-white/20 backdrop-blur-md m-2 md:m-4 border-l-2 border-primary rtl:border-r-2 rtl:border-l-0 rounded-sm transition-opacity duration-300 w-full max-w-lg self-end">
+<div class="flex flex-col md:flex-row justify-between items-start mb-2 gap-2">
+<div>
+<h3 class="card-title font-headline-lg-mobile text-[14px] md:text-[20px] text-white md:text-on-surface mb-1 font-bold shadow-sm">طوب أسمنتي مصمت قياسي</h3>
+<p class="card-desc hidden md:block text-white/90 md:text-on-surface-variant font-body-md text-[10px] md:text-sm max-w-md line-clamp-2 md:line-clamp-none">قوة هيكلية فائقة للجدران الحاملة والأساسات.</p>
+</div>
+<button class="bg-primary/90 text-background p-1.5 md:p-2 rounded-sm hover:bg-primary transition-colors">
+<span class="material-symbols-outlined rtl:-scale-x-100 text-[16px] md:text-[20px]">arrow_forward</span>
+</button>
+</div>
+        
+<div class="mt-2 md:mt-4 border-t border-white/30 md:border-outline-variant/30 pt-2 md:pt-4">
+<button class="card-action text-primary font-label-technical text-[10px] md:text-[12px] hover:text-primary-fixed transition-colors uppercase tracking-widest font-bold">
+                عرض المواصفات
+            </button>
+</div>
+</div>
+</div>
 
+<!-- 2. Medium Showcase: Interlock (Spans 4 cols) -->
+<div id="card-interlock" class="col-span-5 md:col-span-4 group relative reveal overflow-hidden bg-inverse-surface min-h-[250px] md:min-h-[400px] lg:min-h-[500px] tech-border rounded-sm">
+<div class="card-bg absolute inset-0 bg-center bg-cover opacity-90" style="background-image: url('./images/انترلوك سداسي احمر 8 سم.png')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-inverse-surface/90 to-transparent z-0 pointer-events-none"></div>
+<div class="relative z-20 h-full flex flex-col p-2 md:p-4 justify-end">
+<div class="card-content bg-white/20 backdrop-blur-md p-2 md:p-4 rounded-sm border border-outline-variant/30 transition-opacity duration-300">
+<h3 class="card-title font-headline-lg-mobile text-[12px] md:text-[18px] text-white mb-1 md:mb-2 font-bold drop-shadow-md">انترلوك سداسي أحمر 8 سم</h3>
+<p class="card-desc hidden md:block text-surface-variant font-body-md text-[9px] md:text-[13px] mb-2 md:mb-4 drop-shadow-sm line-clamp-2 md:line-clamp-none">حلول رصف متينة وعالية التحمل للمساحات الخارجية.</p>
+            
+<div class="card-specs grid grid-cols-3 gap-1 md:gap-2 border-t border-white/20 pt-2 md:pt-3">
+<div>
+<div class="font-label-technical text-[7px] md:text-[10px] text-surface-variant mb-0.5 md:mb-1">المقاومة</div>
+<div class="font-label-technical text-[9px] md:text-[13px] text-white font-bold spec-val">45 - 60</div>
+</div>
+<div>
+<div class="font-label-technical text-[7px] md:text-[10px] text-surface-variant mb-0.5 md:mb-1">السُمك(سم)</div>
+<div class="font-label-technical text-[9px] md:text-[13px] text-white font-bold spec-val">8</div>
+</div>
+<div>
+<div class="font-label-technical text-[7px] md:text-[10px] text-surface-variant mb-0.5 md:mb-1">الامتصاص</div>
+<div class="font-label-technical text-[9px] md:text-[13px] text-white font-bold spec-val">&lt; 5%</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- 3. Vertical Block: Hollow Blocks (Spans 4 cols) -->
+<div id="card-hollow" class="col-span-5 md:col-span-4 group relative reveal overflow-hidden bg-surface border border-outline-variant min-h-[250px] md:min-h-[400px] lg:min-h-[600px] flex flex-col tech-border rounded-sm">
+<div class="flex-grow relative overflow-hidden">
+<div class="card-bg absolute inset-0 bg-center bg-cover" style="background-image: url('./images/بلوك 12 مفرغ.png')"></div>
+<div class="absolute inset-0 bg-gradient-to-b from-inverse-surface/80 via-transparent to-inverse-surface/80 z-0 pointer-events-none"></div>
+</div>
+    
+<div class="card-content-top absolute top-2 md:top-4 left-2 md:left-4 right-2 md:right-4 bg-white/20 backdrop-blur-md p-2 md:p-4 rounded-sm border border-outline-variant/30 z-20 transition-opacity duration-300">
+<h3 class="card-title font-headline-lg-mobile text-[12px] md:text-[18px] text-white mb-1 font-bold drop-shadow-md">بلوك 12 مفرغ</h3>
+<p class="card-desc hidden md:block text-surface-variant font-label-technical text-[8px] md:text-[11px] drop-shadow-sm line-clamp-1 md:line-clamp-none">العزل الحراري والصوتي المتقدم</p>
+</div>
+
+<div class="card-content-bottom absolute bottom-2 md:bottom-4 left-2 md:left-4 right-2 md:right-4 bg-white/20 backdrop-blur-md p-2 md:p-4 rounded-sm border border-outline-variant/30 z-20 transition-opacity duration-300">
+<div class="flex flex-col md:flex-row justify-between items-center mb-2 md:mb-3 gap-1">
+<span class="card-size1 font-label-technical text-[10px] md:text-[13px] text-white font-bold drop-shadow-sm" dir="ltr">12x20x40 cm</span>
+<span class="card-size2 font-label-technical text-[10px] md:text-[13px] text-primary font-bold drop-shadow-sm" dir="ltr"></span>
+</div>
+<button class="w-full bg-primary/90 text-background py-1.5 md:py-2 font-label-technical text-[9px] md:text-[12px] hover:bg-primary transition-colors rounded-sm uppercase tracking-widest font-bold">
+            تفاصيل المنتج
+        </button>
+</div>
+</div>
+
+<!-- 4. Horizontal Panel: Kerbstones & Tiles (Spans 8 cols) -->
+<div id="card-infrastructure" class="col-span-7 md:col-span-8 group relative reveal overflow-hidden bg-surface-container flex flex-col md:flex-row min-h-[250px] md:min-h-[400px] border border-outline-variant tech-border rounded-sm">
+<div class="w-full relative overflow-hidden h-full min-h-[250px] md:min-h-[400px]">
+<div class="card-bg absolute inset-0 bg-center bg-cover" style="background-image: url('./images/بلدورة وسط.png')"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-inverse-surface/90 via-inverse-surface/50 to-transparent z-0 pointer-events-none"></div>
+        
+<div class="absolute inset-0 flex items-center justify-start p-3 md:p-8 z-20 pointer-events-none">
+<div class="card-content bg-white/20 backdrop-blur-md p-3 md:p-6 rounded-sm border border-outline-variant/30 transition-opacity duration-300 max-w-sm pointer-events-auto">
+<div class="card-category font-label-technical text-[8px] md:text-[10px] text-primary mb-1 md:mb-2 tracking-widest uppercase font-bold drop-shadow-md">Infrastructure_Series</div>
+<h3 class="card-title font-headline-lg-mobile text-[14px] md:text-[20px] text-white mb-1 md:mb-2 font-bold drop-shadow-md">بلدورة وسط</h3>
+<p class="card-desc hidden md:block text-surface-variant font-body-md text-[10px] md:text-[13px] mb-3 md:mb-6 drop-shadow-sm leading-snug md:leading-relaxed line-clamp-2 md:line-clamp-none">
+                    منتجات البنية التحتية القياسية لتحديد الطرق، وتنسيق الحدائق، والأرصفة الحضرية.
+                </p>
+<div class="flex gap-2 md:gap-3">
+<div class="bg-white/10 border border-white/20 p-1.5 md:p-3 text-center rounded-sm w-full backdrop-blur-sm">
+<span class="card-icon material-symbols-outlined text-primary mb-0.5 md:mb-1 block text-[16px] md:text-[20px]">straighten</span>
+<div class="card-feature font-label-technical text-[9px] md:text-[11px] text-white font-bold">أبعاد دقيقة</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Team Section -->
+    <section id="contact" class="py-24 bg-surface reveal border-t border-outline/10">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <div class="font-data-label text-primary mb-2 tracking-widest">OUR_TEAM</div>
+          <h2 class="font-headline-lg text-4xl md:text-5xl font-black text-on-surface mb-4">فريق الإدارة</h2>
+          <p class="font-body-lg text-xl text-on-surface-variant">فريق الإدارة في خدمتك</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <!-- Ali Card -->
+          <a href="./eng-ali-abdelshafy/"
+            class="bg-inverse-surface border border-outline/20 text-surface-bright p-8 hover:-translate-y-2 transition-all duration-300 relative overflow-hidden group">
+            <div class="absolute inset-0 blueprint-pattern opacity-5 group-hover:opacity-20 transition-opacity"></div>
+            <div class="relative z-10">
+              <div class="flex items-center gap-6 mb-8 border-b border-outline/20 pb-6">
+                <div class="w-24 h-24 bg-surface-container flex items-center justify-center overflow-hidden border-2 border-primary">
+                  <img src="./images/ali.jpg" alt="م/ علي عبد الشافي" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                </div>
+                <div>
+                  <h3 class="font-headline-md text-2xl font-bold text-primary mb-1">م/ علي عبد الشافي</h3>
+                  <p class="font-data-label text-surface-variant/80">رئيس مجلس الإدارة</p>
+                </div>
+              </div>
+              <div class="space-y-4 font-body-md text-surface-bright">
+                <div class="flex items-center gap-4">
+                  <span class="material-symbols-outlined text-primary" data-icon="call">call</span>
+                  <span>01283191597</span>
+                </div>
+                <div class="flex items-center gap-4">
+                  <span class="material-symbols-outlined text-inverse-primary" data-icon="chat">chat</span>
+                  <span class="text-inverse-primary">واتساب متاح</span>
+                </div>
+              </div>
+              <div class="mt-8 text-center border border-primary text-primary py-3 font-bold group-hover:bg-primary group-hover:text-on-primary transition-colors">
+                عرض السيرة الذاتية ←
+              </div>
+            </div>
+          </a>
+
+          <!-- Hussein Card -->
+          <a href="./eng-hussein-abdelshafy/"
+            class="bg-inverse-surface border border-outline/20 text-surface-bright p-8 hover:-translate-y-2 transition-all duration-300 relative overflow-hidden group">
+            <div class="absolute inset-0 blueprint-pattern opacity-5 group-hover:opacity-20 transition-opacity"></div>
+            <div class="relative z-10">
+              <div class="flex items-center gap-6 mb-8 border-b border-outline/20 pb-6">
+                <div class="w-24 h-24 bg-surface-container flex items-center justify-center overflow-hidden border-2 border-primary">
+                  <img src="./images/hussein.jpg" alt="م/ حسين علي عبدالشافي" class="w-full h-full object-cover object-[50%_20%] grayscale group-hover:grayscale-0 transition-all duration-500">
+                </div>
+                <div>
+                  <h3 class="font-headline-md text-2xl font-bold text-primary mb-1">م/ حسين علي عبدالشافي</h3>
+                  <p class="font-data-label text-surface-variant/80">مدير الإنتاج والجودة</p>
+                </div>
+              </div>
+              <div class="space-y-4 font-body-md text-surface-bright">
+                <div class="flex items-center gap-4">
+                  <span class="material-symbols-outlined text-primary" data-icon="call">call</span>
+                  <span>01286084444</span>
+                </div>
+                <div class="flex items-center gap-4">
+                  <span class="material-symbols-outlined text-inverse-primary" data-icon="chat">chat</span>
+                  <span class="text-inverse-primary">واتساب متاح</span>
+                </div>
+              </div>
+              <div class="mt-8 text-center border border-primary text-primary py-3 font-bold group-hover:bg-primary group-hover:text-on-primary transition-colors">
+                عرض السيرة الذاتية ←
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+</main>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+    
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.classList.add('active');
+                }, index * 100); // Stagger effect
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach((el) => {
+        observer.observe(el);
+    });
+
+    const counterObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const counter = entry.target;
+                const target = +counter.getAttribute('data-target');
+                const suffix = counter.getAttribute('data-suffix');
+                const duration = 2000; // 2 seconds
+                const increment = target / (duration / 16); // 60fps
+                let current = 0;
+                
+                const updateCounter = () => {
+                    current += increment;
+                    if (current < target) {
+                        counter.innerText = Math.ceil(current).toLocaleString('ar-EG') + suffix;
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.innerText = target.toLocaleString('ar-EG') + suffix;
+                    }
+                };
+                updateCounter();
+                observer.unobserve(counter);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+});
+
+    
+    // Interactive Global Grid
+    const canvas = document.getElementById('global-grid-canvas');
+    if (canvas) {
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        const gridSize = 40;
+        let trails = [];
+
+        function resize() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+
+        window.addEventListener('mousemove', (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+            
+            const gridX = Math.floor(x / gridSize) * gridSize;
+            const gridY = Math.floor(y / gridSize) * gridSize;
+            
+            const existing = trails.find(t => t.x === gridX && t.y === gridY);
+            if (existing) {
+                existing.life = 1;
+            } else {
+                trails.push({ x: gridX, y: gridY, life: 1 });
+            }
+        });
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, width, height);
+            
+            for (let i = trails.length - 1; i >= 0; i--) {
+                const trail = trails[i];
+                ctx.fillStyle = `rgba(16, 185, 129, ${trail.life * 0.2})`; // Lighter green for global overlay
+                ctx.fillRect(trail.x, trail.y, gridSize, gridSize);
+                
+                trail.life -= 0.02;
+                if (trail.life <= 0) {
+                    trails.splice(i, 1);
+                }
+            }
+            
+            requestAnimationFrame(animateCanvas);
+        }
+        animateCanvas();
+    }
+
+
+    // Catalog Slider Logic with Fading Squares
+    const catalogData = {
+        "interlock": {
+            elementId: "card-interlock",
+            slides: [
+                {
+                    image: "./images/انترلوك سداسي احمر 8 سم.png",
+                    title: "انترلوك سداسي أحمر 8 سم",
+                    desc: "حلول رصف متينة وعالية التحمل للمساحات الخارجية الثقيلة والساحات المعمارية.",
+                    specs: { "المقاومة (MPa)": "45 - 60", "السُمك (سم)": "8", "الامتصاص": "< 5%" }
+                },
+                {
+                    image: "./images/انترلوك باركية 8سم احمر.png",
+                    title: "انترلوك باركيه أحمر 8 سم",
+                    desc: "تصميم كلاسيكي يجمع بين المتانة والشكل الجمالي للممرات.",
+                    specs: { "المقاومة (MPa)": "45 - 60", "السُمك (سم)": "8", "الامتصاص": "< 5%" }
+                },
+                {
+                    image: "./images/انترولك اتش 6 سم رمادي.png",
+                    title: "انترلوك شكل H رمادي 6 سم",
+                    desc: "ترابط قوي جداً، مثالي للمناطق ذات الحركة المرورية العالية.",
+                    specs: { "المقاومة (MPa)": "40 - 50", "السُمك (سم)": "6", "الامتصاص": "< 5%" }
+                }
+            ],
+            currentIndex: 0
+        },
+        "solid": {
+            elementId: "card-solid",
+            slides: [
+                {
+                    image: "./images/طوب اسمنتي مصمط.png",
+                    title: "طوب أسمنتي مصمت قياسي",
+                    desc: "قوة هيكلية فائقة للجدران الحاملة والأساسات.",
+                    action: "عرض المواصفات"
+                },
+                {
+                    image: "./images/طوب اسمنتي مصمط 25.png",
+                    title: "طوب أسمنتي مصمت 25 سم",
+                    desc: "مثالي لأعمال العزل والبناء الثقيل.",
+                    action: "عرض المواصفات"
+                }
+            ],
+            currentIndex: 0
+        },
+        "hollow": {
+            elementId: "card-hollow",
+            slides: [
+                {
+                    image: "./images/بلوك 12 مفرغ.png",
+                    title: "بلوك 12 مفرغ",
+                    desc: "العزل الحراري والصوتي المتقدم",
+                    size1: "12x20x40 cm",
+                    size2: ""
+                },
+                {
+                    image: "./images/بلوك 25 استي مفرغ.png",
+                    title: "بلوك 25 مفرغ",
+                    desc: "لجدران خارجية قوية وعزل مثالي",
+                    size1: "25x20x40 cm",
+                    size2: ""
+                },
+                {
+                    image: "./images/طوب كلستر مفرغ شبك.png",
+                    title: "طوب مفرغ شبك",
+                    desc: "تصميم خاص لتعزيز التماسك مع المونة",
+                    size1: "20x20x40 cm",
+                    size2: ""
+                }
+            ],
+            currentIndex: 0
+        },
+        "infrastructure": {
+            elementId: "card-infrastructure",
+            slides: [
+                {
+                    image: "./images/بلدورة وسط.png",
+                    category: "Infrastructure_Series",
+                    title: "بلدورة وسط",
+                    desc: "منتجات البنية التحتية القياسية لتحديد الطرق، وتنسيق الحدائق، والأرصفة الحضرية.",
+                    feature: "أبعاد دقيقة",
+                    icon: "straighten"
+                },
+                {
+                    image: "./images/بلودورة عجالي.png",
+                    category: "Infrastructure_Series",
+                    title: "بلدورة عجالي",
+                    desc: "تصميم متين لتحمل ضغط المركبات على أطراف الطرق.",
+                    feature: "قوة تحمل عالية",
+                    icon: "shield"
+                },
+                {
+                    image: "./images/بلاط موزايكو كرارة.png",
+                    category: "Tiles_Series",
+                    title: "بلاط موزايكو كرارة",
+                    desc: "مظهر جمالي كلاسيكي للمساحات الداخلية والخارجية المظللة.",
+                    feature: "مقاوم للاحتكاك",
+                    icon: "layers"
+                }
+            ],
+            currentIndex: 0
+        }
+    };
+
+    function transitionFadingSquares(container, oldImageUrl, newImageUrl, rows = 5, cols = 5) {
+        container.style.backgroundImage = `url('${newImageUrl}')`;
+        
+        const squares = [];
+        for (let i = 0; i < rows; i++) {
+            for (let j = 0; j < cols; j++) {
+                const square = document.createElement('div');
+                square.className = 'absolute inset-0 bg-cover bg-center transition-opacity duration-500 z-10';
+                square.style.backgroundImage = `url('${oldImageUrl}')`;
+                
+                const top = i * (100 / rows);
+                const bottom = 100 - (i + 1) * (100 / rows);
+                const left = j * (100 / cols);
+                const right = 100 - (j + 1) * (100 / cols);
+                
+                square.style.clipPath = `inset(${top}% ${right}% ${bottom}% ${left}%)`;
+                
+                container.appendChild(square);
+                squares.push(square);
+            }
+        }
+        
+        container.offsetHeight; // trigger reflow
+        
+        squares.forEach(sq => {
+            const delay = Math.random() * 400; 
+            setTimeout(() => {
+                sq.style.opacity = '0';
+                setTimeout(() => {
+                    if (sq.parentNode === container) {
+                        container.removeChild(sq);
+                    }
+                }, 500); 
+            }, delay);
+        });
+    }
+
+    function updateCardContent(cardId, data, newSlide) {
+        const card = document.getElementById(cardId);
+        if (!card) return;
+        
+        const contents = card.querySelectorAll('.card-content, .card-content-top, .card-content-bottom');
+        contents.forEach(el => el.style.opacity = '0');
+        
+        setTimeout(() => {
+            const titleEl = card.querySelector('.card-title');
+            const descEl = card.querySelector('.card-desc');
+            
+            if (titleEl && newSlide.title) titleEl.innerText = newSlide.title;
+            if (descEl && newSlide.desc) descEl.innerText = newSlide.desc;
+            
+            if (cardId === 'card-interlock') {
+                const specValues = card.querySelectorAll('.spec-val');
+                if (specValues.length === 3 && newSlide.specs) {
+                    specValues[0].innerText = newSlide.specs["المقاومة (MPa)"] || "";
+                    specValues[1].innerText = newSlide.specs["السُمك (سم)"] || "";
+                    specValues[2].innerText = newSlide.specs["الامتصاص"] || "";
+                }
+            } else if (cardId === 'card-solid') {
+                const actionEl = card.querySelector('.card-action');
+                if (actionEl && newSlide.action) actionEl.innerText = newSlide.action;
+            } else if (cardId === 'card-hollow') {
+                const size1El = card.querySelector('.card-size1');
+                const size2El = card.querySelector('.card-size2');
+                if (size1El) size1El.innerText = newSlide.size1 || "";
+                if (size2El) size2El.innerText = newSlide.size2 || "";
+            } else if (cardId === 'card-infrastructure') {
+                const catEl = card.querySelector('.card-category');
+                const featureEl = card.querySelector('.card-feature');
+                const iconEl = card.querySelector('.card-icon');
+                if (catEl && newSlide.category) catEl.innerText = newSlide.category;
+                if (featureEl && newSlide.feature) featureEl.innerText = newSlide.feature;
+                if (iconEl && newSlide.icon) iconEl.innerText = newSlide.icon;
+            }
+            
+            contents.forEach(el => el.style.opacity = '1');
+        }, 300);
+    }
+
+    function cycleSlider(key) {
+        const sliderInfo = catalogData[key];
+        const card = document.getElementById(sliderInfo.elementId);
+        if (!card) return;
+        
+        const bgContainer = card.querySelector('.card-bg');
+        if (!bgContainer) return;
+        
+        const oldSlide = sliderInfo.slides[sliderInfo.currentIndex];
+        
+        sliderInfo.currentIndex = (sliderInfo.currentIndex + 1) % sliderInfo.slides.length;
+        const newSlide = sliderInfo.slides[sliderInfo.currentIndex];
+        
+        transitionFadingSquares(bgContainer, oldSlide.image, newSlide.image);
+        updateCardContent(sliderInfo.elementId, key, newSlide);
+    }
+
+    const keys = Object.keys(catalogData);
+    let globalTick = 0;
+
+    // Wait a bit before starting the animation loops
+    setTimeout(() => {
+        setInterval(() => {
+            const key = keys[globalTick % keys.length];
+            cycleSlider(key);
+            globalTick++;
+        }, 3500);
+    }, 2000);
+
+</script>
+</body>
 </html>

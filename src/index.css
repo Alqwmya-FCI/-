@@ -1,8 +1,178 @@
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Inter:wght@400&family=JetBrains+Mono:wght@500&family=Cairo:wght@400;500;700&display=swap');
 
 @import "tailwindcss";
-@import "tailwindcss/utilities";
+
+@theme {
+    --color-primary: #10b981;
+    --color-primary-fixed: #34d399;
+    --color-primary-fixed-dim: #10b981;
+    --color-primary-container: #d1fae5;
+    --color-on-primary: #ffffff;
+    --color-on-primary-container: #064e3b;
+    --color-on-primary-fixed: #022c22;
+    --color-on-primary-fixed-variant: #047857;
+    --color-inverse-primary: #6ee7b7;
+
+    --color-secondary: #64748b;
+    --color-secondary-container: #e2e8f0;
+    --color-secondary-fixed: #e2e8f0;
+    --color-secondary-fixed-dim: #94a3b8;
+    --color-on-secondary: #ffffff;
+    --color-on-secondary-container: #0f172a;
+    --color-on-secondary-fixed: #0f172a;
+    --color-on-secondary-fixed-variant: #334155;
+
+    --color-tertiary: #475569;
+    --color-tertiary-container: #f1f5f9;
+    --color-tertiary-fixed: #e2e8f0;
+    --color-tertiary-fixed-dim: #cbd5e1;
+    --color-on-tertiary: #ffffff;
+    --color-on-tertiary-container: #0f172a;
+    --color-on-tertiary-fixed: #0f172a;
+    --color-on-tertiary-fixed-variant: #334155;
+
+    --color-background: #f8fafc;
+    --color-on-background: #0f172a;
+
+    --color-surface: #ffffff;
+    --color-surface-bright: #ffffff;
+    --color-surface-dim: #e2e8f0;
+    --color-surface-variant: #f1f5f9;
+    --color-surface-tint: #10b981;
+    --color-surface-container: #f1f5f9;
+    --color-surface-container-low: #f8fafc;
+    --color-surface-container-high: #e2e8f0;
+    --color-surface-container-highest: #cbd5e1;
+    --color-surface-container-lowest: #ffffff;
+    --color-on-surface: #0f172a;
+    --color-on-surface-variant: #475569;
+
+    --color-outline: #94a3b8;
+    --color-outline-variant: #cbd5e1;
+
+    --color-inverse-surface: #1e293b;
+    --color-inverse-on-surface: #f1f5f9;
+
+    --color-error: #ef4444;
+    --color-error-container: #fee2e2;
+    --color-on-error: #ffffff;
+    --color-on-error-container: #7f1d1d;
+
+    --font-headline-lg: "Montserrat", sans-serif;
+    --font-body-md: "Inter", sans-serif;
+    --font-headline-lg-mobile: "Montserrat", sans-serif;
+    --font-display-lg: "Montserrat", sans-serif;
+    --font-label-technical: "JetBrains Mono", monospace;
+    --font-sans: "Cairo", sans-serif;
+
+    --text-headline-lg: 2rem;
+    --text-headline-lg--line-height: 1.2;
+    --text-headline-lg--letter-spacing: 0.02em;
+    --text-body-md: 1rem;
+    --text-body-md--line-height: 1.6;
+    --text-headline-lg-mobile: 1.5rem;
+    --text-display-lg: 4rem;
+    --text-display-lg--line-height: 1.1;
+    --text-display-lg--letter-spacing: 0.05em;
+    --text-label-technical: 0.75rem;
+    --text-label-technical--line-height: 1.0;
+    --text-label-technical--letter-spacing: 0.1em;
+
+    --spacing-margin-mobile: 20px;
+    --spacing-max-width: 1440px;
+    --spacing-unit: 8px;
+    --spacing-margin-desktop: 64px;
+    --spacing-gutter: 24px;
+
+    --radius: 0.125rem;
+    --radius-lg: 0.25rem;
+    --radius-xl: 0.5rem;
+    --radius-full: 0.75rem;
+
+    --background-image-grid-pattern: linear-gradient(to right, #cbd5e1 1px, transparent 1px), linear-gradient(to bottom, #cbd5e1 1px, transparent 1px);
+
+    --animate-fade-in-up: fadeInUp 0.8s ease-out forwards;
+    --animate-fade-in-up-delay-1: fadeInUp 0.8s ease-out 0.2s forwards;
+    --animate-fade-in-up-delay-2: fadeInUp 0.8s ease-out 0.4s forwards;
+    --animate-breathe: breathe 8s ease-in-out infinite;
+
+    @keyframes fadeInUp {
+        0% { opacity: 0; transform: translateY(20px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes breathe {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.03); }
+    }
+}
 
 body {
     -webkit-tap-highlight-color: transparent;
+    font-family: var(--font-sans);
+}
+
+@layer utilities {
+    .glass-panel {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(203, 213, 225, 0.5);
+    }
+    .tech-border {
+        border: 1px solid var(--color-outline-variant);
+        position: relative;
+    }
+    .tech-border::before, .tech-border::after {
+        content: '';
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        border: 1px solid var(--color-primary);
+    }
+    .tech-border::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+    .tech-border::after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+
+    .concrete-texture {
+        background-color: var(--color-background);
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+    }
+
+    .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+    }
+    .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    #global-grid-canvas {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        pointer-events: none;
+    }
+}
+
+.dark {
+    --color-background: #0f172a;
+    --color-on-background: #f8fafc;
+    
+    --color-surface: #1e293b;
+    --color-on-surface: #f1f5f9;
+    --color-on-surface-variant: #cbd5e1;
+    
+    --color-surface-container: #334155;
+    --color-surface-container-low: #1e293b;
+    --color-surface-container-high: #475569;
+    --color-surface-container-highest: #64748b;
+    --color-surface-container-lowest: #020617;
+    
+    --color-inverse-surface: #f8fafc;
+    --color-inverse-on-surface: #0f172a;
+    
+    --color-outline-variant: #475569;
 }
