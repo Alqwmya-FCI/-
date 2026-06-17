@@ -484,7 +484,7 @@ const HomePage = () => {
                             images={productImages.card3}
                             label={t.card3}
                             offset={2000}
-                            to="/products/curbs"
+                            to="/products/blocks"
                         />
 
                         {/* Card 4 — Large (8 cols) */}
@@ -493,7 +493,7 @@ const HomePage = () => {
                             images={productImages.card4}
                             label={t.card4}
                             offset={3000}
-                            to="/products/blocks"
+                            to="/products/curbs"
                         />
 
                         {/* Card 5 — Full Width (12 cols) */}
