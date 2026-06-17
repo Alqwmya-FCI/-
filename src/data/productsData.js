@@ -112,8 +112,9 @@ export const productsData = {
             {
                 id: 'interlock-honeycomb',
                 name: 'إنترلوك شبك ديكور',
-                image: '/images/طوب كلستر مفرغ شبك.png',
+                image: '/images/انتلروك شبك ديكور اساسي.png',
                 images: [
+                    '/images/انتلروك شبك ديكور اساسي.png',
                     '/images/طوب كلستر مفرغ شبك.png',
                     '/images/انتلورك شبك ديكور.jpg',
                     '/images/انتلورك ديكور.jpg'
@@ -134,8 +135,9 @@ export const productsData = {
             {
                 id: 'interlock-sshape',
                 name: 'إنترلوك حرف S',
-                image: '/images/انترلوك اس س.jpg',
+                image: '/images/انتلورك اس اساسي.png',
                 images: [
+                    '/images/انتلورك اس اساسي.png',
                     '/images/انترلوك اس س.jpg',
                     '/images/انتلورك اس.jpg',
                     '/images/انتلورك اسسس.jpg',
