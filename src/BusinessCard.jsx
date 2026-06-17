@@ -93,20 +93,42 @@ END:VCARD`;
                 </div>
 
                 <div className="space-y-3 mb-8">
-                    <a href={person.personalFacebook} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between p-4 bg-white border border-slate-200 rounded-xl hover:border-blue-500 hover:shadow-md transition group">
-                        <div className="flex items-center gap-3">
-                            <div className="bg-blue-100 p-2 rounded-full text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition">
-                                <Facebook size={20} />
+                    {person.whatsapp && (
+                        <a href={`https://wa.me/${person.whatsapp.replace('+', '')}`} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between p-4 bg-white border border-slate-200 rounded-xl hover:border-green-500 hover:shadow-md transition group">
+                            <div className="flex items-center gap-3">
+                                <div className="bg-green-100 p-2 rounded-full text-green-600 group-hover:bg-green-600 group-hover:text-white transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
+                                        <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p className="font-bold text-slate-800 text-sm">تواصل عبر واتساب</p>
+                                    <p className="text-xs text-slate-500">{person.whatsapp.replace('+2', '')}</p>
+                                </div>
                             </div>
-                            <div>
-                                <p className="font-bold text-slate-800 text-sm">حسابي الشخصي</p>
-                                <p className="text-xs text-slate-500">تواصل معي على فيسبوك</p>
+                            <div className="text-slate-300 group-hover:text-green-500">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-left"><path d="m15 18-6-6 6-6" /></svg>
                             </div>
-                        </div>
-                        <div className="text-slate-300 group-hover:text-blue-500">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-left"><path d="m15 18-6-6 6-6" /></svg>
-                        </div>
-                    </a>
+                        </a>
+                    )}
+
+                    {person.personalFacebook && (
+                        <a href={person.personalFacebook} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between p-4 bg-white border border-slate-200 rounded-xl hover:border-blue-500 hover:shadow-md transition group">
+                            <div className="flex items-center gap-3">
+                                <div className="bg-blue-100 p-2 rounded-full text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition">
+                                    <Facebook size={20} />
+                                </div>
+                                <div>
+                                    <p className="font-bold text-slate-800 text-sm">حسابي الشخصي</p>
+                                    <p className="text-xs text-slate-500">تواصل معي على فيسبوك</p>
+                                </div>
+                            </div>
+                            <div className="text-slate-300 group-hover:text-blue-500">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-left"><path d="m15 18-6-6 6-6" /></svg>
+                            </div>
+                        </a>
+                    )}
 
                     {person.instagram && (
                          <a href={person.instagram} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between p-4 bg-white border border-slate-200 rounded-xl hover:border-pink-500 hover:shadow-md transition group">
