@@ -232,116 +232,62 @@ const ProductDetailPage = () => {
                         </div>
                         
                         <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x md:divide-x-reverse divide-white/10">
-                            {/* Dimensions */}
+                            {/* Left Column (Even indexes) */}
                             <div className="p-6 space-y-6">
-                                <div className="flex items-center gap-4">
-                                    <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary border border-primary/20">
-                                        <Ruler size={24} />
-                                    </div>
-                                    <div>
-                                        <p className="text-slate-400 text-sm font-bold mb-1">الأبعاد (طول × عرض × ارتفاع)</p>
-                                        <p className="text-white font-mono text-xl font-black" dir="ltr">
-                                            {product.specs.length} × {product.specs.width} × {product.specs.height}
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="flex items-center gap-4">
-                                    <div className="w-12 h-12 rounded-2xl bg-orange-500/10 flex items-center justify-center text-orange-500 border border-orange-500/20">
-                                        <Scale size={24} />
-                                    </div>
-                                    <div>
-                                        <p className="text-slate-400 text-sm font-bold mb-1">الوزن التقريبي</p>
-                                        <p className="text-white font-bold text-lg">{product.specs.weight}</p>
-                                    </div>
-                                </div>
-                                {product.specs.strength && (
-                                    <div className="flex items-center gap-4">
-                                        <div className="w-12 h-12 rounded-2xl bg-red-500/10 flex items-center justify-center text-red-500 border border-red-500/20">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m14.5 2-5 5"/><path d="m4 12 5-5"/><path d="M20 18v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2"/><path d="M12 12v6"/></svg>
+                                {Object.entries(product.specs).filter((_, idx) => idx % 2 === 0).map(([key, value]) => {
+                                    const isWeight = key.includes('وزن') || key.includes('كثافة');
+                                    const isStandard = key.includes('مواصفات');
+                                    const isCount = key.includes('مساحة') || key.includes('عدد');
+                                    const isForce = key.includes('ضغط') || key.includes('إجهاد');
+                                    
+                                    const iconBg = isWeight ? 'bg-orange-500/10' : isStandard ? 'bg-emerald-500/10' : isCount ? 'bg-pink-500/10' : isForce ? 'bg-red-500/10' : 'bg-primary/10';
+                                    const iconBorder = isWeight ? 'border-orange-500/20' : isStandard ? 'border-emerald-500/20' : isCount ? 'border-pink-500/20' : isForce ? 'border-red-500/20' : 'border-primary/20';
+                                    
+                                    return (
+                                        <div key={key} className="flex items-start gap-4">
+                                            <div className={`w-12 h-12 rounded-2xl ${iconBg} flex items-center justify-center border ${iconBorder} shrink-0`}>
+                                                {isWeight ? <Scale size={24} className="text-orange-500" /> :
+                                                 isStandard ? <Info size={24} className="text-emerald-500" /> :
+                                                 isCount ? <Box size={24} className="text-pink-500" /> :
+                                                 isForce ? <Info size={24} className="text-red-500" /> :
+                                                 <Ruler size={24} className="text-primary" />}
+                                            </div>
+                                            <div>
+                                                <p className="text-slate-400 text-sm font-bold mb-1">{key}</p>
+                                                <p className="text-white font-bold text-lg" dir={isStandard ? 'ltr' : 'rtl'}>{value}</p>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <p className="text-slate-400 text-sm font-bold mb-1">إجهاد الكسر</p>
-                                            <p className="text-white font-bold text-lg">{product.specs.strength}</p>
-                                        </div>
-                                    </div>
-                                )}
-                                {product.specs.density && (
-                                    <div className="flex items-center gap-4">
-                                        <div className="w-12 h-12 rounded-2xl bg-indigo-500/10 flex items-center justify-center text-indigo-500 border border-indigo-500/20">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v20"/><path d="m4 9 8-7 8 7"/><path d="m4 15 8 7 8-7"/></svg>
-                                        </div>
-                                        <div>
-                                            <p className="text-slate-400 text-sm font-bold mb-1">متوسط الكثافة (كجم/م³)</p>
-                                            <p className="text-white font-bold text-lg">{product.specs.density}</p>
-                                        </div>
-                                    </div>
-                                )}
-                                {product.specs.piecesPerM2 && (
-                                    <div className="flex items-center gap-4">
-                                        <div className="w-12 h-12 rounded-2xl bg-pink-500/10 flex items-center justify-center text-pink-500 border border-pink-500/20">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
-                                        </div>
-                                        <div>
-                                            <p className="text-slate-400 text-sm font-bold mb-1">معدل الاستهلاك</p>
-                                            <p className="text-white font-bold text-lg">{product.specs.piecesPerM2}</p>
-                                        </div>
-                                    </div>
-                                )}
-                                {product.specs.areaPerPiece && (
-                                    <div className="flex items-center gap-4">
-                                        <div className="w-12 h-12 rounded-2xl bg-amber-500/10 flex items-center justify-center text-amber-500 border border-amber-500/20">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
-                                        </div>
-                                        <div>
-                                            <p className="text-slate-400 text-sm font-bold mb-1">مساحة القطعة (سم²)</p>
-                                            <p className="text-white font-bold text-lg">{product.specs.areaPerPiece}</p>
-                                        </div>
-                                    </div>
-                                )}
+                                    );
+                                })}
                             </div>
 
-                            {/* Material, Usage, Absorption, Standard */}
+                            {/* Right Column (Odd indexes) */}
                             <div className="p-6 space-y-6">
-                                <div className="flex items-start gap-4">
-                                    <div className="w-12 h-12 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-500 border border-blue-500/20 shrink-0">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                                    </div>
-                                    <div>
-                                        <p className="text-slate-400 text-sm font-bold mb-1">المواد الخام</p>
-                                        <p className="text-white font-bold">{product.specs.material}</p>
-                                    </div>
-                                </div>
-                                <div className="flex items-start gap-4">
-                                    <div className="w-12 h-12 rounded-2xl bg-purple-500/10 flex items-center justify-center text-purple-500 border border-purple-500/20 shrink-0">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
-                                    </div>
-                                    <div>
-                                        <p className="text-slate-400 text-sm font-bold mb-1">الاستخدام الموصى به</p>
-                                        <p className="text-white font-bold">{product.specs.usage}</p>
-                                    </div>
-                                </div>
-                                {product.specs.absorption && (
-                                    <div className="flex items-start gap-4">
-                                        <div className="w-12 h-12 rounded-2xl bg-teal-500/10 flex items-center justify-center text-teal-500 border border-teal-500/20 shrink-0">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+                                {Object.entries(product.specs).filter((_, idx) => idx % 2 !== 0).map(([key, value]) => {
+                                    const isWeight = key.includes('وزن') || key.includes('كثافة');
+                                    const isStandard = key.includes('مواصفات');
+                                    const isCount = key.includes('مساحة') || key.includes('عدد');
+                                    const isForce = key.includes('ضغط') || key.includes('إجهاد');
+                                    
+                                    const iconBg = isWeight ? 'bg-orange-500/10' : isStandard ? 'bg-emerald-500/10' : isCount ? 'bg-pink-500/10' : isForce ? 'bg-red-500/10' : 'bg-primary/10';
+                                    const iconBorder = isWeight ? 'border-orange-500/20' : isStandard ? 'border-emerald-500/20' : isCount ? 'border-pink-500/20' : isForce ? 'border-red-500/20' : 'border-primary/20';
+                                    
+                                    return (
+                                        <div key={key} className="flex items-start gap-4">
+                                            <div className={`w-12 h-12 rounded-2xl ${iconBg} flex items-center justify-center border ${iconBorder} shrink-0`}>
+                                                {isWeight ? <Scale size={24} className="text-orange-500" /> :
+                                                 isStandard ? <Info size={24} className="text-emerald-500" /> :
+                                                 isCount ? <Box size={24} className="text-pink-500" /> :
+                                                 isForce ? <Info size={24} className="text-red-500" /> :
+                                                 <Ruler size={24} className="text-primary" />}
+                                            </div>
+                                            <div>
+                                                <p className="text-slate-400 text-sm font-bold mb-1">{key}</p>
+                                                <p className="text-white font-bold text-lg" dir={isStandard ? 'ltr' : 'rtl'}>{value}</p>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <p className="text-slate-400 text-sm font-bold mb-1">نسبة الامتصاص</p>
-                                            <p className="text-white font-bold">{product.specs.absorption}</p>
-                                        </div>
-                                    </div>
-                                )}
-                                {product.specs.standard && (
-                                    <div className="flex items-start gap-4">
-                                        <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 border border-emerald-500/20 shrink-0">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
-                                        </div>
-                                        <div>
-                                            <p className="text-slate-400 text-sm font-bold mb-1">المواصفات القياسية</p>
-                                            <p className="text-white font-bold text-sm" dir="ltr">{product.specs.standard}</p>
-                                        </div>
-                                    </div>
-                                )}
+                                    );
+                                })}
                             </div>
                         </div>
                     </div>
