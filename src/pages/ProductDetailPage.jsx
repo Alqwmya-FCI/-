@@ -22,7 +22,7 @@ const FadingProductGallery = ({ images, className = "" }) => {
                 for (let i = 0; i < 5; i++) {
                     for (let j = 0; j < 5; j++) {
                         const sq = document.createElement('div');
-                        sq.className = 'absolute inset-0 bg-center bg-contain bg-no-repeat transition-opacity duration-500 z-10 filter drop-shadow-[0_20px_30px_rgba(16,185,129,0.3)]';
+                        sq.className = 'absolute inset-0 bg-center bg-contain bg-no-repeat transition-opacity duration-1000 z-10 filter drop-shadow-[0_20px_30px_rgba(16,185,129,0.3)]';
                         sq.style.backgroundImage = `url('${oldImage}')`;
                         const top = i * 20, bottom = 100 - (i + 1) * 20;
                         const left = j * 20, right = 100 - (j + 1) * 20;
@@ -41,8 +41,8 @@ const FadingProductGallery = ({ images, className = "" }) => {
                             if (squaresContainerRef.current && sq.parentNode === squaresContainerRef.current) {
                                 squaresContainerRef.current.removeChild(sq);
                             }
-                        }, 500);
-                    }, Math.random() * 400);
+                        }, 1000);
+                    }, Math.random() * 800);
                 });
             }
             
@@ -50,7 +50,7 @@ const FadingProductGallery = ({ images, className = "" }) => {
             setCurrentIndex(nextIdx);
         };
 
-        const timer = setInterval(tick, 4000);
+        const timer = setInterval(tick, 6000);
         return () => clearInterval(timer);
     }, [images]);
 
