@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { productsData } from '../data/productsData';
 import InteractiveGrid from '../components/InteractiveGrid';
 import { ChevronRight, ChevronLeft, ArrowLeft, Ruler, Scale, Box, Info } from 'lucide-react';
+import { img, imgArr } from '../utils/imageProxy';
 
 const FadingProductGallery = ({ images, className = "" }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -21,7 +22,7 @@ const FadingProductGallery = ({ images, className = "" }) => {
                 for (let j = 0; j < 5; j++) {
                     const sq = document.createElement('div');
                     sq.className = 'absolute inset-0 bg-center bg-cover bg-no-repeat transition-opacity duration-1000 z-10 filter drop-shadow-[0_20px_30px_rgba(16,185,129,0.3)]';
-                    sq.style.backgroundImage = `url('${oldImage}')`;
+                sq.style.backgroundImage = `url('${img(oldImage)}')`;
                     const top = i * 20, bottom = 100 - (i + 1) * 20;
                     const left = j * 20, right = 100 - (j + 1) * 20;
                     sq.style.clipPath = `inset(${top}% ${right}% ${bottom}% ${left}%)`;
@@ -82,9 +83,9 @@ const FadingProductGallery = ({ images, className = "" }) => {
     if (images.length === 1) {
         return (
             <div className={`relative w-full aspect-square bg-white/5 border border-white/10 rounded-3xl overflow-hidden shadow-2xl ${className}`}>
-                <img src={images[0]} alt="Product" className="w-full h-full object-cover filter drop-shadow-[0_20px_30px_rgba(16,185,129,0.3)]" />
+                <img src={img(images[0])} alt="Product" className="w-full h-full object-cover filter drop-shadow-[0_20px_30px_rgba(16,185,129,0.3)]" />
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20 mix-blend-overlay">
-                    <img src="/images/factory-logo.png" alt="Watermark" className="w-1/2 opacity-30 drop-shadow-lg" />
+                    <img src={img('/images/factory-logo.png')} alt="Watermark" className="w-1/2 opacity-30 drop-shadow-lg" />
                 </div>
             </div>
         );
@@ -92,12 +93,12 @@ const FadingProductGallery = ({ images, className = "" }) => {
 
     return (
         <div className={`group relative w-full aspect-square bg-white/5 border border-white/10 rounded-3xl overflow-hidden shadow-2xl ${className}`}>
-            <div className="absolute inset-0 bg-center bg-cover bg-no-repeat transition-transform duration-700" style={{ backgroundImage: `url('${images[currentIndex]}')` }}>
+            <div className="absolute inset-0 bg-center bg-cover bg-no-repeat transition-transform duration-700" style={{ backgroundImage: `url('${img(images[currentIndex])}')` }}>
                 <div ref={squaresContainerRef} className="absolute inset-0 pointer-events-none" />
             </div>
             
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20 mix-blend-overlay">
-                <img src="/images/factory-logo.png" alt="Watermark" className="w-1/2 opacity-30 drop-shadow-lg" />
+                <img src={img('/images/factory-logo.png')} alt="Watermark" className="w-1/2 opacity-30 drop-shadow-lg" />
             </div>
 
             {/* Navigation Buttons */}

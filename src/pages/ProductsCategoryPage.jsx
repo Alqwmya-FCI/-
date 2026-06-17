@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { productsData } from '../data/productsData';
 import InteractiveGrid from '../components/InteractiveGrid';
 import { ChevronRight } from 'lucide-react';
+import { img } from '../utils/imageProxy';
 
 const ProductsCategoryPage = () => {
     const { categoryId } = useParams();
@@ -45,7 +46,7 @@ const ProductsCategoryPage = () => {
                             <div className="relative h-64 md:h-80 w-full bg-white/5 flex items-center justify-center overflow-hidden">
                                 <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-3xl rounded-full scale-150 mix-blend-screen" />
                                 <img 
-                                    src={product.image || product.images[0]} 
+                                    src={img(product.image || (product.images && product.images[0]))} 
                                     alt={product.name} 
                                     className="w-full h-full object-cover filter drop-shadow-2xl group-hover:scale-110 transition-transform duration-700 relative z-10"
                                 />
