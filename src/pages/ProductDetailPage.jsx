@@ -2,59 +2,82 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { productsData } from '../data/productsData';
 import InteractiveGrid from '../components/InteractiveGrid';
-import { ChevronRight, ArrowLeft, Ruler, Scale, Box, Info } from 'lucide-react';
+import { ChevronRight, ChevronLeft, ArrowLeft, Ruler, Scale, Box, Info } from 'lucide-react';
 
 const FadingProductGallery = ({ images, className = "" }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const indexRef = useRef(0);
     const squaresContainerRef = useRef(null);
+    const timerRef = useRef(null);
     
+    const triggerTransition = (nextIdx) => {
+        if (nextIdx === indexRef.current) return;
+        const currentIdx = indexRef.current;
+        const oldImage = images[currentIdx];
+        
+        if (squaresContainerRef.current) {
+            const squares = [];
+            for (let i = 0; i < 5; i++) {
+                for (let j = 0; j < 5; j++) {
+                    const sq = document.createElement('div');
+                    sq.className = 'absolute inset-0 bg-center bg-cover bg-no-repeat transition-opacity duration-1000 z-10 filter drop-shadow-[0_20px_30px_rgba(16,185,129,0.3)]';
+                    sq.style.backgroundImage = `url('${oldImage}')`;
+                    const top = i * 20, bottom = 100 - (i + 1) * 20;
+                    const left = j * 20, right = 100 - (j + 1) * 20;
+                    sq.style.clipPath = `inset(${top}% ${right}% ${bottom}% ${left}%)`;
+                    squaresContainerRef.current.appendChild(sq);
+                    squares.push(sq);
+                }
+            }
+            
+            squaresContainerRef.current.offsetHeight; // Force reflow
+            
+            squares.forEach(sq => {
+                setTimeout(() => {
+                    sq.style.opacity = '0';
+                    setTimeout(() => {
+                        if (squaresContainerRef.current && sq.parentNode === squaresContainerRef.current) {
+                            squaresContainerRef.current.removeChild(sq);
+                        }
+                    }, 1000);
+                }, Math.random() * 800);
+            });
+        }
+        
+        indexRef.current = nextIdx;
+        setCurrentIndex(nextIdx);
+    };
+
     useEffect(() => {
         if (!images || images.length <= 1) return;
         
         const tick = () => {
-            const currentIdx = indexRef.current;
-            const nextIdx = (currentIdx + 1) % images.length;
-            const oldImage = images[currentIdx];
-            
-            if (squaresContainerRef.current) {
-                const squares = [];
-                for (let i = 0; i < 5; i++) {
-                    for (let j = 0; j < 5; j++) {
-                        const sq = document.createElement('div');
-                        sq.className = 'absolute inset-0 bg-center bg-cover bg-no-repeat transition-opacity duration-1000 z-10 filter drop-shadow-[0_20px_30px_rgba(16,185,129,0.3)]';
-                        sq.style.backgroundImage = `url('${oldImage}')`;
-                        const top = i * 20, bottom = 100 - (i + 1) * 20;
-                        const left = j * 20, right = 100 - (j + 1) * 20;
-                        sq.style.clipPath = `inset(${top}% ${right}% ${bottom}% ${left}%)`;
-                        squaresContainerRef.current.appendChild(sq);
-                        squares.push(sq);
-                    }
-                }
-                
-                squaresContainerRef.current.offsetHeight; // Force reflow
-                
-                squares.forEach(sq => {
-                    setTimeout(() => {
-                        sq.style.opacity = '0';
-                        setTimeout(() => {
-                            if (squaresContainerRef.current && sq.parentNode === squaresContainerRef.current) {
-                                squaresContainerRef.current.removeChild(sq);
-                            }
-                        }, 1000);
-                    }, Math.random() * 800);
-                });
-            }
-            
-            indexRef.current = nextIdx;
-            setCurrentIndex(nextIdx);
+            const nextIdx = (indexRef.current + 1) % images.length;
+            triggerTransition(nextIdx);
         };
 
-        const timer = setInterval(tick, 6000);
-        return () => clearInterval(timer);
+        timerRef.current = setInterval(tick, 6000);
+        return () => clearInterval(timerRef.current);
     }, [images]);
 
-    if (!images || images.length === 0) return null;
+    const handleNext = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (timerRef.current) clearInterval(timerRef.current);
+        const nextIdx = (indexRef.current + 1) % images.length;
+        triggerTransition(nextIdx);
+        timerRef.current = setInterval(() => triggerTransition((indexRef.current + 1) % images.length), 6000);
+    };
+
+    const handlePrev = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (timerRef.current) clearInterval(timerRef.current);
+        const nextIdx = (indexRef.current - 1 + images.length) % images.length;
+        triggerTransition(nextIdx);
+        timerRef.current = setInterval(() => triggerTransition((indexRef.current + 1) % images.length), 6000);
+    };
+
     if (!images || images.length === 0) return null;
     if (images.length === 1) {
         return (
@@ -68,12 +91,39 @@ const FadingProductGallery = ({ images, className = "" }) => {
     }
 
     return (
-        <div className={`relative w-full aspect-square bg-white/5 border border-white/10 rounded-3xl overflow-hidden shadow-2xl ${className}`}>
+        <div className={`group relative w-full aspect-square bg-white/5 border border-white/10 rounded-3xl overflow-hidden shadow-2xl ${className}`}>
             <div className="absolute inset-0 bg-center bg-cover bg-no-repeat transition-transform duration-700" style={{ backgroundImage: `url('${images[currentIndex]}')` }}>
                 <div ref={squaresContainerRef} className="absolute inset-0 pointer-events-none" />
             </div>
+            
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20 mix-blend-overlay">
                 <img src="/images/factory-logo.png" alt="Watermark" className="w-1/2 opacity-30 drop-shadow-lg" />
+            </div>
+
+            {/* Navigation Buttons */}
+            <div className="absolute inset-0 flex items-center justify-between px-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-30 pointer-events-none">
+                <button 
+                    onClick={handlePrev} 
+                    className="pointer-events-auto w-12 h-12 rounded-full bg-black/40 border border-white/20 text-white flex items-center justify-center hover:bg-primary hover:text-black hover:scale-110 transition-all backdrop-blur-md"
+                >
+                    <ChevronRight size={24} />
+                </button>
+                <button 
+                    onClick={handleNext} 
+                    className="pointer-events-auto w-12 h-12 rounded-full bg-black/40 border border-white/20 text-white flex items-center justify-center hover:bg-primary hover:text-black hover:scale-110 transition-all backdrop-blur-md"
+                >
+                    <ChevronLeft size={24} />
+                </button>
+            </div>
+
+            {/* Dots */}
+            <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-2 z-30">
+                {images.map((_, idx) => (
+                    <div 
+                        key={idx} 
+                        className={`transition-all duration-500 rounded-full ${idx === currentIndex ? 'w-8 h-2 bg-primary' : 'w-2 h-2 bg-white/40'}`}
+                    />
+                ))}
             </div>
         </div>
     );
