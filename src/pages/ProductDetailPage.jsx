@@ -215,16 +215,38 @@ const ProductDetailPage = () => {
                                         </div>
                                     </div>
                                 )}
+                                {product.specs.density && (
+                                    <div className="flex items-center gap-4">
+                                        <div className="w-12 h-12 rounded-2xl bg-indigo-500/10 flex items-center justify-center text-indigo-500 border border-indigo-500/20">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v20"/><path d="m4 9 8-7 8 7"/><path d="m4 15 8 7 8-7"/></svg>
+                                        </div>
+                                        <div>
+                                            <p className="text-slate-400 text-sm font-bold mb-1">متوسط الكثافة (كجم/م3)</p>
+                                            <p className="text-white font-bold text-lg">{product.specs.density}</p>
+                                        </div>
+                                    </div>
+                                )}
+                                {product.specs.piecesPerM2 && (
+                                    <div className="flex items-center gap-4">
+                                        <div className="w-12 h-12 rounded-2xl bg-pink-500/10 flex items-center justify-center text-pink-500 border border-pink-500/20">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+                                        </div>
+                                        <div>
+                                            <p className="text-slate-400 text-sm font-bold mb-1">عدد القطع لبناء م²</p>
+                                            <p className="text-white font-bold text-lg">{product.specs.piecesPerM2}</p>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
 
-                            {/* Material, Usage, Absorption */}
+                            {/* Material, Usage, Absorption, Standard */}
                             <div className="p-6 space-y-6">
                                 <div className="flex items-start gap-4">
                                     <div className="w-12 h-12 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-500 border border-blue-500/20 shrink-0">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                                     </div>
                                     <div>
-                                        <p className="text-slate-400 text-sm font-bold mb-1">المادة الخام</p>
+                                        <p className="text-slate-400 text-sm font-bold mb-1">المواد الخام</p>
                                         <p className="text-white font-bold">{product.specs.material}</p>
                                     </div>
                                 </div>
@@ -245,6 +267,17 @@ const ProductDetailPage = () => {
                                         <div>
                                             <p className="text-slate-400 text-sm font-bold mb-1">نسبة الامتصاص</p>
                                             <p className="text-white font-bold">{product.specs.absorption}</p>
+                                        </div>
+                                    </div>
+                                )}
+                                {product.specs.standard && (
+                                    <div className="flex items-start gap-4">
+                                        <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 border border-emerald-500/20 shrink-0">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
+                                        </div>
+                                        <div>
+                                            <p className="text-slate-400 text-sm font-bold mb-1">المواصفات القياسية</p>
+                                            <p className="text-white font-bold text-sm" dir="ltr">{product.specs.standard}</p>
                                         </div>
                                     </div>
                                 )}
