@@ -54,7 +54,10 @@ export const productsData = {
             {
                 id: 'interlock-honeycomb',
                 name: 'إنترلوك شبك ديكور',
-                image: '/images/factory-logo.png',
+                images: [
+                    '/images/انتلورك شبك ديكور.jpg',
+                    '/images/انتلورك ديكور.jpg'
+                ],
                 shortDescription: 'نستخدم احدث الماكينات الاوتوماتيكية الالمانية و التى تتميز بمعدل انتاج و جودة عالية يتم خلط المواد الخام ميكانيكياً الرمل النظيف – سن دلوميت - أكاسيد - إضافات. يتم صبها و كبسها هيدروليكيا باستخدام هزازات ميكانيكية وذلك للحصول على رصف وقوة و متانة عالية. يتم استخدام الوان خاصة فى التصنيع طبقاً لرغبة العميل.',
                 specs: {
                     length: '60 سم',
@@ -71,7 +74,13 @@ export const productsData = {
             {
                 id: 'interlock-hex',
                 name: 'إنترلوك سداسي',
-                image: '/images/factory-logo.png',
+                images: [
+                    '/images/انتلورك سداسي 1.jpg',
+                    '/images/انتلورك سداسي2.jpg',
+                    '/images/انترلوك سداسي احمر 8 سم.png',
+                    '/images/انترولك سداسي 8 سم رمادي.png',
+                    '/images/انترولك سداسي اصفر 8 سم.png'
+                ],
                 shortDescription: 'نستخدم احدث الماكينات الاوتوماتيكية الالمانية و التى تتميز بمعدل انتاج و جودة عالية يتم خلط المواد الخام ميكانيكياً الرمل النظيف – سن دلوميت - أكاسيد - إضافات. يتم صبها و كبسها هيدروليكيا باستخدام هزازات ميكانيكية وذلك للحصول على رصف وقوة و متانة عالية. البلاط مزود بشنفرة و فواصل لاعطاء قوة و تماسك اكبر. يتم استخدام الوان خاصة فى التصنيع طبقاً لرغبة العميل.',
                 specs: {
                     length: '24 سم',
@@ -90,7 +99,12 @@ export const productsData = {
             {
                 id: 'interlock-sshape',
                 name: 'إنترلوك حرف S',
-                image: '/images/factory-logo.png',
+                images: [
+                    '/images/انترلوك اس س.jpg',
+                    '/images/انتلورك اس.jpg',
+                    '/images/انتلورك اسسس.jpg',
+                    '/images/انلتروك اس 2.jpg'
+                ],
                 shortDescription: 'نستخدم احدث الماكينات الاوتوماتيكية الالمانية و التى تتميز بمعدل انتاج و جودة عالية يتم خلط المواد الخام ميكانيكياً الرمل النظيف – سن دلوميت أكاسيد - إضافات. يتم صبها و كبسها هيدروليكيا باستخدام هزازات ميكانيكية وذلك للحصول على رصف وقوة و متانة عالية. البلاط مزود بشنفرة و فواصل لاعطاء قوة و تماسك اكبر عند الرصف. يتم استخدام الوان خاصة فى التصنيع طبقاً لرغبة العميل.',
                 specs: {
                     length: '20 سم',
@@ -109,7 +123,19 @@ export const productsData = {
             {
                 id: 'interlock-parquet',
                 name: 'إنترلوك باركيه',
-                image: '/images/factory-logo.png',
+                images: [
+                    '/images/تصميمات انترلوك باريكه.jpg',
+                    '/images/تصميم اتلورك باركية1.jpg',
+                    '/images/انتلورك باريكة 1.jpg',
+                    '/images/انتلورك باريكة 11.jpg',
+                    '/images/انتلورك باركية.jpg',
+                    '/images/انتلورك باركية2.jpg',
+                    '/images/انترلوك باركية 8سم احمر.png',
+                    '/images/انترلوك باريكة 6 سم احمر.png',
+                    '/images/انترلوك باريكة 8 سم اصفر.png',
+                    '/images/انترلوك باريكة 8.png',
+                    '/images/انترولك باريكة 6سم رمادي.png'
+                ],
                 shortDescription: 'نستخدم احدث الماكينات الاوتوماتيكية الالمانية و التى تتميز بمعدل انتاج و جودة عالية يتم خلط المواد الخام ميكانيكياً الرمل النظيف – سن دلوميت - أكاسيد - إضافات. يتم صبها و كبسها هيدروليكيا باستخدام هزازات ميكانيكية وذلك للحصول على رصف وقوة و متانة عالية. يتم استخدام الوان خاصة فى التصنيع طبقاً لرغبة العميل.',
                 specs: {
                     length: '20 سم',
@@ -134,7 +160,7 @@ export const productsData = {
             {
                 id: 'curb-medium',
                 name: 'بلدورة وسط',
-                image: '/images/factory-logo.png',
+                image: '/images/بلدورة وسط.png',
                 shortDescription: 'تتميز البردورة بالمقاومة العالية و دقة الابعاد و سهولة التركيب. يتم استخدام الوان خاصة فى التصنيع طبقاً لرغبة العميل.',
                 specs: {
                     length: '50 سم',
@@ -150,7 +176,7 @@ export const productsData = {
             {
                 id: 'curb-jumbo',
                 name: 'بلدورة عجالي',
-                image: '/images/factory-logo.png',
+                image: '/images/بلودورة عجالي.png',
                 shortDescription: 'نستخدم احدث الماكينات الاوتوماتيكية الالمانية و التى تتميز بمعدل انتاج و جودة عالية يتم خلط المواد الخام ميكانيكياً. يتم صبها و كبسها هيدروليكيا باستخدام هزازات ميكانيكية للحصول على متانة عالية.',
                 specs: {
                     length: '50 سم',
@@ -188,7 +214,10 @@ export const productsData = {
             {
                 id: 'block-40-20-20',
                 name: 'بلوك أسمنتي 40×20×20',
-                image: '/images/factory-logo.png',
+                images: [
+                    '/images/بلوك اسمنتي مفرغ.png',
+                    '/images/بولك اسمنتي مفرغ 1.png'
+                ],
                 shortDescription: 'المقاس القياسي للبلوك الأسمنتي، يستخدم في بناء الحوائط الخارجية الرئيسية.',
                 specs: {
                     length: '40 سم',
@@ -204,7 +233,7 @@ export const productsData = {
             {
                 id: 'block-40-20-15',
                 name: 'بلوك أسمنتي 40×20×15',
-                image: '/images/factory-logo.png',
+                image: '/images/بلوك اسمنتي 14.jpg',
                 shortDescription: 'بلوك متوسط العرض، مناسب للقواطع الداخلية والحوائط غير الحاملة.',
                 specs: {
                     length: '40 سم',
@@ -220,7 +249,12 @@ export const productsData = {
             {
                 id: 'block-40-20-12',
                 name: 'بلوك أسمنتي 40×20×12',
-                image: '/images/factory-logo.png',
+                images: [
+                    '/images/بلوك 12 اسمنتي مفرغ.png',
+                    '/images/بلوك 12 مفرغ.png',
+                    '/images/بلوك اسمنتي 12.jpg',
+                    '/images/بلوك اسمنتي دبل مفرغ 12.png'
+                ],
                 shortDescription: 'بلوك نحيف للقواطع الداخلية لتوفير مساحة البناء.',
                 specs: {
                     length: '40 سم',
@@ -242,7 +276,7 @@ export const productsData = {
             {
                 id: 'tile-20-20',
                 name: 'بلاط أسمنتي 20×20',
-                image: '/images/factory-logo.png',
+                image: '/images/بلاط موزايكو جكرارة.png',
                 shortDescription: 'بلاط أسمنتي قياسي، متوفر سادة أو بكسر رخام خفيف.',
                 specs: {
                     length: '20 سم',
@@ -258,7 +292,7 @@ export const productsData = {
             {
                 id: 'tile-30-30',
                 name: 'بلاط أسمنتي 30×30',
-                image: '/images/factory-logo.png',
+                image: '/images/بلاط موزايكو كرارة.png',
                 shortDescription: 'بلاط مقاس كبير للساحات والممرات الواسعة، يتحمل الاستخدام الشاق.',
                 specs: {
                     length: '30 سم',
