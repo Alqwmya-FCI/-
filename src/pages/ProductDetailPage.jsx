@@ -4,6 +4,70 @@ import { productsData } from '../data/productsData';
 import InteractiveGrid from '../components/InteractiveGrid';
 import { ChevronRight, ArrowLeft, Ruler, Scale, Box, Info } from 'lucide-react';
 
+const FadingProductGallery = ({ images, className = "" }) => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const indexRef = useRef(0);
+    const squaresContainerRef = useRef(null);
+    
+    useEffect(() => {
+        if (!images || images.length <= 1) return;
+        
+        const tick = () => {
+            const currentIdx = indexRef.current;
+            const nextIdx = (currentIdx + 1) % images.length;
+            const oldImage = images[currentIdx];
+            
+            if (squaresContainerRef.current) {
+                const squares = [];
+                for (let i = 0; i < 5; i++) {
+                    for (let j = 0; j < 5; j++) {
+                        const sq = document.createElement('div');
+                        sq.className = 'absolute inset-0 bg-center bg-contain bg-no-repeat transition-opacity duration-500 z-10 filter drop-shadow-[0_20px_30px_rgba(16,185,129,0.3)]';
+                        sq.style.backgroundImage = `url('${oldImage}')`;
+                        const top = i * 20, bottom = 100 - (i + 1) * 20;
+                        const left = j * 20, right = 100 - (j + 1) * 20;
+                        sq.style.clipPath = `inset(${top}% ${right}% ${bottom}% ${left}%)`;
+                        squaresContainerRef.current.appendChild(sq);
+                        squares.push(sq);
+                    }
+                }
+                
+                squaresContainerRef.current.offsetHeight; // Force reflow
+                
+                squares.forEach(sq => {
+                    setTimeout(() => {
+                        sq.style.opacity = '0';
+                        setTimeout(() => {
+                            if (squaresContainerRef.current && sq.parentNode === squaresContainerRef.current) {
+                                squaresContainerRef.current.removeChild(sq);
+                            }
+                        }, 500);
+                    }, Math.random() * 400);
+                });
+            }
+            
+            indexRef.current = nextIdx;
+            setCurrentIndex(nextIdx);
+        };
+
+        const timer = setInterval(tick, 4000);
+        return () => clearInterval(timer);
+    }, [images]);
+
+    if (!images || images.length === 0) return null;
+    if (images.length === 1) {
+        return <img src={images[0]} alt="Product" className={`w-full h-full object-contain filter drop-shadow-[0_20px_30px_rgba(16,185,129,0.3)] ${className}`} />;
+    }
+
+    return (
+        <div className={`relative w-full h-full ${className}`}>
+            <div className="absolute inset-0 bg-center bg-contain bg-no-repeat transition-transform duration-700 filter drop-shadow-[0_20px_30px_rgba(16,185,129,0.3)]" style={{ backgroundImage: `url('${images[currentIndex]}')` }}>
+                <div ref={squaresContainerRef} className="absolute inset-0 pointer-events-none" />
+            </div>
+        </div>
+    );
+};
+
 const ProductDetailPage = () => {
     const { categoryId, productId } = useParams();
     const navigate = useNavigate();
@@ -74,11 +138,7 @@ const ProductDetailPage = () => {
                             className="relative w-full h-full flex items-center justify-center will-change-transform drop-shadow-[0_40px_50px_rgba(0,0,0,0.8)]"
                             style={transformStyle}
                         >
-                            <img 
-                                src={product.image} 
-                                alt={product.name} 
-                                className="w-full h-full object-contain filter drop-shadow-[0_20px_30px_rgba(16,185,129,0.3)]"
-                            />
+                            <FadingProductGallery images={product.images || (product.image ? [product.image] : [])} />
                         </div>
                     </div>
                 </div>

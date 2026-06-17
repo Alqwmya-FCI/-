@@ -6,7 +6,13 @@ export const productsData = {
             {
                 id: 'solid-25',
                 name: 'طوب أسمنتي مصمت مقاس 25',
-                image: '/images/طوب اسمنتي مصمط 25.png',
+                images: [
+                    '/images/طوب اسمنيتي مصمط 25 1.png',
+                    '/images/طوب اسمنتي مصمط.png',
+                    '/images/IMG-20260113-WA0062.jpg',
+                    '/images/IMG-20260113-WA0055.jpg',
+                    '/images/IMG-20250627-WA0016.jpg'
+                ],
                 shortDescription: 'مطابق للمواصفة القياسية المصرية (ES 1292)، مثالي للحوائط الحاملة والمداميك الأولى.',
                 specs: {
                     length: '25 سم',
