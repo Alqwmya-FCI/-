@@ -475,6 +475,7 @@ const HomePage = () => {
                             images={productImages.card2}
                             label={t.card2}
                             offset={1000}
+                            to="/products/interlock"
                         />
 
                         {/* Card 3 — Medium (4 cols) */}
@@ -483,6 +484,7 @@ const HomePage = () => {
                             images={productImages.card3}
                             label={t.card3}
                             offset={2000}
+                            to="/products/curbs"
                         />
 
                         {/* Card 4 — Large (8 cols) */}
@@ -491,6 +493,7 @@ const HomePage = () => {
                             images={productImages.card4}
                             label={t.card4}
                             offset={3000}
+                            to="/products/blocks"
                         />
 
                         {/* Card 5 — Full Width (12 cols) */}
@@ -498,6 +501,7 @@ const HomePage = () => {
                             className="col-span-12 min-h-[200px] md:min-h-[350px] border border-outline-variant"
                             images={productImages.card5}
                             label={t.card5}
+                            to="/products/tiles"
                         />
                     </div>
                 </div>
