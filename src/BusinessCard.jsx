@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Phone, Briefcase, Share2, Facebook, Building2, Save, MapPin, User, Instagram } from 'lucide-react';
-
+import FinancialHub from './components/FinancialHub';
 const BusinessCard = ({ person }) => {
     const [copied, setCopied] = useState(false);
 
@@ -20,6 +20,8 @@ const BusinessCard = ({ person }) => {
             setTimeout(() => setCopied(false), 2000);
         }
     };
+
+    const [showFinancialHub, setShowFinancialHub] = useState(false);
 
     const generateVCard = () => {
         const phoneNumbers = person.phones.map(phone => `TEL;TYPE=CELL,VOICE:${phone}`).join('\n');
@@ -47,6 +49,7 @@ END:VCARD`;
     };
 
     return (
+        <>
         <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl overflow-hidden border border-slate-200">
             <div className="h-32 bg-slate-800 relative">
                 <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/concrete-wall.png')]"></div>
@@ -93,6 +96,22 @@ END:VCARD`;
                 </div>
 
                 <div className="space-y-3 mb-8">
+                    {person.financialHub && (
+                        <button onClick={() => setShowFinancialHub(true)} className="w-full flex items-center justify-between p-4 bg-black border border-black rounded-xl hover:bg-slate-900 hover:shadow-md transition group text-right">
+                            <div className="flex items-center gap-3">
+                                <div className="bg-orange-500 p-2 rounded-full text-white shadow-lg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+                                </div>
+                                <div>
+                                    <p className="font-black text-white text-sm">ملخص الحسابات البنكية الموحد</p>
+                                    <p className="text-[10px] text-orange-400 font-black">بنوك - انستا باي - محافظ</p>
+                                </div>
+                            </div>
+                            <div className="text-orange-300 group-hover:text-orange-500">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6" /></svg>
+                            </div>
+                        </button>
+                    )}
                     {person.whatsapp && (
                         <a href={`https://wa.me/${person.whatsapp.replace('+', '')}`} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between p-4 bg-white border border-slate-200 rounded-xl hover:border-green-500 hover:shadow-md transition group">
                             <div className="flex items-center gap-3">
@@ -197,13 +216,15 @@ END:VCARD`;
                         ))}
                     </div>
 
-                    <p className="text-slate-400 text-[10px] mt-4">
+                    <p className="text-slate-400 text-[10px] mt-4 font-bold">
                         جميع الحقوق محفوظة © مصنع القومية
                     </p>
                 </div>
 
             </div>
         </div>
+        <FinancialHub isOpen={showFinancialHub} onClose={() => setShowFinancialHub(false)} />
+        </>
     );
 };
 

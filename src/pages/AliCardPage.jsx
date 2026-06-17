@@ -9,10 +9,11 @@ const AliCardPage = () => {
         bio: 'مصنع القومية للصناعات الأسمنتية. جودة، دقة، والتزام في التوريد لكافة المشاريع.',
         phones: ['+201283191597', '+201009763656', '+201110006097'],
         whatsapp: '+201283191597',
-        personalFacebook: 'https://www.facebook.com/ali.abd.elshafy',
+        personalFacebook: 'https://www.facebook.com/share/1YSq96V2M7/',
         factoryFacebook: 'https://www.facebook.com/Alslamcompany/',
         location: 'https://maps.app.goo.gl/QneojizzF3fJqKrz6',
         image: '/images/ali.jpg',
+        financialHub: true,
         vcfName: 'Ali_Abdelshafy.vcf'
     };
 
