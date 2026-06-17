@@ -52,7 +52,7 @@ const FinancialHub = ({ isOpen, onClose }) => {
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-4">
                                     <div className="w-14 h-14 bg-white rounded-2xl shadow-sm flex items-center justify-center p-2">
-                                        <img src="/انستا.png" alt="InstaPay" className="w-full h-full object-contain" onError={(e) => e.target.style.display='none'} />
+                                        <img src="/images/انستا.png" alt="InstaPay" className="w-full h-full object-contain" onError={(e) => e.target.style.display='none'} />
                                         <span className="font-black text-xs text-[#8A6C9D]" style={{display: "none"}}>InstaPay</span>
                                     </div>
                                     <div>
@@ -71,7 +71,7 @@ const FinancialHub = ({ isOpen, onClose }) => {
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-4">
                                     <div className="w-14 h-14 bg-white rounded-2xl shadow-sm flex items-center justify-center p-2">
-                                        <img src="/فودافن.png" alt="Vodafone Cash" className="w-full h-full object-contain" onError={(e) => e.target.style.display='none'} />
+                                        <img src="/images/فودافن.png" alt="Vodafone Cash" className="w-full h-full object-contain" onError={(e) => e.target.style.display='none'} />
                                     </div>
                                     <div>
                                         <h3 className="font-black text-slate-900">Vodafone Cash</h3>
@@ -94,7 +94,7 @@ const FinancialHub = ({ isOpen, onClose }) => {
                             <button onClick={() => toggleBank('misr')} className="w-full flex items-center justify-between p-5 hover:bg-slate-50 transition-colors">
                                 <div className="flex items-center gap-4">
                                     <div className="w-10 h-10 bg-slate-50 rounded-xl flex items-center justify-center p-2">
-                                        <img src="/مصر.png" alt="بنك مصر" className="w-full h-full object-contain" onError={(e) => e.target.style.display='none'} />
+                                        <img src="/images/مصر.png" alt="بنك مصر" className="w-full h-full object-contain" onError={(e) => e.target.style.display='none'} />
                                     </div>
                                     <span className="font-black text-slate-900">بنك مصر</span>
                                 </div>
@@ -139,7 +139,7 @@ const FinancialHub = ({ isOpen, onClose }) => {
                             <button onClick={() => toggleBank('nbe')} className="w-full flex items-center justify-between p-5 hover:bg-slate-50 transition-colors">
                                 <div className="flex items-center gap-4">
                                     <div className="w-10 h-10 bg-slate-50 rounded-xl flex items-center justify-center p-2">
-                                        <img src="/الاهلي.png" alt="البنك الأهلي" className="w-full h-full object-contain" onError={(e) => e.target.style.display='none'} />
+                                        <img src="/images/الاهلي.png" alt="البنك الأهلي" className="w-full h-full object-contain" onError={(e) => e.target.style.display='none'} />
                                     </div>
                                     <span className="font-black text-slate-900">البنك الأهلي المصري</span>
                                 </div>
@@ -173,7 +173,7 @@ const FinancialHub = ({ isOpen, onClose }) => {
                             <button onClick={() => toggleBank('alex')} className="w-full flex items-center justify-between p-5 hover:bg-slate-50 transition-colors">
                                 <div className="flex items-center gap-4">
                                     <div className="w-10 h-10 bg-slate-50 rounded-xl flex items-center justify-center p-2">
-                                        <img src="/الاسكندريه.png" alt="بنك الإسكندرية" className="w-full h-full object-contain" onError={(e) => e.target.style.display='none'} />
+                                        <img src="/images/الاسكندريه.png" alt="بنك الإسكندرية" className="w-full h-full object-contain" onError={(e) => e.target.style.display='none'} />
                                     </div>
                                     <span className="font-black text-slate-900">بنك الإسكندرية</span>
                                 </div>
