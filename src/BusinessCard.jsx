@@ -4,10 +4,21 @@ import { Phone, Briefcase, Share2, Facebook, Building2, Save, MapPin, User, Inst
 const BusinessCard = ({ person }) => {
     const [copied, setCopied] = useState(false);
 
-    const handleShare = () => {
-        navigator.clipboard.writeText(window.location.href);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
+    const handleShare = async () => {
+        if (navigator.share) {
+            try {
+                await navigator.share({
+                    title: person.name,
+                    url: window.location.href
+                });
+            } catch (err) {
+                console.error("Share failed", err);
+            }
+        } else {
+            navigator.clipboard.writeText(window.location.href);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        }
     };
 
     const generateVCard = () => {
