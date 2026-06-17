@@ -43,12 +43,12 @@ const ProductsCategoryPage = () => {
                             style={{ animationDelay: `${idx * 100}ms` }}
                         >
                             {/* Product Image Area */}
-                            <div className="relative h-64 md:h-80 w-full bg-gradient-to-b from-white/5 to-transparent p-8 flex items-center justify-center overflow-hidden">
+                            <div className="relative h-64 md:h-80 w-full bg-white/5 flex items-center justify-center overflow-hidden">
                                 <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-3xl rounded-full scale-150 mix-blend-screen" />
                                 <img 
                                     src={product.image || product.images[0]} 
                                     alt={product.name} 
-                                    className="w-full h-full object-contain filter drop-shadow-2xl group-hover:scale-110 transition-transform duration-700 relative z-10"
+                                    className="w-full h-full object-cover filter drop-shadow-2xl group-hover:scale-110 transition-transform duration-700 relative z-10"
                                 />
                             </div>
                             

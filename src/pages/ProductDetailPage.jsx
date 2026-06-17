@@ -165,9 +165,14 @@ const ProductDetailPage = () => {
                         {product.name}
                     </h1>
                     
-                    <p className="text-xl text-slate-300 mb-12 leading-relaxed font-light border-r-4 border-primary pr-6">
-                        {product.shortDescription}
-                    </p>
+                    <div className="mb-12 border-r-4 border-primary pr-6">
+                        <p className="text-xl text-slate-300 mb-4 leading-relaxed font-bold">
+                            {product.shortDescription}
+                        </p>
+                        <p className="text-base text-slate-400 leading-relaxed font-light whitespace-pre-line">
+                            {category.description}
+                        </p>
+                    </div>
 
                     {/* Chic Specs Table */}
                     <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2rem] overflow-hidden shadow-2xl mb-12">
