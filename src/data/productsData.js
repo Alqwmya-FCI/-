@@ -249,9 +249,9 @@ export const productsData = {
             {
                 id: 'block-10',
                 name: 'بلوك أسمنتي مقاس 10',
-                image: '/images/بلوك اسمنتي مفرغ.png',
+                image: '/images/بلوك 10 مفرغ.png',
                 images: [
-                    '/images/بلوك اسمنتي مفرغ.png',
+                    '/images/بلوك 10 مفرغ.png',
                     '/images/بولك اسمنتي مفرغ 1.png'
                 ],
                 shortDescription: 'بلوك أسمنتي مفرغ مقاس 10، مناسب للقواطع الداخلية النحيفة لتوفير مساحة البناء.',
@@ -269,10 +269,10 @@ export const productsData = {
             {
                 id: 'block-12',
                 name: 'بلوك أسمنتي مقاس 12',
-                image: '/images/بلوك 12 اسمنتي مفرغ.png',
+                image: '/images/بلوك 12 مفرغ.png',
                 images: [
-                    '/images/بلوك 12 اسمنتي مفرغ.png',
                     '/images/بلوك 12 مفرغ.png',
+                    '/images/بلوك 12 اسمنتي مفرغ.png',
                     '/images/بلوك اسمنتي 12.jpg'
                 ],
                 shortDescription: 'بلوك أسمنتي مفرغ مقاس 12، الخيار الأمثل لتقسيم الغرف والحمامات والمطابخ.',
@@ -290,8 +290,9 @@ export const productsData = {
             {
                 id: 'block-12-double',
                 name: 'بلوك أسمنتي دبل مفرغ مقاس 12',
-                image: '/images/بلوك اسمنتي دبل مفرغ 12.png',
+                image: '/images/بلوك دبل مفرغ.png',
                 images: [
+                    '/images/بلوك دبل مفرغ.png',
                     '/images/بلوك اسمنتي دبل مفرغ 12.png',
                     '/images/بلوك 12 اسمنتي مفرغ.png'
                 ],
@@ -310,8 +311,9 @@ export const productsData = {
             {
                 id: 'block-15',
                 name: 'بلوك أسمنتي مقاس 15',
-                image: '/images/بولك اسمنتي مفرغ 1.png',
+                image: '/images/بلوك 15 مفرغ.png',
                 images: [
+                    '/images/بلوك 15 مفرغ.png',
                     '/images/بولك اسمنتي مفرغ 1.png',
                     '/images/بلوك اسمنتي مفرغ.png'
                 ],
@@ -330,8 +332,9 @@ export const productsData = {
             {
                 id: 'block-20',
                 name: 'بلوك أسمنتي مقاس 20',
-                image: '/images/بلوك اسمنتي مفرغ.png',
+                image: '/images/بلوك  20 مفرغ.png',
                 images: [
+                    '/images/بلوك  20 مفرغ.png',
                     '/images/بلوك اسمنتي مفرغ.png',
                     '/images/بولك اسمنتي مفرغ 1.png'
                 ],
@@ -350,8 +353,9 @@ export const productsData = {
             {
                 id: 'block-25',
                 name: 'بلوك أسمنتي مقاس 25',
-                image: '/images/بلوك 25 استي مفرغ.png',
+                image: '/images/بلوك 25  مفرع.png',
                 images: [
+                    '/images/بلوك 25  مفرع.png',
                     '/images/بلوك 25 استي مفرغ.png',
                     '/images/بلوك اسمنتي   25.jpg',
                     '/images/بلوك اسمنتي 25.jpg'
