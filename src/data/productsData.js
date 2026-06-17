@@ -226,7 +226,8 @@ export const productsData = {
             {
                 id: 'curb-garden',
                 name: 'بلدورة جناين',
-                image: '/images/factory-logo.png',
+                image: '/images/بلودرة جناين.png',
+                images: ['/images/بلودرة جناين.png'],
                 shortDescription: 'تتميز البردورة بالمقاومة العالية و دقة الابعاد و سهولة التركيب. تستخدم في تحديد أحواض الزهور والحدائق. يتم استخدام الوان خاصة فى التصنيع طبقاً لرغبة العميل.',
                 specs: {
                     length: '50 سم',
