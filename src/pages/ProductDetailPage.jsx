@@ -221,7 +221,7 @@ const ProductDetailPage = () => {
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v20"/><path d="m4 9 8-7 8 7"/><path d="m4 15 8 7 8-7"/></svg>
                                         </div>
                                         <div>
-                                            <p className="text-slate-400 text-sm font-bold mb-1">متوسط الكثافة (كجم/م3)</p>
+                                            <p className="text-slate-400 text-sm font-bold mb-1">متوسط الكثافة (كجم/م³)</p>
                                             <p className="text-white font-bold text-lg">{product.specs.density}</p>
                                         </div>
                                     </div>
@@ -232,8 +232,19 @@ const ProductDetailPage = () => {
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
                                         </div>
                                         <div>
-                                            <p className="text-slate-400 text-sm font-bold mb-1">عدد القطع لبناء م²</p>
+                                            <p className="text-slate-400 text-sm font-bold mb-1">معدل الاستهلاك</p>
                                             <p className="text-white font-bold text-lg">{product.specs.piecesPerM2}</p>
+                                        </div>
+                                    </div>
+                                )}
+                                {product.specs.areaPerPiece && (
+                                    <div className="flex items-center gap-4">
+                                        <div className="w-12 h-12 rounded-2xl bg-amber-500/10 flex items-center justify-center text-amber-500 border border-amber-500/20">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+                                        </div>
+                                        <div>
+                                            <p className="text-slate-400 text-sm font-bold mb-1">مساحة القطعة (سم²)</p>
+                                            <p className="text-white font-bold text-lg">{product.specs.areaPerPiece}</p>
                                         </div>
                                     </div>
                                 )}
