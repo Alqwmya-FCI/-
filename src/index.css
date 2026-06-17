@@ -176,3 +176,54 @@ body {
     
     --color-outline-variant: #475569;
 }
+
+img,
+video,
+canvas {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    pointer-events: none;
+}
+
+a,
+button,
+[role="button"],
+input,
+select,
+textarea,
+label,
+[tabindex] {
+    pointer-events: auto;
+}
+
+* {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+p,
+h1, h2, h3, h4, h5, h6,
+span,
+li,
+td,
+th {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    user-select: text;
+}
+
+@media print {
+    body * {
+        display: none !important;
+    }
+    body::after {
+        display: block !important;
+        content: 'طباعة هذه الصفحة غير مسموح بها.';
+        text-align: center;
+        font-size: 2rem;
+        margin-top: 40vh;
+    }
+}

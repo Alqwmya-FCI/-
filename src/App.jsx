@@ -5,9 +5,11 @@ import AliCardPage from './pages/AliCardPage';
 import HusseinCardPage from './pages/HusseinCardPage';
 import ProductsCategoryPage from './pages/ProductsCategoryPage';
 import ProductDetailPage from './pages/ProductDetailPage';
+import { useSecurityShield } from './hooks/useSecurityShield';
 import './App.css';
 
 function App() {
+  useSecurityShield();
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
