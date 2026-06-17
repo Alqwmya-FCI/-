@@ -128,9 +128,20 @@ const ProductDetailPage = () => {
                                         <p className="text-white font-bold text-lg">{product.specs.weight}</p>
                                     </div>
                                 </div>
+                                {product.specs.strength && (
+                                    <div className="flex items-center gap-4">
+                                        <div className="w-12 h-12 rounded-2xl bg-red-500/10 flex items-center justify-center text-red-500 border border-red-500/20">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m14.5 2-5 5"/><path d="m4 12 5-5"/><path d="M20 18v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2"/><path d="M12 12v6"/></svg>
+                                        </div>
+                                        <div>
+                                            <p className="text-slate-400 text-sm font-bold mb-1">إجهاد الكسر</p>
+                                            <p className="text-white font-bold text-lg">{product.specs.strength}</p>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
 
-                            {/* Material & Usage */}
+                            {/* Material, Usage, Absorption */}
                             <div className="p-6 space-y-6">
                                 <div className="flex items-start gap-4">
                                     <div className="w-12 h-12 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-500 border border-blue-500/20 shrink-0">
@@ -150,6 +161,17 @@ const ProductDetailPage = () => {
                                         <p className="text-white font-bold">{product.specs.usage}</p>
                                     </div>
                                 </div>
+                                {product.specs.absorption && (
+                                    <div className="flex items-start gap-4">
+                                        <div className="w-12 h-12 rounded-2xl bg-teal-500/10 flex items-center justify-center text-teal-500 border border-teal-500/20 shrink-0">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+                                        </div>
+                                        <div>
+                                            <p className="text-slate-400 text-sm font-bold mb-1">نسبة الامتصاص</p>
+                                            <p className="text-white font-bold">{product.specs.absorption}</p>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
