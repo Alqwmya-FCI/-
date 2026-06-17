@@ -29,7 +29,6 @@ const ProductsCategoryPage = () => {
                     العودة للرئيسية
                 </Link>
                 <h1 className="text-4xl md:text-6xl font-black text-white mb-4 tracking-tight">{category.title}</h1>
-                <p className="text-slate-400 text-lg md:text-xl max-w-2xl leading-relaxed">{category.description}</p>
             </div>
 
             {/* Products Grid */}
