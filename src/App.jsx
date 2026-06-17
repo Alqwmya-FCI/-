@@ -3,6 +3,8 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import AliCardPage from './pages/AliCardPage';
 import HusseinCardPage from './pages/HusseinCardPage';
+import ProductsCategoryPage from './pages/ProductsCategoryPage';
+import ProductDetailPage from './pages/ProductDetailPage';
 import './App.css';
 
 function App() {
@@ -10,6 +12,10 @@ function App() {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/-" element={<Navigate to="/" replace />} />
+      
+      {/* Product Routes */}
+      <Route path="/products/:categoryId" element={<ProductsCategoryPage />} />
+      <Route path="/products/:categoryId/:productId" element={<ProductDetailPage />} />
       
       {/* Route for Ali */}
       <Route path="/ali" element={<AliCardPage />} />

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-
+import { Link } from 'react-router-dom';
 const heroSliderImages = [
     '/images/اساسي2.jpg',
     '/images/اساسي3.jpg',
@@ -105,7 +105,7 @@ const translations = {
     }
 };
 
-const FadingSquareCard = ({ images, label, className, offset = 0 }) => {
+const FadingSquareCard = ({ images, label, className, offset = 0, to }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const indexRef = useRef(0);
     const squaresContainerRef = useRef(null);
@@ -164,8 +164,8 @@ const FadingSquareCard = ({ images, label, className, offset = 0 }) => {
         };
     }, [images, offset]);
 
-    return (
-        <div className={`group relative reveal overflow-hidden flex flex-col justify-end rounded-sm ${className}`}>
+    const cardContent = (
+        <div className={`group relative reveal overflow-hidden flex flex-col justify-end rounded-sm w-full h-full ${className}`}>
             <div className="absolute inset-0 bg-center bg-cover transition-transform duration-700 group-hover:scale-105" style={{ backgroundImage: `url('${images[currentIndex]}')` }}>
                 <div ref={squaresContainerRef} className="absolute inset-0 pointer-events-none" />
             </div>
@@ -175,6 +175,16 @@ const FadingSquareCard = ({ images, label, className, offset = 0 }) => {
             </div>
         </div>
     );
+
+    if (to) {
+        return (
+            <Link to={to} className={`block ${className}`} style={{ textDecoration: 'none' }}>
+                {cardContent}
+            </Link>
+        );
+    }
+
+    return cardContent;
 };
 
 const HomePage = () => {
@@ -456,6 +466,7 @@ const HomePage = () => {
                             images={productImages.card1}
                             label={t.card1}
                             offset={0}
+                            to="/products/bricks"
                         />
 
                         {/* Card 2 — Medium (4 cols) */}
