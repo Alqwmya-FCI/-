@@ -39,11 +39,11 @@ const translations = {
         contactUs: 'تواصل معنا',
         stat1Label: 'سنة خبرة',
         stat2Label: 'طن إنتاج شهري',
-        stat3Label: 'عميل راضي',
+        stat3Label: 'عملاء',
         corpProfile: 'Corporate Profile',
         aboutTitle: 'عن المصنع',
         aboutSub: 'منذ 1996: خبرة عريقة في صناعة المنتجات الأسمنتية',
-        aboutDesc: 'مصنع القومية للصناعات الأسمنتية تأسس عام 1996، ويُعد من المصانع الرائدة في مجال إنتاج المنتجات الخرسانية عالية الجودة. نتخصص في صناعة الإنترلوك الآلي بأنواعه، الطوب الأسمنتي والبلوك، البردورات، وبلاط المزايكو.',
+        aboutDesc: 'مصنع القومية للصناعات الأسمنتية تأسس عام 1996، ويُعد من المصانع الرائدة في مجال إنتاج المنتجات الأسمنتية عالية الجودة. نتخصص في صناعة الطوب والبلوك الأسمنتي بجميع أنواعه ومقاساته، الإنترلوك الآلي بأنواعه، البردورات، وبلاط المزايكو.',
         f1: 'مصنع متخصص ومتطور',
         f2: 'معدات آلية حديثة',
         f3Title: 'جودة مطابقة للمواصفات',
@@ -293,8 +293,8 @@ const HomePage = () => {
             <nav className="bg-background/90 backdrop-blur-xl sticky top-0 z-50 border-b border-outline-variant/50 shadow-sm">
                 <div className="flex justify-between items-center w-full px-6 md:px-12 py-4 max-w-screen-xl mx-auto">
                     <a className="font-bold text-xl tracking-tight text-on-surface flex items-center gap-3 group" href="#">
-                        <div className="w-8 h-8 bg-primary rounded-sm flex items-center justify-center group-hover:shadow-[0_0_15px_rgba(16,185,129,0.3)] transition-shadow">
-                            <span className="material-symbols-outlined text-background text-[20px]" style={{ fontVariationSettings: "'FILL' 1" }}>precision_manufacturing</span>
+                        <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center group-hover:shadow-[0_0_15px_rgba(16,185,129,0.3)] transition-shadow overflow-hidden">
+                            <img src="/images/logo.png" alt="Logo" className="w-full h-full object-contain p-1" />
                         </div>
                         {t.title}
                     </a>
@@ -346,11 +346,7 @@ const HomePage = () => {
 
                 <div className="max-w-screen-xl mx-auto px-6 md:px-12 w-full relative z-20 grid grid-cols-1 lg:grid-cols-12 gap-8">
                     <div className="lg:col-span-8 flex flex-col justify-center">
-                        <div className="flex items-center gap-3 mb-8 w-fit bg-surface/80 border border-outline-variant py-2 px-4 rounded-sm backdrop-blur-md shadow-sm reveal">
-                            <span className="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
-                            <span className="text-xs font-bold text-primary uppercase tracking-widest">{t.sysGrade}</span>
-                        </div>
-                        <h1 className="text-5xl md:text-7xl font-black text-on-surface mb-6 leading-tight reveal">
+                        <h1 className="text-5xl md:text-7xl font-black text-on-surface mb-6 leading-tight reveal mt-4">
                             {t.heroTitle1}<br />
                             <span className="text-primary">{t.heroTitle2}</span>
                         </h1>
@@ -368,7 +364,7 @@ const HomePage = () => {
                                 <span className="relative z-10">{t.exploreProd}</span>
                                 <span className="material-symbols-outlined relative z-10 group-hover:translate-x-1 transition-transform" style={{ transform: isAr ? 'scaleX(-1)' : 'scaleX(1)' }}>arrow_forward</span>
                             </a>
-                            <a className="border border-outline-variant text-on-surface text-lg px-8 py-4 rounded-sm hover:border-primary hover:text-primary transition-all flex items-center gap-3 group bg-surface/50 backdrop-blur-sm font-bold" href="#">
+                            <a className="border border-outline-variant text-on-surface text-lg px-8 py-4 rounded-sm hover:border-primary hover:text-primary transition-all flex items-center gap-3 group bg-surface/50 backdrop-blur-sm font-bold" href="#contact">
                                 <span>{t.contactUs}</span>
                                 <span className="material-symbols-outlined opacity-0 group-hover:opacity-100 transition-all text-primary">chat_bubble</span>
                             </a>
@@ -386,19 +382,19 @@ const HomePage = () => {
             </section>
 
             {/* ═══════════════ STATISTICS ═══════════════ */}
-            <section className="py-16 bg-surface border-b border-outline-variant/50">
-                <div className="max-w-screen-xl mx-auto px-6 md:px-12">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-outline-variant rounded-sm overflow-hidden border border-outline-variant shadow-sm">
+            <section className="py-8 bg-surface border-b border-outline-variant/50">
+                <div className="max-w-screen-xl mx-auto px-4 md:px-12">
+                    <div className="grid grid-cols-3 gap-px bg-outline-variant rounded-sm overflow-hidden border border-outline-variant shadow-sm">
                         {[
-                            { icon: 'history', value: '٢٨', label: t.stat1Label },
-                            { icon: 'factory', value: '+٥٠٠٠', label: t.stat2Label },
-                            { icon: 'handshake', value: '+١٥٠', label: t.stat3Label },
+                            { icon: 'history', value: '٢٨+', label: t.stat1Label },
+                            { icon: 'factory', value: '+٢٠,٠٠٠', label: t.stat2Label },
+                            { icon: 'handshake', value: '+١٥٠٠', label: t.stat3Label },
                         ].map(stat => (
-                            <div key={stat.label} className="bg-surface-container-lowest p-10 flex flex-col items-center justify-center text-center group hover:bg-surface-container transition-all duration-300 relative overflow-hidden hover:scale-105 hover:shadow-xl hover:z-10 cursor-default">
+                            <div key={stat.label} className="bg-surface-container-lowest p-4 md:p-6 flex flex-col items-center justify-center text-center group hover:bg-surface-container transition-all duration-300 relative overflow-hidden hover:shadow-lg hover:z-10 cursor-default">
                                 <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                                <span className="material-symbols-outlined text-[48px] text-primary/70 mb-4 group-hover:text-primary transition-colors group-hover:scale-110 duration-300">{stat.icon}</span>
-                                <h3 className="text-5xl font-black text-on-surface mb-2">{stat.value}</h3>
-                                <p className="text-xl text-on-surface-variant">{stat.label}</p>
+                                <span className="material-symbols-outlined text-[24px] md:text-[32px] text-primary/70 mb-2 group-hover:text-primary transition-colors group-hover:scale-110 duration-300">{stat.icon}</span>
+                                <h3 className="text-xl md:text-3xl font-black text-on-surface mb-1">{stat.value}</h3>
+                                <p className="text-[10px] md:text-sm text-on-surface-variant font-bold">{stat.label}</p>
                             </div>
                         ))}
                     </div>
