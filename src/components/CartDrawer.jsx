@@ -4,21 +4,32 @@ import { useCart } from '../context/CartContext';
 
 const HUSSEIN_WHATSAPP = '201286084444';
 
-function buildWhatsAppMessage(items) {
-    if (items.length === 0) return '';
-    let msg = 'مرحباً، أريد الاستفسار عن تسعير الطلب التالي:\n\n';
-    items.forEach((item, i) => {
-        msg += `${i + 1}. ${item.productName}`;
-        if (item.color) msg += ` - اللون: ${item.color}`;
-        if (item.height) msg += ` - الارتفاع (سمك): ${item.height} سم`;
-        msg += ` - الكمية: ${item.quantity.toLocaleString('ar-EG')} ${item.unit}\n`;
-    });
-    msg += '\nشكراً';
-    return encodeURIComponent(msg);
-}
-
 export default function CartDrawer() {
     const { items, removeItem, clearCart, isOpen, setIsOpen, totalCount } = useCart();
+    const [deliveryMethod, setDeliveryMethod] = React.useState('مصنع'); // 'مصنع' or 'عميل'
+    const [deliveryLocation, setDeliveryLocation] = React.useState('');
+
+    function buildWhatsAppMessage() {
+        if (items.length === 0) return '';
+        let msg = 'مرحباً، أريد الاستفسار عن تسعير الطلب التالي:\n\n';
+        items.forEach((item, i) => {
+            msg += `${i + 1}. ${item.productName}`;
+            if (item.color) msg += ` - اللون: ${item.color}`;
+            if (item.height) msg += ` - الارتفاع (سمك): ${item.height} سم`;
+            msg += ` - الكمية: ${item.quantity.toLocaleString('ar-EG')} ${item.unit}\n`;
+        });
+        
+        msg += '\n📍 تفاصيل الاستلام:\n';
+        if (deliveryMethod === 'مصنع') {
+            msg += 'طريقة الاستلام: تسليم أرض المصنع\n';
+        } else {
+            msg += 'طريقة الاستلام: نقل للعميل\n';
+            msg += `العنوان / الموقع: ${deliveryLocation || 'لم يتم التحديد'}\n`;
+        }
+
+        msg += '\nشكراً';
+        return encodeURIComponent(msg);
+    }
 
     return (
         <>
@@ -102,7 +113,45 @@ export default function CartDrawer() {
                         </div>
 
                         {items.length > 0 && (
-                            <div className="p-4 border-t border-white/10 flex-shrink-0 space-y-3">
+                            <div className="p-4 border-t border-white/10 flex-shrink-0 space-y-4">
+                                <div className="space-y-3 bg-white/5 p-4 rounded-2xl border border-white/10">
+                                    <p className="text-sm font-bold text-white">📍 طريقة الاستلام:</p>
+                                    <div className="flex gap-3">
+                                        <button
+                                            onClick={() => setDeliveryMethod('مصنع')}
+                                            className={`flex-1 py-2 rounded-xl text-sm font-bold transition-all border ${
+                                                deliveryMethod === 'مصنع' 
+                                                ? 'bg-primary text-black border-primary' 
+                                                : 'bg-white/5 text-slate-300 border-white/10 hover:bg-white/10'
+                                            }`}
+                                        >
+                                            أرض المصنع
+                                        </button>
+                                        <button
+                                            onClick={() => setDeliveryMethod('عميل')}
+                                            className={`flex-1 py-2 rounded-xl text-sm font-bold transition-all border ${
+                                                deliveryMethod === 'عميل' 
+                                                ? 'bg-primary text-black border-primary' 
+                                                : 'bg-white/5 text-slate-300 border-white/10 hover:bg-white/10'
+                                            }`}
+                                        >
+                                            نقل للعميل
+                                        </button>
+                                    </div>
+                                    
+                                    {deliveryMethod === 'عميل' && (
+                                        <div className="mt-3 animate-fade-in">
+                                            <input
+                                                type="text"
+                                                placeholder="اكتب العنوان بالتفصيل أو رابط الخريطة..."
+                                                value={deliveryLocation}
+                                                onChange={(e) => setDeliveryLocation(e.target.value)}
+                                                className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                                            />
+                                        </div>
+                                    )}
+                                </div>
+
                                 <a
                                     href={`https://wa.me/${HUSSEIN_WHATSAPP}?text=${buildWhatsAppMessage(items)}`}
                                     target="_blank"
