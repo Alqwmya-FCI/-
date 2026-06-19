@@ -10,6 +10,7 @@ function buildWhatsAppMessage(items) {
     items.forEach((item, i) => {
         msg += `${i + 1}. ${item.productName}`;
         if (item.color) msg += ` - اللون: ${item.color}`;
+        if (item.height) msg += ` - الارتفاع (سمك): ${item.height} سم`;
         msg += ` - الكمية: ${item.quantity.toLocaleString('ar-EG')} ${item.unit}\n`;
     });
     msg += '\nشكراً';
@@ -81,6 +82,9 @@ export default function CartDrawer() {
                                             <p className="text-white font-bold text-sm leading-tight">{item.productName}</p>
                                             {item.color && (
                                                 <p className="text-slate-400 text-xs mt-0.5">اللون: {item.color}</p>
+                                            )}
+                                            {item.height && (
+                                                <p className="text-slate-400 text-xs mt-0.5">السمك: {item.height} سم</p>
                                             )}
                                             <p className="text-primary font-black text-base mt-1">
                                                 {item.quantity.toLocaleString('ar-EG')} {item.unit}

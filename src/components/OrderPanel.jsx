@@ -7,10 +7,18 @@ export default function OrderPanel({ product, categoryId }) {
     const { addItem } = useCart();
     const colors = PRODUCT_COLORS[categoryId] || [];
     const config = QUANTITY_CONFIG[categoryId] || QUANTITY_CONFIG.blocks;
+    const heights = product.heights || [];
 
     const [selectedColor, setSelectedColor] = useState(colors[0]?.name || '');
+    const [selectedHeight, setSelectedHeight] = useState(heights[0] || null);
     const [quantity, setQuantity] = useState(config.presets?.[0] || 1);
     const [added, setAdded] = useState(false);
+
+    const heightDescriptions = {
+        6: 'سمك 6 سم: مناسب لممرات المشاة، الحدائق، والمناطق خفيفة الحركة.',
+        8: 'سمك 8 سم: مناسب لمواقف السيارات، الشوارع الداخلية، والمناطق متوسطة الحركة.',
+        10: 'سمك 10 سم: مصمم خصيصاً للمناطق الصناعية، محطات الوقود، وحركة النقل الثقيل (تريلات).'
+    };
 
     const handleQuantity = (val) => {
         const n = parseInt(val, 10);
@@ -24,6 +32,7 @@ export default function OrderPanel({ product, categoryId }) {
             categoryId,
             color: selectedColor || null,
             colorHex: colors.find(c => c.name === selectedColor)?.hex || null,
+            height: selectedHeight,
             quantity,
             unit: config.unit,
         });
@@ -33,6 +42,32 @@ export default function OrderPanel({ product, categoryId }) {
 
     return (
         <div className="flex flex-col gap-6 w-full">
+
+            {heights.length > 0 && (
+                <div className="flex flex-col gap-3">
+                    <p className="text-sm font-bold text-slate-400 uppercase tracking-widest">السمك (الارتفاع)</p>
+                    <div className="flex flex-wrap gap-2">
+                        {heights.map(h => (
+                            <button
+                                key={h}
+                                onClick={() => setSelectedHeight(h)}
+                                className={`px-4 py-2 rounded-xl text-sm font-bold transition-all duration-200 border ${
+                                    selectedHeight === h
+                                        ? 'bg-primary text-black border-primary'
+                                        : 'bg-white/5 text-white border-white/10 hover:bg-white/10'
+                                }`}
+                            >
+                                {h} سم
+                            </button>
+                        ))}
+                    </div>
+                    {selectedHeight && heightDescriptions[selectedHeight] && (
+                        <p className="text-xs text-slate-300 font-medium leading-relaxed bg-black/20 p-3 rounded-xl border border-white/5">
+                            {heightDescriptions[selectedHeight]}
+                        </p>
+                    )}
+                </div>
+            )}
 
             {colors.length > 0 && (
                 <div className="flex flex-col gap-3">

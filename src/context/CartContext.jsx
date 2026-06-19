@@ -8,11 +8,11 @@ export function CartProvider({ children }) {
 
     const addItem = (item) => {
         setItems(prev => {
-            const key = `${item.productId}-${item.color}`;
-            const existing = prev.find(i => `${i.productId}-${i.color}` === key);
+            const key = `${item.productId}-${item.color || 'nocolor'}-${item.height || 'noheight'}`;
+            const existing = prev.find(i => `${i.productId}-${i.color || 'nocolor'}-${i.height || 'noheight'}` === key);
             if (existing) {
                 return prev.map(i =>
-                    `${i.productId}-${i.color}` === key
+                    `${i.productId}-${i.color || 'nocolor'}-${i.height || 'noheight'}` === key
                         ? { ...i, quantity: i.quantity + item.quantity }
                         : i
                 );
