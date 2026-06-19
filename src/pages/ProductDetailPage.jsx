@@ -31,7 +31,7 @@ const FadingProductGallery = ({ images, className = "" }) => {
                 }
             }
             
-            squaresContainerRef.current.offsetHeight; // Force reflow
+            squaresContainerRef.current.offsetHeight; // شForce reflow
             
             squares.forEach(sq => {
                 setTimeout(() => {
