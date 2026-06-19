@@ -236,7 +236,7 @@ const ProductDetailPage = () => {
                         <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x md:divide-x-reverse divide-white/10">
                             {/* Left Column (Even indexes) */}
                             <div className="p-6 space-y-6">
-                                {Object.entries(product.specs).filter((_, idx) => idx % 2 === 0).map(([key, value]) => {
+                                {Object.entries(product.specs || {}).filter((_, idx) => idx % 2 === 0).map(([key, value]) => {
                                     const isWeight = key.includes('وزن') || key.includes('كثافة');
                                     const isStandard = key.includes('مواصفات');
                                     const isCount = key.includes('مساحة') || key.includes('عدد');
@@ -265,7 +265,7 @@ const ProductDetailPage = () => {
 
                             {/* Right Column (Odd indexes) */}
                             <div className="p-6 space-y-6">
-                                {Object.entries(product.specs).filter((_, idx) => idx % 2 !== 0).map(([key, value]) => {
+                                {Object.entries(product.specs || {}).filter((_, idx) => idx % 2 !== 0).map(([key, value]) => {
                                     const isWeight = key.includes('وزن') || key.includes('كثافة');
                                     const isStandard = key.includes('مواصفات');
                                     const isCount = key.includes('مساحة') || key.includes('عدد');
