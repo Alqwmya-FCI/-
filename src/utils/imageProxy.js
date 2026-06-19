@@ -11,6 +11,9 @@ function encode(rawPath) {
 
 export function img(path) {
     if (!path) return '';
+    if (import.meta.env.PROD) {
+        return encodeURI(path);
+    }
     return encode(path);
 }
 
