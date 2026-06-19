@@ -4,6 +4,7 @@ import { productsData } from '../data/productsData';
 import InteractiveGrid from '../components/InteractiveGrid';
 import { ChevronRight, ChevronLeft, ArrowLeft, Ruler, Scale, Box, Info } from 'lucide-react';
 import { img, imgArr } from '../utils/imageProxy';
+import OrderPanel from '../components/OrderPanel';
 
 const FadingProductGallery = ({ images, className = "" }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -293,24 +294,11 @@ const ProductDetailPage = () => {
                         </div>
                     </div>
 
-                    {/* Actions */}
-                    <div className="flex flex-col sm:flex-row gap-4">
-                        <a 
-                            href={`https://wa.me/201283191597?text=مرحباً، أريد الاستفسار عن منتج: ${product.name}`}
-                            target="_blank" rel="noopener noreferrer"
-                            className="bg-primary hover:bg-primary/90 text-black font-black text-lg px-8 py-5 rounded-2xl flex items-center justify-center gap-3 transition-all duration-300 shadow-[0_10px_30px_rgba(16,185,129,0.3)] hover:shadow-[0_15px_40px_rgba(16,185,129,0.5)] hover:-translate-y-1 active:scale-95"
-                        >
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" /></svg>
-                            طلب تسعير عبر واتساب
-                        </a>
-                        <Link 
-                            to="/#contact"
-                            className="bg-white/5 hover:bg-white/10 text-white font-bold text-lg px-8 py-5 rounded-2xl flex items-center justify-center gap-3 border border-white/10 transition-all duration-300 hover:-translate-y-1"
-                        >
-                            <ArrowLeft size={20} />
-                            تواصل معنا
-                        </Link>
+                    {/* Order Panel */}
+                    <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2rem] p-6 shadow-2xl">
+                        <OrderPanel product={product} categoryId={categoryId} />
                     </div>
+
                 </div>
             </div>
         </div>
