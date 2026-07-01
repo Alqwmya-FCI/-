@@ -62,9 +62,32 @@ const FadingProductGallery = ({ images, className = "" }) => {
         return () => clearInterval(timerRef.current);
     }, [images]);
 
+    const touchStartX = useRef(0);
+    const touchEndX = useRef(0);
+
+    const handleTouchStart = (e) => {
+        touchStartX.current = e.changedTouches[0].screenX;
+    };
+
+    const handleTouchEnd = (e) => {
+        touchEndX.current = e.changedTouches[0].screenX;
+        handleSwipe();
+    };
+
+    const handleSwipe = () => {
+        const swipeThreshold = 50;
+        if (touchEndX.current + swipeThreshold < touchStartX.current) {
+            handleNext();
+        } else if (touchEndX.current - swipeThreshold > touchStartX.current) {
+            handlePrev();
+        }
+    };
+
     const handleNext = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
+        if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
         if (timerRef.current) clearInterval(timerRef.current);
         const nextIdx = (indexRef.current + 1) % images.length;
         triggerTransition(nextIdx);
@@ -72,8 +95,10 @@ const FadingProductGallery = ({ images, className = "" }) => {
     };
 
     const handlePrev = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
+        if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
         if (timerRef.current) clearInterval(timerRef.current);
         const nextIdx = (indexRef.current - 1 + images.length) % images.length;
         triggerTransition(nextIdx);
@@ -93,7 +118,11 @@ const FadingProductGallery = ({ images, className = "" }) => {
     }
 
     return (
-        <div className={`group relative w-full aspect-square bg-white/5 border border-white/10 rounded-3xl overflow-hidden shadow-2xl ${className}`}>
+        <div 
+            className={`group relative w-full aspect-square bg-white/5 border border-white/10 rounded-3xl overflow-hidden shadow-2xl ${className}`}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+        >
             <div className="absolute inset-0 bg-center bg-cover bg-no-repeat transition-transform duration-700" style={{ backgroundImage: `url('${img(images[currentIndex])}')` }}>
                 <div ref={squaresContainerRef} className="absolute inset-0 pointer-events-none" />
             </div>
@@ -103,7 +132,7 @@ const FadingProductGallery = ({ images, className = "" }) => {
             </div>
 
             {/* Navigation Buttons */}
-            <div className="absolute inset-0 flex items-center justify-between px-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-30 pointer-events-none">
+            <div className="absolute inset-0 flex items-center justify-between px-4 z-30 pointer-events-none">
                 <button 
                     onClick={handlePrev} 
                     className="pointer-events-auto w-12 h-12 rounded-full bg-black/40 border border-white/20 text-white flex items-center justify-center hover:bg-primary hover:text-black hover:scale-110 transition-all backdrop-blur-md"
