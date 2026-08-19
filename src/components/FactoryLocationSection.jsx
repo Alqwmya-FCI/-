@@ -3,7 +3,7 @@ import { MapPin, Navigation, Clock, Phone, Star, ExternalLink, ShieldCheck } fro
 
 export default function FactoryLocationSection({ isAr = true }) {
     const mapLocationUrl = 'https://maps.app.goo.gl/QneojizzF3fJqKrz6';
-    const mapEmbedUrl = 'https://maps.google.com/maps?q=%D9%85%D8%B5%D9%86%D8%B9+%D8%A7%D9%84%D9%82%D9%88%D9%85%D9%8A%D8%A9+%D9%84%D9%84%D8%B5%D9%86%D8%A7%D8%B9%D8%A7%D8%AA+%D8%A7%D9%84%D8%A3%D8%B3%D9%85%D9%86%D8%AA%D9%8A%D8%A9&hl=ar&z=14&output=embed';
+    const mapEmbedUrl = 'https://maps.google.com/maps?q=%D9%85%D8%B5%D9%86%D8%B9+%D8%A7%D9%84%D9%82%D9%88%D9%85%D9%8A%D8%A9+%D9%84%D9%84%D8%B5%D9%86%D8%A7%D8%B9%D8%A7%D8%AA+%D8%A7%D9%84%D8%A3%D8%B3%D9%85%D9%86%D8%AA%D9%8A%D8%A9+%D9%81%D8%A7%D9%8A%D8%AF+%D8%A7%D9%84%D8%A5%D8%B3%D9%85%D8%A7%D8%B9%D9%8A%D9%84%D9%8A%D8%A9&hl=ar&z=14&output=embed';
 
     return (
         <section className="py-24 bg-surface relative z-10 border-t border-outline-variant/30 overflow-hidden" id="location">
@@ -47,7 +47,11 @@ export default function FactoryLocationSection({ isAr = true }) {
                                 </h3>
                                 <p className="text-on-surface-variant text-sm leading-relaxed flex items-start gap-2">
                                     <MapPin size={18} className="text-primary flex-shrink-0 mt-1" />
-                                    <span>{isAr ? 'طريق بلبيس - الزقازيق، محافظة الشرقية، مصر' : 'Belbeis - Zagazig Road, Ash Sharqia, Egypt'}</span>
+                                    <span className="font-medium">
+                                        {isAr 
+                                            ? 'الإسماعيلية، مركز فايد، طريق الإسماعيلية - السويس الصحراوي (بعد كلية ضباط الاحتياط)' 
+                                            : 'Ismailia, Fayed Center, Ismailia - Suez Desert Road (After Reserve Officers College)'}
+                                    </span>
                                 </p>
                             </div>
 
