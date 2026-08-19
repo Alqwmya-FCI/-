@@ -1,7 +1,16 @@
 import React from 'react';
 import BusinessCard from '../BusinessCard';
 import InteractiveGrid from '../components/InteractiveGrid';
+import { useSEO } from '../hooks/useSEO';
+
 const AliCardPage = () => {
+    useSEO({
+        title: 'م/ علي عبد الشافي | مدير مصنع القومية للصناعات الأسمنتية',
+        description: 'بطاقة التواصل المهنية للمهندس علي عبد الشافي - مدير مصنع القومية للصناعات الأسمنتية. طوب أسمنتي، إنترلوك، بردورات، وبلوك خرساني.',
+        keywords: 'علي عبد الشافي, مصنع القومية, مدير مصنع القومية للصناعات الاسمنتية',
+        image: '/images/ali.jpg',
+        url: 'https://alqwmya.com/eng-ali-abdelshafy'
+    });
     const aliData = {
         name: 'م/ علي عبد الشافي',
         title: 'مدير المصنع',

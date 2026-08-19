@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { useSEO } from '../hooks/useSEO';
 const heroSliderImages = [
     '/images/اساسي2.jpg',
     '/images/اساسي3.jpg',
@@ -194,6 +195,17 @@ const HomePage = () => {
 
     const t = translations[lang];
     const isAr = lang === 'ar';
+
+    useSEO({
+        title: isAr
+            ? 'مصنع القومية للصناعات الأسمنتية | طوب أسمنتي، إنترلوك، بردورات، بلوك'
+            : 'Al-Qawmia Factory | Cement Bricks, Interlock & Blocks',
+        description: isAr
+            ? 'مصنع القومية للصناعات الأسمنتية منذ عام 1996. إنتاج وتوريد طوب أسمنتي مصمت، إنترلوك آلي، بردورات خرسانية، وبلوك أسمنتي بأعلى معايير الجودة في مصر.'
+            : 'Al-Qawmia Factory for Cement Industries since 1996. Supplying high-quality cement bricks, automated interlock, curbs, and concrete blocks.',
+        keywords: 'مصنع القومية, مصنع طوب اسمنتي, مصنع انترلوك, مصنع بلدورات, بلوك اسمنتي مفرغ, اسعار الانترلوك في مصر',
+        url: 'https://alqwmya.com/'
+    });
 
     useEffect(() => {
         if (isDark) {

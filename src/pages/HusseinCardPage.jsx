@@ -1,8 +1,16 @@
 import React from 'react';
 import BusinessCard from '../BusinessCard';
 import InteractiveGrid from '../components/InteractiveGrid';
+import { useSEO } from '../hooks/useSEO';
 
 const HusseinCardPage = () => {
+    useSEO({
+        title: 'م/ حسين علي عبدالشافي | مدير مبيعات مصنع القومية للصناعات الأسمنتية',
+        description: 'بطاقة التواصل المهنية للمهندس حسين علي عبدالشافي - مدير مبيعات مصنع القومية للصناعات الأسمنتية. طوب أسمنتي، إنترلوك، بردورات، وبلوك خرساني.',
+        keywords: 'حسين علي عبدالشافي, مبيعات مصنع القومية, مصنع القومية للصناعات الاسمنتية',
+        image: '/images/hussein.jpg',
+        url: 'https://alqwmya.com/eng-hussein-abdelshafy'
+    });
     const husseinData = {
         name: 'م/ حسين علي عبدالشافي',
         title: 'مدير المبيعات',

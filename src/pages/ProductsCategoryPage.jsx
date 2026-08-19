@@ -4,11 +4,19 @@ import { productsData } from '../data/productsData';
 import InteractiveGrid from '../components/InteractiveGrid';
 import { ChevronRight } from 'lucide-react';
 import { img } from '../utils/imageProxy';
+import { useSEO } from '../hooks/useSEO';
 
 const ProductsCategoryPage = () => {
     const { categoryId } = useParams();
     const navigate = useNavigate();
     const category = productsData[categoryId];
+
+    useSEO({
+        title: `${category?.title || 'المنتجات'} | مصنع القومية للصناعات الأسمنتية`,
+        description: category?.description || 'تصفح أفضل منتجات مصنع القومية للصناعات الأسمنتية: طوب أسمنتي، إنترلوك آلي، بردورات خرسانية، بلوك أسمنتي مفرغ وبلاط موزايكو.',
+        keywords: `${category?.title || ''}, مصنع القومية, اسعار ${category?.title || ''}, مواصفات ${category?.title || ''}`,
+        url: `https://alqwmya.com/products/${categoryId}`
+    });
 
     useEffect(() => {
         if (!category) {

@@ -5,6 +5,7 @@ import InteractiveGrid from '../components/InteractiveGrid';
 import { ChevronRight, ChevronLeft, ArrowLeft, Ruler, Scale, Box, Info } from 'lucide-react';
 import { img, imgArr } from '../utils/imageProxy';
 import OrderPanel from '../components/OrderPanel';
+import { useSEO } from '../hooks/useSEO';
 
 const FadingProductGallery = ({ images, className = "" }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -169,6 +170,36 @@ const ProductDetailPage = () => {
 
     const category = productsData[categoryId];
     const product = category?.items.find(item => item.id === productId);
+
+    const productSchema = product ? {
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        name: product.name,
+        image: product.images?.[0] ? `https://alqwmya.com${product.images[0]}` : (product.image ? `https://alqwmya.com${product.image}` : 'https://alqwmya.com/images/logo.png'),
+        description: product.shortDescription,
+        brand: {
+            '@type': 'Brand',
+            name: 'مصنع القومية للصناعات الأسمنتية'
+        },
+        offers: {
+            '@type': 'Offer',
+            priceCurrency: 'EGP',
+            availability: 'https://schema.org/InStock',
+            seller: {
+                '@type': 'Organization',
+                name: 'مصنع القومية للصناعات الأسمنتية'
+            }
+        }
+    } : null;
+
+    useSEO({
+        title: product ? `${product.name} | مصنع القومية للصناعات الأسمنتية` : 'تفاصيل المنتج',
+        description: product?.shortDescription || 'مواصفات وأسعار المنتجات الأسمنتية من مصنع القومية.',
+        keywords: `${product?.name || ''}, مواصفات ${product?.name || ''}, اسعار ${product?.name || ''}, مصنع القومية`,
+        image: product?.images?.[0] || product?.image,
+        url: `https://alqwmya.com/products/${categoryId}/${productId}`,
+        schema: productSchema
+    });
 
     useEffect(() => {
         if (!product) {
