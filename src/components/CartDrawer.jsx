@@ -144,15 +144,36 @@ export default function CartDrawer() {
                                             وصلت بيانات طلبك لإدارة المبيعات وسيتم التواصل معك مباشرة لتأكيد التوريد.
                                         </p>
                                     </div>
-                                    <a
-                                        href={`https://wa.me/${HUSSEIN_WHATSAPP}?text=${encodeURIComponent(`مرحباً مصنع القومية، قمت بطلب توريد كميات برقم ${lastOrderId} وأرغب في المتابعة معكم.`)}`}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1fb356] text-white text-xs font-bold py-3 px-6 rounded-full shadow-lg"
-                                    >
-                                        <Send size={14} />
-                                        متابعة الطلب على واتساب
-                                    </a>
+                                    <div className="flex flex-col gap-2.5 px-4 pt-2">
+                                        <button
+                                            onClick={() => {
+                                                setIsSubmitted(false);
+                                                setDeliveryLocation('');
+                                                setCoords(null);
+                                                setMapsUrl('');
+                                                setLocationSuccess(false);
+                                            }}
+                                            className="w-full inline-flex items-center justify-center gap-2 bg-primary text-black text-xs font-black py-3 px-6 rounded-full shadow-lg hover:bg-primary/90 transition-all active:scale-95"
+                                        >
+                                            <ShoppingBag size={14} />
+                                            إجراء طلب توريد جديد
+                                        </button>
+                                        <a
+                                            href={`https://wa.me/${HUSSEIN_WHATSAPP}?text=${encodeURIComponent(`مرحباً مصنع القومية، قمت بطلب توريد كميات برقم ${lastOrderId} وأرغب في المتابعة معكم.`)}`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="w-full inline-flex items-center justify-center gap-2 bg-[#25D366]/20 hover:bg-[#25D366]/30 text-emerald-300 text-xs font-bold py-3 px-6 rounded-full border border-emerald-500/30 transition-all"
+                                        >
+                                            <Send size={14} />
+                                            متابعة على واتساب (اختياري)
+                                        </a>
+                                        <button
+                                            onClick={() => setIsOpen(false)}
+                                            className="w-full inline-flex items-center justify-center bg-white/5 hover:bg-white/10 text-slate-300 text-xs font-bold py-2.5 px-6 rounded-full transition-all"
+                                        >
+                                            إغلاق
+                                        </button>
+                                    </div>
                                 </div>
                             ) : items.length === 0 ? (
                                 <div className="flex flex-col items-center justify-center h-full gap-4 text-slate-500">

@@ -154,14 +154,28 @@ export default function OrderModal({ isOpen, onClose, initialProduct = null }) {
                             </div>
 
                             <div className="pt-2 flex flex-col sm:flex-row gap-3 justify-center">
+                                <button
+                                    onClick={() => {
+                                        setSubmittedOrder(null);
+                                        setAddress('');
+                                        setCoords(null);
+                                        setMapsUrl('');
+                                        setNotes('');
+                                        setLocationStatus(null);
+                                    }}
+                                    className="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-black font-extrabold text-sm py-3.5 px-6 rounded-full shadow-lg transition-all active:scale-95"
+                                >
+                                    <Package size={16} />
+                                    إجراء طلب توريد جديد
+                                </button>
                                 <a
                                     href={`https://wa.me/201286084444?text=${encodeURIComponent(`مرحباً مصنع القومية، قمت بطلب توريد برقم ${submittedOrder.orderId} لمنتج ${productName} كمية ${quantity} ${unit}.`)}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="inline-flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold text-sm py-3.5 px-6 rounded-full shadow-lg transition-all"
+                                    className="inline-flex items-center justify-center gap-2 bg-[#25D366]/20 hover:bg-[#25D366]/30 text-emerald-300 font-bold text-sm py-3.5 px-6 rounded-full border border-emerald-500/30 transition-all"
                                 >
                                     <Send size={16} />
-                                    متابعة الطلب عبر واتساب
+                                    متابعة على واتساب (اختياري)
                                 </a>
                                 <button
                                     onClick={handleReset}
