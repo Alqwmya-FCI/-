@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { X, CheckCircle, Navigation, MapPin, Phone, User, Package, Send, Loader2, Sparkles, ExternalLink } from 'lucide-react';
+import { X, CheckCircle, Navigation, MapPin, Phone, User, Package, Send, Loader2, ExternalLink, Plus, Trash2, AlertCircle } from 'lucide-react';
 import { sendOrderToTelegram } from '../services/telegramOrderService';
 
 export default function OrderModal({ isOpen, onClose, initialProduct = null }) {
     const [name, setName] = useState('');
-    const [phone, setPhone] = useState('');
+    const [phones, setPhones] = useState(['']);
     const [productName, setProductName] = useState(initialProduct?.name || 'طوب أسمنتي مصمت 25');
     const [quantity, setQuantity] = useState('1000');
     const [unit, setUnit] = useState(initialProduct?.unit || 'ألف طوبة');
@@ -18,8 +18,28 @@ export default function OrderModal({ isOpen, onClose, initialProduct = null }) {
     const [locationStatus, setLocationStatus] = useState(null); // 'success' | 'error' | null
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submittedOrder, setSubmittedOrder] = useState(null);
+    const [errorMsg, setErrorMsg] = useState('');
 
     if (!isOpen) return null;
+
+    const handlePhoneChange = (index, value) => {
+        const updated = [...phones];
+        updated[index] = value;
+        setPhones(updated);
+        if (errorMsg) setErrorMsg('');
+    };
+
+    const handleAddPhone = () => {
+        if (phones.length < 4) {
+            setPhones([...phones, '']);
+        }
+    };
+
+    const handleRemovePhone = (index) => {
+        if (phones.length > 1) {
+            setPhones(phones.filter((_, i) => i !== index));
+        }
+    };
 
     const handleDetectLocation = () => {
         if (!navigator.geolocation) {
@@ -53,14 +73,25 @@ export default function OrderModal({ isOpen, onClose, initialProduct = null }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!name.trim() || !phone.trim()) {
+        setErrorMsg('');
+
+        const validPhones = phones.filter(p => p.trim());
+
+        if (!name.trim()) {
+            setErrorMsg('يرجى كتابة اسم العميل أو اسم الشركة.');
+            return;
+        }
+
+        if (validPhones.length === 0) {
+            setErrorMsg('يرجى إدخال رقم هاتف واحد على الأقل للتواصل.');
             return;
         }
 
         setIsSubmitting(true);
         const orderData = {
-            name,
-            phone,
+            name: name.trim(),
+            phones: validPhones,
+            phone: validPhones[0],
             singleProduct: productName,
             quantity,
             unit,
@@ -78,15 +109,18 @@ export default function OrderModal({ isOpen, onClose, initialProduct = null }) {
 
     const handleReset = () => {
         setName('');
-        setPhone('');
+        setPhones(['']);
         setAddress('');
         setCoords(null);
         setMapsUrl('');
         setNotes('');
+        setErrorMsg('');
         setLocationStatus(null);
         setSubmittedOrder(null);
         onClose();
     };
+
+    const primaryPhone = phones.find(p => p.trim()) || '';
 
     return (
         <div className="fixed inset-0 z-[300] flex items-center justify-center p-4" dir="rtl">
@@ -136,8 +170,10 @@ export default function OrderModal({ isOpen, onClose, initialProduct = null }) {
                                     <span className="text-white font-bold">{name}</span>
                                 </div>
                                 <div className="flex justify-between text-slate-400">
-                                    <span>رقم الهاتف:</span>
-                                    <span className="text-white font-mono font-bold">{phone}</span>
+                                    <span>أرقام الهاتف:</span>
+                                    <span className="text-white font-mono font-bold" dir="ltr">
+                                        {phones.filter(p => p.trim()).join(' | ')}
+                                    </span>
                                 </div>
                                 <div className="flex justify-between text-slate-400">
                                     <span>المنتج:</span>
@@ -168,15 +204,17 @@ export default function OrderModal({ isOpen, onClose, initialProduct = null }) {
                                     <Package size={16} />
                                     إجراء طلب توريد جديد
                                 </button>
-                                <a
-                                    href={`https://wa.me/201286084444?text=${encodeURIComponent(`مرحباً مصنع القومية، قمت بطلب توريد برقم ${submittedOrder.orderId} لمنتج ${productName} كمية ${quantity} ${unit}.`)}`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center justify-center gap-2 bg-[#25D366]/20 hover:bg-[#25D366]/30 text-emerald-300 font-bold text-sm py-3.5 px-6 rounded-full border border-emerald-500/30 transition-all"
-                                >
-                                    <Send size={16} />
-                                    متابعة على واتساب (اختياري)
-                                </a>
+                                {primaryPhone && (
+                                    <a
+                                        href={`https://wa.me/201286084444?text=${encodeURIComponent(`مرحباً مصنع القومية، قمت بطلب توريد برقم ${submittedOrder.orderId} لمنتج ${productName} كمية ${quantity} ${unit}.`)}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center justify-center gap-2 bg-[#25D366]/20 hover:bg-[#25D366]/30 text-emerald-300 font-bold text-sm py-3.5 px-6 rounded-full border border-emerald-500/30 transition-all"
+                                    >
+                                        <Send size={16} />
+                                        متابعة على واتساب (اختياري)
+                                    </a>
+                                )}
                                 <button
                                     onClick={handleReset}
                                     className="inline-flex items-center justify-center bg-white/10 hover:bg-white/15 text-white font-bold text-sm py-3.5 px-6 rounded-full transition-all"
@@ -187,36 +225,68 @@ export default function OrderModal({ isOpen, onClose, initialProduct = null }) {
                         </div>
                     ) : (
                         <form onSubmit={handleSubmit} className="space-y-5">
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <div>
-                                    <label className="block text-xs font-bold text-slate-300 mb-1.5 flex items-center gap-1.5">
-                                        <User size={14} className="text-primary" />
-                                        الاسم بالكامل / اسم الشركة *
-                                    </label>
-                                    <input
-                                        type="text"
-                                        required
-                                        placeholder="مثال: م. أحمد عبد العزيز"
-                                        value={name}
-                                        onChange={(e) => setName(e.target.value)}
-                                        className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
-                                    />
+                            {errorMsg && (
+                                <div className="flex items-center gap-2 bg-red-500/10 border border-red-500/30 text-red-400 p-3.5 rounded-2xl text-xs font-bold animate-fade-in shadow-inner">
+                                    <AlertCircle size={18} className="flex-shrink-0 text-red-400" />
+                                    <span>{errorMsg}</span>
                                 </div>
+                            )}
 
-                                <div>
-                                    <label className="block text-xs font-bold text-slate-300 mb-1.5 flex items-center gap-1.5">
+                            <div>
+                                <label className="block text-xs font-bold text-slate-300 mb-1.5 flex items-center gap-1.5">
+                                    <User size={14} className="text-primary" />
+                                    الاسم بالكامل / اسم الشركة *
+                                </label>
+                                <input
+                                    type="text"
+                                    required
+                                    placeholder="مثال: م. أحمد عبد العزيز"
+                                    value={name}
+                                    onChange={(e) => { setName(e.target.value); if (errorMsg) setErrorMsg(''); }}
+                                    className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                                />
+                            </div>
+
+                            <div>
+                                <div className="flex items-center justify-between mb-1.5">
+                                    <label className="text-xs font-bold text-slate-300 flex items-center gap-1.5">
                                         <Phone size={14} className="text-primary" />
-                                        رقم الهاتف / الواتساب *
+                                        أرقام الهاتف / الواتساب *
                                     </label>
-                                    <input
-                                        type="tel"
-                                        required
-                                        dir="ltr"
-                                        placeholder="010xxxxxxxx"
-                                        value={phone}
-                                        onChange={(e) => setPhone(e.target.value)}
-                                        className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-right"
-                                    />
+                                    {phones.length < 4 && (
+                                        <button
+                                            type="button"
+                                            onClick={handleAddPhone}
+                                            className="text-[11px] font-bold text-primary hover:text-emerald-300 flex items-center gap-1 transition-colors"
+                                        >
+                                            <Plus size={13} />
+                                            إضافة رقم آخر
+                                        </button>
+                                    )}
+                                </div>
+                                <div className="space-y-2">
+                                    {phones.map((phoneVal, idx) => (
+                                        <div key={idx} className="flex items-center gap-2">
+                                            <input
+                                                type="tel"
+                                                dir="ltr"
+                                                placeholder={idx === 0 ? "رقم الهاتف الأساسي (010xxxxxxxx) *" : `رقم إضافي ${idx + 1}`}
+                                                value={phoneVal}
+                                                onChange={(e) => handlePhoneChange(idx, e.target.value)}
+                                                className="flex-1 bg-white/5 border border-white/10 rounded-2xl px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-right font-mono"
+                                            />
+                                            {phones.length > 1 && (
+                                                <button
+                                                    type="button"
+                                                    onClick={() => handleRemovePhone(idx)}
+                                                    className="w-9 h-9 rounded-xl bg-red-500/10 hover:bg-red-500/20 text-red-400 flex items-center justify-center transition-all flex-shrink-0"
+                                                    title="حذف الرقم"
+                                                >
+                                                    <Trash2 size={14} />
+                                                </button>
+                                            )}
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
 
@@ -244,7 +314,7 @@ export default function OrderModal({ isOpen, onClose, initialProduct = null }) {
                                         min="1"
                                         value={quantity}
                                         onChange={(e) => setQuantity(e.target.value)}
-                                        className="w-full bg-white/5 border border-white/10 rounded-2xl px-3 py-3 text-sm text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                                        className="w-full bg-white/5 border border-white/10 rounded-2xl px-3 py-3 text-sm text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-mono"
                                     />
                                 </div>
 

@@ -12,6 +12,7 @@ export async function sendOrderToTelegram(orderData) {
     const {
         name,
         phone,
+        phones = [],
         items = [],
         singleProduct,
         quantity,
@@ -51,8 +52,12 @@ export async function sendOrderToTelegram(orderData) {
         locationText += `🗺️ <b>رابط الموقع على Google Maps:</b> <a href="${mapsUrl}">اضغط هنا لفتح الموقع على الخريطة</a>\n`;
     }
 
-    const cleanPhone = phone?.replace(/[^0-9]/g, '');
-    const waLink = cleanPhone ? `https://wa.me/2${cleanPhone.startsWith('0') ? cleanPhone : '0' + cleanPhone}` : '';
+    const phonesList = (phones.length > 0 ? phones : (phone ? [phone] : [])).filter(p => p && p.trim());
+    const phonesFormatted = phonesList.map((p, i) => {
+        const clean = p.replace(/[^0-9]/g, '');
+        const wa = clean ? `https://wa.me/2${clean.startsWith('0') ? clean : '0' + clean}` : '';
+        return `▫️ <b>الهاتف ${phonesList.length > 1 ? `(${i + 1})` : ''}:</b> <code>${p}</code> ${wa ? `👉 <a href="${wa}">واتساب مباشر</a>` : ''}`;
+    }).join('\n') || '▫️ <b>رقم الهاتف:</b> غير محدد';
 
     const messageHtml = `
 🚨 <b>طلب توريد كميات جديد - مصنع القومية</b>
@@ -62,8 +67,8 @@ export async function sendOrderToTelegram(orderData) {
 
 👤 <b>بيانات العميل:</b>
 ▫️ <b>الاسم:</b> ${name || 'غير محدد'}
-▫️ <b>رقم الهاتف:</b> <code>${phone || 'غير محدد'}</code>
-${waLink ? `▫️ <b>واتساب مباشر:</b> <a href="${waLink}">اضغط هنا لمراسلة العميل</a>\n` : ''}
+${phonesFormatted}
+
 📦 <b>تفاصيل المنتجات المطلوبة:</b>
 ${productsText}
 

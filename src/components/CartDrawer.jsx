@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Trash2, ShoppingBag, Send, Navigation, CheckCircle, MapPin, User, Phone, Loader2, ExternalLink } from 'lucide-react';
+import { X, Trash2, ShoppingBag, Send, Navigation, CheckCircle, MapPin, User, Phone, Loader2, ExternalLink, Plus, AlertCircle } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { sendOrderToTelegram } from '../services/telegramOrderService';
 
@@ -8,7 +8,7 @@ const HUSSEIN_WHATSAPP = '201286084444';
 export default function CartDrawer() {
     const { items, removeItem, clearCart, isOpen, setIsOpen, totalCount } = useCart();
     const [name, setName] = useState('');
-    const [phone, setPhone] = useState('');
+    const [phones, setPhones] = useState(['']);
     const [deliveryMethod, setDeliveryMethod] = useState('نقل للعميل');
     const [deliveryLocation, setDeliveryLocation] = useState('');
     const [coords, setCoords] = useState(null);
@@ -18,14 +18,35 @@ export default function CartDrawer() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [lastOrderId, setLastOrderId] = useState('');
+    const [errorMsg, setErrorMsg] = useState('');
+
+    const handlePhoneChange = (index, value) => {
+        const updated = [...phones];
+        updated[index] = value;
+        setPhones(updated);
+        if (errorMsg) setErrorMsg('');
+    };
+
+    const handleAddPhone = () => {
+        if (phones.length < 4) {
+            setPhones([...phones, '']);
+        }
+    };
+
+    const handleRemovePhone = (index) => {
+        if (phones.length > 1) {
+            setPhones(phones.filter((_, i) => i !== index));
+        }
+    };
 
     const handleDetectLocation = () => {
         if (!navigator.geolocation) {
-            alert('متصفحك لا يدعم تحديد الموقع التلقائي');
+            setErrorMsg('متصفحك لا يدعم تحديد الموقع التلقائي');
             return;
         }
 
         setIsLocating(true);
+        setErrorMsg('');
         navigator.geolocation.getCurrentPosition(
             (pos) => {
                 const lat = pos.coords.latitude;
@@ -41,22 +62,31 @@ export default function CartDrawer() {
             },
             () => {
                 setIsLocating(false);
-                alert('يرجى السماح بالوصول للموقع لتحديده تلقائياً أو كتابة العنوان يدوياً.');
+                setErrorMsg('تعذر الوصول للموقع تلقائياً، يمكنك كتابة العنوان يدوياً.');
             },
             { enableHighAccuracy: true, timeout: 10000 }
         );
     };
 
     const handleSendOrder = async () => {
-        if (!name.trim() || !phone.trim()) {
-            alert('يرجى كتابة الاسم ورقم الهاتف لإرسال الطلب');
+        setErrorMsg('');
+        const validPhones = phones.filter(p => p.trim());
+
+        if (!name.trim()) {
+            setErrorMsg('يرجى كتابة الاسم أو اسم الشركة للمتابعة.');
+            return;
+        }
+
+        if (validPhones.length === 0) {
+            setErrorMsg('يرجى إدخال رقم هاتف واحد على الأقل للتواصل.');
             return;
         }
 
         setIsSubmitting(true);
         const orderData = {
-            name,
-            phone,
+            name: name.trim(),
+            phones: validPhones,
+            phone: validPhones[0],
             items,
             deliveryMethod: deliveryMethod === 'مصنع' ? 'تسليم أرض المصنع' : 'نقل للعميل',
             address: deliveryLocation,
@@ -71,24 +101,7 @@ export default function CartDrawer() {
         clearCart();
     };
 
-    function buildWhatsAppMessage() {
-        if (items.length === 0) return '';
-        let msg = `مرحباً مصنع القومية، أريد تأكيد طلب توريد برقم ${lastOrderId || 'مباشر'}:\n`;
-        msg += `الاسم: ${name}\n`;
-        msg += `الهاتف: ${phone}\n\n`;
-        items.forEach((item, i) => {
-            msg += `${i + 1}. ${item.productName}`;
-            if (item.color) msg += ` - اللون: ${item.color}`;
-            if (item.height) msg += ` - الارتفاع (سمك): ${item.height} سم`;
-            msg += ` - الكمية: ${item.quantity.toLocaleString('ar-EG')} ${item.unit}\n`;
-        });
-        
-        msg += '\n📍 الاستلام: ' + (deliveryMethod === 'مصنع' ? 'أرض المصنع' : `نقل للعميل - ${deliveryLocation || 'عنوان محدد'}`);
-        if (mapsUrl) {
-            msg += `\n🗺️ رابط الخريطة: ${mapsUrl}`;
-        }
-        return encodeURIComponent(msg);
-    }
+    const primaryPhone = phones.find(p => p.trim()) || '';
 
     return (
         <>
@@ -152,21 +165,24 @@ export default function CartDrawer() {
                                                 setCoords(null);
                                                 setMapsUrl('');
                                                 setLocationSuccess(false);
+                                                setErrorMsg('');
                                             }}
                                             className="w-full inline-flex items-center justify-center gap-2 bg-primary text-black text-xs font-black py-3 px-6 rounded-full shadow-lg hover:bg-primary/90 transition-all active:scale-95"
                                         >
                                             <ShoppingBag size={14} />
                                             إجراء طلب توريد جديد
                                         </button>
-                                        <a
-                                            href={`https://wa.me/${HUSSEIN_WHATSAPP}?text=${encodeURIComponent(`مرحباً مصنع القومية، قمت بطلب توريد كميات برقم ${lastOrderId} وأرغب في المتابعة معكم.`)}`}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="w-full inline-flex items-center justify-center gap-2 bg-[#25D366]/20 hover:bg-[#25D366]/30 text-emerald-300 text-xs font-bold py-3 px-6 rounded-full border border-emerald-500/30 transition-all"
-                                        >
-                                            <Send size={14} />
-                                            متابعة على واتساب (اختياري)
-                                        </a>
+                                        {primaryPhone && (
+                                            <a
+                                                href={`https://wa.me/${HUSSEIN_WHATSAPP}?text=${encodeURIComponent(`مرحباً مصنع القومية، قمت بطلب توريد كميات برقم ${lastOrderId} وأرغب في المتابعة معكم.`)}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="w-full inline-flex items-center justify-center gap-2 bg-[#25D366]/20 hover:bg-[#25D366]/30 text-emerald-300 text-xs font-bold py-3 px-6 rounded-full border border-emerald-500/30 transition-all"
+                                            >
+                                                <Send size={14} />
+                                                متابعة على واتساب (اختياري)
+                                            </a>
+                                        )}
                                         <button
                                             onClick={() => setIsOpen(false)}
                                             className="w-full inline-flex items-center justify-center bg-white/5 hover:bg-white/10 text-slate-300 text-xs font-bold py-2.5 px-6 rounded-full transition-all"
@@ -215,24 +231,61 @@ export default function CartDrawer() {
 
                         {!isSubmitted && items.length > 0 && (
                             <div className="p-4 border-t border-white/10 flex-shrink-0 space-y-4 max-h-[50vh] overflow-y-auto">
+                                {errorMsg && (
+                                    <div className="flex items-center gap-2 bg-red-500/10 border border-red-500/30 text-red-400 p-3 rounded-2xl text-xs font-bold animate-fade-in">
+                                        <AlertCircle size={16} className="flex-shrink-0" />
+                                        <span>{errorMsg}</span>
+                                    </div>
+                                )}
+
                                 <div className="space-y-2.5">
                                     <input
                                         type="text"
                                         required
                                         placeholder="الاسم بالكامل / اسم الشركة *"
                                         value={name}
-                                        onChange={(e) => setName(e.target.value)}
+                                        onChange={(e) => { setName(e.target.value); if (errorMsg) setErrorMsg(''); }}
                                         className="w-full bg-white/5 border border-white/10 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-primary"
                                     />
-                                    <input
-                                        type="tel"
-                                        required
-                                        dir="ltr"
-                                        placeholder="رقم الهاتف / الواتساب *"
-                                        value={phone}
-                                        onChange={(e) => setPhone(e.target.value)}
-                                        className="w-full bg-white/5 border border-white/10 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-primary text-right"
-                                    />
+
+                                    <div>
+                                        <div className="flex items-center justify-between mb-1">
+                                            <span className="text-[11px] font-bold text-slate-400">أرقام الهاتف للتواصل *</span>
+                                            {phones.length < 3 && (
+                                                <button
+                                                    type="button"
+                                                    onClick={handleAddPhone}
+                                                    className="text-[11px] font-bold text-primary hover:underline flex items-center gap-0.5"
+                                                >
+                                                    <Plus size={12} />
+                                                    رقم إضافي
+                                                </button>
+                                            )}
+                                        </div>
+                                        <div className="space-y-1.5">
+                                            {phones.map((phoneVal, idx) => (
+                                                <div key={idx} className="flex items-center gap-1.5">
+                                                    <input
+                                                        type="tel"
+                                                        dir="ltr"
+                                                        placeholder={idx === 0 ? "رقم الهاتف الأساسي *" : `رقم إضافي ${idx + 1}`}
+                                                        value={phoneVal}
+                                                        onChange={(e) => handlePhoneChange(idx, e.target.value)}
+                                                        className="flex-1 bg-white/5 border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-primary text-right font-mono"
+                                                    />
+                                                    {phones.length > 1 && (
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => handleRemovePhone(idx)}
+                                                            className="w-8 h-8 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 flex items-center justify-center transition-all flex-shrink-0"
+                                                        >
+                                                            <Trash2 size={12} />
+                                                        </button>
+                                                    )}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div className="space-y-2 bg-white/5 p-3 rounded-2xl border border-white/10 text-xs">
