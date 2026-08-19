@@ -27,6 +27,12 @@ const faqItems = [
         aEn: 'Available in widths of 10, 12, 12-double, 15, 20, and 25 cm, providing exceptional sound & thermal insulation and fast construction for factory walls and partitions.'
     },
     {
+        qAr: 'ما هي استخدامات ومميزات بلاط الموزايكو في المباني الحكومية والمدارس والسلالم؟',
+        qEn: 'What are the benefits of mosaic terrazzo tiles for schools & government buildings?',
+        aAr: 'يُعتبر بلاط الموزايكو الأسمنتي (مقاس 25×25 و 30×30 سم) المعيار القياسي للأرضيات الداخلية في المدارس، الجامعات، المستشفيات، والمصالح الحكومية نظراً لمقاومته الفائقة للاحتكاك الشديد وحركة الأقدام الكثيفة. كما يُستخدم كبديل اقتصادي وعملي للرخام في السلالم والممرات والبدرومات لسهولة جليه وتلميعه وتحمله للرطوبة والأحمال العالية.',
+        aEn: 'Mosaic terrazzo tiles (25x25 & 30x30 cm) are the standard for high-traffic interior floors in schools, hospitals, and government facilities due to exceptional abrasion resistance, moisture durability in basements, and being a cost-effective alternative to marble on stairs.'
+    },
+    {
         qAr: 'كيف يتم طلب التسعير والتوريد لمواقع المشاريع؟',
         qEn: 'How to request quotation and delivery to project sites?',
         aAr: 'يمكنك طلب عرض أسعار فوري بالتواصل المباشر مع إدارة المبيعات عبر الواتساب أو الاتصال الهاتفي. يتوفر أسطول نقل مجهز لتوريد المنتجات لجميع أنحاء الجمهورية (القاهرة الجديدة، العاصمة الإدارية، العاشر من رمضان، بلبيس، الشروق، وباقي المحافظات).',
