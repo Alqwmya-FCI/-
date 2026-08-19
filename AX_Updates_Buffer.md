@@ -1,6 +1,6 @@
 # سجل التحديثات (AX_Updates_Buffer)
 
-## تعديل نصوص بطاقة وأزرار تقييم المصنع (Reviews Card Text Adjustments)
-- حذف جملة "تقييم فوري بنقرة واحدة" من شارة التقييم العلوية.
-- تعديل نص الزر الرئيسي إلى "تقييم المصنع" في المكون [FactoryLocationSection.jsx](file:///d:/wepsit/al-qawmia-factory/al-qawmia-factory-app/src/components/FactoryLocationSection.jsx).
+## تفعيل زر استكشاف المنتجات بالبانر الرئيسي (Explore Products Button Activation)
+- ربط زر "استكشف منتجاتنا" في واجهة الـ Hero بالقسم الخاص بالمنتجات `href="#products"`.
+- تحسين مظهر الزرين بتصميم عصري انسيابي (`rounded-full`) مع تأثيرات تفاعلية ناعمة عند التمرير.
 - بناء ونشر التحديثات أونلاين على الدومين بنجاح.
