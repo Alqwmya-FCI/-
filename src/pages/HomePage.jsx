@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useSEO } from '../hooks/useSEO';
 import SEOFAQSection from '../components/SEOFAQSection';
+import FactoryLocationSection from '../components/FactoryLocationSection';
 const heroSliderImages = [
     '/images/اساسي2.jpg',
     '/images/اساسي3.jpg',
@@ -518,6 +519,9 @@ const HomePage = () => {
 
             {/* ═══════════════ FAQ & TECHNICAL SPECS (SEO) ═══════════════ */}
             <SEOFAQSection isAr={isAr} />
+
+            {/* ═══════════════ FACTORY MAP & LOCATION ═══════════════ */}
+            <FactoryLocationSection isAr={isAr} />
 
             {/* ═══════════════ TEAM ═══════════════ */}
             <section id="contact" className="py-24 bg-surface border-t border-outline-variant/10">
