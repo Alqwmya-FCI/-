@@ -517,9 +517,6 @@ const HomePage = () => {
                 </div>
             </section>
 
-            {/* ═══════════════ FAQ & TECHNICAL SPECS (SEO) ═══════════════ */}
-            <SEOFAQSection isAr={isAr} />
-
             {/* ═══════════════ FACTORY MAP & LOCATION ═══════════════ */}
             <FactoryLocationSection isAr={isAr} />
 
@@ -582,6 +579,9 @@ const HomePage = () => {
                     </div>
                 </div>
             </section>
+
+            {/* ═══════════════ FAQ & TECHNICAL SPECS (SEO) ═══════════════ */}
+            <SEOFAQSection isAr={isAr} />
         </div>
     );
 };

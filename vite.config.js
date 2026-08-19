@@ -52,6 +52,10 @@ function imageProxyPlugin() {
 
 export default defineConfig({
   base: '/',
+  server: {
+    port: 9897,
+    host: true,
+  },
   plugins: [
     react(),
     tailwindcss(),
