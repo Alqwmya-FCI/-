@@ -3,7 +3,7 @@ import { MapPin, Navigation, Clock, Phone, Star, ExternalLink, ShieldCheck, Hear
 
 export default function FactoryLocationSection({ isAr = true }) {
     const mapLocationUrl = 'https://maps.app.goo.gl/QneojizzF3fJqKrz6';
-    const directReviewUrl = 'https://search.google.com/local/writereview?placeid=ChIJDepGXGZ9-BQRnIPxxvJGgJo';
+    const directReviewUrl = 'https://www.google.com/maps/place/%D9%85%D8%B5%D9%86%D8%B9+%D8%A7%D9%84%D9%82%D9%88%D9%85%D9%8A%D9%87+%D9%84%D9%84%D8%B5%D9%86%D8%A7%D8%B9%D8%A7%D8%AA+%D8%A7%D9%84%D8%A7%D8%B3%D9%85%D9%86%D8%AA%D9%8A%D9%87%E2%80%AD/@30.2817526,32.3285137,17z/data=!4m8!3m7!1s0x14f87d665c85ea0d:0x9a0046f2c5f1839c!8m2!3d30.2817526!4d32.3285137!9m1!1b1!16s%2Fg%2F11h9gqzwx6';
     const mapEmbedUrl = 'https://maps.google.com/maps?q=%D9%85%D8%B5%D9%86%D8%B9+%D8%A7%D9%84%D9%82%D9%88%D9%85%D9%8A%D9%87+%D9%84%D9%84%D8%B5%D9%86%D8%A7%D8%B9%D8%A7%D8%AA+%D8%A7%D9%84%D8%A7%D8%B3%D9%85%D9%86%D8%AA%D9%8A%D9%87&hl=ar&z=15&output=embed';
 
     return (
