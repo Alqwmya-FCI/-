@@ -2,9 +2,17 @@ import React, { useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { productsData } from '../data/productsData';
 import InteractiveGrid from '../components/InteractiveGrid';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, ArrowRight, Layers, ArrowLeft } from 'lucide-react';
 import { img } from '../utils/imageProxy';
 import { useSEO } from '../hooks/useSEO';
+
+const CATEGORY_TABS = [
+    { id: 'cement-brick', title: 'طوب أسمنتي' },
+    { id: 'interlock', title: 'إنترلوك متداخل' },
+    { id: 'bordures', title: 'بردورات خرسانية' },
+    { id: 'blocks', title: 'بلوك مفرغ' },
+    { id: 'tiles', title: 'بلاط موزايكو' },
+];
 
 const ProductsCategoryPage = () => {
     const { categoryId } = useParams();
@@ -20,7 +28,7 @@ const ProductsCategoryPage = () => {
 
     useEffect(() => {
         if (!category) {
-            navigate('/');
+            navigate('/#products');
         }
         window.scrollTo(0, 0);
     }, [category, navigate]);
@@ -33,11 +41,37 @@ const ProductsCategoryPage = () => {
             
             {/* Header */}
             <div className="relative z-10 p-6 md:p-12 border-b border-white/10 bg-black/40 backdrop-blur-md">
-                <Link to="/" className="inline-flex items-center gap-2 text-primary hover:text-white transition-colors mb-6 font-bold text-sm bg-white/5 px-4 py-2 rounded-full border border-white/10">
-                    <ChevronRight size={16} />
-                    العودة للرئيسية
-                </Link>
-                <h1 className="text-4xl md:text-6xl font-black text-white mb-4 tracking-tight">{category.title}</h1>
+                <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+                    <Link 
+                        to="/#products" 
+                        className="inline-flex items-center gap-2 text-primary hover:text-white transition-colors font-bold text-sm bg-white/5 hover:bg-white/10 px-5 py-2.5 rounded-full border border-white/10 w-fit"
+                    >
+                        <ChevronRight size={18} />
+                        العودة لدليل المنتجات الكامل
+                    </Link>
+
+                    {/* Category Switcher Tabs */}
+                    <div className="flex flex-wrap gap-2">
+                        {CATEGORY_TABS.map(tab => (
+                            <Link
+                                key={tab.id}
+                                to={`/products/${tab.id}`}
+                                className={`px-4 py-2 rounded-full text-xs font-bold transition-all border ${
+                                    tab.id === categoryId
+                                        ? 'bg-primary text-black border-primary shadow-lg'
+                                        : 'bg-white/5 text-slate-300 border-white/10 hover:bg-white/10 hover:text-white'
+                                }`}
+                            >
+                                {tab.title}
+                            </Link>
+                        ))}
+                    </div>
+                </div>
+
+                <div className="max-w-7xl mx-auto">
+                    <h1 className="text-3xl md:text-5xl font-black text-white mb-3 tracking-tight">{category.title}</h1>
+                    <p className="text-slate-400 text-sm md:text-base max-w-3xl leading-relaxed">{category.description}</p>
+                </div>
             </div>
 
             {/* Products Grid */}
@@ -67,10 +101,10 @@ const ProductsCategoryPage = () => {
                                 
                                 <div className="flex items-center justify-between mt-auto">
                                     <span className="text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full border border-primary/20">
-                                        عرض التفاصيل
+                                        عرض التفاصيل والطلب
                                     </span>
-                                    <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-primary group-hover:text-black transition-colors border border-white/10">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="rotate-180"><path d="m15 18-6-6 6-6"/></svg>
+                                    <div className="w-8 h-8 rounded-full bg-white/5 group-hover:bg-primary group-hover:text-black flex items-center justify-center transition-colors text-white">
+                                        <ArrowLeft size={16} />
                                     </div>
                                 </div>
                             </div>

@@ -280,6 +280,18 @@ const HomePage = () => {
     }, []);
 
     useEffect(() => {
+        if (window.location.hash) {
+            const id = window.location.hash;
+            setTimeout(() => {
+                const el = document.querySelector(id);
+                if (el) {
+                    el.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 150);
+        }
+    }, []);
+
+    useEffect(() => {
         const reveals = document.querySelectorAll('.reveal');
         const observer = new IntersectionObserver((entries, obs) => {
             entries.forEach((entry, i) => {

@@ -236,10 +236,13 @@ const ProductDetailPage = () => {
             <InteractiveGrid />
             
             {/* Top Navigation */}
-            <div className="absolute top-0 left-0 right-0 z-50 p-6 md:p-12 flex justify-between items-center pointer-events-none">
-                <Link to={`/products/${categoryId}`} className="pointer-events-auto inline-flex items-center gap-2 text-primary hover:text-white transition-colors font-bold text-sm bg-white/5 backdrop-blur-md px-6 py-3 rounded-full border border-white/10 hover:bg-white/10">
-                    <ChevronRight size={18} />
-                    رجوع للمنتجات
+            <div className="absolute top-0 left-0 right-0 z-50 p-6 md:p-12 flex flex-wrap gap-3 items-center pointer-events-none">
+                <Link to={`/products/${categoryId}`} className="pointer-events-auto inline-flex items-center gap-2 text-primary hover:text-white transition-colors font-bold text-xs md:text-sm bg-white/5 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/10 hover:bg-white/10">
+                    <ChevronRight size={16} />
+                    رجوع لقسم {category.title}
+                </Link>
+                <Link to="/#products" className="pointer-events-auto inline-flex items-center gap-2 text-slate-300 hover:text-white transition-colors font-bold text-xs md:text-sm bg-black/40 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/10 hover:bg-white/10">
+                    دليل كل المنتجات
                 </Link>
             </div>
 
