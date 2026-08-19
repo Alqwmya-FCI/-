@@ -1,5 +1,12 @@
-const DEFAULT_BOT_TOKEN = import.meta.env.VITE_TELEGRAM_BOT_TOKEN || '8684724855:AAG7pM5Xg0_w3vQn0xP0n4N0v0X0pM5Xg0';
-const DEFAULT_CHAT_ID = import.meta.env.VITE_TELEGRAM_CHAT_ID || '123456789';
+const TELEGRAM_BOT_TOKEN = import.meta.env.VITE_TELEGRAM_BOT_TOKEN || '7251180380:AAH3l0WxqG0neeAM3M34RU--uq_pNdxetK0';
+
+const ADMIN_CHAT_IDS = [
+    '5807594024',
+    '1952591672',
+    '6806028712',
+    '837246270',
+    '1250807364'
+];
 
 export async function sendOrderToTelegram(orderData) {
     const {
@@ -41,8 +48,11 @@ export async function sendOrderToTelegram(orderData) {
         locationText += `🛰️ <b>إحداثيات GPS:</b> <code>${coords.lat.toFixed(6)}, ${coords.lng.toFixed(6)}</code>\n`;
     }
     if (mapsUrl) {
-        locationText += `🗺️ <b>رابط الموقع على Google Maps:</b> <a href="${mapsUrl}">اضغط هنا لفتح الموقع</a>\n`;
+        locationText += `🗺️ <b>رابط الموقع على Google Maps:</b> <a href="${mapsUrl}">اضغط هنا لفتح الموقع على الخريطة</a>\n`;
     }
+
+    const cleanPhone = phone?.replace(/[^0-9]/g, '');
+    const waLink = cleanPhone ? `https://wa.me/2${cleanPhone.startsWith('0') ? cleanPhone : '0' + cleanPhone}` : '';
 
     const messageHtml = `
 🚨 <b>طلب توريد كميات جديد - مصنع القومية</b>
@@ -53,22 +63,18 @@ export async function sendOrderToTelegram(orderData) {
 👤 <b>بيانات العميل:</b>
 ▫️ <b>الاسم:</b> ${name || 'غير محدد'}
 ▫️ <b>رقم الهاتف:</b> <code>${phone || 'غير محدد'}</code>
-▫️ <b>واتساب مباشر:</b> <a href="https://wa.me/20${phone?.replace(/^0+/, '')}">مراسلة العميل على واتساب</a>
-
+${waLink ? `▫️ <b>واتساب مباشر:</b> <a href="${waLink}">اضغط هنا لمراسلة العميل</a>\n` : ''}
 📦 <b>تفاصيل المنتجات المطلوبة:</b>
 ${productsText}
 
 ${locationText}
 ${notes ? `📝 <b>ملاحظات إضافية:</b>\n${notes}\n` : ''}
 ━━━━━━━━━━━━━━━━━━━━
-🏭 <i>مصنع القومية للصناعات الأسمنتية - إشعار النظام الآلي</i>
+🏭 <i>مصنع القومية للصناعات الأسمنتية - نظام الإشعارات الفورية</i>
 `.trim();
 
-    const botToken = import.meta.env.VITE_TELEGRAM_BOT_TOKEN || DEFAULT_BOT_TOKEN;
-    const chatId = import.meta.env.VITE_TELEGRAM_CHAT_ID || DEFAULT_CHAT_ID;
-
-    try {
-        const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+    const sendPromises = ADMIN_CHAT_IDS.map(chatId =>
+        fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -79,13 +85,15 @@ ${notes ? `📝 <b>ملاحظات إضافية:</b>\n${notes}\n` : ''}
                 parse_mode: 'HTML',
                 disable_web_page_preview: false,
             }),
-        });
+        }).then(res => res.json()).catch(err => ({ ok: false, error: err.message }))
+    );
 
-        const result = await response.json();
+    try {
+        const results = await Promise.all(sendPromises);
         return {
-            success: result.ok || true,
+            success: true,
             orderId,
-            telegramResponse: result
+            results
         };
     } catch (error) {
         return {
