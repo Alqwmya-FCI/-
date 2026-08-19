@@ -313,10 +313,6 @@ const HomePage = () => {
 
                 <div className="relative z-10 max-w-screen-xl mx-auto px-6 md:px-12 w-full py-12">
                     <div className="max-w-3xl">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 bg-surface-container border border-outline-variant text-xs font-mono text-primary mb-6 reveal">
-                            <span className="w-2 h-2 rounded-full bg-primary animate-ping" />
-                            {t.sysGrade}
-                        </div>
                         <h1 className="text-4xl sm:text-6xl md:text-7xl font-black text-on-surface tracking-tight mb-4 uppercase leading-none reveal">
                             {t.heroTitle1} <br />
                             <span className="text-primary">{t.heroTitle2}</span>
