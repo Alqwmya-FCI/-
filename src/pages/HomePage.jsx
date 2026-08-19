@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useSEO } from '../hooks/useSEO';
+import SEOFAQSection from '../components/SEOFAQSection';
 const heroSliderImages = [
     '/images/اساسي2.jpg',
     '/images/اساسي3.jpg',
@@ -312,10 +313,10 @@ const HomePage = () => {
                     </a>
 
                     <ul className="hidden md:flex items-center gap-8 text-sm font-medium">
-                        <li><a className="text-on-surface-variant hover:text-primary transition-colors uppercase" href="#">{t.navProducts}</a></li>
-                        <li><a className="text-primary border-b-2 border-primary pb-1 uppercase" href="#">{t.navProjects}</a></li>
-                        <li><a className="text-on-surface-variant hover:text-primary transition-colors uppercase" href="#">{t.navSpecs}</a></li>
-                        <li><a className="text-on-surface-variant hover:text-primary transition-colors uppercase" href="#">{t.navServices}</a></li>
+                        <li><a className="text-on-surface-variant hover:text-primary transition-colors uppercase" href="#products">{t.navProducts}</a></li>
+                        <li><a className="text-on-surface-variant hover:text-primary transition-colors uppercase" href="#about">{t.navProjects}</a></li>
+                        <li><a className="text-on-surface-variant hover:text-primary transition-colors uppercase" href="#faq">{t.navSpecs}</a></li>
+                        <li><a className="text-on-surface-variant hover:text-primary transition-colors uppercase" href="#contact">{t.navServices}</a></li>
                     </ul>
 
                     <div className="flex items-center gap-4 text-on-surface-variant">
@@ -414,7 +415,7 @@ const HomePage = () => {
             </section>
 
             {/* ═══════════════ ABOUT ═══════════════ */}
-            <section className="py-32 bg-background border-b border-outline-variant/50">
+            <section id="about" className="py-32 bg-background border-b border-outline-variant/50">
                 <div className="max-w-screen-xl mx-auto px-6 md:px-12">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
                         <div>
@@ -451,7 +452,7 @@ const HomePage = () => {
                         </div>
                         <div className="relative h-[500px] w-full rounded-sm overflow-hidden shadow-xl group reveal">
                             <img
-                                alt="مصنع القومية"
+                                alt="مصنع القومية للصناعات الأسمنتية"
                                 className="w-full h-full object-cover filter grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
                                 src="/images/اساسي2.jpg"
                             />
@@ -465,7 +466,7 @@ const HomePage = () => {
             </section>
 
             {/* ═══════════════ PRODUCTS (BENTO) ═══════════════ */}
-            <section className="py-32 bg-surface border-b border-outline-variant/50">
+            <section id="products" className="py-32 bg-surface border-b border-outline-variant/50">
                 <div className="max-w-screen-xl mx-auto px-6 md:px-12">
                     <div className="grid grid-cols-12 gap-2 md:gap-4">
                         {/* Card 1 — Large (8 cols) */}
@@ -514,6 +515,9 @@ const HomePage = () => {
                     </div>
                 </div>
             </section>
+
+            {/* ═══════════════ FAQ & TECHNICAL SPECS (SEO) ═══════════════ */}
+            <SEOFAQSection isAr={isAr} />
 
             {/* ═══════════════ TEAM ═══════════════ */}
             <section id="contact" className="py-24 bg-surface border-t border-outline-variant/10">
