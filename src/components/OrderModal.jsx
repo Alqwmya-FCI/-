@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { X, CheckCircle, Navigation, MapPin, Phone, User, Package, Send, Loader2, ExternalLink, Plus, Trash2, AlertCircle } from 'lucide-react';
 import { sendOrderToTelegram } from '../services/telegramOrderService';
+import { getReadableAddress } from '../utils/reverseGeocode';
 
 export default function OrderModal({ isOpen, onClose, initialProduct = null }) {
     const [name, setName] = useState('');
@@ -51,17 +52,16 @@ export default function OrderModal({ isOpen, onClose, initialProduct = null }) {
         setLocationStatus(null);
 
         navigator.geolocation.getCurrentPosition(
-            (position) => {
+            async (position) => {
                 const lat = position.coords.latitude;
                 const lng = position.coords.longitude;
                 const url = `https://www.google.com/maps?q=${lat},${lng}`;
                 setCoords({ lat, lng });
                 setMapsUrl(url);
                 setLocationStatus('success');
+                const readable = await getReadableAddress(lat, lng);
+                setAddress(readable);
                 setIsLocating(false);
-                if (!address) {
-                    setAddress(`موقع محدد عبر GPS (${lat.toFixed(4)}, ${lng.toFixed(4)})`);
-                }
             },
             () => {
                 setLocationStatus('error');

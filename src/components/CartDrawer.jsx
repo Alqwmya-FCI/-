@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { X, Trash2, ShoppingBag, Send, Navigation, CheckCircle, MapPin, User, Phone, Loader2, ExternalLink, Plus, AlertCircle } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { sendOrderToTelegram } from '../services/telegramOrderService';
+import { getReadableAddress } from '../utils/reverseGeocode';
 
 const HUSSEIN_WHATSAPP = '201286084444';
 
@@ -48,17 +49,16 @@ export default function CartDrawer() {
         setIsLocating(true);
         setErrorMsg('');
         navigator.geolocation.getCurrentPosition(
-            (pos) => {
+            async (pos) => {
                 const lat = pos.coords.latitude;
                 const lng = pos.coords.longitude;
                 const url = `https://www.google.com/maps?q=${lat},${lng}`;
                 setCoords({ lat, lng });
                 setMapsUrl(url);
                 setLocationSuccess(true);
+                const readable = await getReadableAddress(lat, lng);
+                setDeliveryLocation(readable);
                 setIsLocating(false);
-                if (!deliveryLocation) {
-                    setDeliveryLocation(`موقع محدد عبر GPS (${lat.toFixed(4)}, ${lng.toFixed(4)})`);
-                }
             },
             () => {
                 setIsLocating(false);
