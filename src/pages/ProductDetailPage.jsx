@@ -161,6 +161,14 @@ const FadingProductGallery = ({ images, className = "" }) => {
     );
 };
 
+const CATEGORY_TABS = [
+    { id: 'bricks', title: 'طوب أسمنتي' },
+    { id: 'interlock', title: 'إنترلوك متداخل' },
+    { id: 'curbs', title: 'بردورات خرسانية' },
+    { id: 'blocks', title: 'بلوك مفرغ' },
+    { id: 'tiles', title: 'بلاط موزايكو' },
+];
+
 const ProductDetailPage = () => {
     const { categoryId, productId } = useParams();
     const navigate = useNavigate();
@@ -169,7 +177,7 @@ const ProductDetailPage = () => {
     const imageRef = useRef(null);
 
     const category = productsData[categoryId];
-    const product = category?.items.find(item => item.id === productId);
+    const product = category?.items?.find(item => item.id === productId);
 
     const productSchema = product ? {
         '@context': 'https://schema.org',
@@ -202,17 +210,16 @@ const ProductDetailPage = () => {
     });
 
     useEffect(() => {
-        if (!product) {
-            navigate(`/products/${categoryId}`);
+        if (!category || !product) {
+            navigate(`/products/${categoryId || 'bricks'}`);
         }
         window.scrollTo(0, 0);
-    }, [product, categoryId, navigate]);
+    }, [product, category, categoryId, navigate]);
 
     const handleMouseMove = (e) => {
         if (!imageRef.current) return;
         const rect = imageRef.current.getBoundingClientRect();
         
-        // Calculate mouse position relative to the center of the image container (-1 to 1)
         const x = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
         const y = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
         
@@ -225,7 +232,6 @@ const ProductDetailPage = () => {
 
     if (!product) return null;
 
-    // 3D Transform based on mouse movement
     const transformStyle = {
         transform: `perspective(1000px) rotateY(${mousePos.x * 15}deg) rotateX(${-mousePos.y * 15}deg) scale3d(1.05, 1.05, 1.05)`,
         transition: mousePos.x === 0 && mousePos.y === 0 ? 'transform 0.5s ease-out' : 'transform 0.1s ease-out'
@@ -236,14 +242,32 @@ const ProductDetailPage = () => {
             <InteractiveGrid />
             
             {/* Top Navigation */}
-            <div className="absolute top-0 left-0 right-0 z-50 p-6 md:p-12 flex flex-wrap gap-3 items-center pointer-events-none">
-                <Link to={`/products/${categoryId}`} className="pointer-events-auto inline-flex items-center gap-2 text-primary hover:text-white transition-colors font-bold text-xs md:text-sm bg-white/5 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/10 hover:bg-white/10">
-                    <ChevronRight size={16} />
-                    رجوع لقسم {category.title}
-                </Link>
-                <Link to="/#products" className="pointer-events-auto inline-flex items-center gap-2 text-slate-300 hover:text-white transition-colors font-bold text-xs md:text-sm bg-black/40 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/10 hover:bg-white/10">
-                    دليل كل المنتجات
-                </Link>
+            <div className="absolute top-0 left-0 right-0 z-50 p-6 md:p-12 flex flex-wrap items-center justify-between gap-4 pointer-events-none">
+                <div className="flex flex-wrap gap-2.5 items-center pointer-events-auto">
+                    <Link to={`/products/${categoryId}`} className="inline-flex items-center gap-2 text-primary hover:text-white transition-colors font-bold text-xs md:text-sm bg-white/5 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/10 hover:bg-white/10">
+                        <ChevronRight size={16} />
+                        رجوع لقسم {category?.title || 'المنتجات'}
+                    </Link>
+                    <Link to="/#products" className="inline-flex items-center gap-2 text-slate-300 hover:text-white transition-colors font-bold text-xs md:text-sm bg-black/40 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/10 hover:bg-white/10">
+                        دليل كل المنتجات
+                    </Link>
+                </div>
+
+                <div className="hidden lg:flex flex-wrap gap-1.5 pointer-events-auto">
+                    {CATEGORY_TABS.map(tab => (
+                        <Link
+                            key={tab.id}
+                            to={`/products/${tab.id}`}
+                            className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all border ${
+                                tab.id === categoryId
+                                    ? 'bg-primary text-black border-primary'
+                                    : 'bg-white/5 text-slate-300 border-white/10 hover:bg-white/10 hover:text-white'
+                            }`}
+                        >
+                            {tab.title}
+                        </Link>
+                    ))}
+                </div>
             </div>
 
             <div className="relative z-10 container mx-auto px-6 py-24 min-h-screen flex flex-col lg:flex-row items-center gap-16">

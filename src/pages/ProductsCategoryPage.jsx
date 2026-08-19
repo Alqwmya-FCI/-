@@ -7,9 +7,9 @@ import { img } from '../utils/imageProxy';
 import { useSEO } from '../hooks/useSEO';
 
 const CATEGORY_TABS = [
-    { id: 'cement-brick', title: 'طوب أسمنتي' },
+    { id: 'bricks', title: 'طوب أسمنتي' },
     { id: 'interlock', title: 'إنترلوك متداخل' },
-    { id: 'bordures', title: 'بردورات خرسانية' },
+    { id: 'curbs', title: 'بردورات خرسانية' },
     { id: 'blocks', title: 'بلوك مفرغ' },
     { id: 'tiles', title: 'بلاط موزايكو' },
 ];
