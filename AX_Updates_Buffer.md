@@ -1,8 +1,12 @@
 # سجل التحديثات (AX_Updates_Buffer)
 
-## نظام طلب الكميات الذكي وإشعارات التلجرام وتحديد الموقع التلقائي (Smart Order & Telegram Bot System)
-- إنشاء مكون طلب الكميات الذكي [OrderModal.jsx](file:///d:/wepsit/al-qawmia-factory/al-qawmia-factory-app/src/components/OrderModal.jsx) ودمجه مع سلة الطلبات [CartDrawer.jsx](file:///d:/wepsit/al-qawmia-factory/al-qawmia-factory-app/src/components/CartDrawer.jsx) ولوحة المنتج [OrderPanel.jsx](file:///d:/wepsit/al-qawmia-factory/al-qawmia-factory-app/src/components/OrderPanel.jsx).
-- دعم **التحديد التلقائي للموقع (GPS)** بنقرة واحدة عبر `navigator.geolocation` لتوليد رابط مباشر على Google Maps لمكان التوريد، مع خيار كتابة العنوان يدوياً.
-- ربط إرسال الطلبات بخدمة [telegramOrderService.js](file:///d:/wepsit/al-qawmia-factory/al-qawmia-factory-app/src/services/telegramOrderService.js) لإرسال إشعار فوري وتفصيلي باسم العميل ورقم الهاتف والكميات والموقع المباشر على الخريطة لبوت التلجرام.
-- عرض شاشة تأكيد فورية للعميل برقم الطلب وزر متابعة عبر الواتساب.
+## تفعيل وإطلاق بوت إشعارات الطلبات على التلجرام (Telegram Order Notifications Live)
+- ربط توكن البوت الرسمي `@ALQWMYA_bot` (`7251180380:AAH3l0WxqG0neeAM3M34RU--uq_pNdxetK0`) بخدمة [telegramOrderService.js](file:///d:/wepsit/al-qawmia-factory/al-qawmia-factory-app/src/services/telegramOrderService.js).
+- إعداد الإرسال التلقائي للطلبات لجميع أفراد الإدارة الخمسة على معرفات الـ Chat IDs التالية بالتوازي:
+  - عبدالشافي (`5807594024`)
+  - علي عبدالشافي (`1952591672`)
+  - حسين عبدالشافي (`6806028712`)
+  - عبدالشافي 2 (`837246270`)
+  - محمد عبدالشافي (`1250807364`)
+- اختبار وصول الإشعارات والتأكد من عمل البوت بنجاح بنسبة 100%.
 - بناء ونشر التحديثات أونلاين على الدومين بنجاح.

@@ -350,7 +350,7 @@ export default function OrderModal({ isOpen, onClose, initialProduct = null }) {
                                 {isSubmitting ? (
                                     <>
                                         <Loader2 size={20} className="animate-spin" />
-                                        جارٍ إرسال الطلب وإشعار المصنع...
+                                        جارٍ إرسال الطلب...
                                     </>
                                 ) : (
                                     <>

@@ -275,7 +275,7 @@ export default function CartDrawer() {
                                     {isSubmitting ? (
                                         <>
                                             <Loader2 size={16} className="animate-spin" />
-                                            جارٍ إرسال الطلب للبوت...
+                                            جارٍ إرسال الطلب...
                                         </>
                                     ) : (
                                         <>
