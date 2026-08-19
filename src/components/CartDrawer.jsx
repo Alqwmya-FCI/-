@@ -1,17 +1,81 @@
-import React from 'react';
-import { X, Trash2, ShoppingBag, Send } from 'lucide-react';
+import React, { useState } from 'react';
+import { X, Trash2, ShoppingBag, Send, Navigation, CheckCircle, MapPin, User, Phone, Loader2, ExternalLink } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import { sendOrderToTelegram } from '../services/telegramOrderService';
 
 const HUSSEIN_WHATSAPP = '201286084444';
 
 export default function CartDrawer() {
     const { items, removeItem, clearCart, isOpen, setIsOpen, totalCount } = useCart();
-    const [deliveryMethod, setDeliveryMethod] = React.useState('مصنع'); // 'مصنع' or 'عميل'
-    const [deliveryLocation, setDeliveryLocation] = React.useState('');
+    const [name, setName] = useState('');
+    const [phone, setPhone] = useState('');
+    const [deliveryMethod, setDeliveryMethod] = useState('نقل للعميل');
+    const [deliveryLocation, setDeliveryLocation] = useState('');
+    const [coords, setCoords] = useState(null);
+    const [mapsUrl, setMapsUrl] = useState('');
+    const [isLocating, setIsLocating] = useState(false);
+    const [locationSuccess, setLocationSuccess] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [lastOrderId, setLastOrderId] = useState('');
+
+    const handleDetectLocation = () => {
+        if (!navigator.geolocation) {
+            alert('متصفحك لا يدعم تحديد الموقع التلقائي');
+            return;
+        }
+
+        setIsLocating(true);
+        navigator.geolocation.getCurrentPosition(
+            (pos) => {
+                const lat = pos.coords.latitude;
+                const lng = pos.coords.longitude;
+                const url = `https://www.google.com/maps?q=${lat},${lng}`;
+                setCoords({ lat, lng });
+                setMapsUrl(url);
+                setLocationSuccess(true);
+                setIsLocating(false);
+                if (!deliveryLocation) {
+                    setDeliveryLocation(`موقع محدد عبر GPS (${lat.toFixed(4)}, ${lng.toFixed(4)})`);
+                }
+            },
+            () => {
+                setIsLocating(false);
+                alert('يرجى السماح بالوصول للموقع لتحديده تلقائياً أو كتابة العنوان يدوياً.');
+            },
+            { enableHighAccuracy: true, timeout: 10000 }
+        );
+    };
+
+    const handleSendOrder = async () => {
+        if (!name.trim() || !phone.trim()) {
+            alert('يرجى كتابة الاسم ورقم الهاتف لإرسال الطلب');
+            return;
+        }
+
+        setIsSubmitting(true);
+        const orderData = {
+            name,
+            phone,
+            items,
+            deliveryMethod: deliveryMethod === 'مصنع' ? 'تسليم أرض المصنع' : 'نقل للعميل',
+            address: deliveryLocation,
+            coords,
+            mapsUrl
+        };
+
+        const result = await sendOrderToTelegram(orderData);
+        setIsSubmitting(false);
+        setLastOrderId(result.orderId);
+        setIsSubmitted(true);
+        clearCart();
+    };
 
     function buildWhatsAppMessage() {
         if (items.length === 0) return '';
-        let msg = 'مرحباً، أريد الاستفسار عن تسعير الطلب التالي:\n\n';
+        let msg = `مرحباً مصنع القومية، أريد تأكيد طلب توريد برقم ${lastOrderId || 'مباشر'}:\n`;
+        msg += `الاسم: ${name}\n`;
+        msg += `الهاتف: ${phone}\n\n`;
         items.forEach((item, i) => {
             msg += `${i + 1}. ${item.productName}`;
             if (item.color) msg += ` - اللون: ${item.color}`;
@@ -19,22 +83,17 @@ export default function CartDrawer() {
             msg += ` - الكمية: ${item.quantity.toLocaleString('ar-EG')} ${item.unit}\n`;
         });
         
-        msg += '\n📍 تفاصيل الاستلام:\n';
-        if (deliveryMethod === 'مصنع') {
-            msg += 'طريقة الاستلام: تسليم أرض المصنع\n';
-        } else {
-            msg += 'طريقة الاستلام: نقل للعميل\n';
-            msg += `العنوان / الموقع: ${deliveryLocation || 'لم يتم التحديد'}\n`;
+        msg += '\n📍 الاستلام: ' + (deliveryMethod === 'مصنع' ? 'أرض المصنع' : `نقل للعميل - ${deliveryLocation || 'عنوان محدد'}`);
+        if (mapsUrl) {
+            msg += `\n🗺️ رابط الخريطة: ${mapsUrl}`;
         }
-
-        msg += '\nشكراً';
         return encodeURIComponent(msg);
     }
 
     return (
         <>
             <button
-                onClick={() => setIsOpen(true)}
+                onClick={() => { setIsSubmitted(false); setIsOpen(true); }}
                 className="fixed bottom-6 left-6 z-50 w-14 h-14 bg-primary text-black rounded-full flex items-center justify-center shadow-[0_8px_30px_rgba(16,185,129,0.5)] hover:scale-110 active:scale-95 transition-all duration-200"
                 aria-label="السلة"
             >
@@ -53,12 +112,11 @@ export default function CartDrawer() {
                         onClick={() => setIsOpen(false)}
                     />
 
-                    <div className="relative mr-auto w-full max-w-md h-full bg-slate-900 border-r border-white/10 shadow-2xl flex flex-col animate-slide-in-right" dir="rtl">
-
+                    <div className="relative mr-auto w-full max-w-md h-full bg-slate-900 border-r border-white/10 shadow-2xl flex flex-col animate-slide-in-right text-white" dir="rtl">
                         <div className="flex items-center justify-between p-6 border-b border-white/10 flex-shrink-0">
                             <div className="flex items-center gap-3">
                                 <ShoppingBag size={22} className="text-primary" />
-                                <h2 className="text-xl font-black text-white">سلة الطلب</h2>
+                                <h2 className="text-xl font-black text-white">سلة طلب التوريد</h2>
                                 {items.length > 0 && (
                                     <span className="bg-primary/20 text-primary text-sm font-bold px-2 py-0.5 rounded-full">
                                         {items.length} منتج
@@ -74,11 +132,33 @@ export default function CartDrawer() {
                         </div>
 
                         <div className="flex-1 overflow-y-auto p-4 space-y-3">
-                            {items.length === 0 ? (
+                            {isSubmitted ? (
+                                <div className="py-12 text-center space-y-5 animate-fade-in">
+                                    <div className="w-16 h-16 mx-auto rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center border border-emerald-500/30">
+                                        <CheckCircle size={36} />
+                                    </div>
+                                    <div>
+                                        <span className="text-xs font-mono text-primary font-bold">{lastOrderId}</span>
+                                        <h3 className="text-xl font-black text-white mt-1">تم إرسال طلبك بنجاح!</h3>
+                                        <p className="text-xs text-slate-400 mt-2 px-4">
+                                            وصلت بيانات طلبك لإدارة المبيعات وسيتم التواصل معك مباشرة لتأكيد التوريد.
+                                        </p>
+                                    </div>
+                                    <a
+                                        href={`https://wa.me/${HUSSEIN_WHATSAPP}?text=${encodeURIComponent(`مرحباً مصنع القومية، قمت بطلب توريد كميات برقم ${lastOrderId} وأرغب في المتابعة معكم.`)}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1fb356] text-white text-xs font-bold py-3 px-6 rounded-full shadow-lg"
+                                    >
+                                        <Send size={14} />
+                                        متابعة الطلب على واتساب
+                                    </a>
+                                </div>
+                            ) : items.length === 0 ? (
                                 <div className="flex flex-col items-center justify-center h-full gap-4 text-slate-500">
                                     <ShoppingBag size={48} strokeWidth={1} />
                                     <p className="font-bold">السلة فارغة</p>
-                                    <p className="text-sm text-center">أضف منتجات من صفحات المنتجات</p>
+                                    <p className="text-sm text-center">أضف منتجات من صفحات الكتالوج لطلب توريدها</p>
                                 </div>
                             ) : (
                                 items.map(item => (
@@ -112,63 +192,103 @@ export default function CartDrawer() {
                             )}
                         </div>
 
-                        {items.length > 0 && (
-                            <div className="p-4 border-t border-white/10 flex-shrink-0 space-y-4">
-                                <div className="space-y-3 bg-white/5 p-4 rounded-2xl border border-white/10">
-                                    <p className="text-sm font-bold text-white">📍 طريقة الاستلام:</p>
-                                    <div className="flex gap-3">
-                                        <button
-                                            onClick={() => setDeliveryMethod('مصنع')}
-                                            className={`flex-1 py-2 rounded-xl text-sm font-bold transition-all border ${
-                                                deliveryMethod === 'مصنع' 
-                                                ? 'bg-primary text-black border-primary' 
-                                                : 'bg-white/5 text-slate-300 border-white/10 hover:bg-white/10'
-                                            }`}
-                                        >
-                                            أرض المصنع
-                                        </button>
-                                        <button
-                                            onClick={() => setDeliveryMethod('عميل')}
-                                            className={`flex-1 py-2 rounded-xl text-sm font-bold transition-all border ${
-                                                deliveryMethod === 'عميل' 
-                                                ? 'bg-primary text-black border-primary' 
-                                                : 'bg-white/5 text-slate-300 border-white/10 hover:bg-white/10'
-                                            }`}
-                                        >
-                                            نقل للعميل
-                                        </button>
+                        {!isSubmitted && items.length > 0 && (
+                            <div className="p-4 border-t border-white/10 flex-shrink-0 space-y-4 max-h-[50vh] overflow-y-auto">
+                                <div className="space-y-2.5">
+                                    <input
+                                        type="text"
+                                        required
+                                        placeholder="الاسم بالكامل / اسم الشركة *"
+                                        value={name}
+                                        onChange={(e) => setName(e.target.value)}
+                                        className="w-full bg-white/5 border border-white/10 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-primary"
+                                    />
+                                    <input
+                                        type="tel"
+                                        required
+                                        dir="ltr"
+                                        placeholder="رقم الهاتف / الواتساب *"
+                                        value={phone}
+                                        onChange={(e) => setPhone(e.target.value)}
+                                        className="w-full bg-white/5 border border-white/10 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-primary text-right"
+                                    />
+                                </div>
+
+                                <div className="space-y-2 bg-white/5 p-3 rounded-2xl border border-white/10 text-xs">
+                                    <div className="flex justify-between items-center">
+                                        <span className="font-bold text-white">طريقة الاستلام:</span>
+                                        <div className="flex gap-1.5">
+                                            <button
+                                                type="button"
+                                                onClick={() => setDeliveryMethod('مصنع')}
+                                                className={`px-3 py-1 rounded-full font-bold transition-all ${
+                                                    deliveryMethod === 'مصنع' ? 'bg-primary text-black' : 'bg-white/5 text-slate-400'
+                                                }`}
+                                            >
+                                                أرض المصنع
+                                            </button>
+                                            <button
+                                                type="button"
+                                                onClick={() => setDeliveryMethod('عميل')}
+                                                className={`px-3 py-1 rounded-full font-bold transition-all ${
+                                                    deliveryMethod === 'عميل' ? 'bg-primary text-black' : 'bg-white/5 text-slate-400'
+                                                }`}
+                                            >
+                                                نقل للعميل
+                                            </button>
+                                        </div>
                                     </div>
-                                    
+
                                     {deliveryMethod === 'عميل' && (
-                                        <div className="mt-3 animate-fade-in">
+                                        <div className="space-y-2 pt-1">
+                                            <button
+                                                type="button"
+                                                onClick={handleDetectLocation}
+                                                disabled={isLocating}
+                                                className="w-full flex items-center justify-center gap-1.5 bg-primary/10 border border-primary/30 text-primary py-2 px-3 rounded-xl text-xs font-bold hover:bg-primary/20 transition-all"
+                                            >
+                                                {isLocating ? <Loader2 size={14} className="animate-spin" /> : <Navigation size={14} />}
+                                                تحديد موقعي التلقائي (GPS)
+                                            </button>
+                                            {locationSuccess && (
+                                                <div className="flex justify-between text-[11px] text-emerald-400">
+                                                    <span>تم التقاط إحداثيات الموقع</span>
+                                                    <a href={mapsUrl} target="_blank" rel="noopener noreferrer" className="underline">عرض على الخريطة</a>
+                                                </div>
+                                            )}
                                             <input
                                                 type="text"
-                                                placeholder="اكتب العنوان بالتفصيل أو رابط الخريطة..."
+                                                placeholder="العنوان التفصيلي أو علامة مميزة..."
                                                 value={deliveryLocation}
                                                 onChange={(e) => setDeliveryLocation(e.target.value)}
-                                                className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                                                className="w-full bg-black/40 border border-white/10 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-primary"
                                             />
                                         </div>
                                     )}
                                 </div>
 
-                                <a
-                                    href={`https://wa.me/${HUSSEIN_WHATSAPP}?text=${buildWhatsAppMessage(items)}`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="w-full h-14 bg-[#25D366] hover:bg-[#1fb356] text-white rounded-2xl text-base font-black flex items-center justify-center gap-3 transition-all shadow-[0_8px_25px_rgba(37,211,102,0.3)] hover:shadow-[0_12px_30px_rgba(37,211,102,0.5)] hover:-translate-y-0.5 active:scale-95"
+                                <button
+                                    onClick={handleSendOrder}
+                                    disabled={isSubmitting}
+                                    className="w-full h-12 bg-gradient-to-r from-primary to-emerald-400 hover:from-emerald-400 hover:to-primary text-black rounded-full text-sm font-extrabold flex items-center justify-center gap-2 transition-all shadow-lg active:scale-95 disabled:opacity-50"
                                 >
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-                                        <path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.554 4.12 1.524 5.857L.057 23.5l5.82-1.527A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.65-.488-5.19-1.345l-.372-.22-3.453.906.922-3.37-.241-.389A9.961 9.961 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
-                                    </svg>
-                                    إرسال الطلب عبر واتساب
-                                </a>
+                                    {isSubmitting ? (
+                                        <>
+                                            <Loader2 size={16} className="animate-spin" />
+                                            جارٍ إرسال الطلب للبوت...
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Send size={16} />
+                                            إرسال طلب التوريد الآن
+                                        </>
+                                    )}
+                                </button>
                                 <button
                                     onClick={clearCart}
-                                    className="w-full h-10 bg-white/5 hover:bg-red-500/10 text-slate-400 hover:text-red-400 rounded-xl text-sm font-bold flex items-center justify-center gap-2 transition-all border border-white/10 hover:border-red-500/20"
+                                    className="w-full h-8 text-slate-500 hover:text-red-400 text-xs font-bold flex items-center justify-center gap-1 transition-all"
                                 >
-                                    <Trash2 size={14} />
+                                    <Trash2 size={12} />
                                     مسح السلة
                                 </button>
                             </div>

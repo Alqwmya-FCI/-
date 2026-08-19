@@ -4,7 +4,7 @@ import { useCart } from '../context/CartContext';
 import { PRODUCT_COLORS, QUANTITY_CONFIG } from '../data/colorsData';
 
 export default function OrderPanel({ product, categoryId }) {
-    const { addItem } = useCart();
+    const { addItem, openOrderModal } = useCart();
     const colors = PRODUCT_COLORS[categoryId] || [];
     const config = QUANTITY_CONFIG[categoryId] || QUANTITY_CONFIG.blocks;
     const heights = product.heights || [];
@@ -145,20 +145,28 @@ export default function OrderPanel({ product, categoryId }) {
                 </div>
             </div>
 
-            <button
-                onClick={handleAdd}
-                className={`w-full h-16 rounded-2xl text-lg font-black flex items-center justify-center gap-3 transition-all duration-300 ${
-                    added
-                        ? 'bg-green-500 text-white shadow-[0_10px_30px_rgba(34,197,94,0.4)]'
-                        : 'bg-primary text-black hover:bg-primary/90 shadow-[0_10px_30px_rgba(16,185,129,0.3)] hover:shadow-[0_15px_40px_rgba(16,185,129,0.5)] hover:-translate-y-1'
-                } active:scale-95`}
-            >
-                {added ? (
-                    <><Check size={22} strokeWidth={3} /> أُضيف للسلة</>
-                ) : (
-                    <><ShoppingCart size={22} /> إضافة للسلة</>
-                )}
-            </button>
+            <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                <button
+                    onClick={handleAdd}
+                    className={`flex-1 h-14 rounded-full text-base font-black flex items-center justify-center gap-2 transition-all duration-300 ${
+                        added
+                            ? 'bg-green-500 text-white shadow-[0_10px_30px_rgba(34,197,94,0.4)]'
+                            : 'bg-primary text-black hover:bg-primary/90 shadow-[0_10px_30px_rgba(16,185,129,0.3)] hover:-translate-y-0.5'
+                    } active:scale-95`}
+                >
+                    {added ? (
+                        <><Check size={20} strokeWidth={3} /> أُضيف للسلة</>
+                    ) : (
+                        <><ShoppingCart size={20} /> إضافة للسلة</>
+                    )}
+                </button>
+                <button
+                    onClick={() => openOrderModal({ name: `${product.name} ${selectedColor ? `(${selectedColor})` : ''}`, unit: config.unit, quantity })}
+                    className="h-14 px-6 rounded-full bg-white/10 hover:bg-white/15 text-white text-sm font-black border border-white/20 flex items-center justify-center gap-2 transition-all hover:-translate-y-0.5 active:scale-95"
+                >
+                    طلب توريد فوري
+                </button>
+            </div>
         </div>
     );
 }

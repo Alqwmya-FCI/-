@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import AliCardPage from './pages/AliCardPage';
@@ -6,9 +6,24 @@ import HusseinCardPage from './pages/HusseinCardPage';
 import ProductsCategoryPage from './pages/ProductsCategoryPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import { useSecurityShield } from './hooks/useSecurityShield';
-import { CartProvider } from './context/CartContext';
+import { CartProvider, useCart } from './context/CartContext';
 import CartDrawer from './components/CartDrawer';
+import OrderModal from './components/OrderModal';
 import './App.css';
+
+function AppModals() {
+  const { isOrderModalOpen, closeOrderModal, orderModalProduct } = useCart();
+  return (
+    <>
+      <CartDrawer />
+      <OrderModal 
+        isOpen={isOrderModalOpen} 
+        onClose={closeOrderModal} 
+        initialProduct={orderModalProduct} 
+      />
+    </>
+  );
+}
 
 function App() {
   useSecurityShield();
@@ -27,7 +42,7 @@ function App() {
         <Route path="/hussein-local" element={<HusseinCardPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-      <CartDrawer />
+      <AppModals />
     </CartProvider>
   );
 }

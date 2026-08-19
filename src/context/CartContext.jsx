@@ -5,6 +5,8 @@ const CartContext = createContext(null);
 export function CartProvider({ children }) {
     const [items, setItems] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
+    const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
+    const [orderModalProduct, setOrderModalProduct] = useState(null);
 
     const addItem = (item) => {
         setItems(prev => {
@@ -26,10 +28,32 @@ export function CartProvider({ children }) {
 
     const clearCart = () => setItems([]);
 
+    const openOrderModal = (product = null) => {
+        setOrderModalProduct(product);
+        setIsOrderModalOpen(true);
+    };
+
+    const closeOrderModal = () => {
+        setIsOrderModalOpen(false);
+        setOrderModalProduct(null);
+    };
+
     const totalCount = items.reduce((sum, i) => sum + i.quantity, 0);
 
     return (
-        <CartContext.Provider value={{ items, addItem, removeItem, clearCart, isOpen, setIsOpen, totalCount }}>
+        <CartContext.Provider value={{ 
+            items, 
+            addItem, 
+            removeItem, 
+            clearCart, 
+            isOpen, 
+            setIsOpen, 
+            totalCount,
+            isOrderModalOpen,
+            orderModalProduct,
+            openOrderModal,
+            closeOrderModal
+        }}>
             {children}
         </CartContext.Provider>
     );
