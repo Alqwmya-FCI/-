@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { X, Trash2, ShoppingBag, Send, Navigation, CheckCircle, MapPin, User, Phone, Loader2, ExternalLink, Plus, AlertCircle } from 'lucide-react';
+import { X, Trash2, ShoppingBag, Send, CheckCircle, MapPin, Loader2, ExternalLink, Plus, AlertCircle } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { sendOrderToTelegram } from '../services/telegramOrderService';
-import { getReadableAddress } from '../utils/reverseGeocode';
+import InteractiveLocationPicker from './InteractiveLocationPicker';
 
 const HUSSEIN_WHATSAPP = '201286084444';
 
@@ -14,8 +14,6 @@ export default function CartDrawer() {
     const [deliveryLocation, setDeliveryLocation] = useState('');
     const [coords, setCoords] = useState(null);
     const [mapsUrl, setMapsUrl] = useState('');
-    const [isLocating, setIsLocating] = useState(false);
-    const [locationSuccess, setLocationSuccess] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [lastOrderId, setLastOrderId] = useState('');
@@ -38,34 +36,6 @@ export default function CartDrawer() {
         if (phones.length > 1) {
             setPhones(phones.filter((_, i) => i !== index));
         }
-    };
-
-    const handleDetectLocation = () => {
-        if (!navigator.geolocation) {
-            setErrorMsg('متصفحك لا يدعم تحديد الموقع التلقائي');
-            return;
-        }
-
-        setIsLocating(true);
-        setErrorMsg('');
-        navigator.geolocation.getCurrentPosition(
-            async (pos) => {
-                const lat = pos.coords.latitude;
-                const lng = pos.coords.longitude;
-                const url = `https://www.google.com/maps?q=${lat},${lng}`;
-                setCoords({ lat, lng });
-                setMapsUrl(url);
-                setLocationSuccess(true);
-                const readable = await getReadableAddress(lat, lng);
-                setDeliveryLocation(readable);
-                setIsLocating(false);
-            },
-            () => {
-                setIsLocating(false);
-                setErrorMsg('تعذر الوصول للموقع تلقائياً، يمكنك كتابة العنوان يدوياً.');
-            },
-            { enableHighAccuracy: true, timeout: 10000 }
-        );
     };
 
     const handleSendOrder = async () => {
@@ -164,7 +134,6 @@ export default function CartDrawer() {
                                                 setDeliveryLocation('');
                                                 setCoords(null);
                                                 setMapsUrl('');
-                                                setLocationSuccess(false);
                                                 setErrorMsg('');
                                             }}
                                             className="w-full inline-flex items-center justify-center gap-2 bg-primary text-black text-xs font-black py-3 px-6 rounded-full shadow-lg hover:bg-primary/90 transition-all active:scale-95"
@@ -288,7 +257,7 @@ export default function CartDrawer() {
                                     </div>
                                 </div>
 
-                                <div className="space-y-2 bg-white/5 p-3 rounded-2xl border border-white/10 text-xs">
+                                <div className="space-y-2.5 bg-white/5 p-3 rounded-2xl border border-white/10 text-xs">
                                     <div className="flex justify-between items-center">
                                         <span className="font-bold text-white">طريقة الاستلام:</span>
                                         <div className="flex gap-1.5">
@@ -314,29 +283,30 @@ export default function CartDrawer() {
                                     </div>
 
                                     {deliveryMethod === 'عميل' && (
-                                        <div className="space-y-2 pt-1">
-                                            <button
-                                                type="button"
-                                                onClick={handleDetectLocation}
-                                                disabled={isLocating}
-                                                className="w-full flex items-center justify-center gap-1.5 bg-primary/10 border border-primary/30 text-primary py-2 px-3 rounded-xl text-xs font-bold hover:bg-primary/20 transition-all"
-                                            >
-                                                {isLocating ? <Loader2 size={14} className="animate-spin" /> : <Navigation size={14} />}
-                                                تحديد موقعي التلقائي (GPS)
-                                            </button>
-                                            {locationSuccess && (
-                                                <div className="flex justify-between text-[11px] text-emerald-400">
-                                                    <span>تم التقاط إحداثيات الموقع</span>
-                                                    <a href={mapsUrl} target="_blank" rel="noopener noreferrer" className="underline">عرض على الخريطة</a>
-                                                </div>
-                                            )}
-                                            <input
-                                                type="text"
-                                                placeholder="العنوان التفصيلي أو علامة مميزة..."
-                                                value={deliveryLocation}
-                                                onChange={(e) => setDeliveryLocation(e.target.value)}
-                                                className="w-full bg-black/40 border border-white/10 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-primary"
+                                        <div className="space-y-3 pt-1">
+                                            <InteractiveLocationPicker
+                                                coords={coords}
+                                                address={deliveryLocation}
+                                                setAddress={setDeliveryLocation}
+                                                onLocationSelect={({ lat, lng, address: addr, mapsUrl: url }) => {
+                                                    setCoords({ lat, lng });
+                                                    setDeliveryLocation(addr);
+                                                    setMapsUrl(url);
+                                                }}
                                             />
+
+                                            <div>
+                                                <label className="block text-[11px] font-bold text-slate-400 mb-1">
+                                                    العنوان المكتوب (يمكنك تعديل أي تفاصيل):
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    placeholder="العنوان التفصيلي أو علامة مميزة..."
+                                                    value={deliveryLocation}
+                                                    onChange={(e) => setDeliveryLocation(e.target.value)}
+                                                    className="w-full bg-black/40 border border-white/10 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-primary"
+                                                />
+                                            </div>
                                         </div>
                                     )}
                                 </div>

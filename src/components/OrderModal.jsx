@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { X, CheckCircle, Navigation, MapPin, Phone, User, Package, Send, Loader2, ExternalLink, Plus, Trash2, AlertCircle } from 'lucide-react';
 import { sendOrderToTelegram } from '../services/telegramOrderService';
-import { getReadableAddress } from '../utils/reverseGeocode';
+import InteractiveLocationPicker from './InteractiveLocationPicker';
 
 export default function OrderModal({ isOpen, onClose, initialProduct = null }) {
     const [name, setName] = useState('');
@@ -15,8 +15,6 @@ export default function OrderModal({ isOpen, onClose, initialProduct = null }) {
     const [mapsUrl, setMapsUrl] = useState('');
     const [notes, setNotes] = useState('');
 
-    const [isLocating, setIsLocating] = useState(false);
-    const [locationStatus, setLocationStatus] = useState(null); // 'success' | 'error' | null
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submittedOrder, setSubmittedOrder] = useState(null);
     const [errorMsg, setErrorMsg] = useState('');
@@ -40,35 +38,6 @@ export default function OrderModal({ isOpen, onClose, initialProduct = null }) {
         if (phones.length > 1) {
             setPhones(phones.filter((_, i) => i !== index));
         }
-    };
-
-    const handleDetectLocation = () => {
-        if (!navigator.geolocation) {
-            setLocationStatus('error');
-            return;
-        }
-
-        setIsLocating(true);
-        setLocationStatus(null);
-
-        navigator.geolocation.getCurrentPosition(
-            async (position) => {
-                const lat = position.coords.latitude;
-                const lng = position.coords.longitude;
-                const url = `https://www.google.com/maps?q=${lat},${lng}`;
-                setCoords({ lat, lng });
-                setMapsUrl(url);
-                setLocationStatus('success');
-                const readable = await getReadableAddress(lat, lng);
-                setAddress(readable);
-                setIsLocating(false);
-            },
-            () => {
-                setLocationStatus('error');
-                setIsLocating(false);
-            },
-            { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
-        );
     };
 
     const handleSubmit = async (e) => {
@@ -115,7 +84,6 @@ export default function OrderModal({ isOpen, onClose, initialProduct = null }) {
         setMapsUrl('');
         setNotes('');
         setErrorMsg('');
-        setLocationStatus(null);
         setSubmittedOrder(null);
         onClose();
     };
@@ -179,6 +147,12 @@ export default function OrderModal({ isOpen, onClose, initialProduct = null }) {
                                     <span>المنتج:</span>
                                     <span className="text-primary font-bold">{productName} ({quantity} {unit})</span>
                                 </div>
+                                {address && (
+                                    <div className="flex justify-between text-slate-400">
+                                        <span>العنوان:</span>
+                                        <span className="text-white font-bold max-w-[240px] truncate">{address}</span>
+                                    </div>
+                                )}
                                 {mapsUrl && (
                                     <div className="flex justify-between text-slate-400 pt-1 border-t border-white/5">
                                         <span>الموقع الجغرافي:</span>
@@ -197,7 +171,6 @@ export default function OrderModal({ isOpen, onClose, initialProduct = null }) {
                                         setCoords(null);
                                         setMapsUrl('');
                                         setNotes('');
-                                        setLocationStatus(null);
                                     }}
                                     className="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-black font-extrabold text-sm py-3.5 px-6 rounded-full shadow-lg transition-all active:scale-95"
                                 >
@@ -364,51 +337,30 @@ export default function OrderModal({ isOpen, onClose, initialProduct = null }) {
                                 </div>
 
                                 {deliveryMethod === 'نقل للعميل' && (
-                                    <div className="space-y-2 pt-1">
-                                        <button
-                                            type="button"
-                                            onClick={handleDetectLocation}
-                                            disabled={isLocating}
-                                            className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-500/20 to-primary/20 hover:from-emerald-500/30 hover:to-primary/30 border border-primary/40 text-primary hover:text-white py-3 px-4 rounded-2xl text-xs font-black transition-all shadow-sm active:scale-98"
-                                        >
-                                            {isLocating ? (
-                                                <>
-                                                    <Loader2 size={16} className="animate-spin" />
-                                                    جارٍ قراءة موقعك عبر GPS...
-                                                </>
-                                            ) : (
-                                                <>
-                                                    <Navigation size={16} />
-                                                    تحديد موقعي التلقائي الآن (GPS)
-                                                </>
-                                            )}
-                                        </button>
-
-                                        {locationStatus === 'success' && (
-                                            <div className="flex items-center justify-between bg-emerald-500/10 border border-emerald-500/30 rounded-xl px-3 py-2 text-xs text-emerald-400">
-                                                <span className="flex items-center gap-1.5 font-bold">
-                                                    <CheckCircle size={14} />
-                                                    تم تحديد الموقع بنجاح
-                                                </span>
-                                                <a href={mapsUrl} target="_blank" rel="noopener noreferrer" className="underline flex items-center gap-1">
-                                                    فتح الخريطة <ExternalLink size={10} />
-                                                </a>
-                                            </div>
-                                        )}
-
-                                        {locationStatus === 'error' && (
-                                            <p className="text-[11px] text-amber-400">
-                                                تعذر تحديد الموقع تلقائياً، يمكنك كتابة العنوان يدوياً في الخانة بالأسفل.
-                                            </p>
-                                        )}
-
-                                        <input
-                                            type="text"
-                                            placeholder="أو اكتب العنوان يدوياً (المدينة - المنطقة - المشروع)..."
-                                            value={address}
-                                            onChange={(e) => setAddress(e.target.value)}
-                                            className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-primary transition-all"
+                                    <div className="space-y-3 pt-1">
+                                        <InteractiveLocationPicker
+                                            coords={coords}
+                                            address={address}
+                                            setAddress={setAddress}
+                                            onLocationSelect={({ lat, lng, address: addr, mapsUrl: url }) => {
+                                                setCoords({ lat, lng });
+                                                setAddress(addr);
+                                                setMapsUrl(url);
+                                            }}
                                         />
+
+                                        <div>
+                                            <label className="block text-[11px] font-bold text-slate-400 mb-1">
+                                                العنوان المكتوب (يمكنك تعديله يدوياً):
+                                            </label>
+                                            <input
+                                                type="text"
+                                                placeholder="الشارع / المنطقة / علامة مميزة..."
+                                                value={address}
+                                                onChange={(e) => setAddress(e.target.value)}
+                                                className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-primary transition-all"
+                                            />
+                                        </div>
                                     </div>
                                 )}
                             </div>
