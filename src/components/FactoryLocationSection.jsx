@@ -1,9 +1,10 @@
 import React from 'react';
-import { MapPin, Navigation, Clock, Phone, Star, ExternalLink, ShieldCheck } from 'lucide-react';
+import { MapPin, Navigation, Clock, Phone, Star, ExternalLink, ShieldCheck, HeartHandshake } from 'lucide-react';
 
 export default function FactoryLocationSection({ isAr = true }) {
     const mapLocationUrl = 'https://maps.app.goo.gl/QneojizzF3fJqKrz6';
-    const mapEmbedUrl = 'https://maps.google.com/maps?q=%D9%85%D8%B5%D9%86%D8%B9+%D8%A7%D9%84%D9%82%D9%88%D9%85%D9%8A%D8%A9+%D9%84%D9%84%D8%B5%D9%86%D8%A7%D8%B9%D8%A7%D8%AA+%D8%A7%D9%84%D8%A3%D8%B3%D9%85%D9%86%D8%AA%D9%8A%D8%A9+%D9%81%D8%A7%D9%8A%D8%AF+%D8%A7%D9%84%D8%A5%D8%B3%D9%85%D8%A7%D8%B9%D9%8A%D9%84%D9%8A%D8%A9&hl=ar&z=14&output=embed';
+    const directReviewUrl = 'https://search.google.com/local/writereview?placeid=ChIJDepGXGZ9-BQRnIPxxvJGgJo';
+    const mapEmbedUrl = 'https://maps.google.com/maps?q=30.2817526,32.3285137&hl=ar&z=15&output=embed';
 
     return (
         <section className="py-24 bg-surface relative z-10 border-t border-outline-variant/30 overflow-hidden" id="location">
@@ -26,20 +27,27 @@ export default function FactoryLocationSection({ isAr = true }) {
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch bg-surface-container-low border border-outline-variant/50 rounded-[2.5rem] p-4 md:p-8 shadow-2xl backdrop-blur-xl relative">
                     <div className="lg:col-span-5 flex flex-col justify-between p-4 md:p-6 space-y-6">
                         <div className="space-y-6">
-                            <div className="flex items-center justify-between bg-primary/10 border border-primary/20 rounded-2xl p-4">
-                                <div className="flex items-center gap-2">
-                                    <div className="flex text-amber-400">
+                            <a 
+                                href={directReviewUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group/review flex items-center justify-between bg-gradient-to-r from-amber-500/10 via-primary/10 to-amber-500/10 border border-amber-500/30 hover:border-amber-500/60 rounded-2xl p-4 transition-all duration-300 hover:shadow-[0_0_25px_rgba(245,158,11,0.2)] block"
+                            >
+                                <div>
+                                    <div className="flex items-center gap-1.5 text-amber-400 mb-1">
                                         {[...Array(5)].map((_, i) => (
-                                            <Star key={i} size={16} fill="currentColor" />
+                                            <Star key={i} size={18} fill="currentColor" className="group-hover/review:scale-110 transition-transform duration-300" style={{ transitionDelay: `${i * 50}ms` }} />
                                         ))}
                                     </div>
-                                    <span className="text-xs md:text-sm font-bold text-on-surface">5.0 (Google Reviews)</span>
+                                    <span className="text-xs md:text-sm font-black text-on-surface">5.0 (تقييمات Google)</span>
                                 </div>
-                                <div className="flex items-center gap-1 text-xs font-bold text-primary">
-                                    <ShieldCheck size={16} />
-                                    <span>{isAr ? 'نشاط موثق' : 'Verified'}</span>
+                                <div className="text-left flex flex-col items-end">
+                                    <span className="text-xs font-black text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/30 group-hover/review:bg-amber-400 group-hover/review:text-black transition-colors">
+                                        {isAr ? 'أضف تقييمك الآن ⭐' : 'Rate Us 5-Stars'}
+                                    </span>
+                                    <span className="text-[10px] text-on-surface-variant mt-1">{isAr ? 'تقييم فوري بنقرة واحدة' : '1-Click Direct Rating'}</span>
                                 </div>
-                            </div>
+                            </a>
 
                             <div>
                                 <h3 className="text-2xl font-black text-on-surface mb-2">
@@ -78,29 +86,41 @@ export default function FactoryLocationSection({ isAr = true }) {
                             </div>
                         </div>
 
-                        <div className="pt-4 flex flex-col sm:flex-row gap-3">
+                        <div className="pt-4 space-y-3">
                             <a 
-                                href={mapLocationUrl}
+                                href={directReviewUrl}
                                 target="_blank" 
                                 rel="noopener noreferrer"
-                                className="flex-1 inline-flex items-center justify-center gap-2 bg-primary text-black font-bold text-sm py-3.5 px-6 rounded-full hover:shadow-[0_10px_25px_-5px_rgba(16,185,129,0.5)] hover:-translate-y-0.5 transition-all duration-300 active:scale-95"
+                                className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-black font-extrabold text-sm py-3.5 px-6 rounded-full shadow-[0_10px_25px_-5px_rgba(245,158,11,0.4)] hover:-translate-y-0.5 transition-all duration-300 active:scale-95"
                             >
-                                <Navigation size={18} />
-                                {isAr ? 'الاتجاهات عبر Google Maps' : 'Get Directions'}
+                                <Star size={18} fill="currentColor" />
+                                {isAr ? 'تقييم المصنع 5 نجوم على Google' : 'Rate Factory 5 Stars on Google'}
                             </a>
-                            <a 
-                                href={mapLocationUrl}
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center justify-center gap-2 bg-surface-container border border-outline-variant text-on-surface font-bold text-sm py-3.5 px-5 rounded-full hover:bg-surface-container-high hover:-translate-y-0.5 transition-all duration-300"
-                            >
-                                <ExternalLink size={16} />
-                                {isAr ? 'عرض التقييمات' : 'View Reviews'}
-                            </a>
+
+                            <div className="flex flex-col sm:flex-row gap-3">
+                                <a 
+                                    href={mapLocationUrl}
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    className="flex-1 inline-flex items-center justify-center gap-2 bg-primary text-black font-bold text-sm py-3 px-5 rounded-full hover:shadow-[0_10px_25px_-5px_rgba(16,185,129,0.5)] hover:-translate-y-0.5 transition-all duration-300 active:scale-95"
+                                >
+                                    <Navigation size={16} />
+                                    {isAr ? 'الاتجاهات (Google Maps)' : 'Get Directions'}
+                                </a>
+                                <a 
+                                    href={mapLocationUrl}
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center justify-center gap-2 bg-surface-container border border-outline-variant text-on-surface font-bold text-sm py-3 px-5 rounded-full hover:bg-surface-container-high hover:-translate-y-0.5 transition-all duration-300"
+                                >
+                                    <ExternalLink size={16} />
+                                    {isAr ? 'عرض الموقع بالكامل' : 'View Full Profile'}
+                                </a>
+                            </div>
                         </div>
                     </div>
 
-                    <div className="lg:col-span-7 h-[350px] md:h-[450px] rounded-[2rem] overflow-hidden border border-outline-variant/60 relative group shadow-inner">
+                    <div className="lg:col-span-7 h-[350px] md:h-[480px] rounded-[2rem] overflow-hidden border border-outline-variant/60 relative group shadow-inner">
                         <iframe
                             title="Google Maps Location - Al-Qawmia Factory"
                             src={mapEmbedUrl}

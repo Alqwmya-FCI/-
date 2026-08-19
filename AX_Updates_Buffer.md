@@ -1,12 +1,7 @@
 # سجل التحديثات (AX_Updates_Buffer)
 
-## تعديل ترتيب أقسام الصفحة الرئيسية (Homepage Sections Reordering)
-- نقل قسم [SEOFAQSection.jsx](file:///d:/wepsit/al-qawmia-factory/al-qawmia-factory-app/src/components/SEOFAQSection.jsx) (دليل المنتجات والأسئلة الشائعة) إلى نهاية الصفحة الرئيسية بعد قسم فريق الإدارة مباشرة.
-- الترتيب الحالي للأقسام:
-  1. شريط التنقل والبانر الرئيسي (Hero & Slider)
-  2. نبذة عن المصنع ومميزات الإنتاج (About Factory)
-  3. كتالوج المنتجات (Products Bento Grid)
-  4. الموقع الجغرافي وخريطة جوجل التفاعلية (Factory Map & Location)
-  5. فريق الإدارة والاتصال (Management Team & Contact)
-  6. دليل المنتجات والمواصفات الفنية والأسئلة الشائعة (Product Guide & FAQ)
+## تحديث العنوان الجغرافي الدقيق لمصنع القومية (Factory Address & Local SEO Update)
+- تحديث العنوان في واجهة المستخدم ببطاقة الخريطة [FactoryLocationSection.jsx](file:///d:/wepsit/al-qawmia-factory/al-qawmia-factory-app/src/components/FactoryLocationSection.jsx) إلى:
+  `الإسماعيلية، مركز فايد، طريق الإسماعيلية - السويس الصحراوي (بعد كلية ضباط الاحتياط)`
+- تحديث بيانات الـ Schema و الـ Geo Tags في [index.html](file:///d:/wepsit/al-qawmia-factory/al-qawmia-factory-app/index.html) بمحافظة الإسماعيلية ومركز فايد والرقم البريدي `8342003` لتعزيز الترتيب في البحث المحلي لمنطقة القناة والسويس وسيناء والقاهرة.
 - بناء ونشر التحديثات أونلاين على الدومين بنجاح.
