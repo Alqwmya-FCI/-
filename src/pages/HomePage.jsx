@@ -139,6 +139,19 @@ const HomePage = () => {
     }, []);
 
     useEffect(() => {
+        if (isDark) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    }, [isDark]);
+
+    useEffect(() => {
+        document.documentElement.dir = isAr ? 'rtl' : 'ltr';
+        document.documentElement.lang = lang;
+    }, [lang, isAr]);
+
+    useEffect(() => {
         const observer = new IntersectionObserver((entries) => {
             if (entries[0].isIntersecting) {
                 const duration = 2000;
@@ -258,8 +271,8 @@ const HomePage = () => {
             <nav className="fixed top-0 left-0 right-0 z-40 bg-surface/90 backdrop-blur-md border-b border-outline-variant/50">
                 <div className="max-w-screen-xl mx-auto px-6 md:px-12 h-20 flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-primary/10 border border-primary flex items-center justify-center">
-                            <span className="material-symbols-outlined text-primary text-xl">precision_manufacturing</span>
+                        <div className="w-12 h-12 flex items-center justify-center bg-white rounded-full p-1 overflow-hidden">
+                            <img src="/images/logo.png" alt="القومية للصناعات الأسمنتية" className="w-full h-full object-contain" />
                         </div>
                         <span className="text-xl font-black tracking-tighter text-on-surface uppercase">
                             {t.title}
@@ -344,21 +357,21 @@ const HomePage = () => {
             <section ref={statsRef} className="py-20 bg-surface-container border-b border-outline-variant/50">
                 <div className="max-w-screen-xl mx-auto px-6 md:px-12">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-                        <div className="flex flex-col border-l border-outline-variant/30 pl-8 reveal">
+                        <div className="flex flex-col border-s border-outline-variant/30 ps-8 reveal">
                             <div className="flex items-baseline gap-2 mb-2">
                                 <span className="text-6xl font-black text-on-surface tracking-tighter font-mono">+{counts.stat1}</span>
                                 <span className="text-primary font-bold">/01</span>
                             </div>
                             <span className="text-xs text-on-surface-variant uppercase tracking-widest font-semibold">{t.stat1Label}</span>
                         </div>
-                        <div className="flex flex-col border-l border-outline-variant/30 pl-8 reveal">
+                        <div className="flex flex-col border-s border-outline-variant/30 ps-8 reveal">
                             <div className="flex items-baseline gap-2 mb-2">
                                 <span className="text-6xl font-black text-on-surface tracking-tighter font-mono">+{counts.stat2.toLocaleString()}</span>
                                 <span className="text-primary font-bold">/02</span>
                             </div>
                             <span className="text-xs text-on-surface-variant uppercase tracking-widest font-semibold">{t.stat2Label}</span>
                         </div>
-                        <div className="flex flex-col border-l border-outline-variant/30 pl-8 reveal">
+                        <div className="flex flex-col border-s border-outline-variant/30 ps-8 reveal">
                             <div className="flex items-baseline gap-2 mb-2">
                                 <span className="text-6xl font-black text-on-surface tracking-tighter font-mono">+{counts.stat3.toLocaleString()}</span>
                                 <span className="text-primary font-bold">/03</span>
