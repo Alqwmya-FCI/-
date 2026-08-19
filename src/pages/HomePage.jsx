@@ -373,12 +373,12 @@ const HomePage = () => {
                             <span className="bg-surface-container py-2 px-4 border border-outline-variant/50 rounded-sm hover:border-primary transition-colors">{t.heroTag3}</span>
                         </div>
                         <div className="flex flex-wrap items-center gap-6 reveal">
-                            <a className="bg-primary text-background text-lg px-8 py-4 rounded-sm hover:bg-primary-fixed transition-colors shadow-[0_4px_15px_rgba(16,185,129,0.2)] flex items-center gap-3 group relative overflow-hidden font-bold" href="#">
+                            <a className="bg-primary text-background text-lg px-8 py-4 rounded-full hover:bg-primary-fixed transition-all hover:-translate-y-0.5 shadow-[0_4px_15px_rgba(16,185,129,0.2)] flex items-center gap-3 group relative overflow-hidden font-bold" href="#products">
                                 <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
                                 <span className="relative z-10">{t.exploreProd}</span>
                                 <span className="material-symbols-outlined relative z-10 group-hover:translate-x-1 transition-transform" style={{ transform: isAr ? 'scaleX(-1)' : 'scaleX(1)' }}>arrow_forward</span>
                             </a>
-                            <a className="border border-outline-variant text-on-surface text-lg px-8 py-4 rounded-sm hover:border-primary hover:text-primary transition-all flex items-center gap-3 group bg-surface/50 backdrop-blur-sm font-bold" href="#contact">
+                            <a className="border border-outline-variant text-on-surface text-lg px-8 py-4 rounded-full hover:border-primary hover:text-primary transition-all flex items-center gap-3 group bg-surface/50 backdrop-blur-sm font-bold" href="#contact">
                                 <span>{t.contactUs}</span>
                                 <span className="material-symbols-outlined opacity-0 group-hover:opacity-100 transition-all text-primary">chat_bubble</span>
                             </a>

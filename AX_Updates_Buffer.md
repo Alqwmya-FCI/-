@@ -1,6 +1,6 @@
 # سجل التحديثات (AX_Updates_Buffer)
 
-## تحديث رابط التقييمات المباشر (Google Maps Reviews Tab URL Fix)
-- تحديث رابط زر تقييم المصنع ليفتح تبويب التقييمات وقائمة تقييمات النشاط التجاري مباشرة على خرائط جوجل بدون أي أخطاء 404:
-  `https://www.google.com/maps/place/مصنع+القوميه+للصناعات+الاسمنتيه` (مع باراميتر `!9m1!1b1` للتقييمات المباشرة).
+## تعديل نصوص بطاقة وأزرار تقييم المصنع (Reviews Card Text Adjustments)
+- حذف جملة "تقييم فوري بنقرة واحدة" من شارة التقييم العلوية.
+- تعديل نص الزر الرئيسي إلى "تقييم المصنع" في المكون [FactoryLocationSection.jsx](file:///d:/wepsit/al-qawmia-factory/al-qawmia-factory-app/src/components/FactoryLocationSection.jsx).
 - بناء ونشر التحديثات أونلاين على الدومين بنجاح.
