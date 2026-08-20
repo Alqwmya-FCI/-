@@ -105,6 +105,14 @@ export default {
           breathe: {
               '0%, 100%': { transform: 'scale(1)' },
               '50%': { transform: 'scale(1.03)' },
+          },
+          marquee: {
+              '0%': { transform: 'translateX(0%)' },
+              '100%': { transform: 'translateX(-100%)' }
+          },
+          marqueeReverse: {
+              '0%': { transform: 'translateX(-100%)' },
+              '100%': { transform: 'translateX(0%)' }
           }
       },
       animation: {
@@ -112,6 +120,8 @@ export default {
           'fade-in-up-delay-1': 'fadeInUp 0.8s ease-out 0.2s forwards',
           'fade-in-up-delay-2': 'fadeInUp 0.8s ease-out 0.4s forwards',
           'breathe': 'breathe 8s ease-in-out infinite',
+          'marquee': 'marquee 30s linear infinite',
+          'marquee-reverse': 'marqueeReverse 30s linear infinite',
       }
     },
   },

@@ -6,6 +6,7 @@ import FactoryLocationSection from '../components/FactoryLocationSection';
 import AboutSection from '../components/AboutSection';
 import TeamSection from '../components/TeamSection';
 import FadingSquareCard from '../components/FadingSquareCard';
+import ClientsMarquee from '../components/ClientsMarquee';
 
 const heroSliderImages = [
     '/images/اساسي2.jpg',
@@ -326,24 +327,24 @@ const HomePage = () => {
 
                 <div className="relative z-10 max-w-screen-xl mx-auto px-6 md:px-12 w-full py-12">
                     <div className="max-w-3xl">
-                        <h1 className="text-4xl sm:text-6xl md:text-7xl font-black text-on-surface tracking-tight mb-4 uppercase leading-none reveal">
-                            {t.heroTitle1} <br />
-                            <span className="text-primary">{t.heroTitle2}</span>
+                        <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-on-surface tracking-tight mb-6 uppercase leading-[1.2] md:leading-tight reveal">
+                            {t.heroTitle1} <br className="hidden md:block" />
+                            <span className="text-primary block mt-2 md:mt-4">{t.heroTitle2}</span>
                         </h1>
                         <p className="text-lg md:text-xl text-on-surface-variant font-normal mb-8 max-w-xl leading-relaxed reveal">
                             {t.heroSubtitle}
                         </p>
-                        <div className="flex flex-wrap gap-4 text-xs font-mono text-on-surface-variant mb-10 reveal">
-                            <span className="bg-surface-container px-3 py-1.5 border border-outline-variant">{t.heroTag1}</span>
-                            <span className="bg-surface-container px-3 py-1.5 border border-outline-variant">{t.heroTag2}</span>
-                            <span className="bg-surface-container px-3 py-1.5 border border-outline-variant">{t.heroTag3}</span>
+                        <div className="flex flex-nowrap overflow-x-auto hide-scrollbar items-center gap-2 sm:gap-3 md:gap-4 text-[10px] min-[400px]:text-xs sm:text-sm font-semibold text-on-surface mb-10 reveal w-full pb-2">
+                            <span className="flex-shrink-0 bg-surface/80 backdrop-blur-sm px-3 sm:px-6 py-2 sm:py-3 rounded-full border border-outline-variant shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 font-bold text-center">{t.heroTag1}</span>
+                            <span className="flex-shrink-0 bg-surface/80 backdrop-blur-sm px-3 sm:px-6 py-2 sm:py-3 rounded-full border border-outline-variant shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 font-bold text-center">{t.heroTag2}</span>
+                            <span className="flex-shrink-0 bg-surface/80 backdrop-blur-sm px-3 sm:px-6 py-2 sm:py-3 rounded-full border border-outline-variant shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 font-bold text-center">{t.heroTag3}</span>
                         </div>
                         <div className="flex flex-wrap items-center gap-4 reveal">
-                            <a href="#products" className="bg-primary text-background font-bold px-8 py-4 rounded-full hover:bg-emerald-400 transition-colors uppercase tracking-widest text-sm inline-flex items-center gap-3">
+                            <a href="#products" className="bg-primary text-background font-bold px-8 py-4 rounded-full hover:bg-emerald-400 transition-colors uppercase tracking-widest text-sm inline-flex items-center gap-3 shadow-lg hover:shadow-xl hover:-translate-y-1 duration-300">
                                 {t.exploreProd}
                                 <span className="material-symbols-outlined" style={{ transform: isAr ? 'scaleX(-1)' : 'scaleX(1)' }}>arrow_forward</span>
                             </a>
-                            <a href="#contact" className="border border-outline-variant text-on-surface hover:bg-surface-container px-8 py-4 rounded-full transition-colors uppercase tracking-widest text-sm font-semibold">
+                            <a href="#contact" className="border border-outline-variant text-on-surface bg-surface/50 backdrop-blur-sm hover:bg-surface-container px-8 py-4 rounded-full transition-all duration-300 uppercase tracking-widest text-sm font-semibold hover:-translate-y-1 shadow-sm hover:shadow-md">
                                 {t.contactUs}
                             </a>
                         </div>
@@ -354,33 +355,39 @@ const HomePage = () => {
             </section>
 
             {/* ═══════════════ STATS ═══════════════ */}
-            <section ref={statsRef} className="py-20 bg-surface-container border-b border-outline-variant/50">
-                <div className="max-w-screen-xl mx-auto px-6 md:px-12">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-                        <div className="flex flex-col border-s border-outline-variant/30 ps-8 reveal">
-                            <div className="flex items-baseline gap-2 mb-2">
-                                <span className="text-6xl font-black text-on-surface tracking-tighter font-mono">+{counts.stat1}</span>
-                                <span className="text-primary font-bold">/01</span>
+            <section ref={statsRef} className="bg-surface relative z-30 pt-0 pb-0">
+                <div className="max-w-screen-xl mx-auto px-0 md:px-12">
+                        <div className="flex flex-row justify-around sm:justify-between items-center gap-1 sm:gap-6 bg-surface py-6 px-1 sm:p-10 rounded-none sm:rounded-[2rem] shadow-xl border-y sm:border border-outline-variant/30 -mt-16 relative z-20 reveal w-full overflow-hidden">
+                            <div className="flex flex-col items-center flex-shrink-1 sm:flex-shrink-0 px-1 sm:px-6 w-1/3">
+                                <div className="flex items-baseline gap-1 sm:gap-2 mb-2">
+                                    <span className="text-xl min-[400px]:text-3xl sm:text-5xl md:text-6xl font-black text-primary tracking-tighter font-mono">+{counts.stat1}</span>
+                                </div>
+                                <span className="text-[9px] min-[400px]:text-[10px] sm:text-sm text-on-surface-variant uppercase tracking-widest font-bold bg-surface-container px-2 py-1 sm:px-4 sm:py-1.5 rounded-full text-center">{t.stat1Label}</span>
                             </div>
-                            <span className="text-xs text-on-surface-variant uppercase tracking-widest font-semibold">{t.stat1Label}</span>
-                        </div>
-                        <div className="flex flex-col border-s border-outline-variant/30 ps-8 reveal">
-                            <div className="flex items-baseline gap-2 mb-2">
-                                <span className="text-6xl font-black text-on-surface tracking-tighter font-mono">+{counts.stat2.toLocaleString()}</span>
-                                <span className="text-primary font-bold">/02</span>
+                            
+                            <div className="w-px h-10 sm:h-20 bg-outline-variant/50 flex-shrink-0"></div>
+                            
+                            <div className="flex flex-col items-center flex-shrink-1 sm:flex-shrink-0 px-1 sm:px-6 w-1/3">
+                                <div className="flex items-baseline gap-1 sm:gap-2 mb-2">
+                                    <span className="text-xl min-[400px]:text-3xl sm:text-5xl md:text-6xl font-black text-primary tracking-tighter font-mono">+{counts.stat2.toLocaleString()}</span>
+                                </div>
+                                <span className="text-[9px] min-[400px]:text-[10px] sm:text-sm text-on-surface-variant uppercase tracking-widest font-bold bg-surface-container px-2 py-1 sm:px-4 sm:py-1.5 rounded-full text-center">{t.stat2Label}</span>
                             </div>
-                            <span className="text-xs text-on-surface-variant uppercase tracking-widest font-semibold">{t.stat2Label}</span>
-                        </div>
-                        <div className="flex flex-col border-s border-outline-variant/30 ps-8 reveal">
-                            <div className="flex items-baseline gap-2 mb-2">
-                                <span className="text-6xl font-black text-on-surface tracking-tighter font-mono">+{counts.stat3.toLocaleString()}</span>
-                                <span className="text-primary font-bold">/03</span>
+
+                            <div className="w-px h-10 sm:h-20 bg-outline-variant/50 flex-shrink-0"></div>
+                            
+                            <div className="flex flex-col items-center flex-shrink-1 sm:flex-shrink-0 px-1 sm:px-6 w-1/3">
+                                <div className="flex items-baseline gap-1 sm:gap-2 mb-2">
+                                    <span className="text-xl min-[400px]:text-3xl sm:text-5xl md:text-6xl font-black text-primary tracking-tighter font-mono">+{counts.stat3.toLocaleString()}</span>
+                                </div>
+                                <span className="text-[9px] min-[400px]:text-[10px] sm:text-sm text-on-surface-variant uppercase tracking-widest font-bold bg-surface-container px-2 py-1 sm:px-4 sm:py-1.5 rounded-full text-center">{t.stat3Label}</span>
                             </div>
-                            <span className="text-xs text-on-surface-variant uppercase tracking-widest font-semibold">{t.stat3Label}</span>
                         </div>
-                    </div>
                 </div>
             </section>
+
+            {/* ═══════════════ MARQUEE ═══════════════ */}
+            <ClientsMarquee />
 
             {/* ═══════════════ ABOUT SECTION ═══════════════ */}
             <AboutSection t={t} isAr={isAr} />

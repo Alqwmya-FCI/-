@@ -159,6 +159,35 @@ body {
         z-index: 1;
         pointer-events: none;
     }
+
+    .hide-scrollbar {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+    }
+    .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    @keyframes scrollMarquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-100%); }
+    }
+    @keyframes scrollMarqueeReverse {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(0); }
+    }
+    
+    .animate-marquee-css {
+        animation: scrollMarquee 60s linear infinite;
+    }
+    .animate-marquee-css-reverse {
+        animation: scrollMarqueeReverse 60s linear infinite;
+    }
+    
+    .group:hover .animate-marquee-css,
+    .group:hover .animate-marquee-css-reverse {
+        animation-play-state: paused;
+    }
 }
 
 .dark {
