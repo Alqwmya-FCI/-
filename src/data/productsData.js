@@ -112,7 +112,6 @@ export const productsData = {
                 image: '/images/انتلروك شبك ديكور اساسي.webp',
                 images: [
                     '/images/انتلروك شبك ديكور اساسي.webp',
-                    '/images/طوب كلستر مفرغ شبك.png',
                     '/images/انتلورك شبك ديكور.webp'
                 ],
                 shortDescription: 'يستخدم للحماية الميول وتجميل المساحات، يسمح بنمو العشب في الفراغات مع الاحتفاظ بصلابة الأرضية لمرور السيارات الخفيفة.',
@@ -198,8 +197,7 @@ export const productsData = {
                 name: 'بلوك أسمنتي مقاس 10',
                 image: '/images/بلوك 10 مفرغ.webp',
                 images: [
-                    '/images/بلوك 10 مفرغ.webp',
-                    '/images/بولك اسمنتي مفرغ 1.png'
+                    '/images/بلوك 10 مفرغ.webp'
                 ],
                 shortDescription: 'أنحف مقاس متاح، يستخدم في بناء القواطع الداخلية الخفيفة لتوفير أكبر مساحة ممكنة داخل الغرف.',
                 specs: {
@@ -218,7 +216,7 @@ export const productsData = {
                 images: [
                     '/images/بلوك 12 مفرغ.webp',
                     '/images/بلوك 12 اسمنتي مفرغ.webp',
-                    '/images/بلوك اسمنتي 12.jpg'
+                    '/images/بلوك اسمنتي 12 (2).webp'
                 ],
                 shortDescription: 'المقاس المفضل للقواطع الداخلية وتقسيم الشقق (مطابخ وحمامات)، يوفر عزل مناسب دون أخذ حيز كبير.',
                 specs: {
@@ -233,9 +231,8 @@ export const productsData = {
             {
                 id: 'block-12-double',
                 name: 'بلوك أسمنتي دبل مفرغ مقاس 12',
-                image: '/images/بلوك دبل مفرغ.png',
+                image: '/images/بلوك 12 اسمنتي مفرغ.webp',
                 images: [
-                    '/images/بلوك دبل مفرغ.png',
                     '/images/بلوك 12 اسمنتي مفرغ.webp'
                 ],
                 shortDescription: 'مصمم بفراغات مزدوجة لزيادة كفاءة العزل الحراري والصوتي في نفس مساحة الـ 12 سم الموفرة.',
@@ -253,8 +250,7 @@ export const productsData = {
                 name: 'بلوك أسمنتي مقاس 15',
                 image: '/images/بلوك 15 مفرغ.webp',
                 images: [
-                    '/images/بلوك 15 مفرغ.webp',
-                    '/images/بولك اسمنتي مفرغ 1.png'
+                    '/images/بلوك 15 مفرغ.webp'
                 ],
                 shortDescription: 'مقاس وسطي ممتاز يوازن بين المتانة واستغلال المساحات، يستخدم في الجدران الفاصلة والمحيط الخفيف.',
                 specs: {
@@ -271,8 +267,7 @@ export const productsData = {
                 name: 'بلوك أسمنتي مقاس 20',
                 image: '/images/بلوك  20 مفرغ.webp',
                 images: [
-                    '/images/بلوك  20 مفرغ.webp',
-                    '/images/بلوك اسمنتي مفرغ.png'
+                    '/images/بلوك  20 مفرغ.webp'
                 ],
                 shortDescription: 'المقاس القياسي للجدران الخارجية وأسوار المصانع والمباني، يوفر أقصى درجات الأمان والعزل والعمر الطويل.',
                 specs: {
@@ -290,7 +285,6 @@ export const productsData = {
                 image: '/images/بلوك 25  مفرع.webp',
                 images: [
                     '/images/بلوك 25  مفرع.webp',
-                    '/images/بلوك 25 استي مفرغ.png',
                     '/images/بلوك اسمنتي   25.webp'
                 ],
                 shortDescription: 'الجدار الأضخم في الفئة المفرغة، يُستخدم في الحوائط الخارجية الحاملة وتأمين المنشآت الصناعية الكبرى.',

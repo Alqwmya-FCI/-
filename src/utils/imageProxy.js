@@ -11,6 +11,9 @@ function encode(rawPath) {
 
 export function img(path) {
     if (!path) return '';
+    if (path.startsWith('http://') || path.startsWith('https://')) {
+        return path;
+    }
     if (import.meta.env.PROD) {
         return encodeURI(path);
     }
@@ -19,5 +22,5 @@ export function img(path) {
 
 export function imgArr(paths) {
     if (!Array.isArray(paths)) return [];
-    return paths.map(encode);
+    return paths.map(img);
 }

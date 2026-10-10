@@ -27,7 +27,7 @@ export default function FadingSquareCard({ images, label, className = '', offset
                     key={imgSrc}
                     className="absolute inset-0 bg-center bg-cover transition-opacity duration-1000 ease-in-out group-hover:scale-105"
                     style={{
-                        backgroundImage: `url('${imgSrc}')`,
+                        backgroundImage: `url('${encodeURI(imgSrc)}')`,
                         opacity: idx === currentIndex ? 1 : 0,
                     }}
                 />
