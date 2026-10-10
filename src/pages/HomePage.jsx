@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Languages, Sun, Moon, ArrowLeft, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Languages, Sun, Moon, ArrowLeft, ArrowRight } from 'lucide-react';
 import { useSEO } from '../hooks/useSEO';
 import SEOFAQSection from '../components/SEOFAQSection';
 import FactoryLocationSection from '../components/FactoryLocationSection';
@@ -12,7 +12,6 @@ import { useCatalogData } from '../hooks/useCatalogData';
 import { useAnalytics } from '../hooks/useAnalytics';
 
 const heroSliderImages = [
-    '/images/اساسي2.webp',
     '/images/اساسي3.webp',
     '/images/اساسي4.webp',
     '/images/اساسي6.webp',
@@ -263,13 +262,6 @@ const HomePage = () => {
                         >
                             {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
                         </button>
-                        <Link
-                            to="/admin"
-                            className="hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-container"
-                            title="لوحة تحكم الإدارة"
-                        >
-                            <ShieldCheck className="w-5 h-5" />
-                        </Link>
                         <div className="hidden md:block w-px h-4 bg-outline-variant" />
                         <a href="#products" className="hidden sm:flex bg-primary text-background text-xs font-bold px-6 py-3 rounded-full hover:bg-emerald-400 transition-colors uppercase tracking-widest items-center gap-2">
                             {t.reqQuote}

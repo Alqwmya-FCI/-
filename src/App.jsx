@@ -5,7 +5,6 @@ import AliCardPage from './pages/AliCardPage';
 import HusseinCardPage from './pages/HusseinCardPage';
 import ProductsCategoryPage from './pages/ProductsCategoryPage';
 import ProductDetailPage from './pages/ProductDetailPage';
-import AdminDashboardPage from './pages/AdminDashboardPage';
 import { useSecurityShield } from './hooks/useSecurityShield';
 import { CartProvider, useCart } from './context/CartContext';
 import CartDrawer from './components/CartDrawer';
@@ -39,8 +38,8 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/-" element={<Navigate to="/" replace />} />
-        <Route path="/admin" element={<AdminDashboardPage />} />
-        <Route path="/dashboard" element={<AdminDashboardPage />} />
+        <Route path="/admin" element={<Navigate to="/" replace />} />
+        <Route path="/dashboard" element={<Navigate to="/" replace />} />
         <Route path="/products/:categoryId" element={<ProductsCategoryPage />} />
         <Route path="/products/:categoryId/:productId" element={<ProductDetailPage />} />
         <Route path="/ali" element={<AliCardPage />} />
