@@ -7,9 +7,23 @@
         window.location.replace("https://alqwmya.com" + newPath + window.location.search);
       }
     </script>
+    <script>
+      window.__deferredPwaPrompt = null;
+      window.addEventListener('beforeinstallprompt', function (e) {
+        e.preventDefault();
+        window.__deferredPwaPrompt = e;
+        window.dispatchEvent(new Event('ax-pwa-ready'));
+      });
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="theme-color" content="#10b981" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="مصنع القومية" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="apple-touch-icon" href="/pwa-192x192.png" />
     
     <title>مصنع القومية للصناعات الأسمنتية | طوب أسمنتي، إنترلوك، بردورات، بلوك مفرغ</title>
     <meta name="description" content="مصنع القومية للصناعات الأسمنتية - رواد صناعة وتوريد الطوب الأسمنتي المصمت، الإنترلوك الآلي، البردورات الخرسانية، والبلوك المفرغ في مصر بأعلى معايير الجودة منذ 1996. المقر: الإسماعيلية، فايد، طريق الإسماعيلية السويس بعد كلية ضباط الاحتياط." />
@@ -24,7 +38,7 @@
     <meta name="ICBM" content="30.327, 32.298" />
 
     <link rel="canonical" href="https://alqwmya.com/" />
-    <link rel="preload" as="image" href="/images/اساسي2.jpg" fetchpriority="high" />
+    <link rel="preload" as="image" href="/images/اساسي2.webp" type="image/webp" fetchpriority="high" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" sizes="192x192" href="/images/logo.png" />
@@ -49,8 +63,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Inter:wght@400&family=JetBrains+Mono:wght@500&family=Cairo:wght@400;500;700;800&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet" />
     
     <script type="application/ld+json">
     {
@@ -201,10 +214,17 @@
       img { -webkit-user-drag: none; user-drag: none; }
       ::selection { background: transparent; }
     </style>
-    <script type="module" crossorigin src="/assets/index-l007igj9.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-C1Whgo0x.css">
+    <script type="module" crossorigin src="/assets/index-kgrA-lnP.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-3q0TKrxX.css">
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register('/sw.js').catch(function () {});
+        });
+      }
+    </script>
   </body>
 </html>
