@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { X, CheckCircle, Navigation, MapPin, Phone, User, Package, Send, Loader2, ExternalLink, Plus, Trash2, AlertCircle } from 'lucide-react';
-import { sendOrderToTelegram } from '../services/telegramOrderService';
+import { submitOrder } from '../services/orderService';
 import InteractiveLocationPicker from './InteractiveLocationPicker';
 
 export default function OrderModal({ isOpen, onClose, initialProduct = null }) {
@@ -71,7 +71,7 @@ export default function OrderModal({ isOpen, onClose, initialProduct = null }) {
             notes
         };
 
-        const result = await sendOrderToTelegram(orderData);
+        const result = await submitOrder(orderData);
         setIsSubmitting(false);
         setSubmittedOrder(result);
     };

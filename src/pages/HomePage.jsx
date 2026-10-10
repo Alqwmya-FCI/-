@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { Languages, Sun, Moon, ArrowLeft, ArrowRight, ShieldCheck } from 'lucide-react';
 import { useSEO } from '../hooks/useSEO';
 import SEOFAQSection from '../components/SEOFAQSection';
 import FactoryLocationSection from '../components/FactoryLocationSection';
@@ -7,25 +8,27 @@ import AboutSection from '../components/AboutSection';
 import TeamSection from '../components/TeamSection';
 import FadingSquareCard from '../components/FadingSquareCard';
 import ClientsMarquee from '../components/ClientsMarquee';
+import { useCatalogData } from '../hooks/useCatalogData';
+import { useAnalytics } from '../hooks/useAnalytics';
 
 const heroSliderImages = [
-    '/images/اساسي2.jpg',
-    '/images/اساسي3.jpg',
-    '/images/اساسي4.jpg',
-    '/images/اساسي6.jpg',
-    '/images/IMG-20250627-WA0016.jpg',
-    '/images/IMG-20260113-WA0062.jpg',
-    '/images/IMG-20260113-WA0055.jpg',
-    '/images/IMG-20260103-WA0079 (1).jpg',
-    '/images/IMG-20260103-WA0077.jpg',
+    '/images/اساسي2.webp',
+    '/images/اساسي3.webp',
+    '/images/اساسي4.webp',
+    '/images/اساسي6.webp',
+    '/images/IMG-20250627-WA0016.webp',
+    '/images/IMG-20260113-WA0062.webp',
+    '/images/IMG-20260113-WA0055.webp',
+    '/images/IMG-20260103-WA0079 (1).webp',
+    '/images/IMG-20260103-WA0077.webp',
 ];
 
 const productImages = {
-    card1: ['/images/طوب اسمنتي مصمط.png', '/images/طوب اسمنتي مصمط 25.png'],
-    card2: ['/images/انترلوك سداسي احمر 8 سم.png', '/images/انترولك اتش 6 سم رمادي.png'],
-    card3: ['/images/بلوك 12 مفرغ.png', '/images/بلوك 25 استي مفرغ.png', '/images/طوب كلستر مفرغ شبك.png'],
-    card4: ['/images/بلدورة وسط.png', '/images/بلودورة عجالي.png'],
-    card5: ['/images/بلاط موزايكو كرارة.png']
+    card1: ['/images/طوب اسمنتي مصمط.webp', '/images/طوب اسمنتي مصمط 25.webp'],
+    card2: ['/images/انترلوك سداسي احمر 8 سم.webp', '/images/انترولك اتش 6 سم رمادي.webp'],
+    card3: ['/images/بلوك 12 مفرغ.webp', '/images/بلوك 25  مفرع.webp', '/images/انتلروك شبك ديكور اساسي.webp'],
+    card4: ['/images/بلدورة وسط.webp', '/images/بلودورة عجالي.webp'],
+    card5: ['/images/بلاط موزايكو كرارة.webp']
 };
 
 const translations = {
@@ -36,7 +39,7 @@ const translations = {
         navSpecs: 'المواصفات',
         navServices: 'الخدمات',
         reqQuote: 'طلب تسعير',
-        sysGrade: 'النظام يعمل // درجة صناعية',
+        sysGrade: 'أعلى معايير الجودة الصناعية',
         heroTitle1: 'مصنع القومية',
         heroTitle2: 'للصناعات الأسمنتية',
         heroSubtitle: 'متخصصون في صناعة المنتجات الأسمنتية عالية الجودة',
@@ -48,7 +51,7 @@ const translations = {
         stat1Label: 'سنة خبرة',
         stat2Label: 'طن إنتاج شهري',
         stat3Label: 'عملاء',
-        corpProfile: 'Corporate Profile',
+        corpProfile: 'نبذة عن المصنع',
         aboutTitle: 'عن المصنع',
         aboutSub: 'منذ 1996: خبرة عريقة في صناعة المنتجات الأسمنتية',
         aboutDesc: 'مصنع القومية للصناعات الأسمنتية تأسس عام 1996، ويُعد من المصانع الرائدة في مجال إنتاج المنتجات الأسمنتية عالية الجودة. نتخصص في صناعة الطوب والبلوك الأسمنتي بجميع أنواعه ومقاساته، الإنترلوك الآلي بأنواعه، البردورات، وبلاط المزايكو.',
@@ -56,13 +59,13 @@ const translations = {
         f2: 'معدات آلية حديثة',
         f3Title: 'جودة مطابقة للمواصفات',
         f3Desc: 'جميع منتجاتنا تخضع لاختبارات جودة صارمة لضمان المتانة والعمر الافتراضي الطويل.',
-        imgData: 'بيانات: CON-1996',
+        imgData: 'تأسس عام 1996',
         card1: 'طوب أسمنتي',
         card2: 'إنترلوك آلي',
         card3: 'بلوك أسمنتي',
         card4: 'بردورات',
         card5: 'بلاط موزايكو وأسمنتي',
-        teamSection: 'OUR_TEAM',
+        teamSection: 'فريق الإدارة',
         teamTitle: 'فريق الإدارة',
         teamSub: 'فريق الإدارة في خدمتك',
         roleAli: 'رئيس مجلس الإدارة',
@@ -119,10 +122,26 @@ const HomePage = () => {
     const [lang, setLang] = useState('ar');
     const [counts, setCounts] = useState({ stat1: 0, stat2: 0, stat3: 0 });
     const statsRef = useRef(null);
-    const canvasRef = useRef(null);
 
     const isAr = lang === 'ar';
     const t = translations[lang];
+    useAnalytics('/');
+    const { catalog } = useCatalogData();
+
+    const getImagesForCategory = (catId, fallback) => {
+        const catProducts = catalog[catId]?.items;
+        if (!catProducts || catProducts.length === 0) return fallback;
+        const imgs = catProducts.flatMap(p => p.images || [p.image]).filter(Boolean);
+        return imgs.length > 0 ? imgs.slice(0, 4) : fallback;
+    };
+
+    const cardImages = {
+        card1: getImagesForCategory('bricks', productImages.card1),
+        card2: getImagesForCategory('interlock', productImages.card2),
+        card3: getImagesForCategory('blocks', productImages.card3),
+        card4: getImagesForCategory('curbs', productImages.card4),
+        card5: getImagesForCategory('tiles', productImages.card5),
+    };
 
     useSEO({
         title: 'مصنع القومية للصناعات الأسمنتية | طوب أسمنتي، إنترلوك، بردورات، بلاط موزايكو',
@@ -180,62 +199,6 @@ const HomePage = () => {
     }, []);
 
     useEffect(() => {
-        const canvas = canvasRef.current;
-        if (!canvas) return;
-        const ctx = canvas.getContext('2d');
-        let animationFrameId;
-
-        const gridSize = 40;
-        const trails = [];
-
-        const resize = () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        };
-        resize();
-        window.addEventListener('resize', resize);
-
-        const onMove = (e) => {
-            const x = e.clientX;
-            const y = e.clientY;
-            
-            const gridX = Math.floor(x / gridSize) * gridSize;
-            const gridY = Math.floor(y / gridSize) * gridSize;
-            
-            const existing = trails.find(t => t.x === gridX && t.y === gridY);
-            if (existing) {
-                existing.life = 1;
-            } else {
-                trails.push({ x: gridX, y: gridY, life: 1 });
-            }
-        };
-        window.addEventListener('mousemove', onMove);
-
-        const animateCanvas = () => {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            for (let i = trails.length - 1; i >= 0; i--) {
-                const trail = trails[i];
-                ctx.fillStyle = `rgba(16, 185, 129, ${trail.life * 0.2})`;
-                ctx.fillRect(trail.x, trail.y, gridSize, gridSize);
-                
-                trail.life -= 0.02;
-                if (trail.life <= 0) {
-                    trails.splice(i, 1);
-                }
-            }
-            animationFrameId = requestAnimationFrame(animateCanvas);
-        };
-        animateCanvas();
-
-        return () => {
-            cancelAnimationFrame(animationFrameId);
-            window.removeEventListener('resize', resize);
-            window.removeEventListener('mousemove', onMove);
-        };
-    }, []);
-
-    useEffect(() => {
         if (window.location.hash) {
             const id = window.location.hash;
             setTimeout(() => {
@@ -266,8 +229,6 @@ const HomePage = () => {
             className="bg-background text-on-surface min-h-screen flex flex-col overflow-x-hidden"
             dir={isAr ? 'rtl' : 'ltr'}
         >
-            <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-50 opacity-40" />
-
             {/* ═══════════════ NAVBAR ═══════════════ */}
             <nav className="fixed top-0 left-0 right-0 z-40 bg-surface/90 backdrop-blur-md border-b border-outline-variant/50">
                 <div className="max-w-screen-xl mx-auto px-6 md:px-12 h-20 flex items-center justify-between">
@@ -290,22 +251,29 @@ const HomePage = () => {
                     <div className="flex items-center gap-4 text-on-surface-variant">
                         <button
                             onClick={() => setLang(l => l === 'ar' ? 'en' : 'ar')}
-                            className="hover:text-primary transition-colors"
+                            className="hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-container"
                             title="تغيير اللغة"
                         >
-                            <span className="material-symbols-outlined">language</span>
+                            <Languages className="w-5 h-5" />
                         </button>
                         <button
                             onClick={() => setIsDark(d => !d)}
-                            className="hover:text-primary transition-colors"
+                            className="hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-container"
                             title="الوضع الليلي"
                         >
-                            <span className="material-symbols-outlined">{isDark ? 'light_mode' : 'dark_mode'}</span>
+                            {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
                         </button>
+                        <Link
+                            to="/admin"
+                            className="hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-container"
+                            title="لوحة تحكم الإدارة"
+                        >
+                            <ShieldCheck className="w-5 h-5" />
+                        </Link>
                         <div className="hidden md:block w-px h-4 bg-outline-variant" />
                         <a href="#products" className="hidden sm:flex bg-primary text-background text-xs font-bold px-6 py-3 rounded-full hover:bg-emerald-400 transition-colors uppercase tracking-widest items-center gap-2">
                             {t.reqQuote}
-                            <span className="material-symbols-outlined text-[16px]" style={{ transform: isAr ? 'scaleX(-1)' : 'scaleX(1)' }}>arrow_forward</span>
+                            {isAr ? <ArrowLeft size={16} /> : <ArrowRight size={16} />}
                         </a>
                     </div>
                 </div>
@@ -342,7 +310,7 @@ const HomePage = () => {
                         <div className="flex flex-wrap items-center gap-4 reveal">
                             <a href="#products" className="bg-primary text-background font-bold px-8 py-4 rounded-full hover:bg-emerald-400 transition-colors uppercase tracking-widest text-sm inline-flex items-center gap-3 shadow-lg hover:shadow-xl hover:-translate-y-1 duration-300">
                                 {t.exploreProd}
-                                <span className="material-symbols-outlined" style={{ transform: isAr ? 'scaleX(-1)' : 'scaleX(1)' }}>arrow_forward</span>
+                                {isAr ? <ArrowLeft size={18} /> : <ArrowRight size={18} />}
                             </a>
                             <a href="#contact" className="border border-outline-variant text-on-surface bg-surface/50 backdrop-blur-sm hover:bg-surface-container px-8 py-4 rounded-full transition-all duration-300 uppercase tracking-widest text-sm font-semibold hover:-translate-y-1 shadow-sm hover:shadow-md">
                                 {t.contactUs}
@@ -398,35 +366,35 @@ const HomePage = () => {
                     <div className="grid grid-cols-12 gap-2 md:gap-4">
                         <FadingSquareCard 
                             className="col-span-7 md:col-span-8 bg-surface-container border border-outline-variant min-h-[200px] md:min-h-[350px]"
-                            images={productImages.card1}
+                            images={cardImages.card1}
                             label={t.card1}
                             offset={0}
                             to="/products/bricks"
                         />
                         <FadingSquareCard 
                             className="col-span-5 md:col-span-4 bg-inverse-surface min-h-[200px] md:min-h-[350px]"
-                            images={productImages.card2}
+                            images={cardImages.card2}
                             label={t.card2}
                             offset={1000}
                             to="/products/interlock"
                         />
                         <FadingSquareCard 
                             className="col-span-5 md:col-span-4 bg-surface min-h-[200px] md:min-h-[350px] border border-outline-variant"
-                            images={productImages.card3}
+                            images={cardImages.card3}
                             label={t.card3}
                             offset={2000}
                             to="/products/blocks"
                         />
                         <FadingSquareCard 
                             className="col-span-7 md:col-span-8 min-h-[200px] md:min-h-[350px] border border-outline-variant"
-                            images={productImages.card4}
+                            images={cardImages.card4}
                             label={t.card4}
                             offset={3000}
                             to="/products/curbs"
                         />
                         <FadingSquareCard 
                             className="col-span-12 min-h-[200px] md:min-h-[350px] border border-outline-variant"
-                            images={productImages.card5}
+                            images={cardImages.card5}
                             label={t.card5}
                             to="/products/tiles"
                         />

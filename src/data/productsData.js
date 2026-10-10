@@ -7,10 +7,10 @@ export const productsData = {
                 id: 'solid-25',
                 name: 'طوب أسمنتي مصمت مقاس 25',
                 images: [
-                    '/images/طوب اسمنيتي مصمط 25 1.png',
-                    '/images/طوب اسمنتي مصمط.png',
-                    '/images/IMG-20260113-WA0062.jpg',
-                    '/images/IMG-20250627-WA0016.jpg'
+                    '/images/طوب اسمنيتي مصمط 25 1.webp',
+                    '/images/طوب اسمنتي مصمط.webp',
+                    '/images/IMG-20260113-WA0062.webp',
+                    '/images/IMG-20250627-WA0016.webp'
                 ],
                 shortDescription: 'قوة صلابة استثنائية وعزل جيد، مثالي للحوائط الحاملة وأساسات المباني لضمان أقصى درجات الأمان.',
                 specs: {
@@ -24,7 +24,7 @@ export const productsData = {
             {
                 id: 'solid-20',
                 name: 'طوب أسمنتي مصمت مقاس 20',
-                image: '/images/طوب اسمنتي مصمط.png',
+                image: '/images/طوب اسمنتي مصمط.webp',
                 shortDescription: 'طوب مصمت عملي وسريع البناء، يستخدم في القواطع الداخلية وبناء غرف التفتيش لقدرته على منع تسرب المياه.',
                 specs: {
                     'المواصفة (ES 1292)': 'ES 1292',
@@ -44,13 +44,13 @@ export const productsData = {
             {
                 id: 'interlock-hex',
                 name: 'إنترلوك سداسي',
-                image: '/images/انترولك سداسي 8 سم رمادي.png',
+                image: '/images/انترولك سداسي 8 سم رمادي.webp',
                 images: [
-                    '/images/انترولك سداسي 8 سم رمادي.png',
-                    '/images/انتلورك سداسي 1.jpg',
-                    '/images/انتلورك سداسي2.jpg',
-                    '/images/انترلوك سداسي احمر 8 سم.png',
-                    '/images/انترولك سداسي اصفر 8 سم.png'
+                    '/images/انترولك سداسي 8 سم رمادي.webp',
+                    '/images/انتلورك سداسي 1.webp',
+                    '/images/انتلورك سداسي2.webp',
+                    '/images/انترلوك سداسي احمر 8 سم.webp',
+                    '/images/انترولك سداسي اصفر 8 سم.webp'
                 ],
                 shortDescription: 'تصميم هندسي متماسك جداً يوزع الأحمال بشكل ممتاز، مناسب للمشايات الجانبية والحدائق ومواقف السيارات.',
                 specs: {
@@ -65,15 +65,15 @@ export const productsData = {
             {
                 id: 'interlock-parquet',
                 name: 'إنترلوك باركيه',
-                image: '/images/انترلوك باريكة 8.png',
+                image: '/images/انترلوك باريكة 8.webp',
                 images: [
-                    '/images/انترلوك باريكة 8.png',
-                    '/images/تصميمات انترلوك باريكه.jpg',
-                    '/images/تصميم اتلورك باركية1.jpg',
-                    '/images/انتلورك باريكة 1.jpg',
-                    '/images/انتلورك باريكة 11.jpg',
-                    '/images/انترلوك باركية 8سم احمر.png',
-                    '/images/انترولك باريكة 6سم رمادي.png'
+                    '/images/انترلوك باريكة 8.webp',
+                    '/images/تصميمات انترلوك باريكه.webp',
+                    '/images/تصميم اتلورك باركية1.webp',
+                    '/images/انتلورك باريكة 1.webp',
+                    '/images/انتلورك باريكة 11.webp',
+                    '/images/انترلوك باركية 8سم احمر.webp',
+                    '/images/انترولك باريكة 6سم رمادي.webp'
                 ],
                 shortDescription: 'تصميم مستطيل بسيط يوفر مرونة هائلة في أشكال التركيب (سبعة وثمانية، شطرنج)، المفضل في الممرات والأرصفة.',
                 specs: {
@@ -88,13 +88,13 @@ export const productsData = {
             {
                 id: 'interlock-hshape',
                 name: 'إنترلوك حرف H',
-                image: '/images/انترولك اتش 6 سم رمادي.png',
+                image: '/images/انترولك اتش 6 سم رمادي.webp',
                 images: [
-                    '/images/انترولك اتش 6 سم رمادي.png',
-                    '/images/اتش 8 سم احمر.png',
-                    '/images/انترولك اتش.jpg',
-                    '/images/انتلروك اتش ناعم.jpg',
-                    '/images/انتلورك اتش.jpg'
+                    '/images/انترولك اتش 6 سم رمادي.webp',
+                    '/images/اتش 8 سم احمر.webp',
+                    '/images/انترولك اتش.webp',
+                    '/images/انتلروك اتش ناعم.webp',
+                    '/images/انتلورك اتش.webp'
                 ],
                 shortDescription: 'من أقوى أنواع الإنترلوك في التماسك بسبب تعشيق حرف H، صُمم خصيصاً للمناطق الصناعية ومحطات الوقود وحركة التريلات.',
                 specs: {
@@ -109,11 +109,11 @@ export const productsData = {
             {
                 id: 'interlock-honeycomb',
                 name: 'إنترلوك شبك ديكور',
-                image: '/images/انتلروك شبك ديكور اساسي.png',
+                image: '/images/انتلروك شبك ديكور اساسي.webp',
                 images: [
-                    '/images/انتلروك شبك ديكور اساسي.png',
+                    '/images/انتلروك شبك ديكور اساسي.webp',
                     '/images/طوب كلستر مفرغ شبك.png',
-                    '/images/انتلورك شبك ديكور.jpg'
+                    '/images/انتلورك شبك ديكور.webp'
                 ],
                 shortDescription: 'يستخدم للحماية الميول وتجميل المساحات، يسمح بنمو العشب في الفراغات مع الاحتفاظ بصلابة الأرضية لمرور السيارات الخفيفة.',
                 specs: {
@@ -127,12 +127,12 @@ export const productsData = {
             {
                 id: 'interlock-sshape',
                 name: 'إنترلوك حرف S',
-                image: '/images/انتلورك اس اساسي.png',
+                image: '/images/انتلورك اس اساسي.webp',
                 images: [
-                    '/images/انتلورك اس اساسي.png',
-                    '/images/انترلوك اس س.jpg',
-                    '/images/انتلورك اسسس.jpg',
-                    '/images/انلتروك اس 2.jpg'
+                    '/images/انتلورك اس اساسي.webp',
+                    '/images/انترلوك اس س.webp',
+                    '/images/انتلورك اسسس.webp',
+                    '/images/انلتروك اس 2.webp'
                 ],
                 shortDescription: 'تداخل منحني مميز يمنع زحزحة البلاط تحت حركة المرور المستمرة والدوران، مثالي للساحات والشوارع.',
                 specs: {
@@ -153,7 +153,7 @@ export const productsData = {
             {
                 id: 'curb-medium',
                 name: 'بلدورة وسط',
-                image: '/images/بلدورة وسط.png',
+                image: '/images/بلدورة وسط.webp',
                 shortDescription: 'المقاس الأكثر شيوعاً في الشوارع والميادين، يعمل كحاجز قوي بين حركة السيارات وحركة المشاة.',
                 specs: {
                     'المقاس (طول * عرض * ارتفاع)': '500 * 150 * 300 مم',
@@ -165,7 +165,7 @@ export const productsData = {
             {
                 id: 'curb-jumbo',
                 name: 'بلدورة عجالي',
-                image: '/images/بلودورة عجالي.png',
+                image: '/images/بلودورة عجالي.webp',
                 shortDescription: 'أضخم وأقوى أنواع البردورات، تُستخدم في الطرق السريعة ومحطات الكارتة والموانئ لتحمل أقصى الصدمات.',
                 specs: {
                     'المقاس (طول * عرض * ارتفاع)': '500 * 300 * 300 مم',
@@ -177,8 +177,8 @@ export const productsData = {
             {
                 id: 'curb-garden',
                 name: 'بلدورة جناين',
-                image: '/images/بلودرة جناين.png',
-                images: ['/images/بلودرة جناين.png'],
+                image: '/images/بلودرة جناين.webp',
+                images: ['/images/بلودرة جناين.webp'],
                 shortDescription: 'بردورة خفيفة لتحديد أحواض الزراعة واللاندسكيب والمشايات الداخلية في القرى السياحية والفلل.',
                 specs: {
                     'المقاس (طول * عرض * ارتفاع)': '500 * 80 * 250 مم',
@@ -196,9 +196,9 @@ export const productsData = {
             {
                 id: 'block-10',
                 name: 'بلوك أسمنتي مقاس 10',
-                image: '/images/بلوك 10 مفرغ.png',
+                image: '/images/بلوك 10 مفرغ.webp',
                 images: [
-                    '/images/بلوك 10 مفرغ.png',
+                    '/images/بلوك 10 مفرغ.webp',
                     '/images/بولك اسمنتي مفرغ 1.png'
                 ],
                 shortDescription: 'أنحف مقاس متاح، يستخدم في بناء القواطع الداخلية الخفيفة لتوفير أكبر مساحة ممكنة داخل الغرف.',
@@ -214,10 +214,10 @@ export const productsData = {
             {
                 id: 'block-12',
                 name: 'بلوك أسمنتي مقاس 12',
-                image: '/images/بلوك 12 مفرغ.png',
+                image: '/images/بلوك 12 مفرغ.webp',
                 images: [
-                    '/images/بلوك 12 مفرغ.png',
-                    '/images/بلوك 12 اسمنتي مفرغ.png',
+                    '/images/بلوك 12 مفرغ.webp',
+                    '/images/بلوك 12 اسمنتي مفرغ.webp',
                     '/images/بلوك اسمنتي 12.jpg'
                 ],
                 shortDescription: 'المقاس المفضل للقواطع الداخلية وتقسيم الشقق (مطابخ وحمامات)، يوفر عزل مناسب دون أخذ حيز كبير.',
@@ -236,7 +236,7 @@ export const productsData = {
                 image: '/images/بلوك دبل مفرغ.png',
                 images: [
                     '/images/بلوك دبل مفرغ.png',
-                    '/images/بلوك 12 اسمنتي مفرغ.png'
+                    '/images/بلوك 12 اسمنتي مفرغ.webp'
                 ],
                 shortDescription: 'مصمم بفراغات مزدوجة لزيادة كفاءة العزل الحراري والصوتي في نفس مساحة الـ 12 سم الموفرة.',
                 specs: {
@@ -251,9 +251,9 @@ export const productsData = {
             {
                 id: 'block-15',
                 name: 'بلوك أسمنتي مقاس 15',
-                image: '/images/بلوك 15 مفرغ.png',
+                image: '/images/بلوك 15 مفرغ.webp',
                 images: [
-                    '/images/بلوك 15 مفرغ.png',
+                    '/images/بلوك 15 مفرغ.webp',
                     '/images/بولك اسمنتي مفرغ 1.png'
                 ],
                 shortDescription: 'مقاس وسطي ممتاز يوازن بين المتانة واستغلال المساحات، يستخدم في الجدران الفاصلة والمحيط الخفيف.',
@@ -269,9 +269,9 @@ export const productsData = {
             {
                 id: 'block-20',
                 name: 'بلوك أسمنتي مقاس 20',
-                image: '/images/بلوك  20 مفرغ.png',
+                image: '/images/بلوك  20 مفرغ.webp',
                 images: [
-                    '/images/بلوك  20 مفرغ.png',
+                    '/images/بلوك  20 مفرغ.webp',
                     '/images/بلوك اسمنتي مفرغ.png'
                 ],
                 shortDescription: 'المقاس القياسي للجدران الخارجية وأسوار المصانع والمباني، يوفر أقصى درجات الأمان والعزل والعمر الطويل.',
@@ -287,11 +287,11 @@ export const productsData = {
             {
                 id: 'block-25',
                 name: 'بلوك أسمنتي مقاس 25',
-                image: '/images/بلوك 25  مفرع.png',
+                image: '/images/بلوك 25  مفرع.webp',
                 images: [
-                    '/images/بلوك 25  مفرع.png',
+                    '/images/بلوك 25  مفرع.webp',
                     '/images/بلوك 25 استي مفرغ.png',
-                    '/images/بلوك اسمنتي   25.jpg'
+                    '/images/بلوك اسمنتي   25.webp'
                 ],
                 shortDescription: 'الجدار الأضخم في الفئة المفرغة، يُستخدم في الحوائط الخارجية الحاملة وتأمين المنشآت الصناعية الكبرى.',
                 specs: {
@@ -312,8 +312,8 @@ export const productsData = {
             {
                 id: 'tile-karara-25',
                 name: 'بلاط موزايكو كرارة 25×25',
-                image: '/images/بلاط موزايكو كرارة.png',
-                images: ['/images/بلاط موزايكو كرارة.png'],
+                image: '/images/بلاط موزايكو كرارة.webp',
+                images: ['/images/بلاط موزايكو كرارة.webp'],
                 shortDescription: 'بلاط موزايكو أبيض كلاسيكي بحبيبات كرارة نقية، مصمم لتحمل الحركة الكثيفة في المدارس، المباني الإدارية، والبدرومات مع قابلية ممتازة للجلي.',
                 specs: {
                     'المقاس (طول * عرض)': '25 * 25 سم',
@@ -327,8 +327,8 @@ export const productsData = {
             {
                 id: 'tile-karara-30',
                 name: 'بلاط موزايكو كرارة 30×30',
-                image: '/images/بلاط موزايكو كرارة.png',
-                images: ['/images/بلاط موزايكو كرارة.png'],
+                image: '/images/بلاط موزايكو كرارة.webp',
+                images: ['/images/بلاط موزايكو كرارة.webp'],
                 shortDescription: 'مقاس قياسي واسع للأرضيات والسلالم والممرات الحكومية والتعليمية، بديل عملي عالي التحمل للرخام مع مقاومة فائقة للبري والاحتكاك.',
                 specs: {
                     'المقاس (طول * عرض)': '30 * 30 سم',
@@ -342,8 +342,8 @@ export const productsData = {
             {
                 id: 'tile-asali-25',
                 name: 'بلاط موزايكو عسلي برلاتو 25×25',
-                image: '/images/بلاط موزايكو جكرارة.png',
-                images: ['/images/بلاط موزايكو جكرارة.png'],
+                image: '/images/بلاط موزايكو جكرارة.webp',
+                images: ['/images/بلاط موزايكو جكرارة.webp'],
                 shortDescription: 'حبيبات رخامية برلاتو بلون عسلي دافئ، مثالي للمداخل الداخلية، المكاتب، وممرات المشاة في المنشآت العامة والخاصة.',
                 specs: {
                     'المقاس (طول * عرض)': '25 * 25 سم',
@@ -357,8 +357,8 @@ export const productsData = {
             {
                 id: 'tile-asali-30',
                 name: 'بلاط موزايكو عسلي برلاتو 30×30',
-                image: '/images/بلاط موزايكو جكرارة.png',
-                images: ['/images/بلاط موزايكو جكرارة.png'],
+                image: '/images/بلاط موزايكو جكرارة.webp',
+                images: ['/images/بلاط موزايكو جكرارة.webp'],
                 shortDescription: 'أرضية موزايكو متينة تجمع بين المظهر الجمالي وقوة التحمل العالية للمباني العامة، صالات الاستقبال، والبدرومات.',
                 specs: {
                     'المقاس (طول * عرض)': '30 * 30 سم',

@@ -1,65 +1,24 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { productsData } from '../data/productsData';
+import { useCatalogData, getCategoryTabs } from '../hooks/useCatalogData';
 import InteractiveGrid from '../components/InteractiveGrid';
 import { ChevronRight, ChevronLeft, ArrowLeft, Ruler, Scale, Box, Info } from 'lucide-react';
 import { img, imgArr } from '../utils/imageProxy';
 import OrderPanel from '../components/OrderPanel';
 import { useSEO } from '../hooks/useSEO';
+import { useAnalytics, trackProductView } from '../hooks/useAnalytics';
 
 const FadingProductGallery = ({ images, className = "" }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
-    const indexRef = useRef(0);
-    const squaresContainerRef = useRef(null);
     const timerRef = useRef(null);
-    
-    const triggerTransition = (nextIdx) => {
-        if (nextIdx === indexRef.current) return;
-        const currentIdx = indexRef.current;
-        const oldImage = images[currentIdx];
-        
-        if (squaresContainerRef.current) {
-            const squares = [];
-            for (let i = 0; i < 5; i++) {
-                for (let j = 0; j < 5; j++) {
-                    const sq = document.createElement('div');
-                    sq.className = 'absolute inset-0 bg-center bg-cover bg-no-repeat transition-opacity duration-1000 z-10 filter drop-shadow-[0_20px_30px_rgba(16,185,129,0.3)]';
-                sq.style.backgroundImage = `url('${img(oldImage)}')`;
-                    const top = i * 20, bottom = 100 - (i + 1) * 20;
-                    const left = j * 20, right = 100 - (j + 1) * 20;
-                    sq.style.clipPath = `inset(${top}% ${right}% ${bottom}% ${left}%)`;
-                    squaresContainerRef.current.appendChild(sq);
-                    squares.push(sq);
-                }
-            }
-            
-            squaresContainerRef.current.offsetHeight; // شForce reflow
-            
-            squares.forEach(sq => {
-                setTimeout(() => {
-                    sq.style.opacity = '0';
-                    setTimeout(() => {
-                        if (squaresContainerRef.current && sq.parentNode === squaresContainerRef.current) {
-                            squaresContainerRef.current.removeChild(sq);
-                        }
-                    }, 1000);
-                }, Math.random() * 800);
-            });
-        }
-        
-        indexRef.current = nextIdx;
-        setCurrentIndex(nextIdx);
-    };
 
     useEffect(() => {
         if (!images || images.length <= 1) return;
-        
-        const tick = () => {
-            const nextIdx = (indexRef.current + 1) % images.length;
-            triggerTransition(nextIdx);
-        };
 
-        timerRef.current = setInterval(tick, 6000);
+        timerRef.current = setInterval(() => {
+            setCurrentIndex(prev => (prev + 1) % images.length);
+        }, 5000);
+
         return () => clearInterval(timerRef.current);
     }, [images]);
 
@@ -90,9 +49,8 @@ const FadingProductGallery = ({ images, className = "" }) => {
             e.stopPropagation();
         }
         if (timerRef.current) clearInterval(timerRef.current);
-        const nextIdx = (indexRef.current + 1) % images.length;
-        triggerTransition(nextIdx);
-        timerRef.current = setInterval(() => triggerTransition((indexRef.current + 1) % images.length), 6000);
+        setCurrentIndex(prev => (prev + 1) % images.length);
+        timerRef.current = setInterval(() => setCurrentIndex(prev => (prev + 1) % images.length), 5000);
     };
 
     const handlePrev = (e) => {
@@ -101,19 +59,15 @@ const FadingProductGallery = ({ images, className = "" }) => {
             e.stopPropagation();
         }
         if (timerRef.current) clearInterval(timerRef.current);
-        const nextIdx = (indexRef.current - 1 + images.length) % images.length;
-        triggerTransition(nextIdx);
-        timerRef.current = setInterval(() => triggerTransition((indexRef.current + 1) % images.length), 6000);
+        setCurrentIndex(prev => (prev - 1 + images.length) % images.length);
+        timerRef.current = setInterval(() => setCurrentIndex(prev => (prev + 1) % images.length), 5000);
     };
 
     if (!images || images.length === 0) return null;
     if (images.length === 1) {
         return (
             <div className={`relative w-full aspect-square bg-white/5 border border-white/10 rounded-3xl overflow-hidden shadow-2xl ${className}`}>
-                <img src={img(images[0])} alt="Product" className="w-full h-full object-cover filter drop-shadow-[0_20px_30px_rgba(16,185,129,0.3)]" />
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20 mix-blend-overlay">
-                    <img src={img('/images/factory-logo.png')} alt="Watermark" className="w-1/2 opacity-30 drop-shadow-lg" />
-                </div>
+                <img src={img(images[0])} alt="Product" className="w-full h-full object-cover filter drop-shadow-[0_20px_30px_rgba(16,185,129,0.3)]" loading="eager" decoding="async" />
             </div>
         );
     }
@@ -124,13 +78,16 @@ const FadingProductGallery = ({ images, className = "" }) => {
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
         >
-            <div className="absolute inset-0 bg-center bg-cover bg-no-repeat transition-transform duration-700" style={{ backgroundImage: `url('${img(images[currentIndex])}')` }}>
-                <div ref={squaresContainerRef} className="absolute inset-0 pointer-events-none" />
-            </div>
-            
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20 mix-blend-overlay">
-                <img src={img('/images/factory-logo.png')} alt="Watermark" className="w-1/2 opacity-30 drop-shadow-lg" />
-            </div>
+            {images.map((imgSrc, idx) => (
+                <div
+                    key={imgSrc}
+                    className="absolute inset-0 bg-center bg-cover bg-no-repeat transition-opacity duration-700 ease-in-out"
+                    style={{
+                        backgroundImage: `url('${img(imgSrc)}')`,
+                        opacity: idx === currentIndex ? 1 : 0,
+                    }}
+                />
+            ))}
 
             {/* Navigation Buttons */}
             <div className="absolute inset-0 flex items-center justify-between px-4 z-30 pointer-events-none">
@@ -161,22 +118,16 @@ const FadingProductGallery = ({ images, className = "" }) => {
     );
 };
 
-const CATEGORY_TABS = [
-    { id: 'bricks', title: 'طوب أسمنتي' },
-    { id: 'interlock', title: 'إنترلوك متداخل' },
-    { id: 'curbs', title: 'بردورات خرسانية' },
-    { id: 'blocks', title: 'بلوك مفرغ' },
-    { id: 'tiles', title: 'بلاط موزايكو' },
-];
-
 const ProductDetailPage = () => {
     const { categoryId, productId } = useParams();
     const navigate = useNavigate();
+    const { catalog, isLoading } = useCatalogData();
+    const categoryTabs = getCategoryTabs(catalog);
     
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
     const imageRef = useRef(null);
 
-    const category = productsData[categoryId];
+    const category = catalog[categoryId];
     const product = category?.items?.find(item => item.id === productId);
 
     const productSchema = product ? {
@@ -209,12 +160,17 @@ const ProductDetailPage = () => {
         schema: productSchema
     });
 
+    useAnalytics();
+
     useEffect(() => {
-        if (!category || !product) {
+        if (!isLoading && (!category || !product)) {
             navigate(`/products/${categoryId || 'bricks'}`);
         }
+        if (product && productId) {
+            trackProductView(productId);
+        }
         window.scrollTo(0, 0);
-    }, [product, category, categoryId, navigate]);
+    }, [product, category, categoryId, productId, isLoading, navigate]);
 
     const handleMouseMove = (e) => {
         if (!imageRef.current) return;
@@ -254,7 +210,7 @@ const ProductDetailPage = () => {
                 </div>
 
                 <div className="hidden lg:flex flex-wrap gap-1.5 pointer-events-auto">
-                    {CATEGORY_TABS.map(tab => (
+                    {categoryTabs.map(tab => (
                         <Link
                             key={tab.id}
                             to={`/products/${tab.id}`}

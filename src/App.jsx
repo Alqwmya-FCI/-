@@ -5,10 +5,14 @@ import AliCardPage from './pages/AliCardPage';
 import HusseinCardPage from './pages/HusseinCardPage';
 import ProductsCategoryPage from './pages/ProductsCategoryPage';
 import ProductDetailPage from './pages/ProductDetailPage';
+import AdminDashboardPage from './pages/AdminDashboardPage';
 import { useSecurityShield } from './hooks/useSecurityShield';
 import { CartProvider, useCart } from './context/CartContext';
 import CartDrawer from './components/CartDrawer';
 import OrderModal from './components/OrderModal';
+import AppUpdateNotifier from './components/AppUpdateNotifier';
+import PWAInstallBanner from './components/PWAInstallBanner';
+import AX_MandatoryPushModal from './components/AX_MandatoryPushModal';
 import './App.css';
 
 function AppModals() {
@@ -21,6 +25,9 @@ function AppModals() {
         onClose={closeOrderModal} 
         initialProduct={orderModalProduct} 
       />
+      <AppUpdateNotifier />
+      <PWAInstallBanner />
+      <AX_MandatoryPushModal />
     </>
   );
 }
@@ -32,6 +39,8 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/-" element={<Navigate to="/" replace />} />
+        <Route path="/admin" element={<AdminDashboardPage />} />
+        <Route path="/dashboard" element={<AdminDashboardPage />} />
         <Route path="/products/:categoryId" element={<ProductsCategoryPage />} />
         <Route path="/products/:categoryId/:productId" element={<ProductDetailPage />} />
         <Route path="/ali" element={<AliCardPage />} />

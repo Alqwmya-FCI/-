@@ -8,7 +8,7 @@ const HusseinCardPage = () => {
         title: 'م/ حسين علي عبدالشافي | مدير مبيعات مصنع القومية للصناعات الأسمنتية',
         description: 'بطاقة التواصل المهنية للمهندس حسين علي عبدالشافي - مدير مبيعات مصنع القومية للصناعات الأسمنتية. طوب أسمنتي، إنترلوك، بردورات، وبلوك خرساني.',
         keywords: 'حسين علي عبدالشافي, مبيعات مصنع القومية, مصنع القومية للصناعات الاسمنتية',
-        image: '/images/hussein.jpg',
+        image: '/images/hussein.webp',
         url: 'https://alqwmya.com/eng-hussein-abdelshafy'
     });
     const husseinData = {
@@ -22,7 +22,7 @@ const HusseinCardPage = () => {
         instagram: 'https://www.instagram.com/hussein_ali_abdelshafi?igsh=MXV5eTVhMDEybGF5eA==',
         factoryFacebook: 'https://www.facebook.com/Alslamcompany/',
         location: 'https://maps.app.goo.gl/QneojizzF3fJqKrz6',
-        image: '/images/hussein.jpg',
+        image: '/images/hussein.webp',
         vcfName: 'Hussein_Ali.vcf'
     };
 

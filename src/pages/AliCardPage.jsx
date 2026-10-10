@@ -8,7 +8,7 @@ const AliCardPage = () => {
         title: 'م/ علي عبد الشافي | مدير مصنع القومية للصناعات الأسمنتية',
         description: 'بطاقة التواصل المهنية للمهندس علي عبد الشافي - مدير مصنع القومية للصناعات الأسمنتية. طوب أسمنتي، إنترلوك، بردورات، وبلوك خرساني.',
         keywords: 'علي عبد الشافي, مصنع القومية, مدير مصنع القومية للصناعات الاسمنتية',
-        image: '/images/ali.jpg',
+        image: '/images/ali.webp',
         url: 'https://alqwmya.com/eng-ali-abdelshafy'
     });
     const aliData = {
@@ -21,7 +21,7 @@ const AliCardPage = () => {
         personalFacebook: 'https://www.facebook.com/share/1YSq96V2M7/',
         factoryFacebook: 'https://www.facebook.com/Alslamcompany/',
         location: 'https://maps.app.goo.gl/QneojizzF3fJqKrz6',
-        image: '/images/ali.jpg',
+        image: '/images/ali.webp',
         financialHub: true,
         vcfName: 'Ali_Abdelshafy.vcf'
     };

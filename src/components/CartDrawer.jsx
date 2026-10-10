@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { X, Trash2, ShoppingBag, Send, CheckCircle, MapPin, Loader2, ExternalLink, Plus, AlertCircle } from 'lucide-react';
 import { useCart } from '../context/CartContext';
-import { sendOrderToTelegram } from '../services/telegramOrderService';
+import { submitOrder } from '../services/orderService';
 import InteractiveLocationPicker from './InteractiveLocationPicker';
 
 const HUSSEIN_WHATSAPP = '201286084444';
@@ -64,7 +64,7 @@ export default function CartDrawer() {
             mapsUrl
         };
 
-        const result = await sendOrderToTelegram(orderData);
+        const result = await submitOrder(orderData);
         setIsSubmitting(false);
         setLastOrderId(result.orderId);
         setIsSubmitted(true);

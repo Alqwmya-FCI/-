@@ -1,4 +1,5 @@
 import React from 'react';
+import { Phone, MessageCircle } from 'lucide-react';
 
 export default function TeamSection({ t, isAr }) {
     const teamMembers = [
@@ -6,14 +7,14 @@ export default function TeamSection({ t, isAr }) {
             name: isAr ? 'م/ علي عبد الشافي' : 'Eng. Ali Abdelshafy',
             role: t.roleAli,
             phone: '01283191597',
-            img: '/images/ali.jpg',
+            img: '/images/ali.webp',
             href: './eng-ali-abdelshafy/',
         },
         {
             name: isAr ? 'م/ حسين علي عبدالشافي' : 'Eng. Hussein Abdelshafy',
             role: t.roleHussein,
             phone: '01286084444',
-            img: '/images/hussein.jpg',
+            img: '/images/hussein.webp',
             href: './eng-hussein-abdelshafy/',
         },
     ];
@@ -36,7 +37,7 @@ export default function TeamSection({ t, isAr }) {
                             <div className="relative z-10 flex flex-col h-full">
                                 <div className="flex flex-col lg:flex-row items-center lg:items-start text-center lg:text-start gap-3 sm:gap-6 mb-4 sm:mb-8 border-b border-outline-variant pb-4 sm:pb-6">
                                     <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-surface-container flex items-center justify-center overflow-hidden border-2 border-primary flex-shrink-0 rounded-full lg:rounded-none">
-                                        <img src={member.img} alt={member.name} className={`w-full h-full object-cover transition-all duration-500 ${member.name.includes('حسين') || member.name.includes('Hussein') ? 'object-top' : 'object-center'}`} loading="lazy" />
+                                        <img src={member.img} alt={member.name} className={`w-full h-full object-cover transition-all duration-500 ${member.name.includes('حسين') || member.name.includes('Hussein') ? 'object-top' : 'object-center'}`} loading="lazy" decoding="async" />
                                     </div>
                                     <div className="flex-1 flex flex-col justify-center">
                                         <h3 className="text-xs min-[400px]:text-sm sm:text-xl lg:text-2xl font-bold text-primary mb-1">{member.name}</h3>
@@ -45,11 +46,11 @@ export default function TeamSection({ t, isAr }) {
                                 </div>
                                 <div className="space-y-2 sm:space-y-4 text-on-surface flex-1 flex flex-col justify-center">
                                     <div className="flex flex-col lg:flex-row items-center lg:items-start gap-1 sm:gap-4 text-center lg:text-start">
-                                        <span className="material-symbols-outlined text-primary text-[16px] sm:text-[24px]">call</span>
+                                        <Phone className="text-primary w-4 h-4 sm:w-6 sm:h-6 flex-shrink-0" />
                                         <span dir="ltr" className="text-[10px] sm:text-sm font-mono">{member.phone}</span>
                                     </div>
                                     <div className="flex flex-col lg:flex-row items-center lg:items-start gap-1 sm:gap-4 text-center lg:text-start">
-                                        <span className="material-symbols-outlined text-green-400 text-[16px] sm:text-[24px]">chat</span>
+                                        <MessageCircle className="text-green-400 w-4 h-4 sm:w-6 sm:h-6 flex-shrink-0" />
                                         <span className="text-green-400 text-[10px] sm:text-sm font-bold">{t.whatsapp}</span>
                                     </div>
                                 </div>
