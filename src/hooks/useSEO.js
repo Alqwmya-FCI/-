@@ -5,7 +5,7 @@ export function useSEO({
   description,
   keywords,
   image = 'https://alqwmya.com/images/logo.png',
-  url = window.location.href,
+  url = typeof window !== 'undefined' ? window.location.href : '',
   type = 'website',
   schema = null,
 }) {
