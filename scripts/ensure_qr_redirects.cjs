@@ -33,6 +33,27 @@ const REDIRECTS = [
     name: 'م/ حسين علي عبدالشافي',
     title: 'مدير الإنتاج والجودة',
     image: 'https://alqwmya.com/images/hussein.jpg'
+  },
+  {
+    folder: 'mohamed',
+    target: 'https://alqwmya.com/mohamed-ali-abdelshafy/',
+    name: 'أ/ محمد علي عبد الشافي',
+    title: 'مدير التسويق',
+    image: 'https://alqwmya.com/images/mohamed.jpg'
+  },
+  {
+    folder: 'mohamed-ali-abdelshafy',
+    target: 'https://alqwmya.com/mohamed-ali-abdelshafy/',
+    name: 'أ/ محمد علي عبد الشافي',
+    title: 'مدير التسويق',
+    image: 'https://alqwmya.com/images/mohamed.jpg'
+  },
+  {
+    folder: 'eng-mohamed-abdelshafy',
+    target: 'https://alqwmya.com/mohamed-ali-abdelshafy/',
+    name: 'أ/ محمد علي عبد الشافي',
+    title: 'مدير التسويق',
+    image: 'https://alqwmya.com/images/mohamed.jpg'
   }
 ];
 
@@ -106,4 +127,4 @@ if (fs.existsSync(DIST_DIR)) {
   lockDestination(DIST_DIR);
 }
 
-console.log('[AX_QR_GUARD] SUCCESS: All 5 QR pathways and Universal 404 locked into public/ and dist/.');
+console.log(`[AX_QR_GUARD] SUCCESS: All ${REDIRECTS.length} QR pathways and Universal 404 locked into public/ and dist/.`);
