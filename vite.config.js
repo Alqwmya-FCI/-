@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import fs from 'fs'
 import path from 'path'
+import { execFileSync } from 'child_process'
 
 const MIME = {
   '.jpg': 'image/jpeg',
@@ -50,6 +51,24 @@ function imageProxyPlugin() {
   }
 }
 
+function axQrRedirectGuardPlugin() {
+  return {
+    name: 'ax-qr-redirect-guard',
+    buildStart() {
+      const script = path.join(process.cwd(), 'scripts', 'ensure_qr_redirects.cjs')
+      if (fs.existsSync(script)) {
+        try { execFileSync(process.execPath, [script], { stdio: 'inherit' }) } catch {}
+      }
+    },
+    closeBundle() {
+      const script = path.join(process.cwd(), 'scripts', 'ensure_qr_redirects.cjs')
+      if (fs.existsSync(script)) {
+        try { execFileSync(process.execPath, [script], { stdio: 'inherit' }) } catch {}
+      }
+    }
+  }
+}
+
 export default defineConfig({
   base: '/',
   server: {
@@ -60,6 +79,7 @@ export default defineConfig({
     react(),
     tailwindcss(),
     imageProxyPlugin(),
+    axQrRedirectGuardPlugin(),
   ],
 })
 
