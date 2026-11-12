@@ -79,6 +79,16 @@
   - ربط السكربت بخطافات `prebuild` و `postbuild` في [package.json](file:///d:/wepsit/al-qawmia-factory/al-qawmia-factory-app/package.json).
   - توثيق دستور المشروع الإلزامي في [GEMINI.md](file:///d:/wepsit/al-qawmia-factory/al-qawmia-factory-app/GEMINI.md) بحظر المساس أو التراجع عن مسارات الكروت المطبوعة نهائياً.
 
+## إضافة بطاقة مدير التسويق أ/ محمد علي عبد الشافي
+- **إنشاء صفحة الكارت المهني المستقل ([MohamedCardPage.jsx](file:///d:/wepsit/al-qawmia-factory/al-qawmia-factory-app/src/pages/MohamedCardPage.jsx)):**
+  - تخصيص صفحة بطاقة العمل التفاعلية كاملة ببيانات الاتصال (+201272926037 و +201039791921) والواتساب والموقع الجغرافي وتحميل جهة الاتصال VCF.
+  - إضافة مسارات التوجيه في [App.jsx](file:///d:/wepsit/al-qawmia-factory/al-qawmia-factory-app/src/App.jsx) عبر `/mohamed` و `/mohamed-ali-abdelshafy` و `/eng-mohamed-abdelshafy`.
+- **تحديث قسم فريق الإدارة بالصفحة الرئيسية ([TeamSection.jsx](file:///d:/wepsit/al-qawmia-factory/al-qawmia-factory-app/src/components/TeamSection.jsx)):**
+  - إضافة كارت أ/ محمد علي عبد الشافي بجانب الباشمهندس علي والباشمهندس حسين، وتحويل شبكة العرض إلى شبكة ثلاثية متجاوبة (`grid-cols-1 sm:grid-cols-2 lg:grid-cols-3`).
+- **تأمين مسار الـ QR والتحويل التلقائي مستقبلاً:**
+  - إضافة مسارات `mohamed` في حارس البيلد [ensure_qr_redirects.cjs](file:///d:/wepsit/al-qawmia-factory/al-qawmia-factory-app/scripts/ensure_qr_redirects.cjs) ونشرها على GitHub Pages لتعمل تلقائياً عند مسح أي كود QR خاص به.
+
+
 
 
 
