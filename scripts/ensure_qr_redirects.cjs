@@ -62,7 +62,6 @@ function generateRedirectHtml(item) {
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url=${item.target}">
     <title>${item.name} - مصنع القومية</title>
     <meta property="og:type" content="website">
     <meta property="og:url" content="${item.target}">
@@ -70,7 +69,16 @@ function generateRedirectHtml(item) {
     <meta property="og:description" content="مصنع القومية للصناعات الأسمنتية. جودة، دقة، والتزام في التوريد لكافة المشاريع.">
     <meta property="og:image" content="${item.image}">
     <script>
-        window.location.replace("${item.target}");
+      (function() {
+        var host = window.location.hostname;
+        var currentUrl = window.location.href;
+        var targetUrl = "${item.target}";
+        if (host.includes("github.io")) {
+          window.location.replace(targetUrl);
+        } else if (currentUrl.endsWith("/") && !currentUrl.endsWith("${item.folder}/")) {
+          window.location.replace(targetUrl);
+        }
+      })();
     </script>
 </head>
 <body style="font-family: system-ui, sans-serif; text-align: center; padding: 50px; background: #0f172a; color: #fff;">
