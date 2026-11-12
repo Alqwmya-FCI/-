@@ -66,4 +66,19 @@
   - إدارة الكتالوج وإضافة منتجات جديدة مع صور متعددة ومواصفات تفصيلية ونشر فوري بالوقت الفعلي ([AdminCatalogTab.jsx](file:///d:/wepsit/al-qawmia-factory/al-qawmia-factory-app/src/components/admin/AdminCatalogTab.jsx)).
   - ربط حفظ الطلبات من سلة المشتريات ومودال الطلب مباشرة في قاعدة البيانات ([orderService.js](file:///d:/wepsit/al-qawmia-factory/al-qawmia-factory-app/src/services/orderService.js)) مع استمرار التليجرام كنسخة احتياطية آمنة.
 
+## حل مشكلة تحويل روابط الـ QR المطبوعة (GitHub Pages QR Redirect Fix)
+- **إنشاء مسارات التحويل السريع للبطاقات المهنية:**
+  - إضافة ملفات التوجيه التلقائي في `public/ali/index.html` و `public/eng-ali-abdelshafy/index.html` مع ميتا تاج وسكربت فوري للتحويل إلى `https://alqwmya.com/eng-ali-abdelshafy/`.
+  - إضافة مسارات التوجيه لبطاقة المهندس حسين في `public/hussein/index.html` و `public/eng-hussein-abdelshafy/index.html`.
+  - توفير صفحة `public/404.html` ذكية لصيد أي مسارات قديمة أخرى وتحويلها للدومين المعتمد.
+- **تحديث فرعي `gh-pages` و `main` على جيت هاب:**
+  - رفع كافة الملفات على مستودع `Alqwmya-FCI/-` واكتمال البناء على سيرفرات GitHub Pages بنجاح واختبار الروابط حياً واستجابتها برمز 200 OK والتحويل المباشر.
+- **تثبيت حارس الكود الصارم لمنع تكرار المشكلة نهائياً (AX_QR_GUARD):**
+  - إنشاء سكربت الحوكمة الذاتي ([ensure_qr_redirects.cjs](file:///d:/wepsit/al-qawmia-factory/al-qawmia-factory-app/scripts/ensure_qr_redirects.cjs)) الذي يعيد توليد وضمان وجود مسارات الكيو آر والتحويلات وصفحة 404 في كل من `public/` و `dist/`.
+  - دمج إضافة `axQrRedirectGuardPlugin()` في [vite.config.js](file:///d:/wepsit/al-qawmia-factory/al-qawmia-factory-app/vite.config.js) لتعمل تلقائياً عند بداية ونهاية كل عملية Build.
+  - ربط السكربت بخطافات `prebuild` و `postbuild` في [package.json](file:///d:/wepsit/al-qawmia-factory/al-qawmia-factory-app/package.json).
+  - توثيق دستور المشروع الإلزامي في [GEMINI.md](file:///d:/wepsit/al-qawmia-factory/al-qawmia-factory-app/GEMINI.md) بحظر المساس أو التراجع عن مسارات الكروت المطبوعة نهائياً.
+
+
+
 
