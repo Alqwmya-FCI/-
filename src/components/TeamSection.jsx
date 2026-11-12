@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Phone, MessageCircle } from 'lucide-react';
 
 export default function TeamSection({ t, isAr }) {
@@ -8,14 +9,14 @@ export default function TeamSection({ t, isAr }) {
             role: t.roleAli,
             phone: '01283191597',
             img: '/images/ali.webp',
-            href: './eng-ali-abdelshafy/',
+            href: '/eng-ali-abdelshafy',
         },
         {
             name: isAr ? 'م/ حسين علي عبدالشافي' : 'Eng. Hussein Abdelshafy',
             role: t.roleHussein,
             phone: '01286084444',
             img: '/images/hussein.webp',
-            href: './eng-hussein-abdelshafy/',
+            href: '/eng-hussein-abdelshafy',
         },
         {
             name: isAr ? 'أ/ محمد علي عبد الشافي' : 'Mr. Mohamed Ali Abdelshafy',
@@ -23,7 +24,7 @@ export default function TeamSection({ t, isAr }) {
             phone: '01272926037',
             secondaryPhone: '01039791921',
             img: '/images/mohamed.webp',
-            href: './mohamed-ali-abdelshafy/',
+            href: '/mohamed-ali-abdelshafy',
         },
     ];
 
@@ -37,9 +38,9 @@ export default function TeamSection({ t, isAr }) {
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-6xl mx-auto">
                     {teamMembers.map(member => (
-                        <a
+                        <Link
                             key={member.name}
-                            href={member.href}
+                            to={member.href}
                             className="bg-surface-container-low border border-outline-variant text-on-surface p-3 sm:p-6 md:p-8 hover:-translate-y-2 transition-all duration-300 relative overflow-hidden group block"
                         >
                             <div className="relative z-10 flex flex-col h-full">
@@ -66,7 +67,7 @@ export default function TeamSection({ t, isAr }) {
                                     {t.viewCV}
                                 </div>
                             </div>
-                        </a>
+                        </Link>
                     ))}
                 </div>
             </div>
