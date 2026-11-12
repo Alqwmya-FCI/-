@@ -19,6 +19,8 @@ const MohamedCardPage = () => {
         bio: 'مصنع القومية للصناعات الأسمنتية. حلول تسويقية متكاملة وتوريد لكافة المشاريع الكبرى بأعلى مواصفات الجودة.',
         phones: ['+201272926037', '+201039791921'],
         whatsapp: '+201272926037',
+        personalFacebook: 'https://www.facebook.com/share/1DwAgdJSab/?mibextid=wwXIfr',
+        instagram: 'https://www.instagram.com/mohamed_aly.33?vrfl=Z3JhdTVuaDFjcm80&utm_source=qr',
         factoryFacebook: 'https://www.facebook.com/Alslamcompany/',
         location: 'https://maps.app.goo.gl/QneojizzF3fJqKrz6',
         image: '/images/mohamed.webp',
