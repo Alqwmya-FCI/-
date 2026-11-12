@@ -45,7 +45,7 @@ export default function TeamSection({ t, isAr }) {
                             <div className="relative z-10 flex flex-col h-full">
                                 <div className="flex flex-col lg:flex-row items-center lg:items-start text-center lg:text-start gap-3 sm:gap-6 mb-4 sm:mb-8 border-b border-outline-variant pb-4 sm:pb-6">
                                     <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-surface-container flex items-center justify-center overflow-hidden border-2 border-primary flex-shrink-0 rounded-full lg:rounded-none">
-                                        <img src={member.img} alt={member.name} className={`w-full h-full object-cover transition-all duration-500 ${member.name.includes('حسين') || member.name.includes('Hussein') || member.name.includes('محمد') || member.name.includes('Mohamed') ? 'object-top' : 'object-center'}`} loading="lazy" decoding="async" />
+                                        <img src={member.img} alt={member.name} className={`w-full h-full object-cover transition-all duration-500 ${member.name.includes('حسين') || member.name.includes('Hussein') ? 'object-top' : 'object-center'}`} loading="lazy" decoding="async" />
                                     </div>
                                     <div className="flex-1 flex flex-col justify-center">
                                         <h3 className="text-xs min-[400px]:text-sm sm:text-xl lg:text-2xl font-bold text-primary mb-1">{member.name}</h3>
