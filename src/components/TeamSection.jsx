@@ -17,6 +17,14 @@ export default function TeamSection({ t, isAr }) {
             img: '/images/hussein.webp',
             href: './eng-hussein-abdelshafy/',
         },
+        {
+            name: isAr ? 'أ/ محمد علي عبد الشافي' : 'Mr. Mohamed Ali Abdelshafy',
+            role: t.roleMohamed,
+            phone: '01272926037',
+            secondaryPhone: '01039791921',
+            img: '/images/mohamed.webp',
+            href: './mohamed-ali-abdelshafy/',
+        },
     ];
 
     return (
@@ -27,7 +35,7 @@ export default function TeamSection({ t, isAr }) {
                     <h2 className="text-5xl font-black text-on-surface mb-4">{t.teamTitle}</h2>
                     <p className="text-xl text-on-surface-variant">{t.teamSub}</p>
                 </div>
-                <div className="grid grid-cols-2 gap-2 sm:gap-6 md:gap-8 max-w-5xl mx-auto">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-6xl mx-auto">
                     {teamMembers.map(member => (
                         <a
                             key={member.name}
