@@ -69,6 +69,7 @@ const translations = {
         teamSub: 'فريق الإدارة في خدمتك',
         roleAli: 'رئيس مجلس الإدارة',
         roleHussein: 'مدير الإنتاج والجودة',
+        roleMohamed: 'مدير التسويق',
         whatsapp: 'واتساب متاح',
         viewCV: 'عرض السيرة الذاتية ←'
     },
@@ -110,6 +111,7 @@ const translations = {
         teamSub: 'Our team is at your service',
         roleAli: 'Chairman',
         roleHussein: 'Production & Quality Manager',
+        roleMohamed: 'Marketing Director',
         whatsapp: 'WhatsApp Available',
         viewCV: 'View Profile →'
     }
