@@ -5,9 +5,30 @@
     <title>مصنع القومية للصناعات الأسمنتية</title>
     <script>
       (function() {
+        var host = window.location.hostname;
         var path = window.location.pathname.replace(/^\/-\/?/, "/");
         if (!path || path === "") path = "/";
-        window.location.replace("https://alqwmya.com" + path + window.location.search + window.location.hash);
+
+        var clean = path.replace(/^\/+|\/+$/g, "").toLowerCase();
+
+        var cardMap = {
+          "ali": "/eng-ali-abdelshafy",
+          "eng-ali-abdelshafy": "/eng-ali-abdelshafy",
+          "hussein": "/eng-hussein-abdelshafy",
+          "eng-hussein-abdelshafy": "/eng-hussein-abdelshafy",
+          "mohamed": "/mohamed-ali-abdelshafy",
+          "mohamed-ali-abdelshafy": "/mohamed-ali-abdelshafy",
+          "eng-mohamed-abdelshafy": "/mohamed-ali-abdelshafy"
+        };
+
+        var targetPath = cardMap[clean] || path;
+        var destination = "https://alqwmya.com" + targetPath + window.location.search + window.location.hash;
+
+        if (host.includes("github.io")) {
+          window.location.replace(destination);
+        } else {
+          window.location.replace("https://alqwmya.com/");
+        }
       })();
     </script>
 </head>
