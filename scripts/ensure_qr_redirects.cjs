@@ -5,89 +5,6 @@ const ROOT = path.resolve(__dirname, '..');
 const PUBLIC_DIR = path.join(ROOT, 'public');
 const DIST_DIR = path.join(ROOT, 'dist');
 
-const REDIRECTS = [
-  {
-    folder: 'ali',
-    target: 'https://alqwmya.com/eng-ali-abdelshafy/',
-    name: 'م/ علي عبد الشافي',
-    title: 'رئيس مجلس الإدارة',
-    image: 'https://alqwmya.com/images/ali.jpg'
-  },
-  {
-    folder: 'eng-ali-abdelshafy',
-    target: 'https://alqwmya.com/eng-ali-abdelshafy/',
-    name: 'م/ علي عبد الشافي',
-    title: 'رئيس مجلس الإدارة',
-    image: 'https://alqwmya.com/images/ali.jpg'
-  },
-  {
-    folder: 'hussein',
-    target: 'https://alqwmya.com/eng-hussein-abdelshafy/',
-    name: 'م/ حسين علي عبدالشافي',
-    title: 'مدير الإنتاج والجودة',
-    image: 'https://alqwmya.com/images/hussein.jpg'
-  },
-  {
-    folder: 'eng-hussein-abdelshafy',
-    target: 'https://alqwmya.com/eng-hussein-abdelshafy/',
-    name: 'م/ حسين علي عبدالشافي',
-    title: 'مدير الإنتاج والجودة',
-    image: 'https://alqwmya.com/images/hussein.jpg'
-  },
-  {
-    folder: 'mohamed',
-    target: 'https://alqwmya.com/mohamed-ali-abdelshafy/',
-    name: 'أ/ محمد علي عبد الشافي',
-    title: 'مدير التسويق',
-    image: 'https://alqwmya.com/images/mohamed.jpg'
-  },
-  {
-    folder: 'mohamed-ali-abdelshafy',
-    target: 'https://alqwmya.com/mohamed-ali-abdelshafy/',
-    name: 'أ/ محمد علي عبد الشافي',
-    title: 'مدير التسويق',
-    image: 'https://alqwmya.com/images/mohamed.jpg'
-  },
-  {
-    folder: 'eng-mohamed-abdelshafy',
-    target: 'https://alqwmya.com/mohamed-ali-abdelshafy/',
-    name: 'أ/ محمد علي عبد الشافي',
-    title: 'مدير التسويق',
-    image: 'https://alqwmya.com/images/mohamed.jpg'
-  }
-];
-
-function generateRedirectHtml(item) {
-  return `<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <title>${item.name} - مصنع القومية</title>
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="${item.target}">
-    <meta property="og:title" content="${item.name} - ${item.title}">
-    <meta property="og:description" content="مصنع القومية للصناعات الأسمنتية. جودة، دقة، والتزام في التوريد لكافة المشاريع.">
-    <meta property="og:image" content="${item.image}">
-    <script>
-      (function() {
-        var host = window.location.hostname;
-        var currentUrl = window.location.href;
-        var targetUrl = "${item.target}";
-        if (host.includes("github.io")) {
-          window.location.replace(targetUrl);
-        } else if (currentUrl.endsWith("/") && !currentUrl.endsWith("${item.folder}/")) {
-          window.location.replace(targetUrl);
-        }
-      })();
-    </script>
-</head>
-<body style="font-family: system-ui, sans-serif; text-align: center; padding: 50px; background: #0f172a; color: #fff;">
-    <h2>جاري تحويلك إلى بطاقة ${item.name}...</h2>
-    <p><a href="${item.target}" style="color: #10b981; font-weight: bold;">اضغط هنا إذا لم يتم تحويلك تلقائياً</a></p>
-</body>
-</html>`;
-}
-
 const UNIVERSAL_404_HTML = `<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -95,9 +12,30 @@ const UNIVERSAL_404_HTML = `<!DOCTYPE html>
     <title>مصنع القومية للصناعات الأسمنتية</title>
     <script>
       (function() {
+        var host = window.location.hostname;
         var path = window.location.pathname.replace(/^\\/-\\/?/, "/");
         if (!path || path === "") path = "/";
-        window.location.replace("https://alqwmya.com" + path + window.location.search + window.location.hash);
+
+        var clean = path.replace(/^\\/+|\\/+$/g, "").toLowerCase();
+
+        var cardMap = {
+          "ali": "/eng-ali-abdelshafy",
+          "eng-ali-abdelshafy": "/eng-ali-abdelshafy",
+          "hussein": "/eng-hussein-abdelshafy",
+          "eng-hussein-abdelshafy": "/eng-hussein-abdelshafy",
+          "mohamed": "/mohamed-ali-abdelshafy",
+          "mohamed-ali-abdelshafy": "/mohamed-ali-abdelshafy",
+          "eng-mohamed-abdelshafy": "/mohamed-ali-abdelshafy"
+        };
+
+        var targetPath = cardMap[clean] || path;
+        var destination = "https://alqwmya.com" + targetPath + window.location.search + window.location.hash;
+
+        if (host.includes("github.io")) {
+          window.location.replace(destination);
+        } else {
+          window.location.replace("https://alqwmya.com/");
+        }
       })();
     </script>
 </head>
@@ -107,32 +45,27 @@ const UNIVERSAL_404_HTML = `<!DOCTYPE html>
 </body>
 </html>`;
 
-function ensureDir(dir) {
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true });
-  }
-}
-
-function lockDestination(baseDir) {
-  if (!fs.existsSync(baseDir)) return;
-
-  for (const item of REDIRECTS) {
-    const dir = path.join(baseDir, item.folder);
-    ensureDir(dir);
-    const file = path.join(dir, 'index.html');
-    fs.writeFileSync(file, generateRedirectHtml(item), 'utf8');
+function lockRedirects() {
+  console.log('[AX_QR_GUARD] Enforcing smart SPA 404 router without shadow folder collision...');
+  fs.writeFileSync(path.join(PUBLIC_DIR, '404.html'), UNIVERSAL_404_HTML, 'utf8');
+  if (fs.existsSync(DIST_DIR)) {
+    fs.writeFileSync(path.join(DIST_DIR, '404.html'), UNIVERSAL_404_HTML, 'utf8');
   }
 
-  const notFoundFile = path.join(baseDir, '404.html');
-  fs.writeFileSync(notFoundFile, UNIVERSAL_404_HTML, 'utf8');
+  // Ensure shadow folders are purged to allow SPA index.html routing on alqwmya.com
+  const folders = ['ali', 'eng-ali-abdelshafy', 'hussein', 'eng-hussein-abdelshafy', 'mohamed', 'mohamed-ali-abdelshafy', 'eng-mohamed-abdelshafy'];
+  [PUBLIC_DIR, DIST_DIR].forEach(dir => {
+    if (!fs.existsSync(dir)) return;
+    folders.forEach(f => {
+      const p = path.join(dir, f);
+      if (fs.existsSync(p)) {
+        fs.rmSync(p, { recursive: true, force: true });
+        console.log(`[AX_QR_GUARD] Purged shadow directory: ${p}`);
+      }
+    });
+  });
+
+  console.log('[AX_QR_GUARD] SUCCESS: SPA routes protected.');
 }
 
-console.log('[AX_QR_GUARD] Enforcing QR code redirect immutability...');
-ensureDir(PUBLIC_DIR);
-lockDestination(PUBLIC_DIR);
-
-if (fs.existsSync(DIST_DIR)) {
-  lockDestination(DIST_DIR);
-}
-
-console.log(`[AX_QR_GUARD] SUCCESS: All ${REDIRECTS.length} QR pathways and Universal 404 locked into public/ and dist/.`);
+lockRedirects();
